@@ -48,13 +48,13 @@ public class AddressController {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Address> updateCountry(@PathVariable Long id, @RequestBody Address address) {
+	public ResponseEntity<Address> updateAddress(@PathVariable Long id, @RequestBody Address address) {
 		addressService.updateAddress(id, address);
 		return new ResponseEntity<Address>(address, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Address> removeCountry(@PathVariable Long id) {
+	public ResponseEntity<Address> removeAddress(@PathVariable Long id) {
 		try {
 			addressService.removeAddress(id);
 		} catch (Exception e) {
