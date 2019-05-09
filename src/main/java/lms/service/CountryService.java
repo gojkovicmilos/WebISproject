@@ -14,24 +14,30 @@ public class CountryService {
 
 	@Autowired
 	CountryRepository countryRepository;
-	
-	public List<Country> findAll(){
+
+	public List<Country> findAll() {
 		return countryRepository.findAll();
 	}
-	
-	
+
 	public void addCountry(Country c) {
 		countryRepository.save(c);
 	}
-	
+
 	public Optional<Country> getCountry(Long id) {
 		return countryRepository.findById(id);
 	}
-	
-	
+
 	public void removeCountry(Long id) {
 		Optional<Country> c = countryRepository.findById(id);
 		countryRepository.delete(c.get());
+	}
+
+	public void updateCountry(Long id, Country c) {
+		Optional<Country> cou = countryRepository.findById(id);
+		if (cou.isPresent()) {
+			c.setId(cou.get().getId());
+			countryRepository.save(c);
+		}
 	}
 
 }
