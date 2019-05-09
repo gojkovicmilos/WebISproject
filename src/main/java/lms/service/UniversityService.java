@@ -2,11 +2,8 @@ package lms.service;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import lms.domain.TitleType;
 import lms.domain.University;
 import lms.repository.UniversityRepository;
 
@@ -16,8 +13,13 @@ public class UniversityService {
 	@Autowired
 	UniversityRepository universityRepository;
 
-	public List<University> findAll() {
+	public List<University> getUniversity() {
 		return universityRepository.findAll();
+	}
+
+	public Optional<University> getUniversityById(Long id) {
+		// TODO Auto-generated method stub
+		return universityRepository.findById(id);
 	}
 
 	public void addUniversity(University u) {
