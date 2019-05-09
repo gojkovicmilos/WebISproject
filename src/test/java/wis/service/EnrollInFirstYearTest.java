@@ -26,7 +26,7 @@ public class EnrollInFirstYearTest {
 	@Rollback(true)
 	public void test() {
 		Student student = studentService.findByCardNumber("123");
-		studentService.enrolleInFirstYear(student);
+		studentService.enrollInFirstYear(student);
 		Student student1 = studentService.findByCardNumber("123");
 		assertEquals(1, student1.getStudentYears().iterator().next().getYearOfStudy().getNumberOfYear());
 	}
