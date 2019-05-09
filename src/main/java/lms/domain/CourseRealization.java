@@ -39,7 +39,7 @@ public class CourseRealization {
 	private Set<CourseTeaching> courseTeachings;
 
 	@OneToMany(mappedBy = "courseRealization", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private Set<CourseAttending> courseAttendings;
+	private Set<ExamAttending> examAttendings;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Course course;
@@ -50,14 +50,14 @@ public class CourseRealization {
 	}
 
 	public CourseRealization(Long id, @NotNull Boolean deleted, int version, LocalDate startDate, LocalDate endDate,
-			Set<CourseTeaching> courseTeachings, Set<CourseAttending> courseAttendings, Course course) {
+			Set<CourseTeaching> courseTeachings, Set<ExamAttending> examAttendings, Course course) {
 		this.id = id;
 		this.deleted = deleted;
 		this.version = version;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.courseTeachings = courseTeachings;
-		this.courseAttendings = courseAttendings;
+		this.examAttendings = examAttendings;
 		this.course = course;
 	}
 

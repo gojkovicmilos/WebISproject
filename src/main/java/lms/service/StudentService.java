@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lms.domain.Course;
-import lms.domain.CourseAttending;
+import lms.domain.ExamAttending;
 import lms.domain.Place;
 import lms.domain.Student;
 import lms.domain.StudentYear;
@@ -59,8 +59,8 @@ public class StudentService {
 	public Set<Course> findAllFinishedCourses(Student student) {
 		Set<Course> ret = new HashSet<>();
 
-		for (CourseAttending courseAttending : student.getCourseAttendings())
-			ret.add(courseAttending.getCourseRealization().getCourse());
+		for (ExamAttending examAttending : student.getCourseAttendings())
+			ret.add(examAttending.getCourseRealization().getCourse());
 
 		return ret;
 
