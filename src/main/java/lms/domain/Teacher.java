@@ -57,6 +57,33 @@ public class Teacher {
 
 	@Version
 	private int version = 0;
+	
+	public Teacher() {
+	}
+	
+	
+	
+
+	public Teacher(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
+			@Size(max = 20) String personalIdentificationNumber, @NotNull Boolean deleted,
+			Set<CourseTeaching> courseTeachings, Set<Title> title, Address address, Faculty facultyDean,
+			University universityRector, StudyProgram studyProgramHandler, int version) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.personalIdentificationNumber = personalIdentificationNumber;
+		this.deleted = deleted;
+		this.courseTeachings = courseTeachings;
+		this.title = title;
+		this.address = address;
+		this.facultyDean = facultyDean;
+		this.universityRector = universityRector;
+		StudyProgramHandler = studyProgramHandler;
+		this.version = version;
+	}
+
+
+
 
 	public Long getId() {
 		return id;
@@ -154,8 +181,9 @@ public class Teacher {
 		this.version = version;
 	}
 
-	public Teacher() {
-	}
+	
+	
+	
 
 	@Override
 	public boolean equals(Object o) {
