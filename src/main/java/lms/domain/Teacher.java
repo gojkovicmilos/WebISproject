@@ -10,11 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Where;
+import org.springframework.data.annotation.Version;
 
 @Entity
 @Where(clause = "deleted = 'false'")
@@ -35,42 +36,27 @@ public class Teacher {
 
 	@NotNull
 	private Boolean deleted = false;
-	
+
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseTeaching> courseTeachings;
 
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private Set<Title> titles;
-	
+	private Set<Title> title;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	private Address address;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	private Faculty facultyDean;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	private University universityRector;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	private StudyProgram StudyProgramHandler;
+
 	@Version
 	private int version = 0;
-	
-	
-	
-	
-
-	public Teacher() {
-	}
-
-	public Teacher(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
-			@Size(max = 20) String personalIdentificationNumber, @NotNull Boolean deleted,
-			Set<CourseTeaching> courseTeachings, int version) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.personalIdentificationNumber = personalIdentificationNumber;
-		this.deleted = deleted;
-		this.courseTeachings = courseTeachings;
-		this.version = version;
-	}
-
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
 
 	public Long getId() {
 		return id;
@@ -111,8 +97,6 @@ public class Teacher {
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 	}
-	
-	
 
 	public Set<CourseTeaching> getCourseTeachings() {
 		return courseTeachings;
@@ -122,12 +106,55 @@ public class Teacher {
 		this.courseTeachings = courseTeachings;
 	}
 
-	public Set<Title> getTitles() {
-		return titles;
+	public Set<Title> getTitle() {
+		return title;
 	}
 
-	public void setTitles(Set<Title> titles) {
-		this.titles = titles;
+	public void setTitle(Set<Title> title) {
+		this.title = title;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Faculty getFacultyDean() {
+		return facultyDean;
+	}
+
+	public void setFacultyDean(Faculty facultyDean) {
+		this.facultyDean = facultyDean;
+	}
+
+	public University getUniversityRector() {
+		return universityRector;
+	}
+
+	public void setUniversityRector(University universityRector) {
+		this.universityRector = universityRector;
+	}
+
+	public StudyProgram getStudyProgramHandler() {
+		return StudyProgramHandler;
+	}
+
+	public void setStudyProgramHandler(StudyProgram studyProgramHandler) {
+		StudyProgramHandler = studyProgramHandler;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public Teacher() {
 	}
 
 	@Override
