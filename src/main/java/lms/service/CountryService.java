@@ -19,6 +19,10 @@ public class CountryService {
 		return countryRepository.findAll();
 	}
 
+	public Iterable<Country> getCountry() {
+		return countryRepository.findAll();
+	}
+
 	public void addCountry(Country c) {
 		countryRepository.save(c);
 	}
@@ -38,6 +42,11 @@ public class CountryService {
 			c.setId(cou.get().getId());
 			countryRepository.save(c);
 		}
+	}
+
+	public Optional<Country> getCountryById(Long id) {
+		// TODO Auto-generated method stub
+		return countryRepository.findById(id);
 	}
 
 }
