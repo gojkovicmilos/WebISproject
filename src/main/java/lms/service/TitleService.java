@@ -16,8 +16,14 @@ public class TitleService {
 	@Autowired
 	TitleRepository titleRepository;
 
-	public List<Title> findAll() {
+	public Iterable<Title> getTitle() {
+		// TODO Auto-generated method stub
 		return titleRepository.findAll();
+	}
+
+	public Optional<Title> getTitleById(Long id) {
+		// TODO Auto-generated method stub
+		return titleRepository.findById(id);
 	}
 
 	public void addTitle(Title t) {
@@ -40,5 +46,7 @@ public class TitleService {
 			titleRepository.save(t);
 		}
 	}
+
+
 
 }
