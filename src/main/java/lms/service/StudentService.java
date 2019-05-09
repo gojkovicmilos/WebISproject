@@ -65,20 +65,20 @@ public class StudentService {
 		return ret;
 
 	}
-	
+
 	public Iterable<Student> getStudents() {
-        return studentRepository.findAll();
-    }
+		return studentRepository.findAll();
+	}
 
-    public Optional<Student> getStudentById(Long id) {
-        return studentRepository.findById(id);
-    }
+	public Optional<Student> getStudentById(Long id) {
+		return studentRepository.findById(id);
+	}
 
-    public void addStudent(Student s) {
-    	studentRepository.save(s);
-    }
-    
-    public Optional<Student> getStudent(Long id) {
+	public void addStudent(Student s) {
+		studentRepository.save(s);
+	}
+
+	public Optional<Student> getStudent(Long id) {
 		return studentRepository.findById(id);
 	}
 
@@ -86,7 +86,7 @@ public class StudentService {
 		Optional<Student> s = studentRepository.findById(id);
 		studentRepository.delete(s.get());
 	}
-	
+
 	public void updateStudent(Long id, Student s) {
 		Optional<Student> S = studentRepository.findById(id);
 		if (S.isPresent()) {
