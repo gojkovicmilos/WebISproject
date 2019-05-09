@@ -111,6 +111,24 @@ public class Teacher {
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 	}
+	
+	
+
+	public Set<CourseTeaching> getCourseTeachings() {
+		return courseTeachings;
+	}
+
+	public void setCourseTeachings(Set<CourseTeaching> courseTeachings) {
+		this.courseTeachings = courseTeachings;
+	}
+
+	public Set<Title> getTitles() {
+		return titles;
+	}
+
+	public void setTitles(Set<Title> titles) {
+		this.titles = titles;
+	}
 
 	@Override
 	public boolean equals(Object o) {
