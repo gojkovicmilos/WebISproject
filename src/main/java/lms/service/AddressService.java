@@ -40,4 +40,14 @@ public class AddressService {
 		}
 	}
 
+	public Optional<Address> getAddressById(Long id) {
+		// TODO Auto-generated method stub
+		return addressRepository.findById(id);
+	}
+
+	public Iterable<Address> getAddress() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
