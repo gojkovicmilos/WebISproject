@@ -16,8 +16,14 @@ public class PlaceService {
 	@Autowired
 	PlaceRepository placeRepository;
 
-	public List<Place> findAll() {
+	public Iterable<Place> getPlace() {
+		// TODO Auto-generated method stub
 		return placeRepository.findAll();
+	}
+
+	public Optional<Place> getPlaceById(Long id) {
+		// TODO Auto-generated method stub
+		return placeRepository.findById(id);
 	}
 
 	public void addPlace(Place p) {
@@ -32,7 +38,7 @@ public class PlaceService {
 		Optional<Place> p = placeRepository.findById(id);
 		placeRepository.delete(p.get());
 	}
-	
+
 	public void updatePlace(Long id, Place p) {
 		Optional<Place> P = placeRepository.findById(id);
 		if (P.isPresent()) {
