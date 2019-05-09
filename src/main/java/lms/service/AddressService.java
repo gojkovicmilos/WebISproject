@@ -15,8 +15,17 @@ public class AddressService {
 	@Autowired
 	AddressRepository addressRepository;
 
-	public List<Address> findAll() {
+	public AddressService() {
+	}
+
+	public Iterable<Address> getAddress() {
+		// TODO Auto-generated method stub
 		return addressRepository.findAll();
+	}
+
+	public Optional<Address> getAddressById(Long id) {
+		// TODO Auto-generated method stub
+		return addressRepository.findById(id);
 	}
 
 	public void addAdress(Address a) {
@@ -38,16 +47,6 @@ public class AddressService {
 			a.setId(add.get().getId());
 			addressRepository.save(a);
 		}
-	}
-
-	public Optional<Address> getAddressById(Long id) {
-		// TODO Auto-generated method stub
-		return addressRepository.findById(id);
-	}
-
-	public Iterable<Address> getAddress() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
