@@ -41,7 +41,7 @@ public class AddressController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Address> dodavanjeKorisnika(@RequestBody Address address) {
+	public ResponseEntity<Address> getAddress(@RequestBody Address address) {
 
 		addressService.addAdress(address);
 		return new ResponseEntity<Address>(address, HttpStatus.CREATED);
