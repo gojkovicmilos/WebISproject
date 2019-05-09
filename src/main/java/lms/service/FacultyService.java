@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lms.domain.Country;
 import lms.domain.CourseType;
 import lms.domain.Faculty;
 import lms.repository.FacultyRepository;
@@ -27,6 +28,11 @@ public class FacultyService {
 	public Optional<Faculty> getFaculty(Long id) {
 		return facultyRepository.findById(id);
 	}
+	
+//	public Iterable<Faculty> getFaculty() {
+//		return facultyRepository.findAll();
+//	}
+
 
 	public void removeFaculty(Long id) {
 		Optional<Faculty> f = facultyRepository.findById(id);
@@ -39,6 +45,11 @@ public class FacultyService {
 			f.setId(F.get().getId());
 			facultyRepository.save(f);
 		}
+	}
+
+	public Optional<Faculty> getFacultyById(Long id) {
+		// TODO Auto-generated method stub
+		return facultyRepository.findById(id);
 	}
 
 }
