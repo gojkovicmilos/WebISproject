@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lms.domain.CourseType;
 import lms.domain.Faculty;
 import lms.repository.FacultyRepository;
 
@@ -14,24 +15,30 @@ public class FacultyService {
 
 	@Autowired
 	FacultyRepository facultyRepository;
-	
-	public List<Faculty> findAll(){
+
+	public List<Faculty> findAll() {
 		return facultyRepository.findAll();
 	}
-	
+
 	public void addFaculty(Faculty f) {
 		facultyRepository.save(f);
 	}
-	
+
 	public Optional<Faculty> getFaculty(Long id) {
 		return facultyRepository.findById(id);
 	}
-	
-	
+
 	public void removeFaculty(Long id) {
 		Optional<Faculty> f = facultyRepository.findById(id);
 		facultyRepository.delete(f.get());
 	}
 
+	public void updateFaculty(Long id, Faculty f) {
+		Optional<Faculty> F = facultyRepository.findById(id);
+		if (F.isPresent()) {
+			f.setId(F.get().getId());
+			facultyRepository.save(f);
+		}
+	}
 
 }
