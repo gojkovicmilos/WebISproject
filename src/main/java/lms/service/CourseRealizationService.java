@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lms.domain.CourseAttending;
+import lms.domain.ExamAttending;
 import lms.domain.CourseRealization;
 import lms.repository.CourseRealizationRepository;
 
