@@ -19,7 +19,7 @@ import org.hibernate.annotations.Where;
 
 @Entity
 @Where(clause = "deleted = 'false'")
-public class CourseRealization {
+public class ExamRealization {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,10 +35,10 @@ public class CourseRealization {
 	
 	private LocalDate endDate;
 	
-	@OneToMany(mappedBy = "courseRealization", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private Set<CourseTeaching> courseTeachings;
+	@OneToMany(mappedBy = "examRealization", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private Set<ExamTeaching> examTeachings;
 
-	@OneToMany(mappedBy = "courseRealization", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@OneToMany(mappedBy = "examRealization", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<ExamAttending> examAttendings;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -46,20 +46,61 @@ public class CourseRealization {
 	
 	
 	
-	public CourseRealization() {
+	public ExamRealization() {
 	}
 
-	public CourseRealization(Long id, @NotNull Boolean deleted, int version, LocalDate startDate, LocalDate endDate,
-			Set<CourseTeaching> courseTeachings, Set<ExamAttending> examAttendings, Course course) {
+	
+	
+	
+
+	public ExamRealization(Long id, @NotNull Boolean deleted, int version, LocalDate startDate, LocalDate endDate,
+			Set<ExamTeaching> examTeachings, Set<ExamAttending> examAttendings, Course course) {
 		this.id = id;
 		this.deleted = deleted;
 		this.version = version;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.courseTeachings = courseTeachings;
+		this.examTeachings = examTeachings;
 		this.examAttendings = examAttendings;
 		this.course = course;
 	}
+
+
+	
+
+
+
+	public Set<ExamTeaching> getExamTeachings() {
+		return examTeachings;
+	}
+
+
+
+
+
+	public void setExamTeachings(Set<ExamTeaching> examTeachings) {
+		this.examTeachings = examTeachings;
+	}
+
+
+
+
+
+	public Set<ExamAttending> getExamAttendings() {
+		return examAttendings;
+	}
+
+
+
+
+
+	public void setExamAttendings(Set<ExamAttending> examAttendings) {
+		this.examAttendings = examAttendings;
+	}
+
+
+
+
 
 	public Course getCourse() {
 		return course;
@@ -73,13 +114,6 @@ public class CourseRealization {
 		return id;
 	}
 
-	public Set<CourseTeaching> getCourseTeachings() {
-		return courseTeachings;
-	}
-
-	public void setCourseTeachings(Set<CourseTeaching> courseTeachings) {
-		this.courseTeachings = courseTeachings;
-	}
 
 	public void setId(Long id) {
 		this.id = id;
@@ -125,7 +159,7 @@ public class CourseRealization {
 		if (o == null || getClass() != o.getClass()) {
 			return false;
 		}
-		CourseRealization object = (CourseRealization) o;
+		ExamRealization object = (ExamRealization) o;
 		if (object.id == null || id == null) {
 			return false;
 		}
