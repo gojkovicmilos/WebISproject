@@ -28,7 +28,7 @@ public class AddressService {
 	}
 	
 	
-	public void removeStudent(Long id) {
+	public void removeAddress(Long id) {
 		Optional<Address> a = addressRepository.findById(id);
 		addressRepository.delete(a.get());
 	}
