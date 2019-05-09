@@ -14,23 +14,30 @@ public class AddressService {
 
 	@Autowired
 	AddressRepository addressRepository;
-	
-	public List<Address> findAll(){
+
+	public List<Address> findAll() {
 		return addressRepository.findAll();
 	}
-	
+
 	public void addAdress(Address a) {
 		addressRepository.save(a);
 	}
-	
+
 	public Optional<Address> getStudent(Long id) {
 		return addressRepository.findById(id);
 	}
-	
-	
-	public void removeStudent(Long id) {
+
+	public void removeAddress(Long id) {
 		Optional<Address> a = addressRepository.findById(id);
 		addressRepository.delete(a.get());
+	}
+
+	public void updateAddress(Long id, Address a) {
+		Optional<Address> add = addressRepository.findById(id);
+		if (add.isPresent()) {
+			a.setId(add.get().getId());
+			addressRepository.save(a);
+		}
 	}
 
 }
