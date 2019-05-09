@@ -27,12 +27,12 @@ public class PlaceController {
 	PlaceService placeService;
 
 	@RequestMapping()
-	public ResponseEntity<Iterable<Place>> getCountry() {
+	public ResponseEntity<Iterable<Place>> getPlace() {
 		return new ResponseEntity<Iterable<Place>>(placeService.getPlace(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Place> getCountryById(@PathVariable Long id) {
+	public ResponseEntity<Place> getPlaceById(@PathVariable Long id) {
 		Optional<Place> place = placeService.getPlaceById(id);
 		if (place.isPresent()) {
 			return new ResponseEntity<Place>(place.get(), HttpStatus.OK);

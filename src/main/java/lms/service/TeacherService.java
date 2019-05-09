@@ -19,8 +19,13 @@ public class TeacherService {
 	@Autowired
 	TeacherRepository teacherRepository;
 
-	public List<Teacher> findAll() {
+	public List<Teacher> getTeacher() {
 		return teacherRepository.findAll();
+	}
+
+	public Optional<Teacher> getTeacherById(Long id) {
+		// TODO Auto-generated method stub
+		return teacherRepository.findById(id);
 	}
 
 	public void addTeacher(Teacher t) {
@@ -43,19 +48,15 @@ public class TeacherService {
 			teacherRepository.save(t);
 		}
 	}
-	
-	public Set<Course> getAllCourses(Teacher teacher)
-	{
-		
+
+	public Set<Course> getAllCourses(Teacher teacher) {
+
 		Set<Course> ret = new HashSet<>();
-		for(CourseTeaching courseTeaching : teacher.getCourseTeachings())
+		for (CourseTeaching courseTeaching : teacher.getCourseTeachings())
 			ret.add(courseTeaching.getCourseRealization().getCourse());
-		
+
 		return ret;
-		
+
 	}
-	
-	
-	
 
 }
