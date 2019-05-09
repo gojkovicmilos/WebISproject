@@ -41,7 +41,7 @@ public class CountryController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Country> getCountry(@RequestBody Country country) {
+	public ResponseEntity<Country> addCountry(@RequestBody Country country) {
 
 		countryService.addCountry(country);
 		return new ResponseEntity<Country>(country, HttpStatus.CREATED);
