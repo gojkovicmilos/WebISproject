@@ -41,7 +41,6 @@ public class CountryController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Country> dodavanjeKorisnika(@RequestBody Country country) {
 	public ResponseEntity<Country> addCountry(@RequestBody Country country) {
 
 		countryService.addCountry(country);
