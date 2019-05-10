@@ -13,12 +13,18 @@ export class StudentService {
 
   addStudent(firstName, lastName, cardNumber) {
     const obj = {
-      firstName: firstName,
-      lastName: lastName,
-      cardNumber: cardNumber
+      FirstName: firstName,
+      LastName: lastName,
+      CardNumber: cardNumber
     };
     console.log(obj);
     this.http.post(`${this.uri}`, obj)
         .subscribe(res => console.log('Done'));
+  }
+
+  getStudents() {
+    return this
+           .http
+           .get(`${this.uri}`);
   }
 }

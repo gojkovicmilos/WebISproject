@@ -8,12 +8,14 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StudentService } from './student.service';
+import { GetStudentComponent } from './get-student/get-student.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddStudentComponent
+    AddStudentComponent,
+    GetStudentComponent
   ],
   imports: [
     BrowserModule,
