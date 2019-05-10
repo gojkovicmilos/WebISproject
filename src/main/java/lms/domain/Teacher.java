@@ -38,7 +38,7 @@ public class Teacher {
 	private Boolean deleted = false;
 
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private Set<ExamTeacher> examTeachers;
+	private Set<ExamTeaching> examTeachings;
 	
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseTeaching> courseTeachings;
