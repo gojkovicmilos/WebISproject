@@ -44,13 +44,13 @@ public class StudentController {
 		return new ResponseEntity<Student>(student, HttpStatus.CREATED);
 	}
 	
-	@PutMapping(value = "/{id}")
+	@PutMapping(value = "/update/{id}")
 	public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student student) {
 		studentService.updateStudent(id, student);
 		return new ResponseEntity<Student>(student, HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping(value = "/{id}")
+	@DeleteMapping(value = "/delete/{id}")
 	public ResponseEntity<Student> deleteStudent(@PathVariable Long id) {
 		try {
 			studentService.removeStudent(id);
