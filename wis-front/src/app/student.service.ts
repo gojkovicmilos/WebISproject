@@ -18,7 +18,7 @@ export class StudentService {
       cardNumber: cardNumber
     };
     console.log(obj);
-    this.http.post(`${this.uri}/add`, obj)
+    this.http.post(`${this.uri}`, obj)
         .subscribe(res => console.log('Done'));
   }
 }
