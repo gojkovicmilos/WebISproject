@@ -49,6 +49,8 @@ public class ExamTeaching {
 		this.teacher = teacher;
 		this.examRealization = examRealization;
 	}
+	
+	
 
 	public Teacher getTeacher() {
 		return teacher;
