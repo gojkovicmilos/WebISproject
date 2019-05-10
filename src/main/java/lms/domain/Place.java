@@ -17,6 +17,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Where(clause = "deleted = 'false'")
 public class Place {
@@ -34,6 +36,7 @@ public class Place {
 	@NotNull
 	private Boolean deleted = false;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Country country;
 	
