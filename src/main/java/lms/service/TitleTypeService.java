@@ -16,7 +16,7 @@ public class TitleTypeService {
 	@Autowired
 	TitleTypeRepository titleTypeRepository;
 
-	public List<TitleType> findAll() {
+	public Iterable<TitleType> getAllTitleType() {
 		return titleTypeRepository.findAll();
 	}
 
@@ -24,7 +24,7 @@ public class TitleTypeService {
 		titleTypeRepository.save(t);
 	}
 
-	public Optional<TitleType> getTitleType(Long id) {
+	public Optional<TitleType> getTitleTypeId(Long id) {
 		return titleTypeRepository.findById(id);
 	}
 

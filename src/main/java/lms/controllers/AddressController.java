@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import lms.domain.Address;
 import lms.service.AddressService;
+import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -27,13 +30,13 @@ public class AddressController {
 	AddressService addressService;
 
 	@RequestMapping()
-	public ResponseEntity<Iterable<Address>> getAddress() {
-		return new ResponseEntity<Iterable<Address>>(addressService.findAll(), HttpStatus.OK);
+	public ResponseEntity<Iterable<Address>> getAllAddress() {
+		return new ResponseEntity<Iterable<Address>>(addressService.getAllAddress(), HttpStatus.OK);
 	}
-
+	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Address> getAddressById(@PathVariable Long id) {
-		Optional<Address> address = addressService.getAddress(id);
+	public ResponseEntity<Address> getAddressId(@PathVariable Long id) {
+		Optional<Address> address = addressService.getAddressId(id);
 		if (address.isPresent()) {
 			return new ResponseEntity<Address>(address.get(), HttpStatus.OK);
 		}

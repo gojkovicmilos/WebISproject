@@ -16,7 +16,7 @@ public class StudyFieldService {
 	@Autowired
 	StudyFieldRepository studyFieldRepository;
 
-	public List<StudyField> findAll() {
+	public Iterable<StudyField> getAllStudyField() {
 		return studyFieldRepository.findAll();
 	}
 
@@ -24,7 +24,7 @@ public class StudyFieldService {
 		studyFieldRepository.save(s);
 	}
 
-	public Optional<StudyField> getStudyField(Long id) {
+	public Optional<StudyField> getStudyFieldId(Long id) {
 		return studyFieldRepository.findById(id);
 	}
 

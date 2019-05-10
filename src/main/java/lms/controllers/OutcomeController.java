@@ -27,13 +27,13 @@ public class OutcomeController {
 	OutcomeService outcomeService;
 
 	@RequestMapping()
-	public ResponseEntity<Iterable<Outcome>> getOutcome() {
-		return new ResponseEntity<Iterable<Outcome>>(outcomeService.findAll(), HttpStatus.OK);
+	public ResponseEntity<Iterable<Outcome>> getAllOutcome() {
+		return new ResponseEntity<Iterable<Outcome>>(outcomeService.getAllOutcome(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Outcome> getOutcomeById(@PathVariable Long id) {
-		Optional<Outcome> courseOutcome = outcomeService.getOutcome(id);
+		Optional<Outcome> courseOutcome = outcomeService.getOutcomeId(id);
 		if (courseOutcome.isPresent()) {
 			return new ResponseEntity<Outcome>(courseOutcome.get(), HttpStatus.OK);
 		}

@@ -27,13 +27,13 @@ public class TeacherController {
 	TeacherService teacherService;
 
 	@RequestMapping()
-	public ResponseEntity<Iterable<Teacher>> getTeacher() {
-		return new ResponseEntity<Iterable<Teacher>>(teacherService.findAll(), HttpStatus.OK);
+	public ResponseEntity<Iterable<Teacher>> getAllTeacher() {
+		return new ResponseEntity<Iterable<Teacher>>(teacherService.getAllTeacher(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Teacher> getTeacherById(@PathVariable Long id) {
-		Optional<Teacher> teacher = teacherService.getTeacher(id);
+		Optional<Teacher> teacher = teacherService.getTeacherId(id);
 		if (teacher.isPresent()) {
 			return new ResponseEntity<Teacher>(teacher.get(), HttpStatus.OK);
 		}

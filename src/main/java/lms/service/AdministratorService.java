@@ -15,7 +15,7 @@ public class AdministratorService {
 	@Autowired
 	AdministratorRepository administratorRepository;
 
-	public List<Administrator> findall() {
+	public Iterable<Administrator> getAllAdmin() {
 		return administratorRepository.findAll();
 	}
 
@@ -23,7 +23,7 @@ public class AdministratorService {
 		administratorRepository.save(a);
 	}
 
-	public Optional<Administrator> getAdministrator(Long id) {
+	public Optional<Administrator> getAdminId(Long id) {
 		return administratorRepository.findById(id);
 	}
 

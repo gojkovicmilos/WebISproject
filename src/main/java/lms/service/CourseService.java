@@ -16,7 +16,7 @@ public class CourseService {
 	@Autowired
 	CourseRepository courseRepository;
 
-	public List<Course> findAll() {
+	public Iterable<Course> getAllCourse() {
 		return courseRepository.findAll();
 	}
 
@@ -24,7 +24,7 @@ public class CourseService {
 		courseRepository.save(c);
 	}
 
-	public Optional<Course> getCourse(Long id) {
+	public Optional<Course> getCourseId(Long id) {
 		return courseRepository.findById(id);
 	}
 

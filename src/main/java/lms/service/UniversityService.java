@@ -13,7 +13,7 @@ public class UniversityService {
 	@Autowired
 	UniversityRepository universityRepository;
 
-	public List<University> findAll() {
+	public Iterable<University> getAllUniversity() {
 		return universityRepository.findAll();
 	}
 
@@ -21,7 +21,7 @@ public class UniversityService {
 		universityRepository.save(u);
 	}
 
-	public Optional<University> getUniversity(Long id) {
+	public Optional<University> getUniversityId(Long id) {
 		return universityRepository.findById(id);
 	}
 

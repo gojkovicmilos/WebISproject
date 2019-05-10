@@ -27,13 +27,13 @@ public class StudentYearController {
 	StudentYearService studentYearService;
 
 	@RequestMapping()
-	public ResponseEntity<Iterable<StudentYear>> getStudentYear() {
-		return new ResponseEntity<Iterable<StudentYear>>(studentYearService.findAll(), HttpStatus.OK);
+	public ResponseEntity<Iterable<StudentYear>> getAllStudentYear() {
+		return new ResponseEntity<Iterable<StudentYear>>(studentYearService.getAllStudentYear(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<StudentYear> getStudentYearById(@PathVariable Long id) {
-		Optional<StudentYear> studentYear = studentYearService.getStudentYear(id);
+		Optional<StudentYear> studentYear = studentYearService.getStudentYearId(id);
 		if (studentYear.isPresent()) {
 			return new ResponseEntity<StudentYear>(studentYear.get(), HttpStatus.OK);
 		}

@@ -16,7 +16,7 @@ public class CourseTypeService {
 	@Autowired
 	CourseTypeRepository courseTypeRepository;
 
-	public List<CourseType> findAll() {
+	public Iterable<CourseType> getAllCourseType() {
 		return courseTypeRepository.findAll();
 	}
 
@@ -24,7 +24,7 @@ public class CourseTypeService {
 		courseTypeRepository.save(c);
 	}
 
-	public Optional<CourseType> getCourseType(Long id) {
+	public Optional<CourseType> getCourseTypeId(Long id) {
 		return courseTypeRepository.findById(id);
 	}
 

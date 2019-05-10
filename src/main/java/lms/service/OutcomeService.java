@@ -16,7 +16,7 @@ public class OutcomeService {
 	@Autowired
 	OutcomeRepository outcomeRepository;
 
-	public List<Outcome> findAll() {
+	public Iterable<Outcome> getAllOutcome() {
 		return outcomeRepository.findAll();
 	}
 
@@ -24,7 +24,7 @@ public class OutcomeService {
 		outcomeRepository.save(o);
 	}
 
-	public Optional<Outcome> getOutcome(Long id) {
+	public Optional<Outcome> getOutcomeId(Long id) {
 		return outcomeRepository.findById(id);
 	}
 

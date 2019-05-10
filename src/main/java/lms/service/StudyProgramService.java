@@ -16,7 +16,7 @@ public class StudyProgramService {
 	@Autowired
 	StudyProgramRepository studyProgramRepository;
 
-	public List<StudyProgram> findAll() {
+	public Iterable<StudyProgram> getAllStidyProgram() {
 		return studyProgramRepository.findAll();
 	}
 
@@ -24,7 +24,7 @@ public class StudyProgramService {
 		studyProgramRepository.save(s);
 	}
 
-	public Optional<StudyProgram> getStudyProgram(Long id) {
+	public Optional<StudyProgram> getStudyProgramId(Long id) {
 		return studyProgramRepository.findById(id);
 	}
 

@@ -19,7 +19,7 @@ public class TeacherService {
 	@Autowired
 	TeacherRepository teacherRepository;
 
-	public List<Teacher> findAll() {
+	public Iterable<Teacher> getAllTeacher() {
 		return teacherRepository.findAll();
 	}
 
@@ -27,7 +27,7 @@ public class TeacherService {
 		teacherRepository.save(t);
 	}
 
-	public Optional<Teacher> getTeacher(Long id) {
+	public Optional<Teacher> getTeacherId(Long id) {
 		return teacherRepository.findById(id);
 	}
 

@@ -27,13 +27,13 @@ public class TitleTypeController {
 	TitleTypeService titleTypeService;
 
 	@RequestMapping()
-	public ResponseEntity<Iterable<TitleType>> getTitleType() {
-		return new ResponseEntity<Iterable<TitleType>>(titleTypeService.findAll(), HttpStatus.OK);
+	public ResponseEntity<Iterable<TitleType>> getAllTitleType() {
+		return new ResponseEntity<Iterable<TitleType>>(titleTypeService.getAllTitleType(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<TitleType> getTitleTypeById(@PathVariable Long id) {
-		Optional<TitleType> titleType = titleTypeService.getTitleType(id);
+		Optional<TitleType> titleType = titleTypeService.getTitleTypeId(id);
 		if (titleType.isPresent()) {
 			return new ResponseEntity<TitleType>(titleType.get(), HttpStatus.OK);
 		}

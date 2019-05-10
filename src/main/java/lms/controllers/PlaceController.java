@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import lms.domain.Place;
 import lms.service.PlaceService;
+import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -25,15 +28,15 @@ public class PlaceController {
 
 	@Autowired
 	PlaceService placeService;
-
-	@RequestMapping()
-	public ResponseEntity<Iterable<Place>> getPlace() {
-		return new ResponseEntity<Iterable<Place>>(placeService.findAll(), HttpStatus.OK);
+	
+	@RequestMapping
+	public ResponseEntity<Iterable<Place>> getAllPlace() {
+		return new ResponseEntity<Iterable<Place>>(placeService.getAllPlace(), HttpStatus.OK);
 	}
-
+	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Place> getPlaceById(@PathVariable Long id) {
-		Optional<Place> place = placeService.getPlace(id);
+	public ResponseEntity<Place> getPlace(@PathVariable Long id) {
+		Optional<Place> place = placeService.getPlaceId(id);
 		if (place.isPresent()) {
 			return new ResponseEntity<Place>(place.get(), HttpStatus.OK);
 		}
@@ -42,7 +45,6 @@ public class PlaceController {
 
 	@PostMapping
 	public ResponseEntity<Place> addPlace(@RequestBody Place place) {
-
 		placeService.addPlace(place);
 		return new ResponseEntity<Place>(place, HttpStatus.CREATED);
 	}

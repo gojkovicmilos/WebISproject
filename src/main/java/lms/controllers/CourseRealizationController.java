@@ -27,13 +27,13 @@ public class CourseRealizationController {
 	CourseRealizationService courseRealizationService;
 
 	@RequestMapping()
-	public ResponseEntity<Iterable<CourseRealization>> getCourseRealization() {
-		return new ResponseEntity<Iterable<CourseRealization>>(courseRealizationService.findAll(), HttpStatus.OK);
+	public ResponseEntity<Iterable<CourseRealization>> getAllCourseRealization() {
+		return new ResponseEntity<Iterable<CourseRealization>>(courseRealizationService.getAllCourseRealization(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<CourseRealization> getCourseRealizationById(@PathVariable Long id) {
-		Optional<CourseRealization> courseRealization = courseRealizationService.getCourseRealization(id);
+		Optional<CourseRealization> courseRealization = courseRealizationService.getCourseRealizationId(id);
 		if (courseRealization.isPresent()) {
 			return new ResponseEntity<CourseRealization>(courseRealization.get(), HttpStatus.OK);
 		}

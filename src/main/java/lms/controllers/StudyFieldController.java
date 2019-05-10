@@ -27,13 +27,13 @@ public class StudyFieldController {
 	StudyFieldService studyFieldService;
 
 	@RequestMapping()
-	public ResponseEntity<Iterable<StudyField>> getStudyField() {
-		return new ResponseEntity<Iterable<StudyField>>(studyFieldService.findAll(), HttpStatus.OK);
+	public ResponseEntity<Iterable<StudyField>> getAllStudyField() {
+		return new ResponseEntity<Iterable<StudyField>>(studyFieldService.getAllStudyField(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<StudyField> getStudyFieldById(@PathVariable Long id) {
-		Optional<StudyField> studyField = studyFieldService.getStudyField(id);
+		Optional<StudyField> studyField = studyFieldService.getStudyFieldId(id);
 		if (studyField.isPresent()) {
 			return new ResponseEntity<StudyField>(studyField.get(), HttpStatus.OK);
 		}

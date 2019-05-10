@@ -27,13 +27,13 @@ public class AdministratorController {
 	AdministratorService administratorService;
 
 	@RequestMapping()
-	public ResponseEntity<Iterable<Administrator>> getAdministrator() {
-		return new ResponseEntity<Iterable<Administrator>>(administratorService.findall(), HttpStatus.OK);
+	public ResponseEntity<Iterable<Administrator>> getAllAdmin() {
+		return new ResponseEntity<Iterable<Administrator>>(administratorService.getAllAdmin(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Administrator> getAdministratorById(@PathVariable Long id) {
-		Optional<Administrator> faculty = administratorService.getAdministrator(id);
+	public ResponseEntity<Administrator> getAdministrator(@PathVariable Long id) {
+		Optional<Administrator> faculty = administratorService.getAdminId(id);
 		if (faculty.isPresent()) {
 			return new ResponseEntity<Administrator>(faculty.get(), HttpStatus.OK);
 		}

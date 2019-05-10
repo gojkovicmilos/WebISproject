@@ -16,7 +16,7 @@ public class CourseRealizationService {
 	@Autowired
 	CourseRealizationRepository courseRealizationRepository;
 
-	public List<CourseRealization> findAll() {
+	public Iterable<CourseRealization> getAllCourseRealization() {
 		return courseRealizationRepository.findAll();
 	}
 
@@ -24,7 +24,7 @@ public class CourseRealizationService {
 		courseRealizationRepository.save(c);
 	}
 
-	public Optional<CourseRealization> getCourseRealization(Long id) {
+	public Optional<CourseRealization> getCourseRealizationId(Long id) {
 		return courseRealizationRepository.findById(id);
 	}
 

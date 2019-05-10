@@ -27,13 +27,13 @@ public class StudyProgramController {
 	StudyProgramService studyProgramService;
 
 	@RequestMapping()
-	public ResponseEntity<Iterable<StudyProgram>> getStudyProgram() {
-		return new ResponseEntity<Iterable<StudyProgram>>(studyProgramService.findAll(), HttpStatus.OK);
+	public ResponseEntity<Iterable<StudyProgram>> getAllStudyProgram() {
+		return new ResponseEntity<Iterable<StudyProgram>>(studyProgramService.getAllStidyProgram(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<StudyProgram> getStudyProgramById(@PathVariable Long id) {
-		Optional<StudyProgram> studyProgram = studyProgramService.getStudyProgram(id);
+		Optional<StudyProgram> studyProgram = studyProgramService.getStudyProgramId(id);
 		if (studyProgram.isPresent()) {
 			return new ResponseEntity<StudyProgram>(studyProgram.get(), HttpStatus.OK);
 		}

@@ -15,7 +15,7 @@ public class CoursesJSPController {
 	
 	@GetMapping({"/courseList"})
     public String showCourses(Model model) {
-    	model.addAttribute("courses", courseService.findAll());
+    	model.addAttribute("courses", courseService.getAllCourse());
         return "courses";
     }
 }

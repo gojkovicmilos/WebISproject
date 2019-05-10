@@ -15,7 +15,7 @@ public class CountryService {
 	@Autowired
 	CountryRepository countryRepository;
 
-	public List<Country> findAll() {
+	public Iterable<Country> getAllCountry() {
 		return countryRepository.findAll();
 	}
 	
@@ -23,7 +23,7 @@ public class CountryService {
 		countryRepository.save(c);
 	}
 
-	public Optional<Country> getCountry(Long id) {
+	public Optional<Country> getCountryId(Long id) {
 		return countryRepository.findById(id);
 	}
 

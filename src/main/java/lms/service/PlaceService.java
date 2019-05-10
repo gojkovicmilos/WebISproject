@@ -14,11 +14,11 @@ public class PlaceService {
 	@Autowired
 	PlaceRepository placeRepository;
 
-	public List<Place> findAll() {
+	public Iterable<Place> getAllPlace() {
 		return placeRepository.findAll();
 	}
 
-	public Optional<Place> getPlace(Long id) {
+	public Optional<Place> getPlaceId(Long id) {
 		return placeRepository.findById(id);
 	}
 

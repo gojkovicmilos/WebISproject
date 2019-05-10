@@ -17,7 +17,7 @@ public class AddressService {
 
 	public AddressService() {}
 
-	public List<Address> findAll() {
+	public Iterable<Address> getAllAddress() {
 		return addressRepository.findAll();
 	}
 
@@ -25,7 +25,7 @@ public class AddressService {
 		addressRepository.save(a);
 	}
 
-	public Optional<Address> getAddress(Long id) {
+	public Optional<Address> getAddressId(Long id) {
 		return addressRepository.findById(id);
 	}
 

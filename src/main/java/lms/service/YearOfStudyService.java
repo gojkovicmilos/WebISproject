@@ -15,7 +15,7 @@ public class YearOfStudyService {
 	@Autowired
 	YearOfStudyRepository yearOfStudyRepository;
 
-	public List<YearOfStudy> findAll() {
+	public Iterable<YearOfStudy> getAllYearOfStudy() {
 		return yearOfStudyRepository.findAll();
 	}
 
@@ -23,7 +23,7 @@ public class YearOfStudyService {
 		yearOfStudyRepository.save(y);
 	}
 
-	public Optional<YearOfStudy> getYearOfStudy(Long id) {
+	public Optional<YearOfStudy> getYearOfStudyId(Long id) {
 		return yearOfStudyRepository.findById(id);
 	}
 

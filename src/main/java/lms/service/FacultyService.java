@@ -18,11 +18,11 @@ public class FacultyService {
 	public FacultyService() {
 	}
 
-	public List<Faculty> findAll() {
+	public List<Faculty> getAllFaculty() {
 		return facultyRepository.findAll();
 	}
 
-	public Optional<Faculty> getFaculty(Long id) {
+	public Optional<Faculty> getFacultyId(Long id) {
 		return facultyRepository.findById(id);
 	}
 
