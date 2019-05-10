@@ -24,7 +24,7 @@ public class StudentController {
 	@Autowired
 	StudentService studentService;
 	
-	@RequestMapping()
+	@GetMapping
 	public ResponseEntity<Iterable<Student>> getAllStudent() {
 		return new ResponseEntity<Iterable<Student>>(studentService.getStudents(), HttpStatus.OK);
 	}
