@@ -15,7 +15,7 @@ public class AdministratorService {
 	@Autowired
 	AdministratorRepository administratorRepository;
 
-	public List<Administrator> findAll() {
+	public List<Administrator> findall() {
 		return administratorRepository.findAll();
 	}
 

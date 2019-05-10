@@ -43,19 +43,15 @@ public class TeacherService {
 			teacherRepository.save(t);
 		}
 	}
-	
-	public Set<Course> getAllCourses(Teacher teacher)
-	{
-		
+
+	public Set<Course> getAllCourses(Teacher teacher) {
+
 		Set<Course> ret = new HashSet<>();
-		for(CourseTeaching courseTeaching : teacher.getCourseTeachings())
+		for (CourseTeaching courseTeaching : teacher.getCourseTeachings())
 			ret.add(courseTeaching.getCourseRealization().getCourse());
-		
+
 		return ret;
-		
+
 	}
-	
-	
-	
 
 }

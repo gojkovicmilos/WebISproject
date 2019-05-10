@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lms.domain.Teacher;
 import lms.domain.Title;
 import lms.repository.TitleRepository;
 
@@ -16,14 +15,8 @@ public class TitleService {
 	@Autowired
 	TitleRepository titleRepository;
 
-	public Iterable<Title> getTitle() {
-		// TODO Auto-generated method stub
+	public List<Title> findAll() {
 		return titleRepository.findAll();
-	}
-
-	public Optional<Title> getTitleById(Long id) {
-		// TODO Auto-generated method stub
-		return titleRepository.findById(id);
 	}
 
 	public void addTitle(Title t) {
@@ -38,7 +31,7 @@ public class TitleService {
 		Optional<Title> t = titleRepository.findById(id);
 		titleRepository.delete(t.get());
 	}
-	
+
 	public void updateTitle(Long id, Title t) {
 		Optional<Title> T = titleRepository.findById(id);
 		if (T.isPresent()) {
@@ -46,7 +39,5 @@ public class TitleService {
 			titleRepository.save(t);
 		}
 	}
-
-
 
 }

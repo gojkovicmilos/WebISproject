@@ -15,24 +15,17 @@ public class AddressService {
 	@Autowired
 	AddressRepository addressRepository;
 
-	public AddressService() {
-	}
+	public AddressService() {}
 
-	public Iterable<Address> getAddress() {
-		// TODO Auto-generated method stub
+	public List<Address> findAll() {
 		return addressRepository.findAll();
-	}
-
-	public Optional<Address> getAddressById(Long id) {
-		// TODO Auto-generated method stub
-		return addressRepository.findById(id);
 	}
 
 	public void addAdress(Address a) {
 		addressRepository.save(a);
 	}
 
-	public Optional<Address> getStudent(Long id) {
+	public Optional<Address> getAddress(Long id) {
 		return addressRepository.findById(id);
 	}
 
