@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
-
 import lms.domain.Student;
 import lms.service.StudentService;
 
@@ -24,6 +23,11 @@ public class StudentController {
 	
 	@Autowired
 	StudentService studentService;
+	
+	@RequestMapping()
+	public ResponseEntity<Iterable<Student>> getAllStudent() {
+		return new ResponseEntity<Iterable<Student>>(studentService.getStudents(), HttpStatus.OK);
+	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
