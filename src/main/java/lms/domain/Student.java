@@ -40,7 +40,7 @@ public class Student {
 	private int version = 0;
 	
 	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
-	private Set<ExamAttending> examAttendings;
+	private Set<CourseAttending> courseAttendings;
 	
 	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
 	private Set<StudentYear> studentYears;
@@ -54,14 +54,14 @@ public class Student {
 
 	public Student(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
 			@Size(max = 10) String cardNumber, @NotNull Boolean deleted, int version,
-			Set<ExamAttending> examAttendings, Set<StudentYear> studentYears) {
+			Set<CourseAttending> courseAttendings, Set<StudentYear> studentYears) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.cardNumber = cardNumber;
 		this.deleted = deleted;
 		this.version = version;
-		this.examAttendings = examAttendings;
+		this.courseAttendings = courseAttendings;
 		this.studentYears = studentYears;
 	}
 
@@ -75,12 +75,12 @@ public class Student {
 		this.studentYears = studentYears;
 	}
 
-	public Set<ExamAttending> getCourseAttendings() {
-		return examAttendings;
+	public Set<CourseAttending> getCourseAttendings() {
+		return courseAttendings;
 	}
 
-	public void setCourseAttendings(Set<ExamAttending> examAttendings) {
-		this.examAttendings = examAttendings;
+	public void setCourseAttendings(Set<CourseAttending> courseAttendings) {
+		this.courseAttendings = courseAttendings;
 	}
 
 	public int getVersion() {
