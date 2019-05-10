@@ -19,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import lms.domain.Address;
 import lms.service.AddressService;
-import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController

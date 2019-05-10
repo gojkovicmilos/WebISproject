@@ -45,6 +45,9 @@ public class Course {
 	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseRealization> courseRealizations;
 	
+	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private Set<ExamRealization> ExamRealizations;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private YearOfStudy yearOfStudy;
 	
@@ -54,9 +57,11 @@ public class Course {
 	public Course() {
 	}
 
+	
+
 	public Course(Long id, @NotNull Boolean deleted, @Size(max = 50) String title, int ects, boolean obligatory,
 			int numberOfLectures, int numberOfExcercises, int version, Set<CourseRealization> courseRealizations,
-			YearOfStudy yearOfStudy) {
+			Set<ExamRealization> examRealizations, YearOfStudy yearOfStudy) {
 		this.id = id;
 		this.deleted = deleted;
 		this.title = title;
@@ -66,8 +71,23 @@ public class Course {
 		this.numberOfExcercises = numberOfExcercises;
 		this.version = version;
 		this.courseRealizations = courseRealizations;
+		ExamRealizations = examRealizations;
 		this.yearOfStudy = yearOfStudy;
 	}
+
+
+
+	public Set<ExamRealization> getExamRealizations() {
+		return ExamRealizations;
+	}
+
+
+
+	public void setExamRealizations(Set<ExamRealization> examRealizations) {
+		ExamRealizations = examRealizations;
+	}
+
+
 
 	public YearOfStudy getYearOfStudy() {
 		return yearOfStudy;
