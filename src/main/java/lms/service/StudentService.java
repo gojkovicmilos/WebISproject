@@ -31,6 +31,8 @@ public class StudentService {
 
 	@Autowired
 	CourseRepository courseRepository;
+	
+	public StudentService() {}
 
 	public void enrollInFirstYear(Student student) {
 		YearOfStudy yearOfStudy = yearOfStudyRepository.findFirstByNumberOfYear(1);

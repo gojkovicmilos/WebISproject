@@ -1,6 +1,5 @@
 package lms.service;
 
-import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,9 @@ public class UniversityService {
 
 	@Autowired
 	UniversityRepository universityRepository;
-
+	
+	public UniversityService() {}
+	
 	public Iterable<University> getAllUniversity() {
 		return universityRepository.findAll();
 	}

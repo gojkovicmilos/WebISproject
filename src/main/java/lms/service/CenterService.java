@@ -11,6 +11,8 @@ import lms.repository.CenterRepository;
 @Service
 public class CenterService {
 	
+	public CenterService() {}
+	
 	@Autowired
 	CenterRepository centerRepository;
 	

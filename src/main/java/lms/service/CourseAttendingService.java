@@ -12,6 +12,8 @@ import lms.repository.CourseAttendingRepository;
 @Service
 public class CourseAttendingService {
 
+	public CourseAttendingService() {}
+	
 	@Autowired
 	CourseAttendingRepository courseAttendingRepository;
 

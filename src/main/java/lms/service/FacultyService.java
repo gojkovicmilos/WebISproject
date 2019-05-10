@@ -15,8 +15,7 @@ public class FacultyService {
 	@Autowired
 	FacultyRepository facultyRepository;
 
-	public FacultyService() {
-	}
+	public FacultyService() {}
 
 	public List<Faculty> getAllFaculty() {
 		return facultyRepository.findAll();

@@ -1,6 +1,5 @@
 package lms.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,8 @@ public class YearOfStudyService {
 
 	@Autowired
 	YearOfStudyRepository yearOfStudyRepository;
+
+	public YearOfStudyService() {}
 
 	public Iterable<YearOfStudy> getAllYearOfStudy() {
 		return yearOfStudyRepository.findAll();
@@ -31,7 +32,7 @@ public class YearOfStudyService {
 		Optional<YearOfStudy> y = yearOfStudyRepository.findById(id);
 		yearOfStudyRepository.delete(y.get());
 	}
-	
+
 	public void updateYearOfStudy(Long id, YearOfStudy yos) {
 		Optional<YearOfStudy> YOS = yearOfStudyRepository.findById(id);
 		if (YOS.isPresent()) {

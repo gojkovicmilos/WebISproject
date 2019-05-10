@@ -1,12 +1,10 @@
 package lms.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lms.domain.StudentYear;
 import lms.domain.StudyField;
 import lms.repository.StudyFieldRepository;
 
@@ -15,7 +13,9 @@ public class StudyFieldService {
 
 	@Autowired
 	StudyFieldRepository studyFieldRepository;
-
+	
+	public StudyFieldService() {}
+	
 	public Iterable<StudyField> getAllStudyField() {
 		return studyFieldRepository.findAll();
 	}

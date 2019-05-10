@@ -1,7 +1,6 @@
 package lms.service;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 import lms.domain.Course;
 import lms.domain.CourseTeaching;
 import lms.domain.Teacher;
-import lms.repository.CourseTeachingRepository;
 import lms.repository.TeacherRepository;
 
 @Service
@@ -19,11 +17,9 @@ public class TeacherService {
 
 	@Autowired
 	TeacherRepository teacherRepository;
-	
 
+	public TeacherService() {}
 	
-	
-
 	public Iterable<Teacher> getAllTeacher() {
 		return teacherRepository.findAll();
 	}

@@ -1,21 +1,21 @@
 package lms.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lms.domain.StudyField;
 import lms.domain.StudyProgram;
 import lms.repository.StudyProgramRepository;
 
 @Service
 public class StudyProgramService {
-
+	
 	@Autowired
 	StudyProgramRepository studyProgramRepository;
-
+	
+	public StudyProgramService() {}
+	
 	public Iterable<StudyProgram> getAllStidyProgram() {
 		return studyProgramRepository.findAll();
 	}

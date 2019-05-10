@@ -1,6 +1,5 @@
 package lms.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,8 @@ public class CountryService {
 
 	@Autowired
 	CountryRepository countryRepository;
+	
+	public CountryService() {}
 
 	public Iterable<Country> getAllCountry() {
 		return countryRepository.findAll();

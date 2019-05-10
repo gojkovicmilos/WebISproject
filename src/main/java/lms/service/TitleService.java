@@ -1,6 +1,5 @@
 package lms.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,9 @@ public class TitleService {
 
 	@Autowired
 	TitleRepository titleRepository;
-
+	
+	public TitleService() {}
+	
 	public Iterable<Title> getAllTitle() {
 		return titleRepository.findAll();
 	}
