@@ -31,9 +31,8 @@ public class ExamRealization {
 	@Version
 	private int version = 0;
 
-	private LocalDate startDate;
+	private LocalDate examDate;
 	
-	private LocalDate endDate;
 	
 	@OneToMany(mappedBy = "examRealization", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<ExamTeaching> examTeachings;
@@ -52,21 +51,31 @@ public class ExamRealization {
 	
 	
 	
+	
 
-	public ExamRealization(Long id, @NotNull Boolean deleted, int version, LocalDate startDate, LocalDate endDate,
+
+	
+
+
+
+	public ExamRealization(Long id, @NotNull Boolean deleted, int version, LocalDate examDate,
 			Set<ExamTeaching> examTeachings, Set<ExamAttending> examAttendings, Course course) {
 		this.id = id;
 		this.deleted = deleted;
 		this.version = version;
-		this.startDate = startDate;
-		this.endDate = endDate;
+		this.examDate = examDate;
 		this.examTeachings = examTeachings;
 		this.examAttendings = examAttendings;
 		this.course = course;
 	}
 
 
-	
+
+
+
+
+
+
 
 
 
@@ -135,22 +144,36 @@ public class ExamRealization {
 		this.version = version;
 	}
 
-	public LocalDate getStartDate() {
-		return startDate;
-	}
 
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
-	}
-
-	public LocalDate getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
-	}
 	
+	public LocalDate getExamDate() {
+		return examDate;
+	}
+
+
+
+
+
+
+
+
+
+
+
+	public void setExamDate(LocalDate examDate) {
+		this.examDate = examDate;
+	}
+
+
+
+
+
+
+
+
+
+
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {
