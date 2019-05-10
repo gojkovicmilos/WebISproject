@@ -19,13 +19,8 @@ public class TeacherService {
 	@Autowired
 	TeacherRepository teacherRepository;
 
-	public List<Teacher> getTeacher() {
+	public List<Teacher> findAll() {
 		return teacherRepository.findAll();
-	}
-
-	public Optional<Teacher> getTeacherById(Long id) {
-		// TODO Auto-generated method stub
-		return teacherRepository.findById(id);
 	}
 
 	public void addTeacher(Teacher t) {

@@ -28,12 +28,12 @@ public class TeacherController {
 
 	@RequestMapping()
 	public ResponseEntity<Iterable<Teacher>> getTeacher() {
-		return new ResponseEntity<Iterable<Teacher>>(teacherService.getTeacher(), HttpStatus.OK);
+		return new ResponseEntity<Iterable<Teacher>>(teacherService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Teacher> getTeacherById(@PathVariable Long id) {
-		Optional<Teacher> teacher = teacherService.getTeacherById(id);
+		Optional<Teacher> teacher = teacherService.getTeacher(id);
 		if (teacher.isPresent()) {
 			return new ResponseEntity<Teacher>(teacher.get(), HttpStatus.OK);
 		}

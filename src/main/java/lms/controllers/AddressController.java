@@ -28,12 +28,12 @@ public class AddressController {
 
 	@RequestMapping()
 	public ResponseEntity<Iterable<Address>> getAddress() {
-		return new ResponseEntity<Iterable<Address>>(addressService.getAddress(), HttpStatus.OK);
+		return new ResponseEntity<Iterable<Address>>(addressService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Address> getAddressById(@PathVariable Long id) {
-		Optional<Address> address = addressService.getAddressById(id);
+		Optional<Address> address = addressService.getAddress(id);
 		if (address.isPresent()) {
 			return new ResponseEntity<Address>(address.get(), HttpStatus.OK);
 		}

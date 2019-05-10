@@ -60,7 +60,7 @@ public class StudentService {
 		Set<Course> ret = new HashSet<>();
 
 		for (ExamAttending examAttending : student.getCourseAttendings())
-			ret.add(examAttending.getCourseRealization().getCourse());
+			ret.add(examAttending.getExamRealization().getCourse());
 
 		return ret;
 

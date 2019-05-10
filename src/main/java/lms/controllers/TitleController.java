@@ -28,12 +28,12 @@ public class TitleController {
 
 	@RequestMapping()
 	public ResponseEntity<Iterable<Title>> getTitle() {
-		return new ResponseEntity<Iterable<Title>>(titleService.getTitle(), HttpStatus.OK);
+		return new ResponseEntity<Iterable<Title>>(titleService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Title> getTitleById(@PathVariable Long id) {
-		Optional<Title> title = titleService.getTitleById(id);
+		Optional<Title> title = titleService.getTitle(id);
 		if (title.isPresent()) {
 			return new ResponseEntity<Title>(title.get(), HttpStatus.OK);
 		}

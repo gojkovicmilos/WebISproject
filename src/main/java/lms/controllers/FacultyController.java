@@ -15,26 +15,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import lms.domain.Country;
 import lms.domain.Faculty;
 import lms.service.FacultyService;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
-@RequestMapping("/faculties")
+@RequestMapping("/faculty")
 public class FacultyController {
 
 	@Autowired
 	FacultyService facultyService;
 
 	@RequestMapping()
-	public ResponseEntity<Iterable<Faculty>> getFaculty() {
+	public ResponseEntity<Iterable<Faculty>> findAll() {
 		return new ResponseEntity<Iterable<Faculty>>(facultyService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Faculty> getFacultyById(@PathVariable Long id) {
-		Optional<Faculty> faculty = facultyService.getFacultyById(id);
+		Optional<Faculty> faculty = facultyService.getFaculty(id);
 		if (faculty.isPresent()) {
 			return new ResponseEntity<Faculty>(faculty.get(), HttpStatus.OK);
 		}

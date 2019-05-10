@@ -18,16 +18,7 @@ public class CountryService {
 	public List<Country> findAll() {
 		return countryRepository.findAll();
 	}
-
-	public Iterable<Country> getCountry() {
-		return countryRepository.findAll();
-	}
 	
-	public Optional<Country> getCountryById(Long id) {
-		// TODO Auto-generated method stub
-		return countryRepository.findById(id);
-	}
-
 	public void addCountry(Country c) {
 		countryRepository.save(c);
 	}

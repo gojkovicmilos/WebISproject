@@ -28,12 +28,12 @@ public class CountryController {
 
 	@RequestMapping()
 	public ResponseEntity<Iterable<Country>> getCountry() {
-		return new ResponseEntity<Iterable<Country>>(countryService.getCountry(), HttpStatus.OK);
+		return new ResponseEntity<Iterable<Country>>(countryService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Country> getCountryById(@PathVariable Long id) {
-		Optional<Country> country = countryService.getCountryById(id);
+		Optional<Country> country = countryService.getCountry(id);
 		if (country.isPresent()) {
 			return new ResponseEntity<Country>(country.get(), HttpStatus.OK);
 		}

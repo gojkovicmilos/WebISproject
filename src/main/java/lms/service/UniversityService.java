@@ -13,13 +13,8 @@ public class UniversityService {
 	@Autowired
 	UniversityRepository universityRepository;
 
-	public List<University> getUniversity() {
+	public List<University> findAll() {
 		return universityRepository.findAll();
-	}
-
-	public Optional<University> getUniversityById(Long id) {
-		// TODO Auto-generated method stub
-		return universityRepository.findById(id);
 	}
 
 	public void addUniversity(University u) {
