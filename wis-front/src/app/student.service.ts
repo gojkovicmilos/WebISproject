@@ -13,9 +13,9 @@ export class StudentService {
 
   addStudent(firstName, lastName, cardNumber) {
     const obj = {
-      FirstName: firstName,
-      LastName: lastName,
-      CardNumber: cardNumber
+      firstName: firstName,
+      lastName: lastName,
+      cardNumber: cardNumber
     };
     console.log(obj);
     this.http.post(`${this.uri}`, obj)
