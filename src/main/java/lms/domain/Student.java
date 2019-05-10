@@ -19,7 +19,7 @@ import org.hibernate.annotations.Where;
 @Entity
 @Where(clause = "deleted = 'false'")
 public class Student {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -32,32 +32,24 @@ public class Student {
 
 	@Size(max = 10)
 	private String cardNumber;
-	
+
 	@NotNull
 	private Boolean deleted = false;
-	
+
 	@Version
 	private int version = 0;
-	
-	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
+
+	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseAttending> courseAttendings;
-	
-	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
+
+	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<ExamAttending> examAttendings;
-	
-	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
+
+	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<StudentYear> studentYears;
-	
-	
-	
+
 	public Student() {
 	}
-
-	
-
-	
-
-
 
 	public Student(@Size(max = 50) String firstName, @Size(max = 50) String lastName,
 			@Size(max = 10) String cardNumber) {
@@ -65,12 +57,6 @@ public class Student {
 		this.lastName = lastName;
 		this.cardNumber = cardNumber;
 	}
-
-
-
-
-
-
 
 	public Student(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
 			@Size(max = 10) String cardNumber, @NotNull Boolean deleted, int version,
@@ -86,31 +72,13 @@ public class Student {
 		this.studentYears = studentYears;
 	}
 
-
-
-
-
-
-
 	public Set<ExamAttending> getExamAttendings() {
 		return examAttendings;
 	}
 
-
-
-
-
-
-
 	public void setExamAttendings(Set<ExamAttending> examAttendings) {
 		this.examAttendings = examAttendings;
 	}
-
-
-
-
-
-
 
 	public Set<StudentYear> getStudentYears() {
 		return studentYears;
