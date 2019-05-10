@@ -8,7 +8,7 @@ import lms.domain.CourseTeaching;
 
 @Repository
 public interface CourseTeachingRepository extends JpaRepository<CourseTeaching, Long>{
-
+	
 	
 
 }
