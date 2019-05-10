@@ -59,6 +59,19 @@ public class Student {
 
 
 
+	public Student(@Size(max = 50) String firstName, @Size(max = 50) String lastName,
+			@Size(max = 10) String cardNumber) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.cardNumber = cardNumber;
+	}
+
+
+
+
+
+
+
 	public Student(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
 			@Size(max = 10) String cardNumber, @NotNull Boolean deleted, int version,
 			Set<CourseAttending> courseAttendings, Set<ExamAttending> examAttendings, Set<StudentYear> studentYears) {
