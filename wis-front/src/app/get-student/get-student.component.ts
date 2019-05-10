@@ -19,4 +19,10 @@ export class GetStudentComponent implements OnInit {
         this.students = data;
     });
   }
+
+  deleteStudent(id) {
+    this.ss.deleteStudent(id).subscribe(res => {
+      console.log('Deleted');
+    });
+  }
 }

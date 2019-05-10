@@ -9,13 +9,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StudentService } from './student.service';
 import { GetStudentComponent } from './get-student/get-student.component';
+import { EditStudentComponent } from './edit-student/edit-student.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AddStudentComponent,
-    GetStudentComponent
+    GetStudentComponent,
+    EditStudentComponent
   ],
   imports: [
     BrowserModule,

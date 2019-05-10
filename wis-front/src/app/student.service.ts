@@ -27,4 +27,29 @@ export class StudentService {
            .http
            .get(`${this.uri}`);
   }
+
+  editStudent(id) {
+    return this
+            .http
+            .get(`${this.uri}/${id}`);
+    }
+
+    updateStudent(firstName, lastName, cardNumber, id) {
+
+      const obj = {
+          firstName: firstName,
+          lastName: lastName,
+          cardNumber: cardNumber
+        };
+      this
+        .http
+        .put(`${this.uri}/update/${id}`, obj)
+        .subscribe(res => console.log('Done'));
+    }
+
+    deleteStudent(id) {
+      return this
+                .http
+                .delete(`${this.uri}/delete/${id}`);
+    }
 }

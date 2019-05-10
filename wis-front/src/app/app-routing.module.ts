@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AddStudentComponent} from './add-student/add-student.component';
 import { GetStudentComponent } from './get-student/get-student.component';
+import { EditStudentComponent } from './edit-student/edit-student.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'students',
     component: GetStudentComponent
+  },
+  {
+    path: 'students/:id',
+    component: EditStudentComponent
   },
 ];
 
