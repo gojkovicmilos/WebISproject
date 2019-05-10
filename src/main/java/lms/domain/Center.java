@@ -15,7 +15,7 @@ import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Where;
-// p
+
 @Entity
 @Where(clause = "deleted = 'false'")
 public class Center {
