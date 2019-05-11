@@ -10,8 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -32,7 +32,7 @@ public class Center {
 	@Version
 	private int version = 0;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL)
 	private University university;
 	
 	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
