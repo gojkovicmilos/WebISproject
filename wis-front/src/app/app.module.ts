@@ -7,10 +7,14 @@ import { AddStudentComponent } from './add-student/add-student.component';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
 import { StudentService } from './student.service';
 import { GetStudentComponent } from './get-student/get-student.component';
 import { EditStudentComponent } from './edit-student/edit-student.component';
 import { SearchStudentComponent } from './search-student/search-student.component';
+
+import { SearchTeacherComponent } from './search-teacher/search-teacher.component';
+import { GetTeacherComponent } from './get-teacher/get-teacher.component';
 
 
 @NgModule({
@@ -19,7 +23,9 @@ import { SearchStudentComponent } from './search-student/search-student.componen
     AddStudentComponent,
     GetStudentComponent,
     EditStudentComponent,
-    SearchStudentComponent
+    SearchStudentComponent,
+    SearchTeacherComponent,
+    GetTeacherComponent
   ],
   imports: [
     BrowserModule,
