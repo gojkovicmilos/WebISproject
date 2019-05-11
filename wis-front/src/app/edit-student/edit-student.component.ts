@@ -30,7 +30,7 @@ export class EditStudentComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-        this.ss.editStudent(params['id']).subscribe(res => {
+        this.ss.editStudent(params.id).subscribe(res => {
           this.student = res;
       });
     });
@@ -38,7 +38,7 @@ export class EditStudentComponent implements OnInit {
 
   updateStudent(firstName, lastName, cardNumber) {
     this.route.params.subscribe(params => {
-       this.ss.updateStudent(firstName, lastName, cardNumber, params['id']);
+       this.ss.updateStudent(firstName, lastName, cardNumber, params.id);
        this.router.navigate(['students']);
  });
   }
