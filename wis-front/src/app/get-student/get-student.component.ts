@@ -11,8 +11,7 @@ export class GetStudentComponent implements OnInit {
 
   students: Student[];
 
-  constructor(private ss: StudentService,
-    private router: Router) { }
+  constructor(private ss: StudentService, private router: Router) { }
 
   ngOnInit() {
     this.ss
