@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -8,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class StudentService {
 
   uri = 'http://localhost:8080/student';
+  reloadData: any;
 
   constructor(private http: HttpClient) { }
 
@@ -47,9 +49,7 @@ export class StudentService {
         .subscribe(res => console.log('Done'));
     }
 
-    deleteStudent(id) {
-      return this
-                .http
-                .delete(`${this.uri}/delete/${id}`);
+    deleteStudent(id: number): Observable<any> {
+      return this.http.delete(`${this.uri}/${id}`, { responseType: 'text' });
     }
 }
