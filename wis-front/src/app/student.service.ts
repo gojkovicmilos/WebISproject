@@ -13,11 +13,11 @@ export class StudentService {
 
   constructor(private http: HttpClient) { }
 
-  addStudent(firstName, lastName, cardNumber) {
+  addStudent(firstname, lastname, cardnumber) {
     const obj = {
-      firstName: firstName,
-      lastName: lastName,
-      cardNumber: cardNumber
+      firstName: firstname,
+      lastName: lastname,
+      cardNumber: cardnumber
     };
     console.log(obj);
     this.http.post(`${this.uri}`, obj)
@@ -36,12 +36,12 @@ export class StudentService {
             .get(`${this.uri}/${id}`);
     }
 
-    updateStudent(firstName, lastName, cardNumber, id) {
+    updateStudent(firstname, lastname, cardnumber, id) {
 
       const obj = {
-          firstName: firstName,
-          lastName: lastName,
-          cardNumber: cardNumber
+          firstName: firstname,
+          lastName: lastname,
+          cardNumber: cardnumber
         };
       this
         .http
