@@ -65,20 +65,12 @@ public class StudentController {
 	
 	@GetMapping(value = "/lastname/{lastName}")
 	public ResponseEntity<Iterable<Student>> getStudentByLastName(@PathVariable String lastName) {
-		Iterable<Student> s = studentService.getByLastName(lastName);
-		if(!s.equals(null)) {
-			return new ResponseEntity<Iterable<Student>>(s, HttpStatus.FOUND);
-		}
-		return new ResponseEntity<Iterable<Student>>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<Iterable<Student>>(studentService.getByLastName(lastName), HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/firstname/{firstName}")
 	public ResponseEntity<Iterable<Student>> getStudentByFirstName(@PathVariable String firstName) {
-		Iterable<Student> s = studentService.getByFirstName(firstName);
-		if(!s.equals(null)) {
-			return new ResponseEntity<Iterable<Student>>(s, HttpStatus.FOUND);
-		}
-		return new ResponseEntity<Iterable<Student>>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<Iterable<Student>>(studentService.getByFirstName(firstName), HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/cardnumber/{cardNumber}")
