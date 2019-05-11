@@ -1,6 +1,7 @@
 package lms.domain;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -101,15 +102,23 @@ public class Center {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		Center object = (Center) o;
+		if (object.id == null || id == null) {
+			return false;
+		}
+		return Objects.equals(id, object.id);
 	}
 
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
+		return Objects.hashCode(id);
 	}
 	
 	
