@@ -2,6 +2,8 @@ package wis.service;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Optional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +27,9 @@ public class EnrollInFirstYearTest {
 	@Transactional
 	@Rollback(true)
 	public void test() {
-		Student student = studentService.findByCardNumber("123");
-		studentService.enrollInFirstYear(student);
-		Student student1 = studentService.findByCardNumber("123");
-		assertEquals(1, student1.getStudentYears().iterator().next().getYearOfStudy().getNumberOfYear());
+		Optional<Student> student = studentService.getByCardNumber("123");
+		studentService.enrollInFirstYear(student.get());
+		Optional<Student> student1 = studentService.getByCardNumber("123");
+		assertEquals(1, student1.get().getStudentYears().iterator().next().getYearOfStudy().getNumberOfYear());
 	}
 }

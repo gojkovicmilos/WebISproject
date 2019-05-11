@@ -42,7 +42,7 @@ public class StudentService {
 		studentRepository.save(student);
 	}
 
-	public Student findByCardNumber(String cardNumber) {
+	public Optional<Student> getByCardNumber(String cardNumber) {
 		return studentRepository.findFirstByCardNumber(cardNumber);
 	}
 
@@ -65,6 +65,14 @@ public class StudentService {
 
 		return ret;
 
+	}
+	
+	public Iterable<Student> getByFirstName(String firstName) {
+		return studentRepository.findByFirstNameLike(firstName);
+	}
+	
+	public Iterable<Student> getByLastName(String lastName) {
+		return studentRepository.findByLastName(lastName);
 	}
 
 	public Iterable<Student> getStudents() {
