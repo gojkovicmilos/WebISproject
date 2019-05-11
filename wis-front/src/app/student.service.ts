@@ -42,7 +42,7 @@ export class StudentService {
           firstName: firstname,
           lastName: lastname,
           cardNumber: cardnumber
-        };
+};
       this
         .http
         .put(`${this.uri}/update/${id}`, obj)
@@ -51,5 +51,9 @@ export class StudentService {
 
     deleteStudent(id: number): Observable<any> {
       return this.http.delete(`${this.uri}/${id}`, { responseType: 'text' });
+    }
+
+    getStudentByFirstName(firstName: string): Observable<any> {
+      return this.http.get(`${this.uri}/${firstName}`);
     }
 }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddStudentComponent } from './add-student/add-student.component';
@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StudentService } from './student.service';
 import { GetStudentComponent } from './get-student/get-student.component';
 import { EditStudentComponent } from './edit-student/edit-student.component';
+import { SearchStudentComponent } from './search-student/search-student.component';
 
 
 @NgModule({
@@ -17,14 +18,16 @@ import { EditStudentComponent } from './edit-student/edit-student.component';
     AppComponent,
     AddStudentComponent,
     GetStudentComponent,
-    EditStudentComponent
+    EditStudentComponent,
+    SearchStudentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SlimLoadingBarModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [StudentService],
   bootstrap: [AppComponent]
