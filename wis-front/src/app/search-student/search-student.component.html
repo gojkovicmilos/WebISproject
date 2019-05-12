@@ -1,13 +1,7 @@
-<h3>Find By First Name</h3>
 <div style="width: 300px;">
-  <form (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()" class="search">
     <div class="form-group">
-      <label for="firstName">First Name: </label>
-      <input type="text" class="form-control" id="firstName" required [(ngModel)]="firstName" name="firstName">
-    </div>
-
-    <div class="btn-group">
-      <button type="submit" class="btn btn-success">Submit</button>
+      <input type="text" class="form-control" id="firstName" required [(ngModel)]="firstName" name="firstName" placeholder="Search Students By Name">
     </div>
   </form>
 </div>
