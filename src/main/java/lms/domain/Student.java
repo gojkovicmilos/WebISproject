@@ -34,6 +34,9 @@ public class Student {
 
 	@NotNull
 	private Boolean deleted = false;
+	
+	@NotNull
+	private String pass;
 
 
 	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
@@ -49,23 +52,37 @@ public class Student {
 	}
 
 	public Student(@Size(max = 50) String firstName, @Size(max = 50) String lastName,
-			@Size(max = 10) String cardNumber) {
+			@Size(max = 10) String cardNumber, String pass) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.cardNumber = cardNumber;
+		this.pass = pass;
 	}
+	
+	
+
+	
 
 	public Student(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
-			@Size(max = 10) String cardNumber, @NotNull Boolean deleted,
+			@Size(max = 10) String cardNumber, @NotNull Boolean deleted, @NotNull String pass,
 			Set<CourseAttending> courseAttendings, Set<ExamAttending> examAttendings, Set<StudentYear> studentYears) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.cardNumber = cardNumber;
 		this.deleted = deleted;
+		this.pass = pass;
 		this.courseAttendings = courseAttendings;
 		this.examAttendings = examAttendings;
 		this.studentYears = studentYears;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 
 	public Set<ExamAttending> getExamAttendings() {

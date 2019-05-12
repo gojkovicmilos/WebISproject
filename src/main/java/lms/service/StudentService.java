@@ -103,5 +103,16 @@ public class StudentService {
 			studentRepository.save(s);
 		}
 	}
+	
+	public Student logIn(String card, String pass)
+	{
+		for(Student s: studentRepository.findAll())
+			if(s.getCardNumber().equals(card))
+				if(s.getPass().equals(pass))
+					return s;
+		
+		return null;
+		
+	}
 
 }

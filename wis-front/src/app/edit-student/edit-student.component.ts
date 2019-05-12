@@ -23,7 +23,8 @@ export class EditStudentComponent implements OnInit {
     this.angForm = this.fb.group({
         firstName: ['', Validators.required ],
         lastName: ['', Validators.required ],
-        cardNumber: ['', Validators.required ]
+        cardNumber: ['', Validators.required ],
+        pass: ['', Validators.required]
       });
     }
 
@@ -36,9 +37,9 @@ export class EditStudentComponent implements OnInit {
     });
   }
 
-  updateStudent(firstName, lastName, cardNumber) {
+  updateStudent(firstName, lastName, cardNumber, pass) {
     this.route.params.subscribe(params => {
-       this.ss.updateStudent(firstName, lastName, cardNumber, params.id);
+       this.ss.updateStudent(firstName, lastName, cardNumber, pass, params.id);
        this.router.navigate(['students']);
  });
   }

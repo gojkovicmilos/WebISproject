@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import lms.domain.Student;
@@ -80,6 +82,17 @@ public class StudentController {
 			return new ResponseEntity<Student>(student.get(), HttpStatus.FOUND);
 		}
 		return new ResponseEntity<Student>(HttpStatus.NO_CONTENT);
+	}
+	
+	@PostMapping(value = "/login")
+	public ResponseEntity<Student>logIn(@RequestBody Map<String, String> obj)
+	{
+		Student student = studentService.logIn(obj.get("card"), obj.get("pass"));
+		
+		if(student != null)
+			return new ResponseEntity<Student>(student, HttpStatus.OK);
+		else
+			return new ResponseEntity<Student>(student, HttpStatus.NOT_FOUND);
 	}
 	
 	

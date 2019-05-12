@@ -9,6 +9,7 @@ import { SearchStudentComponent } from './search-student/search-student.componen
  // import {EditTeacherComponent};
 import {SearchTeacherComponent} from './search-teacher/search-teacher.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
+import { LoginStudentComponent } from './login-student/login-student.component';
 
 const routes: Routes = [
   {path: 'student/add', component: AddStudentComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'students/:id', component: EditStudentComponent},
   {path: 'findByFirstName', component: SearchStudentComponent},
   {path: 'teacher/add', component: AddTeacherComponent},
+  {path: 'student/login', component: LoginStudentComponent},
 
 
   //{path: 'teacher/add', component: AddTeacherComponent},

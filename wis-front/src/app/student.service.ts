@@ -13,11 +13,12 @@ export class StudentService {
 
   constructor(private http: HttpClient) { }
 
-  addStudent(firstname, lastname, cardnumber) {
+  addStudent(firstname, lastname, cardnumber, password) {
     const obj = {
       firstName: firstname,
       lastName: lastname,
-      cardNumber: cardnumber
+      cardNumber: cardnumber,
+      pass: password
     };
     console.log(obj);
     this.http.post(`${this.uri}`, obj)
@@ -36,12 +37,13 @@ export class StudentService {
             .get(`${this.uri}/${id}`);
     }
 
-    updateStudent(firstname, lastname, cardnumber, id) {
+    updateStudent(firstname, lastname, cardnumber, password, id) {
 
       const obj = {
           firstName: firstname,
           lastName: lastname,
-          cardNumber: cardnumber
+          cardNumber: cardnumber,
+          pass: password
 };
       this
         .http
@@ -59,5 +61,18 @@ export class StudentService {
 
     getStudentByLastName(lastName: string): Observable<any> {
       return this.http.get(`${this.uri}/lastname/${lastName}`);
+    }
+
+    logInStudent(cardNumber: string, password: string)
+    {
+
+      const obj = 
+      {
+        card: cardNumber,
+        pass: password
+
+      };
+
+      this.http.post(`${this.uri}/login`, obj).subscribe(res => console.log('Done'));
     }
 }
