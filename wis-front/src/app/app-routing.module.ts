@@ -14,16 +14,12 @@ const routes: Routes = [
   {path: 'student/add', component: AddStudentComponent},
   {path: 'students', component: GetStudentComponent},
   {path: 'students/:id', component: EditStudentComponent},
-  {path: 'findByFirstName', component: SearchStudentComponent},
-  {path: 'teacher/add', component: AddTeacherComponent},
+  {path: 'findStudentByFirstName', component: SearchStudentComponent},
   {path: 'student/login', component: LoginStudentComponent},
-  {path: 'teachers/:id', component: EditTeacherComponent},
-
-
-  //{path: 'teacher/add', component: AddTeacherComponent},
-  {path: 'teachers', component: GetTeacherComponent},
-  //{path: 'teachers/:id', component: EditTeacherComponent},
-  {path: 'findByFirstName', component: SearchTeacherComponent }
+  {path: 'teacher/add', component: AddTeacherComponent},
+  {path: 'teacher/id', component: EditTeacherComponent},
+  {path: 'teacher', component: GetTeacherComponent},
+  {path: 'findTeacherByFirstName', component: SearchTeacherComponent }
 
 ];
 
