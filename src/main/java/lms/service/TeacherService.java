@@ -54,5 +54,17 @@ public class TeacherService {
 		return ret;
 
 	}
+	
+	public Iterable<Teacher> getByLastName(String lastName) {
+		return teacherRepository.findByLastName(lastName);
+	}
+	
+	public Iterable<Teacher> getByFirstName(String firstName) {
+		return teacherRepository.findByFirstName(firstName);
+	}
+	
+	public Optional<Teacher> getByPersonalIdentificationNumber(String personalIdentificationNumber) {
+		return teacherRepository.findByPersonalIdentificationNumber(personalIdentificationNumber);
+	}
 
 }
