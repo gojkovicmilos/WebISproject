@@ -3,3 +3,11 @@ table,td,th{
     border: 2px solid black;
 
 }
+
+.search{
+    position: absolute;
+    top: 10%;
+    right: 10px;
+    left: 80%;
+    bottom:20%;
+}
