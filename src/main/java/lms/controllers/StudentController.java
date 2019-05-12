@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
@@ -41,7 +42,7 @@ public class StudentController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Student> addStudent(@RequestBody Student student) {
+	public ResponseEntity<Student> addStudent(@RequestBody Student student) throws NoSuchAlgorithmException {
 		studentService.addStudent(student);
 		return new ResponseEntity<Student>(student, HttpStatus.CREATED);
 	}
@@ -85,7 +86,7 @@ public class StudentController {
 	}
 	
 	@PostMapping(value = "/login")
-	public ResponseEntity<Student>logIn(@RequestBody Map<String, String> obj)
+	public ResponseEntity<Student>logIn(@RequestBody Map<String, String> obj) throws NoSuchAlgorithmException
 	{
 		Student student = studentService.logIn(obj.get("card"), obj.get("pass"));
 		

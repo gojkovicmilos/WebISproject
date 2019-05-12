@@ -1,12 +1,17 @@
 package lms.service;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lms.Security;
 import lms.domain.Course;
 import lms.domain.CourseAttending;
 import lms.domain.Student;
@@ -83,7 +88,9 @@ public class StudentService {
 		return studentRepository.findById(id);
 	}
 
-	public void addStudent(Student s) {
+	public void addStudent(Student s) throws NoSuchAlgorithmException {
+		
+		s.setPass(Security.hashIt(s.getPass()));
 		studentRepository.save(s);
 	}
 
@@ -104,15 +111,23 @@ public class StudentService {
 		}
 	}
 	
-	public Student logIn(String card, String pass)
+	public Student logIn(String card, String pass) throws NoSuchAlgorithmException
 	{
+		
 		for(Student s: studentRepository.findAll())
 			if(s.getCardNumber().equals(card))
-				if(s.getPass().equals(pass))
+				if(Security.hashIt(pass).equals(s.getPass()))
 					return s;
 		
 		return null;
 		
+		
+
+		
 	}
+	
+	
+	
+	
 
 }
