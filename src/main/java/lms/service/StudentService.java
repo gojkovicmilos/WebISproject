@@ -68,7 +68,7 @@ public class StudentService {
 	}
 	
 	public Iterable<Student> getByFirstName(String firstName) {
-		return studentRepository.findByFirstNameLike(firstName);
+		return studentRepository.findByFirstName(firstName);
 	}
 	
 	public Iterable<Student> getByLastName(String lastName) {

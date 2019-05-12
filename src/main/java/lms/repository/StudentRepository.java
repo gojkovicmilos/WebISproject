@@ -10,7 +10,7 @@ import lms.domain.Student;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long>{
-	List<Student> findByFirstNameLike(String firstName);
+	List<Student> findByFirstName(String firstName);
 	List<Student> findByLastName(String lastName);
 	List<Student> findByCourseAttendingsCourseRealizationCourseTitle(String courseTitle);
 	Optional<Student> findFirstByCardNumber(String cardNumber);
