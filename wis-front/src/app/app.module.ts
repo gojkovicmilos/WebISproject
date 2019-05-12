@@ -15,6 +15,7 @@ import { SearchStudentComponent } from './search-student/search-student.componen
 
 import { SearchTeacherComponent } from './search-teacher/search-teacher.component';
 import { GetTeacherComponent } from './get-teacher/get-teacher.component';
+import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { GetTeacherComponent } from './get-teacher/get-teacher.component';
     EditStudentComponent,
     SearchStudentComponent,
     SearchTeacherComponent,
-    GetTeacherComponent
+    GetTeacherComponent,
+    AddTeacherComponent
   ],
   imports: [
     BrowserModule,

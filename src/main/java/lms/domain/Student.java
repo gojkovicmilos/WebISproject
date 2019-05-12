@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -36,8 +35,6 @@ public class Student {
 	@NotNull
 	private Boolean deleted = false;
 
-	@Version
-	private int version = 0;
 
 	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseAttending> courseAttendings;
@@ -59,14 +56,13 @@ public class Student {
 	}
 
 	public Student(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
-			@Size(max = 10) String cardNumber, @NotNull Boolean deleted, int version,
+			@Size(max = 10) String cardNumber, @NotNull Boolean deleted,
 			Set<CourseAttending> courseAttendings, Set<ExamAttending> examAttendings, Set<StudentYear> studentYears) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.cardNumber = cardNumber;
 		this.deleted = deleted;
-		this.version = version;
 		this.courseAttendings = courseAttendings;
 		this.examAttendings = examAttendings;
 		this.studentYears = studentYears;
@@ -94,14 +90,6 @@ public class Student {
 
 	public void setCourseAttendings(Set<CourseAttending> courseAttendings) {
 		this.courseAttendings = courseAttendings;
-	}
-
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
 	}
 
 	public Long getId() {
