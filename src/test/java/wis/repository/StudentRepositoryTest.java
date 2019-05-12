@@ -47,7 +47,7 @@ public class StudentRepositoryTest {
 		studentRepository.save(student);
 		studentRepository.flush();
 		// the students first name should have been changed
-		assertEquals(studentRepository.findByFirstNameLike("Marko").size(), 1);
+		assertEquals(studentRepository.findByFirstName("Marko").size(), 1);
 		
 		// the application supports logical delete
 		studentRepository.deleteById(student.getId());
@@ -70,7 +70,7 @@ public class StudentRepositoryTest {
 		student = studentRepository.save(student);
 		// after persisting the student, the id should not be null		
 		assertNotNull(student.getId());
-		List<Student> students = studentRepository.findByFirstNameLike("%er%");
+		List<Student> students = studentRepository.findByFirstName("%er%");
 		assertEquals(students.size(), 1);
 		students = studentRepository.findByCourseAttendingsCourseRealizationCourseTitle("Objektno orjentisano programiranje");
 		assertEquals(students.size(), 1);

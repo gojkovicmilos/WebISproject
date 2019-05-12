@@ -1,6 +1,8 @@
 package lms.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -68,7 +70,20 @@ public class StudentService {
 	}
 	
 	public Iterable<Student> getByFirstName(String firstName) {
-		return studentRepository.findByFirstName(firstName);
+		List<Student> st = new ArrayList<>();
+		
+		Set<Student> ret = new HashSet<>();
+		
+		st = studentRepository.findAll();
+		
+		for (Student s: st)
+		{
+			if(s.getFirstName().toLowerCase().equals(firstName.toLowerCase()))
+				ret.add(s);
+		}
+		
+		return ret;
+		
 	}
 	
 	public Iterable<Student> getByLastName(String lastName) {
