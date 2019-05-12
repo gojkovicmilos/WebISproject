@@ -56,4 +56,8 @@ export class StudentService {
     getStudentByFirstName(firstName: string): Observable<any> {
       return this.http.get(`${this.uri}/firstname/${firstName}`);
     }
+
+    getStudentByLastName(lastName: string): Observable<any> {
+      return this.http.get(`${this.uri}/lastname/${lastName}`);
+    }
 }
