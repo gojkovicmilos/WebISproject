@@ -17,6 +17,7 @@ import { SearchTeacherComponent } from './search-teacher/search-teacher.componen
 import { GetTeacherComponent } from './get-teacher/get-teacher.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { LoginStudentComponent } from './login-student/login-student.component';
+import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { LoginStudentComponent } from './login-student/login-student.component';
     SearchTeacherComponent,
     GetTeacherComponent,
     AddTeacherComponent,
-    LoginStudentComponent
+    LoginStudentComponent,
+    EditTeacherComponent
   ],
   imports: [
     BrowserModule,
