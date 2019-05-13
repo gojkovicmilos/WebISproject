@@ -18,6 +18,7 @@ import { GetTeacherComponent } from './get-teacher/get-teacher.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { LoginStudentComponent } from './login-student/login-student.component';
 import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
     GetTeacherComponent,
     AddTeacherComponent,
     LoginStudentComponent,
-    EditTeacherComponent
+    EditTeacherComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
