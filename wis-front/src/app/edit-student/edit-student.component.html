@@ -29,7 +29,16 @@
         </div>
       </div>
       <div class="form-group">
-        <button (click)="updateStudent(firstName.value, lastName.value, cardNumber.value)"
+        <label class="col-md-4">jmbg </label>
+        <input type="text" class="form-control" formControlName="jmbg" #jmbg [(ngModel)] = "student.jmbg" />
+      </div>
+      <div *ngIf="angForm.controls['jmbg'].invalid && (angForm.controls['jmbg'].dirty || angForm.controls['jmbg'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['jmbg'].errors.required">
+          JMBG is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click)="updateStudent(firstName.value, lastName.value, cardNumber.value, jmbg.value)"
         [disabled]="angForm.invalid" 
         class="btn btn-primary">Update Student</button>
       </div>

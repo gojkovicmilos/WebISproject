@@ -12,12 +12,8 @@ import { StudentService } from './student.service';
 import { GetStudentComponent } from './get-student/get-student.component';
 import { EditStudentComponent } from './edit-student/edit-student.component';
 import { SearchStudentComponent } from './search-student/search-student.component';
-
-import { SearchTeacherComponent } from './search-teacher/search-teacher.component';
-import { GetTeacherComponent } from './get-teacher/get-teacher.component';
-import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { LoginStudentComponent } from './login-student/login-student.component';
-import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
+
 
 
 @NgModule({
@@ -27,11 +23,7 @@ import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
     GetStudentComponent,
     EditStudentComponent,
     SearchStudentComponent,
-    SearchTeacherComponent,
-    GetTeacherComponent,
-    AddTeacherComponent,
     LoginStudentComponent,
-    EditTeacherComponent
   ],
   imports: [
     BrowserModule,

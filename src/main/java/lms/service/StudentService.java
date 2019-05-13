@@ -90,7 +90,7 @@ public class StudentService {
 
 	public void addStudent(Student s) throws NoSuchAlgorithmException {
 		
-		s.setPass(SecurityHash.hashIt(s.getPass()));
+		//s.setPass(SecurityHash.hashIt(s.getPass()));
 		studentRepository.save(s);
 	}
 
@@ -111,7 +111,16 @@ public class StudentService {
 		}
 	}
 	
-	public Student logIn(String card, String pass) throws NoSuchAlgorithmException
+	public void softRemoveStudent(Long id)
+	{
+		Student s = studentRepository.findById(id).get();
+		
+		s.setDeleted(true);
+		updateStudent(id, s);
+	
+	}
+	
+	public Student logIn(String card, String pass)
 	{
 		
 		for(Student s: studentRepository.findAll())

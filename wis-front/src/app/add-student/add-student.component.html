@@ -30,14 +30,24 @@
         </div>
       </div>
       <div class="form-group">
-          <label class="col-md-4">Password: </label>
-          <input type="password" class="form-control" formControlName="pass" #pass />
+        <label class="col-md-4">Password: </label>
+        <input type="password" class="form-control" formControlName="pass" #pass />
+      </div>
+      <div *ngIf="angForm.controls['pass'].invalid && (angForm.controls['pass'].dirty || angForm.controls['pass'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['pass'].errors.required">
+          Password is required.
         </div>
-        <div *ngIf="angForm.controls['pass'].invalid && (angForm.controls['pass'].dirty || angForm.controls['pass'].touched)" class="alert alert-danger">
-          <div *ngIf="angForm.controls['pass'].errors.required">
-            Password is required.
-          </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Jmbg: </label>
+        <input type="text" class="form-control" formControlName="jmbg" #jmbg />
+      </div>
+      <div *ngIf="angForm.controls['jmbg'].invalid && (angForm.controls['jmbg'].dirty || angForm.controls['jmbg'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['jmbg'].errors.required">
+          JMBG is required.
         </div>
+      </div>
+      
       <div class="form-group">
         <button (click)="addStudent(firstName.value, lastName.value, cardNumber.value, pass.value)"
             [disabled]="angForm.pristine || angForm.invalid" 

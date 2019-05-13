@@ -58,6 +58,23 @@ public class StudentController {
 		try {
 			studentService.removeStudent(id);
 			
+			
+			
+		}
+		catch(Exception e) {
+			return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Student>(HttpStatus.NO_CONTENT);
+		
+	}
+	
+	@DeleteMapping(value = "/{id}/soft")
+	public ResponseEntity<Student> softDeleteStudent(@PathVariable Long id) {
+		try {
+			studentService.softRemoveStudent(id);
+			
+			
+			
 		}
 		catch(Exception e) {
 			return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);

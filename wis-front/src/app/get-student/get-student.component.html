@@ -12,9 +12,9 @@
       <tr *ngFor="let student of students">
           <td>{{ student.firstName }}</td>
           <td>{{ student.lastName }}</td>
-          <td>{{ student.cardNumber }}</td>
+          <td ng-class='{gray : student.deleted, white: !student.deleted}'>{{ student.cardNumber }}</td>
           <td><a [routerLink]="[student.id]" class="btn btn-primary">Edit</a></td>
-          <td><a (click)="deleteStudent(student.id)" class="btn btn-danger">Delete</a></td>
+          <td ><a (click)="softDeleteStudent(student.id)" class="btn btn-danger">Delete</a></td>
       </tr>
   </tbody>
 </table>

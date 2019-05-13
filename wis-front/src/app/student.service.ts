@@ -13,12 +13,13 @@ export class StudentService {
 
   constructor(private http: HttpClient) { }
 
-  addStudent(firstname, lastname, cardnumber, password) {
+  addStudent(firstname, lastname, cardnumber, jmbgc, passw) {
     const obj = {
       firstName: firstname,
       lastName: lastname,
       cardNumber: cardnumber,
-      pass: password
+      jmbg: jmbgc,
+      pass: passw
     };
     console.log(obj);
     this.http.post(`${this.uri}`, obj)
@@ -37,18 +38,22 @@ export class StudentService {
             .get(`${this.uri}/${id}`);
     }
 
-    updateStudent(firstname, lastname, cardnumber, password, id) {
+    updateStudent(firstname, lastname, cardnumber, jmbgc, id) {
 
       const obj = {
           firstName: firstname,
           lastName: lastname,
           cardNumber: cardnumber,
-          pass: password
+          jmbg: jmbgc
 };
       this
         .http
         .put(`${this.uri}/update/${id}`, obj)
         .subscribe(res => console.log('Done'));
+    }
+
+    softDeleteStudent(id: number): Observable<any> {
+      return this.http.delete(`${this.uri}/${id}/soft`, { responseType: 'text' });
     }
 
     deleteStudent(id: number): Observable<any> {
@@ -75,4 +80,5 @@ export class StudentService {
 
       this.http.post(`${this.uri}/login`, obj).subscribe(res => console.log('Done'));
     }
+
 }

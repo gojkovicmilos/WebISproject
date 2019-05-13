@@ -20,12 +20,13 @@ export class AddStudentComponent implements OnInit {
       firstName: ['', Validators.required ],
       lastName: ['', Validators.required ],
       cardNumber: ['', Validators.required ],
+      jmbg: ['', Validators.required],
       pass: ['', Validators.required]
     });
   }
 
-  addStudent(firstName, lastName, cardNumber, pass) {
-    this.ss.addStudent(firstName, lastName, cardNumber, pass);
+  addStudent(firstName, lastName, cardNumber, jmbg, pass) {
+    this.ss.addStudent(firstName, lastName, cardNumber, jmbg, pass);
   }
   ngOnInit() {
   }
