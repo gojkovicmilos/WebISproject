@@ -11,7 +11,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lms.Security;
+import lms.SecurityHash;
 import lms.domain.Course;
 import lms.domain.CourseAttending;
 import lms.domain.Student;
@@ -90,7 +90,7 @@ public class StudentService {
 
 	public void addStudent(Student s) throws NoSuchAlgorithmException {
 		
-		s.setPass(Security.hashIt(s.getPass()));
+		s.setPass(SecurityHash.hashIt(s.getPass()));
 		studentRepository.save(s);
 	}
 
@@ -116,7 +116,7 @@ public class StudentService {
 		
 		for(Student s: studentRepository.findAll())
 			if(s.getCardNumber().equals(card))
-				if(Security.hashIt(pass).equals(s.getPass()))
+				if(SecurityHash.hashIt(pass).equals(s.getPass()))
 					return s;
 		
 		return null;
