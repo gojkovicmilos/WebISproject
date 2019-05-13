@@ -24,6 +24,8 @@ export class AddStudentComponent implements OnInit {
       pass: ['', Validators.required]
     });
   }
+  ngOnInit() {
+  }
 
   addStudent(firstName, lastName, cardNumber, pass) {
     this.ss.addStudent(firstName, lastName, cardNumber, pass);
@@ -36,6 +38,5 @@ export class AddStudentComponent implements OnInit {
     this.ngOnInit();
   }
 
-  ngOnInit() {
-  }
+
 }

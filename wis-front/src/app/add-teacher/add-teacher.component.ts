@@ -22,6 +22,9 @@ export class AddTeacherComponent implements OnInit {
       personalIdentificationNumber: ['', Validators.required]
     });
   }
+  ngOnInit() {
+  }
+  
    addTeacher(firstName, lastName, personalIdentificationNumber) {
     this.ts.addTeacher(firstName, lastName, personalIdentificationNumber);
     alert('You have succesfully registered a new Teacher');
@@ -33,6 +36,5 @@ export class AddTeacherComponent implements OnInit {
     this.ngOnInit();
   }
 
-  ngOnInit() {
-  }
+  
 }
