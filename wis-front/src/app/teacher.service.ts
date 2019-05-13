@@ -17,10 +17,10 @@ export class TeacherService {
     const obj = {
       firstName: firstname,
       lastName: lastname,
-      personalIdentificationNumber: personalIdentificationNumber
+      personalIdentificationNumber : personalIdentificationNumber
     };
     console.log(obj);
-    this.http.post(`${this.uri}`, obj)
+    this.http.put(`${this.uri}`, obj)
         .subscribe(res => console.log('Done'));
   }
 
@@ -36,12 +36,12 @@ export class TeacherService {
             .get(`${this.uri}/${id}`);
     }
 
-    updateTeacher(firstname, lastname, personalIdentificationNumber, id) {
+    updateTeacher(firstname, lastname, personalIdentificationnumber, id) {
 
       const obj = {
           firstName: firstname,
           lastName: lastname,
-          personalIdentificationNumber: personalIdentificationNumber
+          personalIdentificationNumber : personalIdentificationnumber
 };
       this
         .http
