@@ -20,7 +20,7 @@ export class TeacherService {
       personalIdentificationNumber : personalIdentificationNumber
     };
     console.log(obj);
-    this.http.put(`${this.uri}`, obj)
+    this.http.post(`${this.uri}`, obj)
         .subscribe(res => console.log('Done'));
   }
 

@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'findStudentByFirstName', component: SearchStudentComponent},
   {path: 'student/login', component: LoginStudentComponent},
   {path: 'teacher/add', component: AddTeacherComponent},
-  {path: 'teacher/id', component: EditTeacherComponent},
+  {path: 'teacher/:id', component: EditTeacherComponent},
   {path: 'teacher', component: GetTeacherComponent},
   {path: 'findTeacherByFirstName', component: SearchTeacherComponent }
 
