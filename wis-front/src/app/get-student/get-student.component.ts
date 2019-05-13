@@ -13,18 +13,20 @@ export class GetStudentComponent implements OnInit {
 
   constructor(private ss: StudentService, private router: Router) { }
 
+
+  deleteStudent(id) {
+    this.ss.deleteStudent(id).subscribe(res => {
+      console.log('Deleted');
+      this.router.navigate(['students']);
+      this.ngOnInit();
+    });
+  }
+
   ngOnInit() {
     this.ss
       .getStudents()
       .subscribe((data: Student[]) => {
         this.students = data;
-    });
-  }
-
-  deleteStudent(id) {
-    this.ss.deleteStudent(id).subscribe(res => {
-      console.log('Deleted');
-      this.router.navigate(['student/add']);
     });
   }
 }
