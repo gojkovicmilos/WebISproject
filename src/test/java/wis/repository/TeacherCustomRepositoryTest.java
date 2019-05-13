@@ -27,7 +27,7 @@ public class TeacherCustomRepositoryTest {
 	@Transactional
 	@Rollback(true)
 	public void testCustomRepository() {
-		List<Teacher> teachers = teacherRepository.findByFirstName("Stefan");
+		List<Teacher> teachers = teacherRepository.findTeacherByFirstName("Stefan");
 		assertEquals(teachers.size(), 1);
 		teachers = teacherRepository.findByLastName("tef");
 		assertEquals(teachers.size(), 1);

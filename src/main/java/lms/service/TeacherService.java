@@ -60,7 +60,7 @@ public class TeacherService {
 	}
 	
 	public Iterable<Teacher> getByFirstName(String firstName) {
-		return teacherRepository.findByFirstName(firstName);
+		return teacherRepository.findTeacherByFirstName(firstName);
 	}
 	
 	public Optional<Teacher> getByPersonalIdentificationNumber(String personalIdentificationNumber) {

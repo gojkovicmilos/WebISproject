@@ -54,6 +54,6 @@ export class TeacherService {
     }
 
     getTeacherByFirstName(firstName: string): Observable<any> {
-      return this.http.get(`${this.uri}/${firstName}`);
+      return this.http.get(`${this.uri}/firstname/${firstName}`);
     }
 }
