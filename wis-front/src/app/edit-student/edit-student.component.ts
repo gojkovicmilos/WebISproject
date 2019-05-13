@@ -28,6 +28,17 @@ export class EditStudentComponent implements OnInit {
       });
     }
 
+  updateStudent(firstName, lastName, cardNumber, pass) {
+    this.route.params.subscribe(params => {
+       this.ss.updateStudent(firstName, lastName, cardNumber, pass, params.id);
+       alert('You have succesfully changed a Student');
+       this.router.navigate(['students']);
+ });
+  }
+  refresh() {
+    this.router.navigate(['students']);
+    this.ngOnInit();
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -35,12 +46,5 @@ export class EditStudentComponent implements OnInit {
           this.student = res;
       });
     });
-  }
-
-  updateStudent(firstName, lastName, cardNumber, pass) {
-    this.route.params.subscribe(params => {
-       this.ss.updateStudent(firstName, lastName, cardNumber, pass, params.id);
-       this.router.navigate(['students']);
- });
   }
 }

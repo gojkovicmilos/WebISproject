@@ -13,20 +13,12 @@ export class EditTeacherComponent implements OnInit {
   teacher: any = {};
   angForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, 
+  constructor(private route: ActivatedRoute,
               private router: Router,
               private ts: TeacherService,
               private fb: FormBuilder) {
                 this.createForm();
                }
-
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.ts.editTeacher(params.id).subscribe(res => {
-        this.teacher = res;
-    });
-  });
-  }
 
   createForm() {
     this.angForm = this.fb.group({
@@ -40,8 +32,20 @@ export class EditTeacherComponent implements OnInit {
   updateTeacher(firstName, lastName, personalIdentificationNumber) {
     this.route.params.subscribe(params => {
        this.ts.updateTeacher(firstName, lastName, personalIdentificationNumber, params.id);
+       alert('You have succesfully changed a Teacher');
        this.router.navigate(['teacher']);
  });
+  }
+   refresh() {
+    this.router.navigate(['teacher']);
+    this.ngOnInit();
+  }
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.ts.editTeacher(params.id).subscribe(res => {
+        this.teacher = res;
+    });
+  });
   }
 
 }
