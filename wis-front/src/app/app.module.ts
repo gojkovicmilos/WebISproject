@@ -19,6 +19,8 @@ import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { LoginStudentComponent } from './login-student/login-student.component';
 import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
 import { FooterComponent } from './footer/footer.component';
+import { ModalBasicComponent } from './modal-basic/modal-basic.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { FooterComponent } from './footer/footer.component';
     AddTeacherComponent,
     LoginStudentComponent,
     EditTeacherComponent,
-    FooterComponent
+    FooterComponent,
+    ModalBasicComponent
   ],
   imports: [
     BrowserModule,
@@ -41,10 +44,12 @@ import { FooterComponent } from './footer/footer.component';
     SlimLoadingBarModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [StudentService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, ModalBasicComponent],
+  exports: [ModalBasicComponent]
   
 })
 export class AppModule { }
