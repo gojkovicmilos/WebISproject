@@ -15,6 +15,7 @@ th {
 
 td {
     text-align: center;
+    vertical-align: middle;
 }
 tfoot {
     background-color: #3f87a6;
