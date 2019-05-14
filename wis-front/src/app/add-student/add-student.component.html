@@ -3,7 +3,7 @@
   <div class="card-body">
     <form [formGroup]="angForm" novalidate>
       <div class="form-group">
-        <label class="col-md-4">First Name: </label>
+        <label class="col-md-4">First name: </label>
         <input type="text" class="form-control" formControlName="firstName" #firstName />
       </div>
       <div *ngIf="angForm.controls['firstName'].invalid && (angForm.controls['firstName'].dirty || angForm.controls['firstName'].touched)" class="alert alert-danger">
