@@ -31,6 +31,7 @@ export class AddStudentComponent implements OnInit {
     this.ss.addStudent(firstName, lastName, cardNumber, pass);
     alert('You have succesfully registered a new Student');
     this.router.navigate(['students']);
+    this.refresh();
   }
 
   refresh() {
