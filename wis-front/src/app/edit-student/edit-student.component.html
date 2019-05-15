@@ -29,6 +29,15 @@
         </div>
       </div>
       <div class="form-group">
+          <label class="col-md-4">Password: </label>
+          <input type="text" class="form-control" formControlName="pass" #pass [(ngModel)] = "student.pass" />
+        </div>
+      <div *ngIf="angForm.controls['pass'].invalid && (angForm.controls['pass'].dirty || angForm.controls['pass'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['pass'].errors.required">
+            Password is required.
+          </div>
+        </div>
+      <div class="form-group">
         <button (click)="updateStudent(firstName.value, lastName.value, cardNumber.value)"
         [disabled]="angForm.invalid" 
         class="btn btn-primary">Update Student</button>

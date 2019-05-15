@@ -3,4 +3,5 @@ export default class Student {
     firstName: string;
     lastName: string;
     cardNumber: string;
+    pass: string;
   }

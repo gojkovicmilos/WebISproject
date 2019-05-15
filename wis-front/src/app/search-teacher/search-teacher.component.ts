@@ -18,13 +18,13 @@ export class SearchTeacherComponent implements OnInit {
     this.firstName = '';
   }
 
-  private searchTeachers() {
+  private searchTeachersFirst() {
     this.ts.getTeacherByFirstName(this.firstName)
       .subscribe(teachers => this.teachers = teachers);
       }
 
   onSubmit() {
-    this.searchTeachers();
+    this.searchTeachersFirst();
   }
 
 }

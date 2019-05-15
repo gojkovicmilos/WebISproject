@@ -17,7 +17,7 @@ export class TeacherService {
     const obj = {
       firstName: firstname,
       lastName: lastname,
-      personalIdentificationNumber: personalIdentificationNumber
+      personalIdentificationNumber : personalIdentificationNumber
     };
     console.log(obj);
     this.http.post(`${this.uri}`, obj)
@@ -36,12 +36,12 @@ export class TeacherService {
             .get(`${this.uri}/${id}`);
     }
 
-    updateTeacher(firstname, lastname, personalIdentificationNumber, id) {
+    updateTeacher(firstname, lastname, personalIdentificationnumber, id) {
 
       const obj = {
           firstName: firstname,
           lastName: lastname,
-          personalIdentificationNumber: personalIdentificationNumber
+          personalIdentificationNumber : personalIdentificationnumber
 };
       this
         .http
@@ -54,6 +54,6 @@ export class TeacherService {
     }
 
     getTeacherByFirstName(firstName: string): Observable<any> {
-      return this.http.get(`${this.uri}/${firstName}`);
+      return this.http.get(`${this.uri}/firstname/${firstName}`);
     }
 }

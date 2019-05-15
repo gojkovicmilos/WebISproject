@@ -1,15 +1,19 @@
-<h3>Find By First Name</h3>
-<div style="width: 300px;">
-  <form (ngSubmit)="onSubmit()">
+<div style="width: 300px;" class="search">
+  <form (ngSubmit)="onSubmitFirst()">
     <div class="form-group">
-      <label for="firstName">First Name: </label>
-      <input type="text" class="form-control" id="firstName" required [(ngModel)]="firstName" name="firstName">
+      <input type="text" class="form-control" id="firstName" required [(ngModel)]="firstName" name="firstName" placeholder="Search Students By Name">
+    </div>
+  </form>
+  <!-- <form (ngSubmit)="onSubmitLast()">
+    <div class="form-group">
+      <label for="LastName">Last Name: </label>
+      <input type="text" class="form-control" id="lastName" required [(ngModel)]="lastName" name="lastName">
     </div>
 
     <div class="btn-group">
       <button type="submit" class="btn btn-success">Submit</button>
     </div>
-  </form>
+  </form> -->
 </div>
 <ul>
   <br>
@@ -21,9 +25,9 @@
         <td>Card Number</td>
       </tr>
       <tr>
-        <td>{{student.firstName}}</td> 
-        <td>{{student.lastName}}</td>
-        <td>{{student.cardNumber}}</td>
+        <td>{{student?.firstName}}</td> 
+        <td>{{student?.lastName}}</td>
+        <td>{{student?.cardNumber}}</td>
       </tr>
     </tbody>
   </table>

@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-add-student',
-  templateUrl: './add-student.component.html',
-  styleUrls: ['./add-student.component.css']
+  selector: 'app-login-student',
+  templateUrl: './login-student.component.html',
+  styleUrls: ['./login-student.component.css']
 })
-export class AddStudentComponent implements OnInit {
+export class LoginStudentComponent implements OnInit {
 
   angForm: FormGroup;
   constructor(private fb: FormBuilder, private ss: StudentService, private router: Router) {
@@ -18,25 +18,15 @@ export class AddStudentComponent implements OnInit {
 
   createForm() {
     this.angForm = this.fb.group({
-      firstName: ['', Validators.required ],
-      lastName: ['', Validators.required ],
       cardNumber: ['', Validators.required ],
       pass: ['', Validators.required]
     });
   }
+
+  logInStudent(cardNumber, pass) {
+    this.ss.logInStudent( cardNumber, pass);
+    this.router.navigate(['students']);
+  }
   ngOnInit() {
   }
-
-  addStudent(firstName, lastName, cardNumber, pass) {
-    this.ss.addStudent(firstName, lastName, cardNumber, pass);
-    alert('You have succesfully registered a new Student');
-    this.router.navigate(['students']);
-  }
-
-  refresh() {
-    this.router.navigate(['students']);
-    this.ngOnInit();
-  }
-
-
 }

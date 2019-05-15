@@ -14,18 +14,20 @@ export class GetTeacherComponent implements OnInit {
 
   constructor(private ts: TeacherService, private router: Router) { }
 
-  ngOnInit() {
-    this.ts
-      .getTeachers()
-      .subscribe((data: Teacher[]) => {
-        this.teachers = data;
-  });
-
-}
 deleteTeacher(id) {
   this.ts.deleteTeacher(id).subscribe(res => {
     console.log('Deleted');
-    this.router.navigate(['teacher/add']);
+    this.router.navigate(['teacher']);
+    this.ngOnInit();
   });
+}
+
+ngOnInit() {
+  this.ts
+    .getTeachers()
+    .subscribe((data: Teacher[]) => {
+      this.teachers = data;
+});
+
 }
 }

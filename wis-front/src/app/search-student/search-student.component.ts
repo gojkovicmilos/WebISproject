@@ -10,21 +10,34 @@ import { StudentService } from '../student.service';
 export class SearchStudentComponent implements OnInit {
 
   firstName: string;
+  lastName: string;
   students: Student[];
 
   constructor(private ss: StudentService) { }
 
   ngOnInit() {
     this.firstName = '';
+    this.lastName = '';
   }
 
-  private searchStudents() {
+  private searchStudentsFirst() {
     this.ss.getStudentByFirstName(this.firstName)
       .subscribe(students => this.students = students);
       }
 
-  onSubmit() {
-    this.searchStudents();
+  private searchStudentsLast() {
+    this.ss.getStudentByLastName(this.lastName)
+      .subscribe(students => this.students = students);
+      }
+
+  
+
+  onSubmitFirst() {
+    this.searchStudentsFirst();
+  }
+
+  onSubmitLast() {
+    this.searchStudentsLast();
   }
 
 }
