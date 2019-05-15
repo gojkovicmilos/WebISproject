@@ -47,7 +47,7 @@ public class TeacherController {
 		return new ResponseEntity<Teacher>(teacher, HttpStatus.CREATED);
 	}
 
-	@PutMapping(value = "/{id}")
+	@PutMapping(value = "/update/{id}")
 	public ResponseEntity<Teacher> updateTeacher(@PathVariable Long id, @RequestBody Teacher teacher) {
 		teacherService.updateTeacher(id, teacher);
 		return new ResponseEntity<Teacher>(teacher, HttpStatus.CREATED);
@@ -63,4 +63,25 @@ public class TeacherController {
 
 		return new ResponseEntity<Teacher>(HttpStatus.NO_CONTENT);
 	}
+	
+	@GetMapping(value = "/firstname/{firstName}")
+	public ResponseEntity<Iterable<Teacher>> getTeacherByFirstName(@PathVariable String firstName) {
+		return new ResponseEntity<Iterable<Teacher>>(teacherService.getByFirstName(firstName), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/lastname/{lastName}")
+	public ResponseEntity<Iterable<Teacher>> getTeacherByLastName(@PathVariable String lastName) {
+		return new ResponseEntity<Iterable<Teacher>>(teacherService.getByLastName(lastName), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/personaidentificationnumber/{personalIdentificationNumber}")
+	public ResponseEntity<Teacher> getTeacherByPersonalIdentificationNumber(@PathVariable String personalIdentificationNumber) {
+		Optional<Teacher> teacher = teacherService.getByPersonalIdentificationNumber(personalIdentificationNumber);
+		if(teacher.isPresent()) {
+			return new ResponseEntity<Teacher>(teacher.get(), HttpStatus.FOUND);
+		}
+		return new ResponseEntity<Teacher>(HttpStatus.NO_CONTENT);
+	}
+	
+	
 }

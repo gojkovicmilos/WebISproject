@@ -1,14 +1,14 @@
 package lms.service;
 
-import java.util.ArrayList;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lms.SecurityHash;
 import lms.domain.Course;
 import lms.domain.CourseAttending;
 import lms.domain.Student;
@@ -70,20 +70,7 @@ public class StudentService {
 	}
 	
 	public Iterable<Student> getByFirstName(String firstName) {
-		List<Student> st = new ArrayList<>();
-		
-		Set<Student> ret = new HashSet<>();
-		
-		st = studentRepository.findAll();
-		
-		for (Student s: st)
-		{
-			if(s.getFirstName().toLowerCase().equals(firstName.toLowerCase()))
-				ret.add(s);
-		}
-		
-		return ret;
-		
+		return studentRepository.findByFirstName(firstName);
 	}
 	
 	public Iterable<Student> getByLastName(String lastName) {
@@ -98,7 +85,9 @@ public class StudentService {
 		return studentRepository.findById(id);
 	}
 
-	public void addStudent(Student s) {
+	public void addStudent(Student s) throws NoSuchAlgorithmException {
+		
+		s.setPass(SecurityHash.hashIt(s.getPass()));
 		studentRepository.save(s);
 	}
 
@@ -118,5 +107,24 @@ public class StudentService {
 			studentRepository.save(s);
 		}
 	}
+	
+	public Student logIn(String card, String pass) throws NoSuchAlgorithmException
+	{
+		
+		for(Student s: studentRepository.findAll())
+			if(s.getCardNumber().equals(card))
+				if(SecurityHash.hashIt(pass).equals(s.getPass()))
+					return s;
+		
+		return null;
+		
+		
+
+		
+	}
+	
+	
+	
+	
 
 }

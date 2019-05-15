@@ -43,7 +43,6 @@ public class FacultyService {
 	}
 
 	public Optional<Faculty> getFacultyById(Long id) {
-		// TODO Auto-generated method stub
 		return facultyRepository.findById(id);
 	}
 
