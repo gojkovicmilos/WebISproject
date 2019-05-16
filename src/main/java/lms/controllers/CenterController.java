@@ -26,6 +26,11 @@ public class CenterController {
 	@Autowired
 	CenterService centerService;
 	
+	@GetMapping()
+	public ResponseEntity<Iterable<Center>> getCenters() {
+		return new ResponseEntity<Iterable<Center>>(centerService.getAllCenter(), HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Center> getCenter(@PathVariable Long id) {
 		Optional<Center> center = centerService.getCenterId(id);
