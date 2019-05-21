@@ -23,8 +23,7 @@ export class EditStudentComponent implements OnInit {
     this.angForm = this.fb.group({
         firstName: ['', Validators.required ],
         lastName: ['', Validators.required ],
-        cardNumber: ['', Validators.required ],
-        pass: ['', Validators.required]
+        cardNumber: ['', Validators.required ]
       });
     }
 

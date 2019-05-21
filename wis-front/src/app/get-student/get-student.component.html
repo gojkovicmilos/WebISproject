@@ -1,21 +1,23 @@
-<table class="table table-hover">
-  <thead>
-  <tr>
-      <td>FirstName</td>
-      <td>LastName</td>
-      <td>Card Number</td>
-      <td>Edit Student</td>
-      <td>Delete Student</td>
-  </tr>
-  </thead>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>FirstName</td>
+                <td>LastName</td>
+                <td>Card Number</td>
+                <td>Edit Student</td>
+                <td>Delete Student</td>
+            </tr>
+        </thead>
 
-  <tbody>
-      <tr *ngFor="let student of students">
-          <td>{{ student.firstName }}</td>
-          <td>{{ student.lastName }}</td>
-          <td>{{ student.cardNumber }}</td>
-          <td><a [routerLink]="[student.id]" class="btn btn-primary">Edit</a></td>
-          <td><a (click)="deleteStudent(student.id)" class="btn btn-danger">Delete</a></td>
-      </tr>
-  </tbody>
-</table>
+        <tbody>
+            <tr *ngFor="let student of students">
+                <td>{{ student.firstName }}</td>
+                <td>{{ student.lastName }}</td>
+                <td>{{ student.cardNumber }}</td>
+                <td><a [routerLink]="[student.id]" class="btn btn-primary">Edit</a></td>
+                <td><a (click)="deleteStudent(student.id)" class="btn btn-danger">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -24,7 +24,6 @@ export class AddTeacherComponent implements OnInit {
   }
   ngOnInit() {
   }
-  
    addTeacher(firstName, lastName, personalIdentificationNumber) {
     this.ts.addTeacher(firstName, lastName, personalIdentificationNumber);
     alert('You have succesfully registered a new Teacher');
@@ -35,6 +34,4 @@ export class AddTeacherComponent implements OnInit {
     this.router.navigate(['teacher']);
     this.ngOnInit();
   }
-
-  
 }

@@ -33,8 +33,9 @@ public class StudentService {
 
 	@Autowired
 	CourseRepository courseRepository;
-	
-	public StudentService() {}
+
+	public StudentService() {
+	}
 
 	public void enrollInFirstYear(Student student) {
 		YearOfStudy yearOfStudy = yearOfStudyRepository.findFirstByNumberOfYear(1);
@@ -68,11 +69,11 @@ public class StudentService {
 		return ret;
 
 	}
-	
+
 	public Iterable<Student> getByFirstName(String firstName) {
 		return studentRepository.findByFirstName(firstName);
 	}
-	
+
 	public Iterable<Student> getByLastName(String lastName) {
 		return studentRepository.findByLastName(lastName);
 	}
@@ -86,7 +87,7 @@ public class StudentService {
 	}
 
 	public void addStudent(Student s) throws NoSuchAlgorithmException {
-		
+
 		s.setPass(SecurityHash.hashIt(s.getPass()));
 		studentRepository.save(s);
 	}
@@ -107,24 +108,16 @@ public class StudentService {
 			studentRepository.save(s);
 		}
 	}
-	
-	public Student logIn(String card, String pass) throws NoSuchAlgorithmException
-	{
-		
-		for(Student s: studentRepository.findAll())
-			if(s.getCardNumber().equals(card))
-				if(SecurityHash.hashIt(pass).equals(s.getPass()))
-					return s;
-		
-		return null;
-		
-		
 
-		
+	public Student logIn(String card, String pass) throws NoSuchAlgorithmException {
+
+		for (Student s : studentRepository.findAll())
+			if (s.getCardNumber().equals(card))
+				if (SecurityHash.hashIt(pass).equals(s.getPass()))
+					return s;
+
+		return null;
+
 	}
-	
-	
-	
-	
 
 }
