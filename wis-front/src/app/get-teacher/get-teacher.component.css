@@ -25,3 +25,13 @@ tfoot {
 tbody {
     background-color: #e4f0f5;
 }
+
+.container{
+    margin-top: 80px;
+}
+
+body {
+	min-height: 80vh;
+	position: relative;
+	margin: 0;
+  }
