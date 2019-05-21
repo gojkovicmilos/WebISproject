@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'teacher/:id', component: EditTeacherComponent},
   {path: 'teacher', component: GetTeacherComponent},
   {path: 'findTeacherByFirstName', component: SearchTeacherComponent },
-  {path: 'home', component: HomePageComponent}
+  {path: '', component: HomePageComponent}
 
 ];
 
