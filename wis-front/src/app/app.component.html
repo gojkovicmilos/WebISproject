@@ -5,15 +5,13 @@
 
   <section>
       <div class="container position">
-          <app-home-page></app-home-page>
+          <app-home-page *ngIf="prikaziHome"></app-home-page>
       </div>
   </section>
 
-  <app-footer></app-footer>
+  <router-outlet></router-outlet>
+  
 
 </body>
 
-
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+<app-footer></app-footer>
