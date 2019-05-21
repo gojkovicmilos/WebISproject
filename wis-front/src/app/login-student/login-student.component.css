@@ -2,11 +2,12 @@
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
-    width: 44%;
-    height: 44%;
+    width: 35%;
+    height: 35%;
     position: center;
-    margin-top:50px;
-    margin-left:300px;
+    margin-top:70px;
+    margin-bottom: 70px;
+    margin-left:440px;
 }
 .header{
     text-align: center;

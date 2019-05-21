@@ -28,6 +28,13 @@ export class EditTeacherComponent implements OnInit {
     });
   }
 
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.ts.editTeacher(params.id).subscribe(res => {
+        this.teacher = res;
+    });
+  });
+  }
 
   updateTeacher(firstName, lastName, personalIdentificationNumber) {
     this.route.params.subscribe(params => {
@@ -39,13 +46,6 @@ export class EditTeacherComponent implements OnInit {
    refresh() {
     this.router.navigate(['teacher']);
     this.ngOnInit();
-  }
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.ts.editTeacher(params.id).subscribe(res => {
-        this.teacher = res;
-    });
-  });
   }
 
 }

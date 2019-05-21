@@ -21,6 +21,8 @@ import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
 import { FooterComponent } from './footer/footer.component';
 import { ModalBasicComponent } from './modal-basic/modal-basic.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HomePageComponent } from './home-page/home-page.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginStudentComponent,
     EditTeacherComponent,
     FooterComponent,
-    ModalBasicComponent
+    ModalBasicComponent,
+    HomePageComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
