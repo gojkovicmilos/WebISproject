@@ -24,6 +24,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AgmCoreModule } from '@agm/core';
+import { CenterNoviSadComponent } from './center-novi-sad/center-novi-sad.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { AgmCoreModule } from '@agm/core';
     FooterComponent,
     ModalBasicComponent,
     HomePageComponent,
-    NavbarComponent
+    NavbarComponent,
+    CenterNoviSadComponent
   ],
   imports: [
     BrowserModule,
