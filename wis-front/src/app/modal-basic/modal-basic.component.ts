@@ -10,8 +10,8 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalBasicComponent implements OnInit {
 
-  lat: number = 45.267136;
-  lng: number = 19.833549;
+  lat: number = 45.253021;
+  lng: number = 19.844418;
 
   closeResult: string;
 
