@@ -10,6 +10,7 @@ import {SearchTeacherComponent} from './search-teacher/search-teacher.component'
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { LoginStudentComponent } from './login-student/login-student.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { ModalBasicComponent } from './modal-basic/modal-basic.component';
 
 const routes: Routes = [
   {path: 'student/add', component: AddStudentComponent},
