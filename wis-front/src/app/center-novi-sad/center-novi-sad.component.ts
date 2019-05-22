@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CourseService } from '../course.service';
+import { Router } from '@angular/router';
+import  Course  from '../Course';
 
 @Component({
   selector: 'app-center-novi-sad',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CenterNoviSadComponent implements OnInit {
 
-  constructor() { }
+  courses: Course[];
+
+  constructor(private cs: CourseService, private router: Router) { }
 
   ngOnInit() {
+    this.cs
+      .getCourse()
+      .subscribe((data: Course[]) => {
+        this.courses = data;
+    });
   }
 
 }

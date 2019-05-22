@@ -43,43 +43,46 @@
       </div>
     </div>
     <!-- /.row -->
-
-    <div class="row">
-      <div class="col-md-4 mb-5">
-        <div class="card h-100">
-          <img class="card-img-top" src="https://www.canadastudynews.com/wp-content/uploads/2017/08/Computer-programming-300x200.jpg" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Software Engineering</h4>
-            <p class="card-text">Something about this study program...</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Check the study program!</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-5">
-        <div class="card h-100">
-          <img class="card-img-top" src="https://wallup.net/wp-content/uploads/2016/01/151977-square-grid-technology-information-abstract-300x200.jpg"alt="">
-          <div class="card-body">
-            <h4 class="card-title">Information Technology</h4>
-            <p class="card-text">Something about this study program...</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Check the study program!</a>
+      <div class="row">
+        <div class="col-md-4 mb-5" *ngFor="let course of courses">
+          <div class="card h-100">
+            <img class="card-img-top" alt="" src="{{course.img_url}}">
+            <div class="card-body">
+              <h4 class="card-title">{{course.title}}</h4>
+              <p class="card-text">Something about this study program...</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">Check the study program!</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-5">
-        <div class="card h-100">
-          <img class="card-img-top" src="https://d3rds0a9qm8vc5.cloudfront.net/demo.cloodon.com/e4a69e5f81b79e45cd7899f877f6ccc0.1476696296187.jpg" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Math</h4>
-            <p class="card-text">Something about this study program....</p>
+        <!-- <div class="col-md-4 mb-5">
+          <div class="card h-100">
+            <img class="card-img-top"
+              src="https://wallup.net/wp-content/uploads/2016/01/151977-square-grid-technology-information-abstract-300x200.jpg"
+              alt="">
+            <div class="card-body">
+              <h4 class="card-title"></h4>
+              <p class="card-text">Something about this study program...</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">Check the study program!</a>
+            </div>
           </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Check the study program!</a>
+        </div> -->
+        <!-- <div class="col-md-4 mb-5">
+          <div class="card h-100">
+            <img class="card-img-top"
+              src="https://d3rds0a9qm8vc5.cloudfront.net/demo.cloodon.com/e4a69e5f81b79e45cd7899f877f6ccc0.1476696296187.jpg"
+              alt="">
+            <div class="card-body">
+              <h4 class="card-title">Math</h4>
+              <p class="card-text">Something about this study program....</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">Check the study program!</a>
+            </div>
           </div>
-        </div>
+        </div> -->
       </div>
-    </div>
   </div>

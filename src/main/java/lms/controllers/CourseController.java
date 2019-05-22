@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lms.domain.Course;
+import lms.domain.Student;
 import lms.service.CourseService;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
@@ -62,5 +63,10 @@ public class CourseController {
 		}
 
 		return new ResponseEntity<Course>(HttpStatus.NO_CONTENT);
+	}
+	
+	@GetMapping(value = "/title/{title}")
+	public ResponseEntity<Iterable<Course>> getCourseByTitle(@PathVariable String title) {
+		return new ResponseEntity<Iterable<Course>>(courseService.getCourseByTitle(title), HttpStatus.OK);
 	}
 }
