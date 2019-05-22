@@ -15,10 +15,14 @@ import { NavigationCancel,
 })
 export class AppComponent {
   title = 'wis-front';
+
+  static prikaziHome;
+
   constructor(private _loadingBar: SlimLoadingBarService, private _router: Router) {
     this._router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);
     });
+    AppComponent.prikaziHome = true;
   }
   private navigationInterceptor(event: Event): void {
     if (event instanceof NavigationStart) {
@@ -34,4 +38,5 @@ export class AppComponent {
       this._loadingBar.stop();
     }
   }
+
 }
