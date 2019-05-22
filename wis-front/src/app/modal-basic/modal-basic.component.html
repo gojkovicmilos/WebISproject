@@ -6,14 +6,14 @@
     </button>
   </div>
   <div class="modal-body">
-    ovde ubaciti bilo sta, npr formu za login
-    ...
+    <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">OK</button>
   </div>
 </ng-template>
 
-<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
-<a (click)='open(content)' class="nav-link">Open modal</a>
+<a (click)='openWindowCustomClass(content)' class="nav-link">Contact</a>
 
