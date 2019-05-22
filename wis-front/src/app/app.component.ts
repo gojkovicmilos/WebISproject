@@ -22,6 +22,12 @@ export class AppComponent {
     this._router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);
     });
+    this._router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0)
+    });
     AppComponent.prikaziHome = true;
   }
   private navigationInterceptor(event: Event): void {
