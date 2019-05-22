@@ -53,12 +53,10 @@ import { AgmCoreModule } from '@agm/core';
     NgbModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB2qilSTZvWZFo1puwcpU3qHH-_bnN8DyQ'
-      
     })
   ],
   providers: [StudentService],
   bootstrap: [AppComponent, ModalBasicComponent],
   exports: [ModalBasicComponent]
-  
 })
 export class AppModule { }
