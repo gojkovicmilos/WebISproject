@@ -42,7 +42,7 @@ public class StudentController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Student> addStudent(@RequestBody Student student) throws NoSuchAlgorithmException {
+	public ResponseEntity<Student> addStudent(@RequestBody Student student) throws NoSuchAlgorithmException{
 		studentService.addStudent(student);
 		return new ResponseEntity<Student>(student, HttpStatus.CREATED);
 	}
