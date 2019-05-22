@@ -1,18 +1,13 @@
-<ng2-slim-loading-bar color="blue"></ng2-slim-loading-bar>
+<!-- <ng2-slim-loading-bar color="blue"></ng2-slim-loading-bar> -->
 
-<body>
-  <app-navbar></app-navbar>
+<app-navbar></app-navbar>
 
-  <section>
-      <div class="container position">
-          <app-home-page *ngIf="prikaziHome"></app-home-page>
-      </div>
-  </section>
+<section>
+    <div class="container position">
+        <app-home-page *ngIf="prikaziHome"></app-home-page>
+    </div>
+</section>
 
-  <router-outlet></router-outlet>
-  
-  <app-footer></app-footer>
+<router-outlet></router-outlet>
 
-</body>
-
-
+<app-footer></app-footer>

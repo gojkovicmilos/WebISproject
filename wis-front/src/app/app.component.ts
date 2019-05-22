@@ -39,11 +39,4 @@ export class AppComponent {
     }
   }
 
-  public setPrikaziHomeToTrue(): void {
-    AppComponent.prikaziHome = true;
-  }
-
-  public setPrikaziHomeToFalse(): void {
-    AppComponent.prikaziHome = false;
-  }
 }
