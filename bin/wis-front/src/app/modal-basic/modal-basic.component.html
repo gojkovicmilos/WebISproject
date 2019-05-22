@@ -1,19 +1,20 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Neki naslov</h4>
+    <h4 class="modal-title" id="modal-basic-title">Our Location</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    ovde ubaciti bilo sta, npr formu za login
-    ...
+    <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">OK</button>
   </div>
 </ng-template>
 
-<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
-<a (click)='open(content)' class="nav-link">Open modal</a>
+<a (click)='openLg(content)' class="nav-link" style="color:#1E90FF"> 
+  <i class="fa fa-map-marker" aria-hidden="true"></i> Our Location</a>
 
