@@ -40,6 +40,10 @@ public class StudyProgramService {
 			studyProgramRepository.save(sp);
 		}
 	}
+	
+	public Iterable<StudyProgram> getStudyProgramByName(String name) {
+		return studyProgramRepository.findByName(name);
+	}
 
 
 }

@@ -44,15 +44,15 @@
     </div>
     <!-- /.row -->
       <div class="row">
-        <div class="col-md-4 mb-5" *ngFor="let course of courses">
+        <div class="col-md-4 mb-5" *ngFor="let sp of studyPrograms">
           <div class="card h-100">
-            <img class="card-img-top" alt="" src="{{course.img_url}}">
+            <img class="card-img-top" alt="" src="{{sp.img_url}}">
             <div class="card-body">
-              <h4 class="card-title">{{course.title}}</h4>
+              <h4 class="card-title">{{sp.name}}</h4>
               <p class="card-text">Something about this study program...</p>
             </div>
             <div class="card-footer">
-              <a routerLink="{{course.link}}" class="btn btn-primary">Check the study program!</a>
+              <a routerLink="{{sp.link}}" class="btn btn-primary">Check the study program!</a>
             </div>
           </div>
         </div>

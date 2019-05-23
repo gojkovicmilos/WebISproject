@@ -6,20 +6,20 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CourseService {
+export class StudyProgramService {
 
-  uri = 'http://localhost:8080/course';
+  uri = 'http://localhost:8080/studyprogram';
   reloadData: any;
 
   constructor(private http: HttpClient) { }
 
-  getCourse() {
+  getStudyProgram() {
     return this
            .http
            .get(`${this.uri}`);
   }
 
-  getCourseByTitle(title: string): Observable<any> {
-    return this.http.get(`${this.uri}/title/${title}`);
+  getStudyProgramByName(name: string): Observable<any> {
+    return this.http.get(`${this.uri}/name/${name}`);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService } from '../course.service';
+import { StudyProgramService} from '../study-program.service';
 import { Router } from '@angular/router';
-import Course from '../Course';
+import StudyProgram from '../StudyProgram';
 
 @Component({
   selector: 'app-center-novi-sad',
@@ -10,15 +10,15 @@ import Course from '../Course';
 })
 export class CenterNoviSadComponent implements OnInit {
 
-  courses: Course[];
+  studyPrograms: StudyProgram[];
 
-  constructor(private cs: CourseService, private router: Router) { }
+  constructor(private sps: StudyProgramService, private router: Router) { }
 
   ngOnInit() {
-    this.cs
-      .getCourse()
-      .subscribe((data: Course[]) => {
-        this.courses = data;
+    this.sps
+      .getStudyProgram()
+      .subscribe((data: StudyProgram[]) => {
+        this.studyPrograms = data;
     });
   }
 

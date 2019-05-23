@@ -1,4 +1,4 @@
-export default class Course{
+export default class Course {
     id: number;
     title: string;
 }

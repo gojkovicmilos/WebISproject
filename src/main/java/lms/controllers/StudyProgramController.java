@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lms.domain.Course;
 import lms.domain.StudyProgram;
 import lms.service.StudyProgramService;
 
@@ -62,5 +63,11 @@ public class StudyProgramController {
 		}
 
 		return new ResponseEntity<StudyProgram>(HttpStatus.NO_CONTENT);
+	}
+	
+	
+	@GetMapping(value = "/name/{name}")
+	public ResponseEntity<Iterable<StudyProgram>> getStudyProgramByTitle(@PathVariable String name) {
+		return new ResponseEntity<Iterable<StudyProgram>>(studyProgramService.getStudyProgramByName(name), HttpStatus.OK);
 	}
 }
