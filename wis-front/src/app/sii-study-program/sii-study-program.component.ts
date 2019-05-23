@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { YearOfStudyService } from '../year-of-study.service';
+import YearOfStudy from '../YearOfStudy';
 
 @Component({
   selector: 'app-sii-study-program',
@@ -8,9 +10,19 @@ import { Router } from '@angular/router';
 })
 export class SiiStudyProgramComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  yearOfStudies: YearOfStudy[] = [];
+
+  constructor(private router: Router, private yoss: YearOfStudyService) { }
 
   ngOnInit() {
+    this.yoss.getYearOfStudy()
+              .subscribe((data: YearOfStudy[]) => {
+                this.yearOfStudies = data;
+              });
   }
+
+
+
+ 
 
 }
