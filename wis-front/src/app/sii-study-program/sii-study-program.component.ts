@@ -10,7 +10,8 @@ import YearOfStudy from '../YearOfStudy';
 })
 export class SiiStudyProgramComponent implements OnInit {
 
-  yearOfStudies: YearOfStudy[] = [];
+  yearOfStudies: YearOfStudy[];
+  cssId: string[] = ["lvl1a", "lvl1ab", "lvl1abc", "lvl1abcd"];
 
   constructor(private router: Router, private yoss: YearOfStudyService) { }
 

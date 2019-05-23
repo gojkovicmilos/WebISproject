@@ -28,14 +28,14 @@
       <hr>
       <br>
       <div class="row">
-        <div class="col-md-5 col-lg-4 col-xl-3" *ngFor="let yos of yearOfStudies | orderBy: 'numberOfYear'">
+        <div class="col-md-5 col-lg-4 col-xl-3" *ngFor="let yos of yearOfStudies | orderBy: 'numberOfYear'; let i = index; ">
           <nav id="leftnav">
             <div class="list-group indicator-plus">
               <h3 style="text-align: center;">{{yos.title}}</h3>
-              <a href="#lvl1a" class="list-group-item active" data-toggle="collapse" data-parent="#leftnav"><i
+              <a href="#{{cssId[i]}}" class="list-group-item active" data-toggle="collapse" data-parent="#leftnav"><i
                   class="fa fa-arrow-circle-o-down"></i>
                 Check the subjects</a>
-              <div class="collapse list-group-submenu" id="lvl1a">
+              <div class="collapse list-group-submenu" id="{{cssId[i]}}">
                 <div id="accordion">
                   <div class="card">
                     <div class="card-header" id="headingOne" class="list-group-item">
