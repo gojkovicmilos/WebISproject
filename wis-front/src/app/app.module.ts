@@ -7,6 +7,7 @@ import { AddStudentComponent } from './add-student/add-student.component';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { OrderModule } from 'ngx-order-pipe';
 
 import { StudentService } from './student.service';
 import { GetStudentComponent } from './get-student/get-student.component';
@@ -59,7 +60,8 @@ import { ItStudyProgramComponent } from './it-study-program/it-study-program.com
     NgbModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB2qilSTZvWZFo1puwcpU3qHH-_bnN8DyQ'
-    })
+    }),
+    OrderModule
   ],
   providers: [StudentService],
   bootstrap: [AppComponent, ModalBasicComponent],

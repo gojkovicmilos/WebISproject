@@ -3,6 +3,7 @@ package lms.domain;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,8 @@ import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Where;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Where(clause = "deleted = 'false'")
@@ -37,23 +40,18 @@ public class YearOfStudy {
 	@OneToMany(mappedBy = "yearOfStudy", fetch = FetchType.LAZY)
 	private Set<StudentYear> studentYears;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	/*@JsonIgnore*/
+	@ManyToOne(cascade=CascadeType.ALL)
 	private StudyProgram studyProgram;
 	
-	
+	private String title;
 	
 	public YearOfStudy() {
 	}
 	
-	
-
-
-	
-
-
 
 	public YearOfStudy(Long id, @NotNull Boolean deleted, int version, int numberOfYear, Set<Course> courses,
-			Set<StudentYear> studentYears, StudyProgram studyProgram) {
+			Set<StudentYear> studentYears, StudyProgram studyProgram, String title) {
 		this.id = id;
 		this.deleted = deleted;
 		this.version = version;
@@ -61,12 +59,8 @@ public class YearOfStudy {
 		this.courses = courses;
 		this.studentYears = studentYears;
 		this.studyProgram = studyProgram;
+		this.title = title;
 	}
-
-
-
-
-
 
 
 
@@ -75,20 +69,9 @@ public class YearOfStudy {
 	}
 
 
-
-
-
-
-
-
 	public void setStudyProgram(StudyProgram studyProgram) {
 		this.studyProgram = studyProgram;
 	}
-
-
-
-
-
 
 
 
@@ -140,6 +123,17 @@ public class YearOfStudy {
 		this.numberOfYear = numberOfYear;
 	}
 	
+	
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {

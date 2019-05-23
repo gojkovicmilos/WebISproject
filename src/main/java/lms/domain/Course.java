@@ -52,6 +52,11 @@ public class Course {
 	private YearOfStudy yearOfStudy;
 	
 	
+	private String link;
+	
+	private String img_url;
+	
+	
 	
 	
 	public Course() {
@@ -61,7 +66,7 @@ public class Course {
 
 	public Course(Long id, @NotNull Boolean deleted, @Size(max = 50) String title, int ects, boolean obligatory,
 			int numberOfLectures, int numberOfExcercises, int version, Set<CourseRealization> courseRealizations,
-			Set<ExamRealization> examRealizations, YearOfStudy yearOfStudy) {
+			Set<ExamRealization> examRealizations, YearOfStudy yearOfStudy, String link, String img_url) {
 		this.id = id;
 		this.deleted = deleted;
 		this.title = title;
@@ -73,6 +78,8 @@ public class Course {
 		this.courseRealizations = courseRealizations;
 		ExamRealizations = examRealizations;
 		this.yearOfStudy = yearOfStudy;
+		this.link = link;
+		this.img_url = img_url;
 	}
 
 
@@ -169,6 +176,26 @@ public class Course {
 		this.numberOfExcercises = numberOfExcercises;
 	}
 	
+
+	public String getLink() {
+		return link;
+	}
+
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+
+	public String getImg_url() {
+		return img_url;
+	}
+
+
+	public void setImg_url(String img_url) {
+		this.img_url = img_url;
+	}
+
 
 	@Override
 	public boolean equals(Object o) {

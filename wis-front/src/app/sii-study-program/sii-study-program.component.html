@@ -28,10 +28,10 @@
       <hr>
       <br>
       <div class="row">
-        <div class="col-md-5 col-lg-4 col-xl-3">
+        <div class="col-md-5 col-lg-4 col-xl-3" *ngFor="let yos of yearOfStudies | orderBy:'numberOfYear'">
           <nav id="leftnav">
             <div class="list-group indicator-plus">
-              <h3 style="text-align: center;">First Year</h3>
+              <h3 style="text-align: center;">{{yos.title}}</h3>
               <a href="#lvl1a" class="list-group-item active" data-toggle="collapse" data-parent="#leftnav"><i
                   class="fa fa-arrow-circle-o-down"></i>
                 Check the subjects</a>
@@ -48,7 +48,7 @@
             </div>
           </nav>
         </div>
-        <div class="col-md-5 col-lg-4 col-xl-3">
+        <!-- <div class="col-md-5 col-lg-4 col-xl-3">
           <nav id="leftnav">
             <div class="list-group indicator-plus">
               <h3 style="text-align: center;">Second Year</h3>
@@ -61,8 +61,8 @@
               </div>
             </div>
           </nav>
-        </div>
-        <div class="col-md-5 col-lg-4 col-xl-3">
+        </div> -->
+        <!-- <div class="col-md-5 col-lg-4 col-xl-3">
           <nav id="leftnav">
             <div class="list-group indicator-plus">
               <h3 style="text-align: center;">Third Year</h3>
@@ -75,8 +75,8 @@
               </div>
             </div>
           </nav>
-        </div>
-        <div class="col-md-5 col-lg-4 col-xl-3">
+        </div> -->
+        <!-- <div class="col-md-5 col-lg-4 col-xl-3">
           <nav id="leftnav">
             <div class="list-group indicator-plus">
               <h3 style="text-align: center;">Fourth Year</h3>
@@ -89,7 +89,7 @@
               </div>
             </div>
           </nav>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
