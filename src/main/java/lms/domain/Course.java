@@ -44,7 +44,9 @@ public class Course {
 	
 	private String img_url;
 	
-
+	private String link;
+	
+	
 	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseRealization> courseRealizations;
 	
@@ -64,7 +66,7 @@ public class Course {
 
 	public Course(Long id, @NotNull Boolean deleted, @Size(max = 50) String title, int ects, boolean obligatory,
 			int numberOfLectures, int numberOfExcercises, int version, Set<CourseRealization> courseRealizations,
-			Set<ExamRealization> examRealizations, YearOfStudy yearOfStudy,String img_url) {
+			Set<ExamRealization> examRealizations, YearOfStudy yearOfStudy,String img_url, String link) {
 		this.id = id;
 		this.deleted = deleted;
 		this.title = title;
@@ -77,6 +79,7 @@ public class Course {
 		ExamRealizations = examRealizations;
 		this.yearOfStudy = yearOfStudy;
 		this.img_url = img_url;
+		this.link = link;
 	}
 
 
@@ -183,6 +186,17 @@ public class Course {
 
 	public void setImg_url(String img_url) {
 		this.img_url = img_url;
+	}
+	
+	
+	public String getLink() {
+		return link;
+	}
+
+
+
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 
