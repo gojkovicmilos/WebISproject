@@ -1,23 +1,26 @@
 <body>
     <div class="container">
-        <table class="table table-striped">
-            <thead>
+        <table id="example" class="table table-responsive w-100 d-block d-md-table" style="width:100%">
+            <thead style="background: #090a11;">
                 <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Card Number</th>
-                    <th>Edit Student</th>
-                    <th>Delete Student</th>
+                    <th style="width: 33%;">Actions</th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr *ngFor="let student of students">
-                    <td>{{ student.firstName }}</td>
-                    <td>{{ student.lastName }}</td>
-                    <td>{{ student.cardNumber }}</td>
-                    <td><a [routerLink]="[student.id]" class="btn btn-primary">Edit</a></td>
-                    <td><a (click)="deleteStudent(student.id)" class="btn btn-danger">Delete</a></td>
+                    <td style="text-align: center;">{{ student?.firstName }}</td>
+                    <td style="text-align: center;"> {{ student?.lastName }}</td>
+                    <td style="text-align: center;">{{ student?.cardNumber }}</td>
+                    <td>
+                        <a [routerLink]="[student.id]" class="btn btn-primary" style="margin-left: 40px;">
+                            <i class="fa fa-pencil-square"></i> Edit User</a>
+                        <a (click)="deleteStudent(student.id)" class="btn btn-danger"
+                            style="margin-left: 80px;"> <i class="fa fa-trash-o"></i> Delete</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

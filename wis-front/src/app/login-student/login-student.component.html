@@ -1,35 +1,39 @@
-<div class="card">
-    <h2 class="header">Enter your credentials here !</h2>
-    <div class="card-body">
+<div class="container login-container">
+  <div class="row">
+    <div class="col-md-6 login-form-2">
+      <h3>Enter your credentials !</h3>
       <form [formGroup]="angForm" novalidate>
         <div class="form-group">
-          <label class="col-md-4">Card Number: </label>
-          <input type="text" class="form-control" formControlName="cardNumber" #cardNumber />
+          <label class="col-xs-4">Card Number: </label>
+          <input type="text" class="form-control" formControlName="cardNumber" #cardNumber
+            placeholder="Enter your card number" />
         </div>
-        <div *ngIf="angForm.controls['cardNumber'].invalid && (angForm.controls['cardNumber'].dirty || angForm.controls['cardNumber'].touched)" class="alert alert-danger">
+        <div
+          *ngIf="angForm.controls['cardNumber'].invalid && (angForm.controls['cardNumber'].dirty || angForm.controls['cardNumber'].touched)"
+          class="alert alert-danger">
           <div *ngIf="angForm.controls['cardNumber'].errors.required">
             Card Number is required.
           </div>
-          
+
         </div>
         <div class="form-group">
-            <label class="col-md-4">Password: </label>
-            <input type="password" class="form-control" formControlName="pass" #pass />
+          <label class="col-xs-4">Password: </label>
+          <input type="password" class="form-control" formControlName="pass" #pass placeholder="Enter your password" />
+        </div>
+        <div
+          *ngIf="angForm.controls['pass'].invalid && (angForm.controls['pass'].dirty || angForm.controls['pass'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="angForm.controls['pass'].errors.required">
+            Password is required.
           </div>
-          <div *ngIf="angForm.controls['pass'].invalid && (angForm.controls['pass'].dirty || angForm.controls['pass'].touched)" class="alert alert-danger">
-            <div *ngIf="angForm.controls['pass'].errors.required">
-              Password is required.
-            </div>
-          </div>  
-        <div class="form-group">
-          <button (click)="logInStudent(cardNumber.value, pass.value)"
-              [disabled]="angForm.pristine || angForm.invalid" 
-              class="btn btn-primary">
-              Log In
-           </button>
-      </div>
+        </div>
+        <div class="form-group" style="padding-top: 30px;">
+          <button (click)="logInStudent(cardNumber.value, pass.value)" [disabled]="angForm.pristine || angForm.invalid"
+            class="btn btn-primary"><i class="fa fa-sign-in" aria-hidden="true"></i>
+            Sign In
+          </button>
+        </div>
       </form>
     </div>
   </div>
-  
-  
+</div>
