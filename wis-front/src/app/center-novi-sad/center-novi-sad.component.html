@@ -1,5 +1,5 @@
 <div>
-  <header class="bg-primary py-5 mb-5" style="height: 250px;"> 
+  <header class="bg-primary py-5 mb-5" style="height: 250px;">
     <div class="container h-100">
       <div class="row h-100 align-items-center">
         <div class="col-lg-12">
@@ -43,46 +43,18 @@
       </div>
     </div>
     <!-- /.row -->
-      <div class="row">
-        <div class="col-md-4 mb-5" *ngFor="let sp of studyPrograms">
-          <div class="card h-100">
-            <img class="card-img-top" alt="" src="{{sp.img_url}}">
-            <div class="card-body">
-              <h4 class="card-title">{{sp.name}}</h4>
-              <p class="card-text">Something about this study program...</p>
-            </div>
-            <div class="card-footer">
-              <a routerLink="{{sp.link}}" class="btn btn-primary">Check the study program!</a>
-            </div>
+    <div class="row">
+      <div class="col-md-4 mb-5" *ngFor="let sp of studyPrograms">
+        <div class="card h-100">
+          <img class="card-img-top" alt="" src="{{sp.img_url}}">
+          <div class="card-body">
+            <h4 class="card-title">{{sp.name}}</h4>
+            <p class="card-text">Something about this study program...</p>
+          </div>
+          <div class="card-footer">
+            <a routerLink="{{sp.link}}" class="btn btn-primary">Check the study program!</a>
           </div>
         </div>
-        <!-- <div class="col-md-4 mb-5">
-          <div class="card h-100">
-            <img class="card-img-top"
-              src="https://wallup.net/wp-content/uploads/2016/01/151977-square-grid-technology-information-abstract-300x200.jpg"
-              alt="">
-            <div class="card-body">
-              <h4 class="card-title"></h4>
-              <p class="card-text">Something about this study program...</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Check the study program!</a>
-            </div>
-          </div>
-        </div> -->
-        <!-- <div class="col-md-4 mb-5">
-          <div class="card h-100">
-            <img class="card-img-top"
-              src="https://d3rds0a9qm8vc5.cloudfront.net/demo.cloodon.com/e4a69e5f81b79e45cd7899f877f6ccc0.1476696296187.jpg"
-              alt="">
-            <div class="card-body">
-              <h4 class="card-title">Math</h4>
-              <p class="card-text">Something about this study program....</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Check the study program!</a>
-            </div>
-          </div>
-        </div> -->
       </div>
+    </div>
   </div>
