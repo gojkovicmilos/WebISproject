@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Where;
-
+//s
 @Entity
 @Where(clause = "deleted = 'false'")
 public class Course {
