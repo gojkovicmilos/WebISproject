@@ -9,3 +9,14 @@
 .header{
    height: 20%;
 }
+
+.list-group-item{
+    right: auto; 
+    left: auto; 
+    background-color: black;
+    text-align: center;
+    
+}
+.list-group-item{
+    color:#3e97f7;
+}
