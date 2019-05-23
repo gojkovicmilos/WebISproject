@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../course.service';
 import { Router } from '@angular/router';
-import  Course  from '../Course';
+import Course from '../Course';
 
 @Component({
   selector: 'app-center-novi-sad',

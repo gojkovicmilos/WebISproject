@@ -11,6 +11,8 @@ import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { LoginStudentComponent } from './login-student/login-student.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { CenterNoviSadComponent } from './center-novi-sad/center-novi-sad.component';
+import { SiiStudyProgramComponent } from './sii-study-program/sii-study-program.component';
+import { ItStudyProgramComponent } from './it-study-program/it-study-program.component';
 
 const routes: Routes = [
   {path: 'student/add', component: AddStudentComponent},
@@ -23,7 +25,9 @@ const routes: Routes = [
   {path: 'teacher', component: GetTeacherComponent},
   {path: 'findTeacherByFirstName', component: SearchTeacherComponent },
   {path: '', component: HomePageComponent},
-  {path: 'centerNs', component: CenterNoviSadComponent}
+  {path: 'centerNs', component: CenterNoviSadComponent},
+  {path: 'centerNs/sii', component: SiiStudyProgramComponent},
+  {path: 'centerNs/it', component: ItStudyProgramComponent}
 
 ];
 
