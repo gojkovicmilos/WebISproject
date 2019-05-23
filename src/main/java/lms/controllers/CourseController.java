@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lms.domain.Course;
-import lms.domain.Student;
 import lms.service.CourseService;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
