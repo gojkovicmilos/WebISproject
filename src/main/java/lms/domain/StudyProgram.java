@@ -44,6 +44,10 @@ public class StudyProgram {
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Faculty faculty;
 	
+	@JsonIgnore()
+	@ManyToOne(cascade=CascadeType.ALL)
+	private Center center;
+	
 	/*@JsonIgnore*/
 	@OneToMany(mappedBy = "studyProgram", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
 	private Set<YearOfStudy> yearsOfStudy;

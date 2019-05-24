@@ -38,12 +38,17 @@ public class Center {
 	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
 	private Set<Faculty> faculties;
 	
+	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
+	private Set<StudyProgram> studyPrograms;
+	
+	private String name;
+	
 	public Center() {
 		
 	}
 
 	public Center(Long id, Date yearOfEstablishment, @NotNull Boolean deleted, int version, University university,
-			Set<Faculty> faculties) {
+			Set<Faculty> faculties, String name) {
 		super();
 		this.id = id;
 		this.yearOfEstablishment = yearOfEstablishment;
@@ -51,6 +56,7 @@ public class Center {
 		this.version = version;
 		this.university = university;
 		this.faculties = faculties;
+		this.name = name;
 	}
 
 	public Long getId() {
@@ -99,6 +105,24 @@ public class Center {
 
 	public void setFaculties(Set<Faculty> faculties) {
 		this.faculties = faculties;
+	}
+	
+	
+
+	public Set<StudyProgram> getStudyPrograms() {
+		return studyPrograms;
+	}
+
+	public void setStudyPrograms(Set<StudyProgram> studyPrograms) {
+		this.studyPrograms = studyPrograms;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
