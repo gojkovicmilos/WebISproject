@@ -40,7 +40,7 @@ public class YearOfStudy {
 	@OneToMany(mappedBy = "yearOfStudy", fetch = FetchType.LAZY)
 	private Set<StudentYear> studentYears;
 	
-	/*@JsonIgnore*/
+	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL)
 	private StudyProgram studyProgram;
 	

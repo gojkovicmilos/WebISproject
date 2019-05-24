@@ -4,7 +4,7 @@ table {
     letter-spacing: 1px;
     font-family: 'Courier New', Courier, monospace;
     font-size: .8rem;
-    margin-left: 330px;
+    margin-left: 440px;
 }
 
 td,
@@ -28,8 +28,14 @@ tbody {
 
 .search{
     position: absolute;
-    top: 1.5%;
+    top: 0%;
     right: 10px;
     left: 75%;
     bottom:20%;
 }
+
+body {
+    min-height: 80vh;
+    position: relative;
+    margin: 0;
+  }

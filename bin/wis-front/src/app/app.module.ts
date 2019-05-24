@@ -23,6 +23,8 @@ import { ModalBasicComponent } from './modal-basic/modal-basic.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AgmCoreModule } from '@agm/core';
+import { CenterNoviSadComponent } from './center-novi-sad/center-novi-sad.component';
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     FooterComponent,
     ModalBasicComponent,
     HomePageComponent,
-    NavbarComponent
+    NavbarComponent,
+    CenterNoviSadComponent
   ],
   imports: [
     BrowserModule,
@@ -49,11 +52,13 @@ import { NavbarComponent } from './navbar/navbar.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyB2qilSTZvWZFo1puwcpU3qHH-_bnN8DyQ'
+    })
   ],
   providers: [StudentService],
   bootstrap: [AppComponent, ModalBasicComponent],
   exports: [ModalBasicComponent]
-  
 })
 export class AppModule { }

@@ -16,6 +16,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Where;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 //sss
 @Entity
 @Where(clause = "deleted = 'false'")
@@ -48,6 +50,7 @@ public class Course {
 	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<ExamRealization> ExamRealizations;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	private YearOfStudy yearOfStudy;
 	

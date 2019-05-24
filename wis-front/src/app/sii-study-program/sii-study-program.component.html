@@ -37,12 +37,12 @@
                 Check the subjects</a>
               <div class="collapse list-group-submenu" id="{{cssId[i]}}">
                 <div id="accordion">
-                  <div class="card">
+                  <div class="card" *ngFor="let course of yos.courses">
                     <div class="card-header" id="headingOne" class="list-group-item">
                       <h5 class="mb-0">
                         <button class="list-group-item" data-toggle="collapse" data-target="#collapseOne"
                           aria-expanded="true" aria-controls="collapseOne"><i class="fa fa-arrow-circle-o-down"></i>
-                          Math
+                          {{course.title}}
                         </button>
                       </h5>
                     </div>
@@ -52,7 +52,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="card">
+                  <!-- <div class="card">
                     <div class="card-header" id="headingTwo" class="list-group-item">
                       <h5 class="mb-0">
                         <button class="list-group-item" data-toggle="collapse" data-target="#collapseTwo"
@@ -66,8 +66,8 @@
                         Something about Math 2
                       </div>
                     </div>
-                  </div>
-                  <div class="card">
+                  </div> -->
+                  <!-- <div class="card">
                     <div class="card-header" id="headingThree" class="list-group-item">
                       <h5 class="mb-0">
                         <button class="list-group-item" data-toggle="collapse" data-target="#collapseThree"
@@ -156,7 +156,7 @@
                         Something about Managment
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
 
 

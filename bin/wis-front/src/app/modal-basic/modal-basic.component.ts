@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component({
   selector: 'app-modal-basic',
   templateUrl: './modal-basic.component.html',
   styleUrls: ['./modal-basic.component.css']
 })
 export class ModalBasicComponent implements OnInit {
+
+  lat: number = 45.253021;
+  lng: number = 19.844418;
 
   closeResult: string;
 
@@ -20,6 +24,15 @@ export class ModalBasicComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  openLg(content) {
+    this.modalService.open(content, { size: 'lg' });
+  }
+
+
+  openWindowCustomClass(content) {
+    this.modalService.open(content, { windowClass: 'dark-modal' });
   }
 
   private getDismissReason(reason: any): string {
