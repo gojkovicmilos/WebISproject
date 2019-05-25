@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { StudyProgramService} from '../study-program.service';
 import { Router } from '@angular/router';
 import StudyProgram from '../StudyProgram';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-center-novi-sad',
@@ -11,8 +12,9 @@ import StudyProgram from '../StudyProgram';
 export class CenterNoviSadComponent implements OnInit {
 
   studyPrograms: StudyProgram[];
+  messageForStudyProgram: number;
 
-  constructor(private sps: StudyProgramService, private router: Router) { }
+  constructor(private dataService: DataService, private sps: StudyProgramService, private router: Router) { }
 
   ngOnInit() {
     this.sps
@@ -20,6 +22,14 @@ export class CenterNoviSadComponent implements OnInit {
       .subscribe((data: StudyProgram[]) => {
         this.studyPrograms = data;
     });
+  }
+
+  punjenje(id: number) {
+    this.messageForStudyProgram = id;
+  }
+
+  ngOnDestroy() {
+    this.dataService.id = this.messageForStudyProgram;
   }
 
 }

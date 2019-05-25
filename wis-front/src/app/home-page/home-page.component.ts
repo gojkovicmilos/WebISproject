@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import Center from '../Center';
+import { CenterService } from '../center.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home-page',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  centers: Center[];
+
+  constructor(private router: Router, private cs: CenterService) { }
 
   ngOnInit() {
+    
   }
 
 }

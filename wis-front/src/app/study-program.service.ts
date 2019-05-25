@@ -22,4 +22,8 @@ export class StudyProgramService {
   getStudyProgramByName(name: string): Observable<any> {
     return this.http.get(`${this.uri}/name/${name}`);
   }
+
+  getStudyProgramById(id: number) {
+    return this.http.get(`${this.uri}/${id}`)
+  }
 }
