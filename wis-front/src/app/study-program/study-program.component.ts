@@ -16,17 +16,17 @@ export class StudyProgramComponent implements OnInit {
   cssId: string[] = ["lvl1a", "lvl1ab", "lvl1abc", "lvl1abcd"];
   message: number;
   name: string;
+  img_src: string;
 
   constructor(private dataService: DataService ,private router: Router, private spc: StudyProgramService) { }
 
   ngOnInit() {
     this.message = this.dataService.id;
-    console.log("NJNJNJNJ"+this.message);
     this.spc.getStudyProgramById(this.message).subscribe((data: StudyProgram) => {
       this.yearOfStudies = data.yearsOfStudy;
       this.name = data.name;
+      this.img_src = data.img_src;
     });
-    console.log(this.yearOfStudies);
   }
 
 
