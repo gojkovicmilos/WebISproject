@@ -26,8 +26,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AgmCoreModule } from '@agm/core';
 import { CenterNoviSadComponent } from './center-novi-sad/center-novi-sad.component';
-import { SiiStudyProgramComponent } from './sii-study-program/sii-study-program.component';
-import { ItStudyProgramComponent } from './it-study-program/it-study-program.component';
+import { StudyProgramComponent } from './study-program/study-program.component';
 
 
 @NgModule({
@@ -47,8 +46,7 @@ import { ItStudyProgramComponent } from './it-study-program/it-study-program.com
     HomePageComponent,
     NavbarComponent,
     CenterNoviSadComponent,
-    SiiStudyProgramComponent,
-    ItStudyProgramComponent
+    StudyProgramComponent,
   ],
   imports: [
     BrowserModule,

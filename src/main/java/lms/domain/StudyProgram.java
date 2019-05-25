@@ -54,7 +54,6 @@ public class StudyProgram {
 	
 	private String img_url;
 
-	private String link;
 	
 	public StudyProgram() {}
 	
@@ -62,7 +61,7 @@ public class StudyProgram {
 
 
 	public StudyProgram(Long id, @Size(max = 50) String name, @NotNull Boolean deleted, int version,
-			Teacher rukovodilac, Faculty faculty, Set<YearOfStudy> yearsOfStudy, String img_url, String link) {
+			Teacher rukovodilac, Faculty faculty, Set<YearOfStudy> yearsOfStudy, String img_url) {
 		this.id = id;
 		this.name = name;
 		this.deleted = deleted;
@@ -70,7 +69,6 @@ public class StudyProgram {
 		this.rukovodilac = rukovodilac;
 		this.faculty = faculty;
 		this.yearsOfStudy = yearsOfStudy;
-		this.link = link;
 		this.img_url = img_url;
 	}
 
@@ -142,15 +140,6 @@ public class StudyProgram {
 		this.img_url = img_url;
 	}
 
-
-	public String getLink() {
-		return link;
-	}
-
-
-	public void setLink(String link) {
-		this.link = link;
-	}
 
 	@Override
 	public boolean equals(Object o) {
