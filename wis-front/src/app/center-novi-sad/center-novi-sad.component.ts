@@ -16,6 +16,7 @@ export class CenterNoviSadComponent implements OnInit {
   center: Center;
   studyPrograms: StudyProgram[];
   messageForStudyProgram: number;
+  name: string;
 
   constructor(private dataService: DataService, private sps: StudyProgramService, private cnt: CenterService, private router: Router) { }
 
@@ -23,6 +24,7 @@ export class CenterNoviSadComponent implements OnInit {
     this.cnt.getCenterById(this.dataService.idCenter)
     .subscribe((data: Center) => {
       this.center = data;
+      this.name = data.name;
       this.studyPrograms = this.center.studyPrograms;
     });
   }
