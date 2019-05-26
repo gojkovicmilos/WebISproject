@@ -13,21 +13,17 @@ import { CenterService } from '../center.service';
 })
 export class CenterNoviSadComponent implements OnInit {
 
-  centers: Center[];
+  center: Center;
   studyPrograms: StudyProgram[];
   messageForStudyProgram: number;
 
   constructor(private dataService: DataService, private sps: StudyProgramService, private cnt: CenterService, private router: Router) { }
 
   ngOnInit() {
-    this.sps
-      .getStudyProgram()
-      .subscribe((data: StudyProgram[]) => {
-        this.studyPrograms = data;
-    });
-    this.cnt.getCenter()
-    .subscribe((data: Center[]) => {
-      this.centers = data;
+    this.cnt.getCenterById(this.dataService.idCenter)
+    .subscribe((data: Center) => {
+      this.center = data;
+      this.studyPrograms = this.center.studyPrograms;
     });
   }
 
@@ -36,7 +32,7 @@ export class CenterNoviSadComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.dataService.id = this.messageForStudyProgram;
+    this.dataService.idStudyProgram = this.messageForStudyProgram;
   }
 
 }

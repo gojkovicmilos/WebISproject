@@ -24,8 +24,8 @@ const routes: Routes = [
   {path: 'teacher', component: GetTeacherComponent},
   {path: 'findTeacherByFirstName', component: SearchTeacherComponent },
   {path: '', component: HomePageComponent},
-  {path: 'centerNs', component: CenterNoviSadComponent},
-  {path: 'centerNs/studyPrograms', component: StudyProgramComponent},
+  {path: 'center', component: CenterNoviSadComponent},
+  {path: 'center/studyPrograms', component: StudyProgramComponent},
 
 ];
 

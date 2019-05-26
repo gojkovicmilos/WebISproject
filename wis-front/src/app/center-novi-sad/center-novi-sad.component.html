@@ -2,7 +2,7 @@
   <header class="bg-primary py-5 mb-5" style="height: 250px;">
     <div class="container h-100">
       <div class="row h-100 align-items-center">
-        <div class="col-lg-12" *ngFor="let center of centers">
+        <div class="col-lg-12">
           <h1 class="display-4 text-white mt-5 mb-2">{{center.name}}</h1>
           <p class="lead mb-5 text-white-50">Some words about {{center.name}}...</p>
         </div>
@@ -28,7 +28,7 @@
         <h2>Contact Us</h2>
         <hr>
         <address>
-          <strong>Center Novi Sad</strong>
+          <strong>{{center.name}}</strong>
           <br>Bulevar Mihajla Pupina 22
           <br>Novi Sad, Serbia 21000
           <br>

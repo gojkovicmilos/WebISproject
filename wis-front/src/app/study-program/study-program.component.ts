@@ -21,7 +21,7 @@ export class StudyProgramComponent implements OnInit {
   constructor(private dataService: DataService ,private router: Router, private spc: StudyProgramService) { }
 
   ngOnInit() {
-    this.message = this.dataService.id;
+    this.message = this.dataService.idStudyProgram;
     this.spc.getStudyProgramById(this.message).subscribe((data: StudyProgram) => {
       this.yearOfStudies = data.yearsOfStudy;
       this.name = data.name;

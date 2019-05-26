@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import Center from '../Center';
 import { CenterService } from '../center.service';
 import { Router } from '@angular/router';
@@ -13,6 +13,7 @@ import { DataService } from '../data.service';
 export class HomePageComponent implements OnInit {
 
   centers: Center[];
+  messageForCenterComponent: number;
 
   constructor(private dataService: DataService,private router: Router, private cnt: CenterService) { }
 
@@ -21,5 +22,13 @@ export class HomePageComponent implements OnInit {
     .subscribe((data: Center[]) => {
       this.centers = data;
     });
+  }
+
+  punjenje(id): void {
+    this.messageForCenterComponent = id;
+  }
+
+  ngOnDestroy() {
+    this.dataService.idCenter = this.messageForCenterComponent;
   }
 }

@@ -14,4 +14,8 @@ export class CenterService {
   getCenter() {
     return this.http.get(`${this.uri}`);
   }
+
+  getCenterById(id: number) {
+    return this.http.get(`${this.uri}/${id}`);
+  }
 }
