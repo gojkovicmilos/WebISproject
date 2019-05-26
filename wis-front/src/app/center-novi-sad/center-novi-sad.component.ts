@@ -3,6 +3,8 @@ import { StudyProgramService} from '../study-program.service';
 import { Router } from '@angular/router';
 import StudyProgram from '../StudyProgram';
 import { DataService } from '../data.service';
+import Center from '../Center';
+import { CenterService } from '../center.service';
 
 @Component({
   selector: 'app-center-novi-sad',
@@ -11,16 +13,21 @@ import { DataService } from '../data.service';
 })
 export class CenterNoviSadComponent implements OnInit {
 
+  centers: Center[];
   studyPrograms: StudyProgram[];
   messageForStudyProgram: number;
 
-  constructor(private dataService: DataService, private sps: StudyProgramService, private router: Router) { }
+  constructor(private dataService: DataService, private sps: StudyProgramService, private cnt: CenterService, private router: Router) { }
 
   ngOnInit() {
     this.sps
       .getStudyProgram()
       .subscribe((data: StudyProgram[]) => {
         this.studyPrograms = data;
+    });
+    this.cnt.getCenter()
+    .subscribe((data: Center[]) => {
+      this.centers = data;
     });
   }
 
