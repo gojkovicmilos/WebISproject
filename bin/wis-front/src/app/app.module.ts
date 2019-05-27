@@ -7,6 +7,7 @@ import { AddStudentComponent } from './add-student/add-student.component';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { OrderModule } from 'ngx-order-pipe';
 
 import { StudentService } from './student.service';
 import { GetStudentComponent } from './get-student/get-student.component';
@@ -25,6 +26,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AgmCoreModule } from '@agm/core';
 import { CenterNoviSadComponent } from './center-novi-sad/center-novi-sad.component';
+import { StudyProgramComponent } from './study-program/study-program.component';
+import { CoursePageMaterialComponent } from './course-page-material/course-page-material.component';
 
 
 @NgModule({
@@ -43,7 +46,9 @@ import { CenterNoviSadComponent } from './center-novi-sad/center-novi-sad.compon
     ModalBasicComponent,
     HomePageComponent,
     NavbarComponent,
-    CenterNoviSadComponent
+    CenterNoviSadComponent,
+    StudyProgramComponent,
+    CoursePageMaterialComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,8 @@ import { CenterNoviSadComponent } from './center-novi-sad/center-novi-sad.compon
     NgbModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB2qilSTZvWZFo1puwcpU3qHH-_bnN8DyQ'
-    })
+    }),
+    OrderModule
   ],
   providers: [StudentService],
   bootstrap: [AppComponent, ModalBasicComponent],
