@@ -3,16 +3,25 @@
     <div class="row d-flex d-md-block flex-nowrap wrapper">
       <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width " id="sidebar">
         <div class="list-group border-0 card text-center text-md-left">
-          <div *ngFor="let center of centers">
+          <div *ngFor="let center of centers; let i = index;">
             <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
               data-parent="#sidebar" aria-expanded="false"><i class="fa fa-dashboard"></i> <span
                 class="d-none d-md-inline">{{center.name}}</span> 
             </a>
-            <div class="collapse" id="menu1" *ngFor="let sp of studyPrograms">
+            <div class="collapse" id="menu1" >
+              <div *ngFor="let sp of center.studyPrograms">
                 <a href="#menu1sub1" class="list-group-item" data-toggle="collapse" aria-expanded="false">{{sp.name}} </a>
-                <!-- <div class="collapse" id="menu1sub1">
-                  <a href="#" class="list-group-item" data-parent="#menu1sub1">Subitem 1 a</a>
-                </div> -->
+                <div class="collapse" id="menu1sub1">
+                  <div *ngFor="let yos of sp.yearsOfStudy">
+                    <a href="#menu1sub1sub1" class="list-group-item" data-toggle="collapse" data-parent="#menu1sub1" aria-expanded="false">{{yos.title}}</a>
+                    <div class="collapse" id="menu1sub1sub1">
+                      <div *ngFor="let course of yos.courses">
+                        <a (click)="punjenje(course.id)" href="#" class="list-group-item" data-parent="#menu1sub1sub1" >{{course.title}}</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> 
             </div>
             
           </div>

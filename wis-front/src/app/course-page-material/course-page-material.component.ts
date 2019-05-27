@@ -14,14 +14,14 @@ import YearOfStudy from '../YearOfStudy';
 })
 export class CoursePageMaterialComponent implements OnInit {
 
-  center: Center;
-  yearOfStudies: YearOfStudy[];
-  studyPrograms: StudyProgram[];
-  messageForStudyProgram: number;
+  // center: Center;
+  // yearOfStudies: YearOfStudy[];
+  // studyPrograms: StudyProgram[];
+  messageForCourseComponent: number;
   centers: Center[];
-  messageForCenterComponent: number;
-  message: number;
-  name: string;
+  // messageForCenterComponent: number;
+  // message: number;
+  // name: string;
 
   constructor(private dataService: DataService, private sps: StudyProgramService, private cnt: CenterService, private router: Router) { }
 
@@ -34,23 +34,24 @@ export class CoursePageMaterialComponent implements OnInit {
     this.cnt.getCenter()
     .subscribe((data: Center[]) => {
       this.centers = data;
+      
     });
     // this.message = this.dataService.idStudyProgram;
     // this.sps.getStudyProgramById(this.message).subscribe((data: StudyProgram) => {
     //   this.yearOfStudies = data.yearsOfStudy;
     //   this.name = data.name;
     // });
-    this.sps.getStudyProgram()
-    .subscribe((data: StudyProgram[]) => {
-      this.studyPrograms = data;
-    });
+    // this.sps.getStudyProgram()
+    // .subscribe((data: StudyProgram[]) => {
+    //   this.studyPrograms = data;
+    // });
   }
 
   punjenje(id): void {
-    this.messageForCenterComponent = id;
+    this.messageForCourseComponent = id;
   }
 
   ngOnDestroy() {
-    this.dataService.idStudyProgram = this.messageForStudyProgram;
+    this.dataService.idCourse1 = this.messageForCourseComponent;
   }
 }
