@@ -13,7 +13,7 @@ import StudyProgram from '../StudyProgram';
 export class StudyProgramComponent implements OnInit {
 
   yearOfStudies: YearOfStudy[];
-  cssId: string[] = ["lvl1a", "lvl1ab", "lvl1abc", "lvl1abcd"];
+  cssId: string[] = ['lvl1a', 'lvl1ab', 'lvl1abc', 'lvl1abcd'];
   message: number;
   name: string;
   img_src: string;

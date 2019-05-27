@@ -14,37 +14,18 @@ import YearOfStudy from '../YearOfStudy';
 })
 export class CoursePageMaterialComponent implements OnInit {
 
-  // center: Center;
-  // yearOfStudies: YearOfStudy[];
-  // studyPrograms: StudyProgram[];
+
   messageForCourseComponent: number;
   centers: Center[];
-  // messageForCenterComponent: number;
-  // message: number;
-  // name: string;
+  cssId: string[] = ['menu1sub1', 'menu1subsub1'];
 
   constructor(private dataService: DataService, private sps: StudyProgramService, private cnt: CenterService, private router: Router) { }
 
   ngOnInit() {
-    // this.cnt.getCenterById(this.dataService.idCenter)
-    // .subscribe((data: Center) => {
-    //   this.center = data;
-    //   this.studyPrograms = this.center.studyPrograms;
-    // });
     this.cnt.getCenter()
     .subscribe((data: Center[]) => {
       this.centers = data;
-      
     });
-    // this.message = this.dataService.idStudyProgram;
-    // this.sps.getStudyProgramById(this.message).subscribe((data: StudyProgram) => {
-    //   this.yearOfStudies = data.yearsOfStudy;
-    //   this.name = data.name;
-    // });
-    // this.sps.getStudyProgram()
-    // .subscribe((data: StudyProgram[]) => {
-    //   this.studyPrograms = data;
-    // });
   }
 
   punjenje(id): void {
