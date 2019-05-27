@@ -32,7 +32,7 @@ public class CenterController {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Center> getCenter(@PathVariable Long id) {
+	public ResponseEntity<Center> getCenterById(@PathVariable Long id) {
 		Optional<Center> center = centerService.getCenterId(id);
 		if (center.isPresent()) {
 			return new ResponseEntity<Center>(center.get(), HttpStatus.OK);

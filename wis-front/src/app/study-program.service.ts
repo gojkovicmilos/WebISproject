@@ -14,9 +14,7 @@ export class StudyProgramService {
   constructor(private http: HttpClient) { }
 
   getStudyProgram() {
-    return this
-           .http
-           .get(`${this.uri}`);
+    return this.http.get(`${this.uri}`);
   }
 
   getStudyProgramByName(name: string): Observable<any> {

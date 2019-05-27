@@ -12,6 +12,7 @@ import { LoginStudentComponent } from './login-student/login-student.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { CenterNoviSadComponent } from './center-novi-sad/center-novi-sad.component';
 import { StudyProgramComponent } from './study-program/study-program.component';
+import { CoursePageMaterialComponent } from './course-page-material/course-page-material.component';
 
 const routes: Routes = [
   {path: 'student/add', component: AddStudentComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'center', component: CenterNoviSadComponent},
   {path: 'center/studyPrograms', component: StudyProgramComponent},
+  {path: 'courseMaterialPage', component: CoursePageMaterialComponent}
 
 ];
 

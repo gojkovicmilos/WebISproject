@@ -18,7 +18,7 @@ export class StudyProgramComponent implements OnInit {
   name: string;
   img_src: string;
 
-  constructor(private dataService: DataService ,private router: Router, private spc: StudyProgramService) { }
+  constructor(private dataService: DataService , private router: Router, private spc: StudyProgramService) { }
 
   ngOnInit() {
     this.message = this.dataService.idStudyProgram;
