@@ -28,6 +28,7 @@ import { AgmCoreModule } from '@agm/core';
 import { CenterNoviSadComponent } from './center-novi-sad/center-novi-sad.component';
 import { StudyProgramComponent } from './study-program/study-program.component';
 import { CoursePageMaterialComponent } from './course-page-material/course-page-material.component';
+import { CreateCenterComponent } from './create-center/create-center.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { CoursePageMaterialComponent } from './course-page-material/course-page-
     CenterNoviSadComponent,
     StudyProgramComponent,
     CoursePageMaterialComponent,
+    CreateCenterComponent,
   ],
   imports: [
     BrowserModule,
