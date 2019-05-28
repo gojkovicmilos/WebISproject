@@ -17,7 +17,9 @@ export class CoursePageMaterialComponent implements OnInit {
 
   messageForCourseComponent: number;
   centers: Center[];
-  cssId: string[] = ['menu1sub1', 'menu1subsub1'];
+  cssId: string[] = ['menu1','menu1sub1', 'menu1sub1sub1'];
+
+  
 
   constructor(private dataService: DataService, private sps: StudyProgramService, private cnt: CenterService, private router: Router) { }
 
