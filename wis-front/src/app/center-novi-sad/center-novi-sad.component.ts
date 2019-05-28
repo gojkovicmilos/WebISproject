@@ -17,6 +17,7 @@ export class CenterNoviSadComponent implements OnInit {
   studyPrograms: StudyProgram[];
   messageForStudyProgram: number;
   name: string;
+  pic: byte
 
   constructor(private dataService: DataService, private sps: StudyProgramService, private cnt: CenterService, private router: Router) { }
 
@@ -26,6 +27,7 @@ export class CenterNoviSadComponent implements OnInit {
       this.center = data;
       this.name = data.name;
       this.studyPrograms = this.center.studyPrograms;
+
     });
   }
 

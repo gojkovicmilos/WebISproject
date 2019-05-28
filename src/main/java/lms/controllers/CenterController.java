@@ -74,7 +74,7 @@ public class CenterController {
     public String uploadMultipartFile(@RequestParam("file") MultipartFile file) {
       try {
         // save file to PostgreSQL
-        Center filemode = new Center();
+        Center filemode = new Center(file);
         centerRepository.save(filemode);
         return "File uploaded successfully! -> filename = " + file.getOriginalFilename();
     } catch (  Exception e) {

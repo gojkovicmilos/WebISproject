@@ -1,5 +1,6 @@
 package lms.domain;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
@@ -17,6 +18,7 @@ import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Where;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Where(clause = "deleted = 'false'")
@@ -70,6 +72,18 @@ public class Center {
 		this.pic_name = pic_name;
 		this.mimetype = mimetype;
 		this.pic = pic;
+	}
+
+	public Center(MultipartFile file) {
+		// TODO Auto-generated constructor stub
+		this.pic_name = file.getName();
+		this.mimetype = file.getContentType();
+		try {
+			this.pic = file.getBytes();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public Long getId() {
