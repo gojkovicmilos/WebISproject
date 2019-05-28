@@ -13,8 +13,6 @@ import { DataService } from '../data.service';
 export class HomePageComponent implements OnInit {
 
   centers: Center[];
-  messageForCenterComponent: number;
-
   constructor(private dataService: DataService,private router: Router, private cnt: CenterService) { }
 
   ngOnInit() {

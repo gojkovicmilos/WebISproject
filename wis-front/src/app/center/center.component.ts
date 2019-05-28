@@ -15,7 +15,6 @@ export class CenterComponent implements OnInit {
 
   center: Center;
   studyPrograms: StudyProgram[];
-  messageForStudyProgram: number;
   
 
   constructor(private dataService: DataService, private sps: StudyProgramService, private cnt: CenterService, private router: Router) { }
