@@ -17,17 +17,18 @@ export class StudyProgramComponent implements OnInit {
   idStudyProgram: number;
   name: string;
   img_src: string;
+  nameOfCenter: string;
 
   constructor(private dataService: DataService ,private router: Router, private spc: StudyProgramService) { }
 
   ngOnInit() {
-    //this.message = this.dataService.idStudyProgram;
     this.idStudyProgram = Number(localStorage.getItem('idStudijskogPrograma'));
     this.spc.getStudyProgramById(this.idStudyProgram).subscribe((data: StudyProgram) => {
       this.yearOfStudies = data.yearsOfStudy;
       this.name = data.name;
       this.img_src = data.img_src;
     });
+    this.nameOfCenter = localStorage.getItem("imeCentra");
   }
 
 

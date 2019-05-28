@@ -24,14 +24,15 @@ export class CenterComponent implements OnInit {
     this.cnt.getCenterById(Number(localStorage.getItem("idCentra")))
     .subscribe((data: Center) => {
       this.center = data;
-      this.studyPrograms = this.center.studyPrograms;
-      this.name = this.center.name;
+      this.studyPrograms = data.studyPrograms;
+      this.name = data.name;
     });
   }
 
   punjenje(id: number) {
     this.dataService.idStudyProgram = id;
     localStorage.setItem("idStudijskogPrograma", this.dataService.idStudyProgram.toString());
+    localStorage.setItem("imeCentra", this.name);
   }
 
   // imgLoad()
