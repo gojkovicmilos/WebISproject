@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import lms.domain.Center;
+import lms.repository.CenterRepository;
 import lms.service.CenterService;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
@@ -25,6 +28,9 @@ public class CenterController {
 	
 	@Autowired
 	CenterService centerService;
+	
+	@Autowired
+	CenterRepository centerRepository;
 	
 	@GetMapping()
 	public ResponseEntity<Iterable<Center>> getCenters() {
@@ -63,5 +69,17 @@ public class CenterController {
 
 		return new ResponseEntity<Center>(HttpStatus.NO_CONTENT);
 	}
+	
+	@PostMapping("/file/upload")
+    public String uploadMultipartFile(@RequestParam("file") MultipartFile file) {
+      try {
+        // save file to PostgreSQL
+        Center filemode = new Center();
+        centerRepository.save(filemode);
+        return "File uploaded successfully! -> filename = " + file.getOriginalFilename();
+    } catch (  Exception e) {
+      return "FAIL! Maybe You had uploaded the file before or the file's size > 500KB";
+    }    
+    }
 
 }
