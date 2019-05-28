@@ -8,12 +8,12 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { OrderModule } from 'ngx-order-pipe';
-
+import { NgMaterialMultilevelMenuModule } from 'ng-material-multilevel-menu';
 import { StudentService } from './student.service';
 import { GetStudentComponent } from './get-student/get-student.component';
 import { EditStudentComponent } from './edit-student/edit-student.component';
 import { SearchStudentComponent } from './search-student/search-student.component';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { SearchTeacherComponent } from './search-teacher/search-teacher.component';
 import { GetTeacherComponent } from './get-teacher/get-teacher.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
@@ -58,6 +58,8 @@ import { CoursePageMaterialComponent } from './course-page-material/course-page-
     HttpClientModule,
     FormsModule,
     NgbModule,
+    BrowserAnimationsModule,
+    NgMaterialMultilevelMenuModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB2qilSTZvWZFo1puwcpU3qHH-_bnN8DyQ'
     }),
