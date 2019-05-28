@@ -1,5 +1,6 @@
 package lms.domain;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
@@ -10,12 +11,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Where;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Where(clause = "deleted = 'false'")
@@ -23,32 +26,40 @@ public class Center {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private Date yearOfEstablishment;
-	
+
 	@NotNull
 	private Boolean deleted = false;
-	
+
 	@Version
 	private int version = 0;
-	
-	@ManyToOne(cascade=CascadeType.ALL)
+
+	@ManyToOne(cascade = CascadeType.ALL)
 	private University university;
-	
-	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
+
+	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<Faculty> faculties;
-	
-	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
+
+	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<StudyProgram> studyPrograms;
-	
+
 	private String name;
-	
+
+	private String pic_name;
+
+	private String mimetype;
+
+	@Lob
+	private byte[] pic;
+
 	public Center() {
-		
+
 	}
 
 	public Center(Long id, Date yearOfEstablishment, @NotNull Boolean deleted, int version, University university,
-			Set<Faculty> faculties, String name) {
+			Set<Faculty> faculties, Set<StudyProgram> studyPrograms, String name, String pic_name, String mimetype,
+			byte[] pic) {
 		super();
 		this.id = id;
 		this.yearOfEstablishment = yearOfEstablishment;
@@ -56,7 +67,23 @@ public class Center {
 		this.version = version;
 		this.university = university;
 		this.faculties = faculties;
+		this.studyPrograms = studyPrograms;
 		this.name = name;
+		this.pic_name = pic_name;
+		this.mimetype = mimetype;
+		this.pic = pic;
+	}
+
+	public Center(MultipartFile file) {
+		// TODO Auto-generated constructor stub
+		this.pic_name = file.getName();
+		this.mimetype = file.getContentType();
+		try {
+			this.pic = file.getBytes();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public Long getId() {
@@ -106,8 +133,6 @@ public class Center {
 	public void setFaculties(Set<Faculty> faculties) {
 		this.faculties = faculties;
 	}
-	
-	
 
 	public Set<StudyProgram> getStudyPrograms() {
 		return studyPrograms;
@@ -123,6 +148,30 @@ public class Center {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPic_name() {
+		return pic_name;
+	}
+
+	public void setPic_name(String pic_name) {
+		this.pic_name = pic_name;
+	}
+
+	public String getMimetype() {
+		return mimetype;
+	}
+
+	public void setMimetype(String mimetype) {
+		this.mimetype = mimetype;
+	}
+
+	public byte[] getPic() {
+		return pic;
+	}
+
+	public void setPic(byte[] pic) {
+		this.pic = pic;
 	}
 
 	@Override
@@ -144,8 +193,5 @@ public class Center {
 	public int hashCode() {
 		return Objects.hashCode(id);
 	}
-	
-	
-	
-	
+
 }
