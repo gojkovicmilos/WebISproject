@@ -14,6 +14,7 @@ import { CenterService } from '../center.service';
 export class CenterComponent implements OnInit {
 
   center: Center;
+  name:string;
   studyPrograms: StudyProgram[];
   
 
@@ -25,12 +26,20 @@ export class CenterComponent implements OnInit {
     .subscribe((data: Center) => {
       this.center = data;
       this.studyPrograms = this.center.studyPrograms;
+      this.name = this.center.name;
     });
   }
 
   punjenje(id: number) {
     this.dataService.idStudyProgram = id;
     localStorage.setItem("idStudijskogPrograma", this.dataService.idStudyProgram.toString());
+  }
+
+  imgLoad()
+  {
+  var uints = new Uint8Array(this.center.pic);
+  var base64 = btoa(String.fromCharCode.apply(null, uints));
+  this.center. url = 'data:image/jpeg;base64,' + base64;
   }
 
   ngOnDestroy() {
