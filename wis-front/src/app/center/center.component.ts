@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StudyProgramService} from '../study-program.service';
 import { Router } from '@angular/router';
 import StudyProgram from '../StudyProgram';
@@ -21,7 +21,6 @@ export class CenterComponent implements OnInit {
   constructor(private dataService: DataService, private sps: StudyProgramService, private cnt: CenterService, private router: Router) { }
 
   ngOnInit() {
-    //console.log(Number(localStorage.getItem("idCentra")));
     this.cnt.getCenterById(Number(localStorage.getItem("idCentra")))
     .subscribe((data: Center) => {
       this.center = data;
@@ -35,15 +34,11 @@ export class CenterComponent implements OnInit {
     localStorage.setItem("idStudijskogPrograma", this.dataService.idStudyProgram.toString());
   }
 
-  imgLoad()
-  {
-  var uints = new Uint8Array(this.center.pic);
-  var base64 = btoa(String.fromCharCode.apply(null, uints));
-  this.center. url = 'data:image/jpeg;base64,' + base64;
-  }
-
-  ngOnDestroy() {
-    
-  }
+  // imgLoad()
+  // {
+  // var uints = new Uint8Array(this.center.pic);
+  // var base64 = btoa(String.fromCharCode.apply(null, uints));
+  // this.center. url = 'data:image/jpeg;base64,' + base64;
+  // }
 
 }
