@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CenterNoviSadComponent } from './center-novi-sad.component';
+import { CenterComponent } from './center.component';
 
 describe('CenterNoviSadComponent', () => {
-  let component: CenterNoviSadComponent;
-  let fixture: ComponentFixture<CenterNoviSadComponent>;
+  let component: CenterComponent;
+  let fixture: ComponentFixture<CenterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CenterNoviSadComponent ]
+      declarations: [ CenterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CenterNoviSadComponent);
+    fixture = TestBed.createComponent(CenterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

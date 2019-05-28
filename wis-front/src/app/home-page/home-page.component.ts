@@ -25,10 +25,11 @@ export class HomePageComponent implements OnInit {
   }
 
   punjenje(id): void {
-    this.messageForCenterComponent = id;
+    this.dataService.idCenter = id;
+    localStorage.setItem("idCentra", this.dataService.idCenter.toString());
   }
 
   ngOnDestroy() {
-    this.dataService.idCenter = this.messageForCenterComponent;
+    
   }
 }

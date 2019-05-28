@@ -25,7 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AgmCoreModule } from '@agm/core';
-import { CenterNoviSadComponent } from './center-novi-sad/center-novi-sad.component';
+import { CenterComponent } from './center/center.component';
 import { StudyProgramComponent } from './study-program/study-program.component';
 
 
@@ -45,7 +45,7 @@ import { StudyProgramComponent } from './study-program/study-program.component';
     ModalBasicComponent,
     HomePageComponent,
     NavbarComponent,
-    CenterNoviSadComponent,
+    CenterComponent,
     StudyProgramComponent,
   ],
   imports: [

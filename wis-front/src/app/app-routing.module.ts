@@ -10,7 +10,7 @@ import {SearchTeacherComponent} from './search-teacher/search-teacher.component'
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { LoginStudentComponent } from './login-student/login-student.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { CenterNoviSadComponent } from './center-novi-sad/center-novi-sad.component';
+import { CenterComponent } from './center/center.component';
 import { StudyProgramComponent } from './study-program/study-program.component';
 
 const routes: Routes = [
@@ -24,7 +24,7 @@ const routes: Routes = [
   {path: 'teacher', component: GetTeacherComponent},
   {path: 'findTeacherByFirstName', component: SearchTeacherComponent },
   {path: '', component: HomePageComponent},
-  {path: 'center', component: CenterNoviSadComponent},
+  {path: 'center', component: CenterComponent},
   {path: 'center/studyPrograms', component: StudyProgramComponent},
 
 ];
