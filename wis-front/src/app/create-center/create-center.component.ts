@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import { CenterService } from '../center.service';
 import { Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-center',
@@ -16,7 +17,7 @@ export class CreateCenterComponent implements OnInit {
   name: string;
   angForm: any;
  
-  constructor(private cs: CenterService, private fb: FormBuilder) {
+  constructor(private cs: CenterService, private fb: FormBuilder, private router: Router) {
     this.createForm();
    }
  
@@ -45,6 +46,14 @@ export class CreateCenterComponent implements OnInit {
       }
     });
     this.selectedFiles = undefined;
+    this.router.navigate(['']);
+    this.refresh();
   }
+
+  refresh() {
+    this.router.navigate(['']);
+    this.ngOnInit();
+  }
+  
 
 }
