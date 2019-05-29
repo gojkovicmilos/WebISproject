@@ -33,11 +33,11 @@ export class CreateCenterComponent implements OnInit {
     });
   }
  
-  upload() {
+  upload(name: string) {
     this.progress.percentage = 0;
  
     this.currentFileUpload = this.selectedFiles.item(0);
-    this.cs.pushFileToStorage(this.currentFileUpload, this.name).subscribe(event => {
+    this.cs.pushFileToStorage(this.currentFileUpload, name).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
         this.progress.percentage = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {
