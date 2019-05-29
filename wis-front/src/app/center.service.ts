@@ -20,10 +20,11 @@ export class CenterService {
     return this.http.get(`${this.uri}/${id}`);
   }
 
-  pushFileToStorage(file: File): Observable<HttpEvent<{}>> {
+  pushFileToStorage(file: File, name:string): Observable<HttpEvent<{}>> {
     const formdata: FormData = new FormData();
  
     formdata.append('file', file);
+    formdata.append('name', name);
  
     const req = new HttpRequest('POST', 'http://localhost:8080/center/file/upload', formdata, {
       reportProgress: true,

@@ -74,8 +74,8 @@ public class Center {
 		this.pic = pic;
 	}
 
-	public Center(MultipartFile file) {
-		// TODO Auto-generated constructor stub
+
+	public Center(MultipartFile file, String name2) {
 		this.pic_name = file.getName();
 		this.mimetype = file.getContentType();
 		try {
@@ -84,6 +84,8 @@ public class Center {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		this.name = name2;
 	}
 
 	public Long getId() {
