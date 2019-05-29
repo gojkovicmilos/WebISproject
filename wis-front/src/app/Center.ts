@@ -5,4 +5,5 @@ export default class Center {
     name: string;
     studyPrograms: StudyProgram[];
     pic: Int8Array;
+    mimetype: string;
 }

@@ -28,8 +28,8 @@ export class HomePageComponent implements OnInit {
     localStorage.setItem("idCentra", this.dataService.idCenter.toString());
   }
 
-  transform(img:Int8Array){
-    return this.sanitizer.bypassSecurityTrustResourceUrl("data:image/jpeg;base64, " + img.toString());
+  transform(img:Int8Array, mimetype:string){
+    return this.sanitizer.bypassSecurityTrustResourceUrl("data:" + mimetype + ";base64, " + img.toString());
 }
 
   ngOnDestroy() {
