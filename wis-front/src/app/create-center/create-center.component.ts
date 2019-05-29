@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import { CenterService } from '../center.service';
+import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-create-center',
@@ -12,14 +13,24 @@ export class CreateCenterComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
+  name: string;
+  angForm: any;
  
-  constructor(private cs: CenterService) { }
+  constructor(private cs: CenterService, private fb: FormBuilder) {
+    this.createForm();
+   }
  
   ngOnInit() {
   }
  
   selectFile(event) {
     this.selectedFiles = event.target.files;
+  }
+
+  createForm() {
+    this.angForm = this.fb.group({
+      name: ['', Validators.required ]
+    });
   }
  
   upload() {
@@ -34,6 +45,7 @@ export class CreateCenterComponent implements OnInit {
       }
     });
     this.selectedFiles = undefined;
+    this.cs.addCenter(name);
   }
 
 }

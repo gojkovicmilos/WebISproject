@@ -32,4 +32,13 @@ export class CenterService {
  
     return this.http.request(req);
   }
+
+  addCenter(name) {
+    const obj = {
+      Name: name
+    };
+    console.log(obj);
+    this.http.post(`${this.uri}`, obj)
+        .subscribe(res => console.log('Done'));
+  }
 }
