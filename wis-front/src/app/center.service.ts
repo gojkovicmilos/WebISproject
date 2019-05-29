@@ -34,13 +34,5 @@ export class CenterService {
     return this.http.request(req);
   }
 
-  addCenter(name, file) {
-    const obj = {
-      Name: name,
-      File: file
-    };
-    console.log(obj);
-    this.http.post(`${this.uri}`, obj)
-        .subscribe(res => console.log('Done'));
-  }
+  
 }

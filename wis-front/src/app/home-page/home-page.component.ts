@@ -3,6 +3,7 @@ import Center from '../Center';
 import { CenterService } from '../center.service';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { DataService } from '../data.service';
 export class HomePageComponent implements OnInit {
 
   centers: Center[];
-  constructor(private dataService: DataService,private router: Router, private cnt: CenterService) { }
+  constructor(private dataService: DataService,private router: Router, private sanitizer:DomSanitizer, private cnt: CenterService) { }
 
   ngOnInit() {
     this.cnt.getCenter()
@@ -26,6 +27,10 @@ export class HomePageComponent implements OnInit {
     this.dataService.idCenter = id;
     localStorage.setItem("idCentra", this.dataService.idCenter.toString());
   }
+
+  transform(img:Int8Array){
+    return this.sanitizer.bypassSecurityTrustResourceUrl("data:image/jpeg;base64, " + img.toString());
+}
 
   ngOnDestroy() {
     
