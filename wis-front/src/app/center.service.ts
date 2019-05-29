@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -17,5 +18,18 @@ export class CenterService {
 
   getCenterById(id: number) {
     return this.http.get(`${this.uri}/${id}`);
+  }
+
+  pushFileToStorage(file: File): Observable<HttpEvent<{}>> {
+    const formdata: FormData = new FormData();
+ 
+    formdata.append('file', file);
+ 
+    const req = new HttpRequest('POST', 'http://localhost:8080/center/file/upload', formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+ 
+    return this.http.request(req);
   }
 }

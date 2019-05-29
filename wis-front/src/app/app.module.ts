@@ -27,6 +27,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AgmCoreModule } from '@agm/core';
 import { CenterComponent } from './center/center.component';
 import { StudyProgramComponent } from './study-program/study-program.component';
+import { CreateCenterComponent } from './create-center/create-center.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { StudyProgramComponent } from './study-program/study-program.component';
     NavbarComponent,
     CenterComponent,
     StudyProgramComponent,
+    CreateCenterComponent,
   ],
   imports: [
     BrowserModule,

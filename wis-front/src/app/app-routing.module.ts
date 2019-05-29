@@ -12,6 +12,7 @@ import { LoginStudentComponent } from './login-student/login-student.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { CenterComponent } from './center/center.component';
 import { StudyProgramComponent } from './study-program/study-program.component';
+import { CreateCenterComponent } from './create-center/create-center.component';
 
 const routes: Routes = [
   {path: 'student/add', component: AddStudentComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'center', component: CenterComponent},
   {path: 'center/studyPrograms', component: StudyProgramComponent},
+  {path: 'createCenter', component: CreateCenterComponent}
 
 ];
 
