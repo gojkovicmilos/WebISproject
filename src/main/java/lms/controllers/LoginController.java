@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lms.domain.Permission;
 import lms.domain.User;
 import lms.domain.UserPermission;
 import lms.repository.PermissionRepository;
@@ -78,7 +79,11 @@ public class LoginController {
 
 		user = userRepository.save(user);
 		user.setUserPermissions(new HashSet<UserPermission>());
-		user.getUserPermissions().add(new UserPermission(null, user, permissionRepository.findById(1l).get()));
+		String roleTitle = user.getRole();
+		Permission permission = new Permission();
+		permission.setTitle(roleTitle);
+		permissionRepository.save(permission);
+		user.getUserPermissions().add(new UserPermission(null, user, permission));
 		userRepository.save(user);
 
 		return new ResponseEntity<User>(user, HttpStatus.OK);

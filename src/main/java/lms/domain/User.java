@@ -20,6 +20,8 @@ public class User {
 
 	private String password;
 	
+	private String role;
+	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<UserPermission> userPermissions;
 
@@ -27,12 +29,13 @@ public class User {
 		
 	}
 
-	public User(Long id, String username, String password, Set<UserPermission> userPermissions) {
+	public User(Long id, String username, String password, Set<UserPermission> userPermissions, String role) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.userPermissions = userPermissions;
+		this.role = role;
 	}
 
 	public Long getId() {
@@ -66,8 +69,13 @@ public class User {
 	public void setUserPermissions(Set<UserPermission> userPermissions) {
 		this.userPermissions = userPermissions;
 	}
-	
-	
-	
-	
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+		
 }
