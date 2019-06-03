@@ -6,16 +6,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class UserPermission {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@ManyToOne()
+	@JsonIgnore
+	@ManyToOne
 	private User user;
-
-	@ManyToOne()
+	@JsonIgnore
+	@ManyToOne
 	private Permission permission;
 
 	public UserPermission() {

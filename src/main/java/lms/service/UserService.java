@@ -24,4 +24,8 @@ public class UserService {
 	public void saveUser(User user) {
 		userRepository.save(user);
 	}
+	
+	public Iterable<User> getUsers() {
+		return userRepository.findAll();
+	}
 }

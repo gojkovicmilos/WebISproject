@@ -17,7 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import lms.domain.User;
@@ -80,7 +79,7 @@ public class LoginController {
 		user = userRepository.save(user);
 		user.setUserPermissions(new HashSet<UserPermission>());
 		user.getUserPermissions().add(new UserPermission(null, user, permissionRepository.findById(1l).get()));
-		//userRepository.save(user);
+		userRepository.save(user);
 
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
