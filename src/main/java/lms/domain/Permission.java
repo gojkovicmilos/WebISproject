@@ -2,7 +2,6 @@ package lms.domain;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,31 +10,23 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class User {
-
+public class Permission {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	
-	@Column(length = 64, nullable = false)
-	private String username;
-
-	@Column(length = 64, nullable = false)
-	private String password;
-	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@Column(nullable = false, unique = true)
+	private String title;
+	@OneToMany(mappedBy = "permission")
 	private Set<UserPermission> userPermissions;
 
-	public User() {
-		
+	public Permission() {
+
 	}
 
-	public User(Long id, String username, String password, Set<UserPermission> userPermissions) {
+	public Permission(Long id, String title, Set<UserPermission> userPermissions) {
 		super();
 		this.id = id;
-		this.username = username;
-		this.password = password;
+		this.title = title;
 		this.userPermissions = userPermissions;
 	}
 
@@ -47,20 +38,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public Set<UserPermission> getUserPermissions() {
@@ -70,8 +53,7 @@ public class User {
 	public void setUserPermissions(Set<UserPermission> userPermissions) {
 		this.userPermissions = userPermissions;
 	}
-	
-	
-	
-	
+
+
+
 }
