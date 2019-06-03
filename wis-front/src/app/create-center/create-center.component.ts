@@ -16,27 +16,27 @@ export class CreateCenterComponent implements OnInit {
   progress: { percentage: number } = { percentage: 0 };
   name: string;
   angForm: any;
- 
+
   constructor(private cs: CenterService, private fb: FormBuilder, private router: Router) {
     this.createForm();
-   }
- 
+  }
+
   ngOnInit() {
   }
- 
+
   selectFile(event) {
     this.selectedFiles = event.target.files;
   }
 
   createForm() {
     this.angForm = this.fb.group({
-      name: ['', Validators.required ]
+      name: ['', Validators.required]
     });
   }
- 
+
   upload(name: string) {
     this.progress.percentage = 0;
- 
+
     this.currentFileUpload = this.selectedFiles.item(0);
     this.cs.pushFileToStorage(this.currentFileUpload, name).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
@@ -53,6 +53,6 @@ export class CreateCenterComponent implements OnInit {
   //   this.router.navigate(['']);
   //   this.ngOnInit();
   // }
-  
+
 
 }

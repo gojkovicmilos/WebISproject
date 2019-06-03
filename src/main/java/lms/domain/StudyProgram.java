@@ -1,5 +1,6 @@
 package lms.domain;
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Set;
 
@@ -9,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -17,63 +19,111 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Where;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 @Entity
 @Where(clause = "deleted = 'false'")
 public class StudyProgram {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Size(max = 50)
 	private String name;
-	
+
 	@NotNull
 	private Boolean deleted = false;
-	
+
 	@Version
 	private int version = 0;
-	
+
 	@OneToOne(fetch = FetchType.LAZY)
 	private Teacher rukovodilac;
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Faculty faculty;
-	
+
 	@JsonIgnore()
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Center center;
-	
-	/*@JsonIgnore*/
-	@OneToMany(mappedBy = "studyProgram", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
+
+	/* @JsonIgnore */
+	@OneToMany(mappedBy = "studyProgram", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<YearOfStudy> yearsOfStudy;
-	
-	private String img_url;
 
-	
+	private String pic_name;
+
+	private String mimetype;
+
+	@Lob
+	private byte[] pic;
+
 	public StudyProgram() {}
-	
-	
-
 
 	public StudyProgram(Long id, @Size(max = 50) String name, @NotNull Boolean deleted, int version,
-			Teacher rukovodilac, Faculty faculty, Set<YearOfStudy> yearsOfStudy, String img_url) {
+			Teacher rukovodilac, Faculty faculty, Center center, Set<YearOfStudy> yearsOfStudy, String pic_name,
+			String mimetype, byte[] pic) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.deleted = deleted;
 		this.version = version;
 		this.rukovodilac = rukovodilac;
 		this.faculty = faculty;
+		this.center = center;
 		this.yearsOfStudy = yearsOfStudy;
-		this.img_url = img_url;
+		this.pic_name = pic_name;
+		this.mimetype = mimetype;
+		this.pic = pic;
+	}
+	
+
+	public StudyProgram(MultipartFile file, String name2, String center2) {
+		this.pic_name = file.getName();
+		this.mimetype = file.getContentType();
+		try {
+		this.pic = file.getBytes();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.name = name2;
 	}
 
+	public Center getCenter() {
+		return center;
+	}
 
+	public void setCenter(Center center) {
+		this.center = center;
+	}
 
+	public String getPic_name() {
+		return pic_name;
+	}
+
+	public void setPic_name(String pic_name) {
+		this.pic_name = pic_name;
+	}
+
+	public String getMimetype() {
+		return mimetype;
+	}
+
+	public void setMimetype(String mimetype) {
+		this.mimetype = mimetype;
+	}
+
+	public byte[] getPic() {
+		return pic;
+	}
+
+	public void setPic(byte[] pic) {
+		this.pic = pic;
+	}
 
 	public Teacher getRukovodilac() {
 		return rukovodilac;
@@ -129,15 +179,6 @@ public class StudyProgram {
 
 	public void setFaculty(Faculty faculty) {
 		this.faculty = faculty;
-	}
-	
-	public String getImg_url() {
-		return img_url;
-	}
-
-
-	public void setImg_url(String img_url) {
-		this.img_url = img_url;
 	}
 
 

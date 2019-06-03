@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import lms.domain.Center;
 import lms.domain.StudyProgram;
+import lms.repository.StudyProgramRepository;
 import lms.service.StudyProgramService;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
@@ -25,7 +29,10 @@ public class StudyProgramController {
 
 	@Autowired
 	StudyProgramService studyProgramService;
-
+	
+	@Autowired
+	StudyProgramRepository studyProgramRepository;
+	
 	@RequestMapping()
 	public ResponseEntity<Iterable<StudyProgram>> getAllStudyProgram() {
 		return new ResponseEntity<Iterable<StudyProgram>>(studyProgramService.getAllStidyProgram(), HttpStatus.OK);
@@ -68,5 +75,17 @@ public class StudyProgramController {
 	@GetMapping(value = "/name/{name}")
 	public ResponseEntity<Iterable<StudyProgram>> getStudyProgramByTitle(@PathVariable String name) {
 		return new ResponseEntity<Iterable<StudyProgram>>(studyProgramService.getStudyProgramByName(name), HttpStatus.OK);
+	}
+	
+	@PostMapping("/file/upload")
+	public String uploadMultipartFile(@RequestParam("file") MultipartFile file, @RequestParam("name") String name, @RequestParam("center") String center) {
+		try {
+			// save file to PostgreSQL
+			StudyProgram filemode = new StudyProgram(file, name, center);
+			studyProgramRepository.save(filemode);
+			return "File uploaded successfully! -> filename = " + file.getOriginalFilename();
+		} catch (Exception e) {
+			return "FAIL! Maybe You had uploaded the file before or the file's size > 500KB";
+		}
 	}
 }
