@@ -4,15 +4,15 @@
       <h3>Enter your credentials !</h3>
       <form [formGroup]="angForm" novalidate>
         <div class="form-group">
-          <label class="col-xs-4">Card Number: </label>
-          <input type="text" class="form-control" formControlName="cardNumber" #cardNumber
-            placeholder="Enter your card number" />
+          <label class="col-xs-4">Username: </label>
+          <input type="text" class="form-control" formControlName="username" #username
+            placeholder="Enter your username" />
         </div>
         <div
-          *ngIf="angForm.controls['cardNumber'].invalid && (angForm.controls['cardNumber'].dirty || angForm.controls['cardNumber'].touched)"
+          *ngIf="angForm.controls['username'].invalid && (angForm.controls['username'].dirty || angForm.controls['username'].touched)"
           class="alert alert-danger">
-          <div *ngIf="angForm.controls['cardNumber'].errors.required">
-            Card Number is required.
+          <div *ngIf="angForm.controls['username'].errors.required">
+            Username is required.
           </div>
 
         </div>
@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="form-group" style="padding-top: 30px;">
-          <button (click)="logInStudent(cardNumber.value, pass.value)" [disabled]="angForm.pristine || angForm.invalid"
+          <button (click)="login(username.value, pass.value)" [disabled]="angForm.pristine || angForm.invalid"
             class="btn btn-primary"><i class="fa fa-sign-in" aria-hidden="true"></i>
             Sign In
           </button>
