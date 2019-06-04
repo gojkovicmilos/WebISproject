@@ -9,13 +9,22 @@ export class NavbarComponent implements OnInit {
 
   constructor() { }
 
-  show:boolean = false;
+  showAdminPanel:boolean = false;
+  showLogin:boolean = false;
   ngOnInit() {
 
     if(localStorage.getItem("role") == "admin")
-    this.show = true;
+    this.showAdminPanel = true;
+
+    if(localStorage.getItem("role") == null)
+    this.showLogin = true;
 
 
+  }
+
+  signOut()
+  {
+    localStorage.clear();
   }
 
 }

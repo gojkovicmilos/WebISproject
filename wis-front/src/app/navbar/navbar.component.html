@@ -10,7 +10,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="showLogin">
             <a class="nav-link" routerLink="student/login">
               <i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a>
           </li>
@@ -25,7 +25,7 @@
           <li class="nav-item">
             <app-modal-basic></app-modal-basic>
           </li>
-          <li class="nav-item" *ngIf="show">
+          <li class="nav-item" *ngIf="showAdminPanel">
               <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
                 <i class="fa fa-users" aria-hidden="true"></i> Admin Panel</a>
               <div class="dropdown-menu" style="right: auto; left: auto; background-color: black">
@@ -62,6 +62,9 @@
                     Create Study Program
                   </a>
               </div>   
+          </li>
+          <li class="nav-item" *ngIf="!showLogin">
+            <button (click)="signOut()" type="button" class="btn btn-secondary">Sign Out</button>
           </li>
         </ul>
       </div>
