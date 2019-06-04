@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +42,7 @@ public class StudyFieldController {
 	}
 
 	@PostMapping
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<StudyField> addStudyField(@RequestBody StudyField studyField) {
 
 		studyFieldService.addStudyField(studyField);
@@ -48,12 +50,14 @@ public class StudyFieldController {
 	}
 
 	@PutMapping(value = "/{id}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<StudyField> updateStudyField(@PathVariable Long id, @RequestBody StudyField studyField) {
 		studyFieldService.updateStudyField(id, studyField);
 		return new ResponseEntity<StudyField>(studyField, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping(value = "/{id}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<StudyField> removeStudyField(@PathVariable Long id) {
 		try {
 			studyFieldService.removeStudyField(id);

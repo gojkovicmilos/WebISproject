@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,6 +53,7 @@ public class StudyProgramController {
 	}
 
 	@PostMapping
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<StudyProgram> addStudyProgram(@RequestBody StudyProgram studyProgram) {
 
 		studyProgramService.addStudyProgram(studyProgram);
@@ -59,12 +61,14 @@ public class StudyProgramController {
 	}
 
 	@PutMapping(value = "/{id}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<StudyProgram> updateStudyProgram(@PathVariable Long id, @RequestBody StudyProgram studyProgram) {
 		studyProgramService.updateStudyProgram(id, studyProgram);
 		return new ResponseEntity<StudyProgram>(studyProgram, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping(value = "/{id}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<StudyProgram> removeStudyProgram(@PathVariable Long id) {
 		try {
 			studyProgramService.removeStudyProgram(id);
@@ -82,6 +86,7 @@ public class StudyProgramController {
 	}
 	
 	@PostMapping("/file/upload")
+	@Secured("ROLE_ADMIN")
 	public String uploadMultipartFile(@RequestParam("file") MultipartFile file, @RequestParam("name") String name, @RequestParam("center") String center) {
 		try {
 			// save file to PostgreSQL
@@ -94,12 +99,5 @@ public class StudyProgramController {
 		}
 	}
 	
-	/*
-	 * @Transactional
-	 * 
-	 * @RequestMapping(value = "", method = RequestMethod.POST) public
-	 * ResponseEntity<StudyProgram>addStudyProgram(@RequestBody StudyProgram
-	 * studyProgram) { centerService. }
-	 */
 	
 }

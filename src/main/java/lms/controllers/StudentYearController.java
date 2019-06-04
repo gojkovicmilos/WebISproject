@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +42,7 @@ public class StudentYearController {
 	}
 
 	@PostMapping
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<StudentYear> addStudentYear(@RequestBody StudentYear studentYear) {
 
 		studentYearService.addStudentYear(studentYear);
@@ -48,12 +50,14 @@ public class StudentYearController {
 	}
 
 	@PutMapping(value = "/{id}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<StudentYear> updateStudentYear(@PathVariable Long id, @RequestBody StudentYear studentYear) {
 		studentYearService.updateStudentYear(id, studentYear);
 		return new ResponseEntity<StudentYear>(studentYear, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping(value = "/{id}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<StudentYear> removeStudentYear(@PathVariable Long id) {
 		try {
 			studentYearService.removeStudentYear(id);

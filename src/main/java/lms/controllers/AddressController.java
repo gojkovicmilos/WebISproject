@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +43,7 @@ public class AddressController {
 	}
 
 	@PostMapping
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Address> addAddress(@RequestBody Address address) {
 
 		addressService.addAdress(address);
@@ -49,12 +51,14 @@ public class AddressController {
 	}
 
 	@PutMapping(value = "/{id}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Address> updateAddress(@PathVariable Long id, @RequestBody Address address) {
 		addressService.updateAddress(id, address);
 		return new ResponseEntity<Address>(address, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping(value = "/{id}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Address> removeAddress(@PathVariable Long id) {
 		try {
 			addressService.removeAddress(id);

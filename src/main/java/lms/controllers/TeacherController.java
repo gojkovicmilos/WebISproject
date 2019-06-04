@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +42,7 @@ public class TeacherController {
 	}
 
 	@PostMapping
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Teacher> addTeacher(@RequestBody Teacher teacher) {
 
 		teacherService.addTeacher(teacher);
@@ -48,12 +50,14 @@ public class TeacherController {
 	}
 
 	@PutMapping(value = "/update/{id}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Teacher> updateTeacher(@PathVariable Long id, @RequestBody Teacher teacher) {
 		teacherService.updateTeacher(id, teacher);
 		return new ResponseEntity<Teacher>(teacher, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping(value = "/{id}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Teacher> removeTeacher(@PathVariable Long id) {
 		try {
 			teacherService.removeTeacher(id);

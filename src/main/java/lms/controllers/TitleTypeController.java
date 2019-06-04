@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +42,7 @@ public class TitleTypeController {
 	}
 
 	@PostMapping
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<TitleType> addTitleType(@RequestBody TitleType titleType) {
 
 		titleTypeService.addTitleType(titleType);
@@ -48,12 +50,14 @@ public class TitleTypeController {
 	}
 
 	@PutMapping(value = "/{id}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<TitleType> updateTitleType(@PathVariable Long id, @RequestBody TitleType titleType) {
 		titleTypeService.updateTitleType(id, titleType);
 		return new ResponseEntity<TitleType>(titleType, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping(value = "/{id}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<TitleType> removeTitleType(@PathVariable Long id) {
 		try {
 			titleTypeService.removeTitleType(id);

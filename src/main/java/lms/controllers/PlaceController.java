@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,18 +42,21 @@ public class PlaceController {
 	}
 
 	@PostMapping
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Place> addPlace(@RequestBody Place place) {
 		placeService.addPlace(place);
 		return new ResponseEntity<Place>(place, HttpStatus.CREATED);
 	}
 
 	@PutMapping(value = "/{id}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Place> updatePlace(@PathVariable Long id, @RequestBody Place place) {
 		placeService.updatePlace(id, place);
 		return new ResponseEntity<Place>(place, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping(value = "/{id}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Place> removePlace(@PathVariable Long id) {
 		try {
 			placeService.removePlace(id);

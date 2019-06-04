@@ -2,6 +2,7 @@ package lms.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,18 +43,21 @@ public class StudentController {
 	}
 	
 	@PostMapping
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Student> addStudent(@RequestBody Student student) throws NoSuchAlgorithmException{
 		studentService.addStudent(student);
 		return new ResponseEntity<Student>(student, HttpStatus.CREATED);
 	}
 	
 	@PutMapping(value = "/update/{id}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student student) {
 		studentService.updateStudent(id, student);
 		return new ResponseEntity<Student>(student, HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping(value = "/{id}")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Student> deleteStudent(@PathVariable Long id) {
 		try {
 			studentService.removeStudent(id);
