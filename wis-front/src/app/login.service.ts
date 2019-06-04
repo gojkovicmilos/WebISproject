@@ -22,12 +22,13 @@ export class LoginService {
   httpOptions = null;
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string) {
+  login(username: string, password: string, role:string) {
     let user = {"username": username, "password": password}
     this.http.post<LoginRes>(`${this.uri}`, user).subscribe(res => {
       console.log(res.token);
       this.authToken = res.token;
       localStorage.setItem("token", res.token);
+      localStorage.setItem("role", role);
     });
   
     

@@ -12,6 +12,11 @@ import { LoginService } from '../login.service';
 })
 export class LoginStudentComponent implements OnInit {
 
+  teacherRole:boolean = false;
+  studentRole:boolean = false;
+  adminRole:boolean = false;
+  role:string;
+
   angForm: FormGroup;
   constructor(private fb: FormBuilder, private ss: StudentService, private router: Router, private ls: LoginService) {
     this.createForm();
@@ -31,8 +36,9 @@ export class LoginStudentComponent implements OnInit {
   */
 
   login(username: string, password: string) {
-    this.ls.login(username, password);
-    //this.router.navigate(['/']);
+    
+    this.ls.login(username, password, this.role);
+    this.router.navigate(['/']);
   }
   ngOnInit() {
   }
@@ -41,5 +47,22 @@ export class LoginStudentComponent implements OnInit {
   {
     this.ls.test();
   }
+
+  setTeacherRole()
+  {
+    this.role = "teacher";
+  }
+
+  setStudentRole()
+  {
+    this.role = "student";
+  }
+
+  setAdminRole()
+  {
+    this.role = "admin";
+  }
+
+  
 
 }
