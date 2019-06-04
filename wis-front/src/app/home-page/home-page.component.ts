@@ -14,7 +14,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class HomePageComponent implements OnInit {
 
   centers: Center[];
-  constructor(private dataService: DataService,private router: Router, private sanitizer:DomSanitizer, private cnt: CenterService) { }
+  constructor(private dataService: DataService,private router: Router, private sanitizer:DomSanitizer, private cnt: CenterService) {
+ 
+   }
 
   ngOnInit() {
     this.cnt.getCenter()
@@ -35,4 +37,6 @@ export class HomePageComponent implements OnInit {
   ngOnDestroy() {
     
   }
+
+  
 }

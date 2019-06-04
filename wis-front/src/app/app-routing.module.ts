@@ -14,6 +14,7 @@ import { CenterComponent } from './center/center.component';
 import { StudyProgramComponent } from './study-program/study-program.component';
 import { CreateCenterComponent } from './create-center/create-center.component';
 import { CreateSpComponent } from './create-sp/create-sp.component';
+import { RefreshComponentComponent } from "./refresh-component/refresh-component.component";
 
 const routes: Routes = [
   {path: 'student/add', component: AddStudentComponent},
@@ -29,12 +30,13 @@ const routes: Routes = [
   {path: 'center', component: CenterComponent},
   {path: 'center/studyPrograms', component: StudyProgramComponent},
   {path: 'createCenter', component: CreateCenterComponent},
-  {path: 'createSp', component: CreateSpComponent}
+  {path: 'createSp', component: CreateSpComponent},
+  {path: 'refreshComponent', component: RefreshComponentComponent}
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: "reload"})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -30,6 +30,8 @@ export class LoginService {
       localStorage.setItem("token", res.token);
       localStorage.setItem("role", role);
     });
+
+    
   
     
   }  

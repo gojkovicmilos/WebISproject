@@ -3,6 +3,10 @@ import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { StudentService } from '../student.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
+import {Observable} from 'rxjs'; // Angular 6 
+// import {Observable} from 'rxjs/Rx'; // Angular 5
+
+  
 
 
 @Component({
@@ -20,6 +24,7 @@ export class LoginStudentComponent implements OnInit {
   angForm: FormGroup;
   constructor(private fb: FormBuilder, private ss: StudentService, private router: Router, private ls: LoginService) {
     this.createForm();
+    
   }
 
   createForm() {
@@ -38,7 +43,9 @@ export class LoginStudentComponent implements OnInit {
   login(username: string, password: string) {
     
     this.ls.login(username, password, this.role);
-    this.router.navigate(['/']);
+    
+    this.router.navigateByUrl('/createCenter', {skipLocationChange: true}).then(()=>
+    this.router.navigate(["/"])); 
   }
   ngOnInit() {
   }
@@ -63,6 +70,9 @@ export class LoginStudentComponent implements OnInit {
     this.role = "admin";
   }
 
-  
+  redirectTo(uri) {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+    this.router.navigate([uri]));
+  }
 
 }

@@ -19,7 +19,9 @@ export class StudyProgramComponent implements OnInit {
   img_src: string;
   nameOfCenter: string;
 
-  constructor(private dataService: DataService ,private router: Router, private spc: StudyProgramService) { }
+  constructor(private dataService: DataService ,private router: Router, private spc: StudyProgramService) {
+    
+   }
 
   ngOnInit() {
     this.idStudyProgram = Number(localStorage.getItem('idStudijskogPrograma'));

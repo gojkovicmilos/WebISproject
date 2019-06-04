@@ -29,6 +29,7 @@ import { CenterComponent } from './center/center.component';
 import { StudyProgramComponent } from './study-program/study-program.component';
 import { CreateCenterComponent } from './create-center/create-center.component';
 import { CreateSpComponent } from './create-sp/create-sp.component';
+import { RefreshComponentComponent } from './refresh-component/refresh-component.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { CreateSpComponent } from './create-sp/create-sp.component';
     CenterComponent,
     StudyProgramComponent,
     CreateCenterComponent,
-    CreateSpComponent
+    CreateSpComponent,
+    RefreshComponentComponent
   ],
   imports: [
     BrowserModule,
