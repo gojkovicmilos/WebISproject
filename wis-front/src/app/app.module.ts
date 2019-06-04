@@ -6,14 +6,14 @@ import { AppComponent } from './app.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { OrderModule } from 'ngx-order-pipe';
 
 import { StudentService } from './student.service';
 import { GetStudentComponent } from './get-student/get-student.component';
 import { EditStudentComponent } from './edit-student/edit-student.component';
 import { SearchStudentComponent } from './search-student/search-student.component';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyHttpInterceptor } from './interceptor';
 import { SearchTeacherComponent } from './search-teacher/search-teacher.component';
 import { GetTeacherComponent } from './get-teacher/get-teacher.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
@@ -50,7 +50,7 @@ import { CreateSpComponent } from './create-sp/create-sp.component';
     CenterComponent,
     StudyProgramComponent,
     CreateCenterComponent,
-    CreateSpComponent,
+    CreateSpComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +65,11 @@ import { CreateSpComponent } from './create-sp/create-sp.component';
     }),
     OrderModule
   ],
-  providers: [StudentService],
+  providers: [StudentService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: MyHttpInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent, ModalBasicComponent],
   exports: [ModalBasicComponent]
 })

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyHttpInterceptor } from './interceptor';
 
 
 class LoginRes{
@@ -18,7 +20,7 @@ export class LoginService {
 
   authToken = null;
   httpOptions = null;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private myInterceptor: MyHttpInterceptor) { }
 
   login(username: string, password: string) {
     let user = {"username": username, "password": password}
@@ -26,16 +28,12 @@ export class LoginService {
       console.log(res.token);
       this.authToken = res.token;
     });
-    this.httpOptions = {headers: new HttpHeaders({
-      //'Content-Type':  'application/json',
-      'auth-token': this.authToken
-    })
-  };
-  console.log(this.httpOptions)
+  
+    localStorage.setItem("token", this.authToken);
   }  
   test()
   {
-    this.http.get<string>(`http://localhost:8080/test`, this.httpOptions)
+    this.http.get<string>(`http://localhost:8080/test`)
     .subscribe(res=>{
       console.log(res);
     }), err=>console.log('error', err)
