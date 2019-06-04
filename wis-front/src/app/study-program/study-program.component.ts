@@ -26,7 +26,6 @@ export class StudyProgramComponent implements OnInit {
     this.spc.getStudyProgramById(this.idStudyProgram).subscribe((data: StudyProgram) => {
       this.yearOfStudies = data.yearsOfStudy;
       this.name = data.name;
-      this.img_src = data.img_src;
     });
     this.nameOfCenter = localStorage.getItem("imeCentra");
   }

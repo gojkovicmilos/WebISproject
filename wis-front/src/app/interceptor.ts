@@ -17,13 +17,21 @@ export class MyHttpInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+
+    let token = localStorage.getItem("token");
+
+    if(token == null)
+    token = "123";
+    
     console.log('intercepted request ... ');
 
     // Clone the request to add the new header.
+    
     const authReq = req.clone({
-      headers: req.headers.set('Authorization', 'Bearer ' +  localStorage.getItem("token"))
+      headers: req.headers.set('Authorization', token)
     });
 
+  
     console.log('Sending request with new header now ...');
 
     //send the newly created request
@@ -35,4 +43,5 @@ export class MyHttpInterceptor implements HttpInterceptor {
       return Observable.throw(error);
     }) as any;
   }
+  //}
 }
