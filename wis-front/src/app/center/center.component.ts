@@ -5,6 +5,7 @@ import StudyProgram from '../StudyProgram';
 import { DataService } from '../data.service';
 import Center from '../Center';
 import { CenterService } from '../center.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-center',
@@ -18,7 +19,7 @@ export class CenterComponent implements OnInit {
   studyPrograms: StudyProgram[];
   
 
-  constructor(private dataService: DataService, private sps: StudyProgramService, private cnt: CenterService, private router: Router) { }
+  constructor(private dataService: DataService, private sps: StudyProgramService, private sanitizer:DomSanitizer, private cnt: CenterService, private router: Router) { }
 
   ngOnInit() {
     this.cnt.getCenterById(Number(localStorage.getItem("idCentra")))
@@ -34,6 +35,10 @@ export class CenterComponent implements OnInit {
     localStorage.setItem("idStudijskogPrograma", this.dataService.idStudyProgram.toString());
     localStorage.setItem("imeCentra", this.name);
   }
+
+  transform(img:Int8Array, mimetype:string){
+    return this.sanitizer.bypassSecurityTrustResourceUrl("data:" + mimetype + ";base64, " + img.toString());
+}
 
   // imgLoad()
   // {

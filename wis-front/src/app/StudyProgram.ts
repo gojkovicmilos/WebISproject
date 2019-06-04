@@ -6,5 +6,6 @@ export default class StudyProgram {
     name: string;
     yearsOfStudy: YearOfStudy[];
     center: Center = new Center();
-    img_src: string;
+    pic: Int8Array;
+    mimetype: string;
 }
