@@ -32,8 +32,14 @@ export class LoginStudentComponent implements OnInit {
 
   login(username: string, password: string) {
     this.ls.login(username, password);
-    this.router.navigate(['/']);
+    //this.router.navigate(['/']);
   }
   ngOnInit() {
   }
+
+  test()
+  {
+    this.ls.test();
+  }
+
 }

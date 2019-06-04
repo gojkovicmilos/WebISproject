@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import lms.domain.Center;
 import lms.domain.StudyProgram;
 import lms.repository.StudyProgramRepository;
+import lms.service.CenterService;
 import lms.service.StudyProgramService;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
@@ -28,6 +30,9 @@ public class StudyProgramController {
 
 	@Autowired
 	StudyProgramService studyProgramService;
+	
+	@Autowired
+	CenterService centerService;
 	
 	@Autowired
 	StudyProgramRepository studyProgramRepository;
@@ -80,11 +85,21 @@ public class StudyProgramController {
 	public String uploadMultipartFile(@RequestParam("file") MultipartFile file, @RequestParam("name") String name, @RequestParam("center") String center) {
 		try {
 			// save file to PostgreSQL
-			StudyProgram filemode = new StudyProgram(file, name, center);
+			Center c = centerService.getCenterId(Long.valueOf(center)).get();
+			StudyProgram filemode = new StudyProgram(file, name, c);
 			studyProgramRepository.save(filemode);
 			return "File uploaded successfully! -> filename = " + file.getOriginalFilename();
 		} catch (Exception e) {
 			return "FAIL! Maybe You had uploaded the file before or the file's size > 500KB";
 		}
 	}
+	
+	/*
+	 * @Transactional
+	 * 
+	 * @RequestMapping(value = "", method = RequestMethod.POST) public
+	 * ResponseEntity<StudyProgram>addStudyProgram(@RequestBody StudyProgram
+	 * studyProgram) { centerService. }
+	 */
+	
 }

@@ -33,12 +33,12 @@ export class StudyProgramService {
     return this.http.get<any[]>(this.Center_URL);
   }
 
-  pushFileToStorage(file: File, name: string, selectedCenter: any): Observable<HttpEvent<{}>> {
+  pushFileToStorage(file: File, name: string, selectedCenterId: number ): Observable<HttpEvent<{}>> {
     const formdata: FormData = new FormData();
  
     formdata.append('file', file);
     formdata.append('name', name);
-    formdata.append('center', selectedCenter);
+    formdata.append('center', selectedCenterId.toString());
  
     const req = new HttpRequest('POST', 'http://localhost:8080/studyprogram/file/upload', formdata, {
       reportProgress: true,

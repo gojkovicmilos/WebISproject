@@ -93,6 +93,19 @@ public class StudyProgram {
 		this.name = name2;
 	}
 
+	public StudyProgram(MultipartFile file, String name2, Center c) {
+		this.pic_name = file.getName();
+		this.mimetype = file.getContentType();
+		try {
+		this.pic = file.getBytes();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.name = name2;
+		this.center = c;
+	}
+
 	public Center getCenter() {
 		return center;
 	}
