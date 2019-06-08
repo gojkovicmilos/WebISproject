@@ -1,11 +1,17 @@
 package lms.service;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lms.domain.Administrator;
+import lms.domain.Student;
+import lms.domain.StudentYear;
+import lms.domain.StudyProgram;
+import lms.domain.YearOfStudy;
 import lms.repository.AdministratorRepository;
 
 @Service
@@ -39,6 +45,32 @@ public class AdministratorService {
 			a.setId(add.get().getId());
 			administratorRepository.save(a);
 		}
+	}
+	
+	public Iterable<Student>getAllStudentsWhoPass(StudyProgram studyProgram, int yearNumber)
+	{
+		
+		YearOfStudy yearOfStudy = null;
+		
+		for(YearOfStudy yos: studyProgram.getYearsOfStudy())
+			if(yos.getNumberOfYear() == yearNumber)
+			{
+				yearOfStudy = yos;
+			}
+		
+		
+		Set<Student> ret = new HashSet<Student>();
+		
+		Set<Student> allStudentsOnYear = new HashSet<Student>();
+		
+		
+		for(StudentYear sy: yearOfStudy.getStudentYears())
+		{
+			allStudentsOnYear.add(sy.getStudent());
+		}
+		
+		
+		return ret;
 	}
 
 }
