@@ -20,8 +20,8 @@ export class CreateSpComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
-  selectedCenterId:number;
-  constructor(private cs: CenterService, private sps: StudyProgramService, private router: Router,  private fb: FormBuilder) { }
+  selectedCenterId: number;
+  constructor(private sps: StudyProgramService, private router: Router,  private fb: FormBuilder) { }
 
   ngOnInit() {
     this.createForm();
@@ -44,7 +44,6 @@ export class CreateSpComponent implements OnInit {
   }
 
   setCenter($event){
-    
     this.selectedCenterId = $event;
     console.log(this.selectedCenterId);
   }
@@ -57,8 +56,6 @@ export class CreateSpComponent implements OnInit {
 
   upload(name: string) {
     this.progress.percentage = 0;
-    
-
     this.currentFileUpload = this.selectedFiles.item(0);
     this.sps.pushFileToStorage(this.currentFileUpload, name, this.selectedCenterId).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {

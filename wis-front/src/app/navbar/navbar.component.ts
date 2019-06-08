@@ -9,31 +9,31 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   constructor(private router: Router) {
-    
-   }
 
-  showAdminPanel:boolean = false;
-  showLogin:boolean = false;
+  }
+
+  showAdminPanel: boolean = false;
+  showLogin: boolean = false;
   ngOnInit() {
 
-    if(localStorage.getItem("role") == "admin")
-    this.showAdminPanel = true;
+    if (localStorage.getItem("role") == "admin")
+      this.showAdminPanel = true;
 
-    if(localStorage.getItem("role") == null)
-    this.showLogin = true;
+    if (localStorage.getItem("role") == null)
+      this.showLogin = true;
 
 
   }
 
-  signOut()
-  {
+  signOut() {
     localStorage.clear();
-    this.redirectTo("/");
+    location.reload(true);
+    this.redirectTo('/');
 
   }
 
   redirectTo(uri) {
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-    this.router.navigate([uri]));
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+      this.router.navigate([uri]));
   }
 }

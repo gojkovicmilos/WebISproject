@@ -18,8 +18,8 @@ export class LoginStudentComponent implements OnInit {
 
   teacherRole:boolean = false;
   studentRole:boolean = false;
-  adminRole:boolean = false;
-  role:string;
+  adminRole: boolean = false;
+  role: string;
 
   angForm: FormGroup;
   constructor(private fb: FormBuilder, private ss: StudentService, private router: Router, private ls: LoginService) {
@@ -33,19 +33,13 @@ export class LoginStudentComponent implements OnInit {
       pass: ['', Validators.required]
     });
   }
-  /*
-  logInStudent(cardNumber, pass) {
-    this.ss.logInStudent( cardNumber, pass);
-    this.router.navigate(['students']);
-  }
-  */
 
   login(username: string, password: string) {
-    
     this.ls.login(username, password, this.role);
-    
-    this.router.navigateByUrl('/createCenter', {skipLocationChange: true}).then(()=>
-    this.router.navigate(["/"])); 
+// tslint:disable-next-line: deprecation
+    location.reload(true);
+    this.router.navigateByUrl('/createCenter', {skipLocationChange: true}).then(() =>
+    this.router.navigate(['/']));
   }
   ngOnInit() {
   }
