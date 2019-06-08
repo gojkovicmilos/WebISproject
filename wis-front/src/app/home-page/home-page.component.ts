@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import Center from '../Center';
-import { CenterService } from '../center.service';
+import Center from '../centers/Center';
+import { CenterService } from '../centers/center.service';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { DomSanitizer } from '@angular/platform-browser';

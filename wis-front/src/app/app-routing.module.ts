@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {AddStudentComponent} from './add-student/add-student.component';
-import { GetStudentComponent } from './get-student/get-student.component';
-import { EditStudentComponent } from './edit-student/edit-student.component';
-import { SearchStudentComponent } from './search-student/search-student.component';
-import {GetTeacherComponent} from './get-teacher/get-teacher.component';
-import {EditTeacherComponent} from './edit-teacher/edit-teacher.component';
-import {SearchTeacherComponent} from './search-teacher/search-teacher.component';
-import { AddTeacherComponent } from './add-teacher/add-teacher.component';
-import { LoginStudentComponent } from './login-student/login-student.component';
+import {AddStudentComponent} from './student/add-student/add-student.component';
+import { GetStudentComponent } from './student/get-student/get-student.component';
+import { EditStudentComponent } from './student/edit-student/edit-student.component';
+import { SearchStudentComponent } from './student/search-student/search-student.component';
+import {GetTeacherComponent} from './teachers/get-teacher/get-teacher.component';
+import {EditTeacherComponent} from './teachers/edit-teacher/edit-teacher.component';
+import {SearchTeacherComponent} from './teachers/search-teacher/search-teacher.component';
+import { AddTeacherComponent } from './teachers/add-teacher/add-teacher.component';
+import { LoginComponent } from './login/login.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { CenterComponent } from './center/center.component';
-import { StudyProgramComponent } from './study-program/study-program.component';
-import { CreateCenterComponent } from './create-center/create-center.component';
-import { CreateSpComponent } from './create-sp/create-sp.component';
-import { RefreshComponentComponent } from "./refresh-component/refresh-component.component";
+import { CenterComponent } from './centers/center/center.component';
+import { StudyProgramComponent } from './studyPrograms/study-program/study-program.component';
+import { CreateCenterComponent } from './centers/create-center/create-center.component';
+import { CreateSpComponent } from './studyPrograms/create-study-program/create-sp.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
@@ -22,7 +21,7 @@ const routes: Routes = [
   {path: 'students', component: GetStudentComponent},
   {path: 'students/:id', component: EditStudentComponent},
   {path: 'findStudentByFirstName', component: SearchStudentComponent},
-  {path: 'student/login', component: LoginStudentComponent},
+  {path: 'student/login', component: LoginComponent},
   {path: 'teacher/add', component: AddTeacherComponent},
   {path: 'teacher/:id', component: EditTeacherComponent},
   {path: 'teacher', component: GetTeacherComponent},
@@ -32,7 +31,6 @@ const routes: Routes = [
   {path: 'center/studyPrograms', component: StudyProgramComponent},
   {path: 'createCenter', component: CreateCenterComponent},
   {path: 'createSp', component: CreateSpComponent},
-  {path: 'refreshComponent', component: RefreshComponentComponent},
   {path: 'register', component: RegisterComponent}
 
 ];

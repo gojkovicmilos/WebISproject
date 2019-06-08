@@ -1,20 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
-import { StudentService } from '../student.service';
+import { StudentService } from '../student/student.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
-import {Observable} from 'rxjs'; // Angular 6 
-// import {Observable} from 'rxjs/Rx'; // Angular 5
-
-  
-
 
 @Component({
-  selector: 'app-login-student',
-  templateUrl: './login-student.component.html',
-  styleUrls: ['./login-student.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class LoginStudentComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   teacherRole:boolean = false;
   studentRole:boolean = false;
@@ -24,7 +19,6 @@ export class LoginStudentComponent implements OnInit {
   angForm: FormGroup;
   constructor(private fb: FormBuilder, private ss: StudentService, private router: Router, private ls: LoginService) {
     this.createForm();
-    
   }
 
   createForm() {

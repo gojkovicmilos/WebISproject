@@ -1,4 +1,4 @@
-import StudyProgram from './StudyProgram';
+import StudyProgram from '../studyPrograms/StudyProgram';
 
 export default class Center {
     id: number;

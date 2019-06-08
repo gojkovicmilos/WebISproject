@@ -1,7 +1,7 @@
 <div class="container login-container">
   <div class="row">
     <div class="col-md-6 login-form-2">
-      <h3>Create a Center !</h3>
+      <h3>Create Study Program !</h3>
       <form [formGroup]="angForm" novalidate>
         <div class="form-group">
           <label class="col-xs-4">Name: </label>
@@ -14,7 +14,6 @@
             Name is required.
           </div>
         </div>
-
         <div>
           <select [(value)]="selectedCenter" (change)="setCenter($event.target.value)"  >
             <option *ngFor="let c of center;" [value]="c.id">{{c.name}}</option>
@@ -27,7 +26,6 @@
             [ngStyle]="{width:progress.percentage+'%'}">
             {{progress.percentage}}%</div>
         </div>
-
         <label class="btn btn-default">
           <input type="file" (change)="selectFile($event)">
         </label>

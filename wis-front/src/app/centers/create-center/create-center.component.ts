@@ -48,11 +48,4 @@ export class CreateCenterComponent implements OnInit {
     this.selectedFiles = undefined;
     this.router.navigate(['/']);
   }
-
-  // refresh() {
-  //   this.router.navigate(['']);
-  //   this.ngOnInit();
-  // }
-
-
 }

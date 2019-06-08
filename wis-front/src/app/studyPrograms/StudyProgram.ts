@@ -1,5 +1,5 @@
-import YearOfStudy from './YearOfStudy';
-import Center from './Center';
+import YearOfStudy from '../YearOfStudy';
+import Center from '../centers/Center';
 
 export default class StudyProgram {
     id: number;

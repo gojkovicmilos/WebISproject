@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import Center from '../Center';
+import Center from '../../centers/Center';
 import StudyProgram from '../StudyProgram';
-import { CenterService } from '../center.service';
 import { StudyProgramService } from '../study-program.service';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
