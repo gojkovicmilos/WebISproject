@@ -31,6 +31,7 @@ import { CreateCenterComponent } from './centers/create-center/create-center.com
 import { CreateSpComponent } from './studyPrograms/create-study-program/create-sp.component';
 import { RegisterComponent } from './register/register.component';
 import { WebsocketComponent } from './websocket/websocket.component';
+import {CreateYearOfStudyComponent} from './yearOfstudy/create-year-of-study/create-year-of-study.component'
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { WebsocketComponent } from './websocket/websocket.component';
     CreateCenterComponent,
     CreateSpComponent,
     RegisterComponent,
-    WebsocketComponent
+    WebsocketComponent,
+    CreateYearOfStudyComponent
   ],
   imports: [
     BrowserModule,
