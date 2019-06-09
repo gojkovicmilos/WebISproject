@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import YearOfStudy from '../../YearOfStudy';
+import YearOfStudy from '../../yearOfstudy/YearOfStudy';
 import { StudyProgramService } from '../study-program.service';
 import { DataService } from '../../data.service';
 import StudyProgram from '../StudyProgram';
