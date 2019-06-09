@@ -19,7 +19,6 @@ import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.Version;
 
 @Entity
-@Where(clause = "deleted = 'false'")
 public class Teacher {
 
 	@Id
@@ -35,8 +34,7 @@ public class Teacher {
 	@Size(max = 20)
 	private String personalIdentificationNumber;
 
-	@NotNull
-	private Boolean deleted = false;
+	
 
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<ExamTeaching> examTeachings;
@@ -75,7 +73,7 @@ public class Teacher {
 	
 
 	public Teacher(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
-			@Size(max = 20) String personalIdentificationNumber, @NotNull Boolean deleted,
+			@Size(max = 20) String personalIdentificationNumber, 
 			Set<ExamTeaching> examTeachings, Set<CourseTeaching> courseTeachings, Set<Title> title, Address address,
 			Faculty facultyDean, University universityRector, StudyProgram studyProgramHandler, int version,
 			User user) {
@@ -83,7 +81,6 @@ public class Teacher {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.personalIdentificationNumber = personalIdentificationNumber;
-		this.deleted = deleted;
 		this.examTeachings = examTeachings;
 		this.courseTeachings = courseTeachings;
 		this.title = title;
@@ -101,14 +98,13 @@ public class Teacher {
 
 
 	public Teacher(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
-			@Size(max = 20) String personalIdentificationNumber, @NotNull Boolean deleted,
+			@Size(max = 20) String personalIdentificationNumber, 
 			Set<CourseTeaching> courseTeachings, Set<Title> title, Address address, Faculty facultyDean,
 			University universityRector, StudyProgram studyProgramHandler, int version) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.personalIdentificationNumber = personalIdentificationNumber;
-		this.deleted = deleted;
 		this.courseTeachings = courseTeachings;
 		this.title = title;
 		this.address = address;
@@ -117,6 +113,18 @@ public class Teacher {
 		StudyProgramHandler = studyProgramHandler;
 		this.version = version;
 	}
+
+
+
+
+	public Teacher(String firstname2, String lastname2, String personalid, User user2) {
+		this.firstName = firstname2;
+		this.lastName = lastname2;
+		this.personalIdentificationNumber = personalid;
+		this.user = user2;
+	}
+
+
 
 
 
@@ -153,13 +161,7 @@ public class Teacher {
 		this.personalIdentificationNumber = personalIdentificationNumber;
 	}
 
-	public Boolean getDeleted() {
-		return deleted;
-	}
-
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
-	}
+	
 
 	public Set<CourseTeaching> getCourseTeachings() {
 		return courseTeachings;

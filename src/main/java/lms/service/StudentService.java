@@ -8,7 +8,6 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lms.SecurityHash;
 import lms.domain.Course;
 import lms.domain.CourseAttending;
 import lms.domain.Student;

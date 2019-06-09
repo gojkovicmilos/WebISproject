@@ -118,6 +118,14 @@ public class Administrator {
 
 
 	public Administrator() {}
+
+
+
+	public Administrator(String firstname2, String lastname2, User user2) {
+		this.firstname = firstname2;
+		this.lastname = lastname2;
+		this.user = user2;
+	}
 	
 	
 	
