@@ -3,6 +3,8 @@
   <input [(ngModel)]="msg" >
   <button (click)="sent()">Posalji poruku</button>
 
-  <div *ngFor="let el of lista">{{el}}</div>  
+  <div *ngFor="let el of lista">
+    <p>{{el.sender}}: {{el.body}}</p>
+  </div>  
 </div>
 
