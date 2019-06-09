@@ -1,4 +1,4 @@
-import YearOfStudy from '../yearOfstudy/YearOfStudy';
+import YearOfStudy from '../YearOfStudy';
 import Center from '../centers/Center';
 
 export default class StudyProgram {

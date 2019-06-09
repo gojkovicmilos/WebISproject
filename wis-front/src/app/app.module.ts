@@ -30,7 +30,6 @@ import { StudyProgramComponent } from './studyPrograms/study-program/study-progr
 import { CreateCenterComponent } from './centers/create-center/create-center.component';
 import { CreateSpComponent } from './studyPrograms/create-study-program/create-sp.component';
 import { RegisterComponent } from './register/register.component';
-import { CreateYearOfStudyComponent } from './yearOfstudy/create-year-of-study/create-year-of-study.component';
 
 
 @NgModule({
@@ -53,8 +52,7 @@ import { CreateYearOfStudyComponent } from './yearOfstudy/create-year-of-study/c
     StudyProgramComponent,
     CreateCenterComponent,
     CreateSpComponent,
-    RegisterComponent,
-    CreateYearOfStudyComponent
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

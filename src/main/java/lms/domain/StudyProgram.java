@@ -106,7 +106,6 @@ public class StudyProgram {
 		this.center = c;
 	}
 
-
 	public Center getCenter() {
 		return center;
 	}

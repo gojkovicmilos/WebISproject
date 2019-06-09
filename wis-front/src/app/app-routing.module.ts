@@ -15,7 +15,6 @@ import { StudyProgramComponent } from './studyPrograms/study-program/study-progr
 import { CreateCenterComponent } from './centers/create-center/create-center.component';
 import { CreateSpComponent } from './studyPrograms/create-study-program/create-sp.component';
 import { RegisterComponent } from './register/register.component';
-import { CreateYearOfStudyComponent } from './yearOfstudy/create-year-of-study/create-year-of-study.component';
 
 const routes: Routes = [
   {path: 'student/add', component: AddStudentComponent},
@@ -32,8 +31,7 @@ const routes: Routes = [
   {path: 'center/studyPrograms', component: StudyProgramComponent},
   {path: 'createCenter', component: CreateCenterComponent},
   {path: 'createSp', component: CreateSpComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'createYos', component: CreateYearOfStudyComponent}
+  {path: 'register', component: RegisterComponent}
 
 ];
 

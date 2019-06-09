@@ -1,6 +1,5 @@
 package lms.domain;
 
-import java.io.IOException;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,7 +15,6 @@ import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Where;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -64,20 +62,6 @@ public class YearOfStudy {
 		this.title = title;
 	}
 
-
-
-	public YearOfStudy(MultipartFile file, String title2, StudyProgram sp) {
-//		this.pic_name = file.getName();
-//		this.mimetype = file.getContentType();
-//		try {
-//			this.pic = file.getBytes();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		this.title = title2;
-		this.studyProgram = sp;
-	}
 
 
 	public StudyProgram getStudyProgram() {
