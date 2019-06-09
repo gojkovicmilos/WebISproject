@@ -53,6 +53,14 @@ public class StudentYear {
 	}
 
 
+	public StudentYear(LocalDate now, YearOfStudy nextYOS, Student student2) {
+		this.registrationDate = now;
+		this.yearOfStudy = nextYOS;
+		this.student = student2;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
