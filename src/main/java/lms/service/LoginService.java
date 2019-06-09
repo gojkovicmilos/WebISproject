@@ -1,5 +1,6 @@
 package lms.service;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -14,6 +15,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import lms.domain.Student;
 import lms.domain.User;
 import lms.domain.UserPermission;
 import lms.repository.PermissionRepository;
@@ -24,6 +27,9 @@ import lms.utils.TokenUtils;
 public class LoginService {
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	StudentService studentService;
 
 	@Autowired
 	UserRepository userRepository;
@@ -78,9 +84,16 @@ public class LoginService {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
-	public ResponseEntity<User> registerStudent(User user) {
+	public ResponseEntity<User> registerStudent(User user, Student student) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		addPermission(user);
+		
+		try {
+			studentService.addStudent(student);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 
