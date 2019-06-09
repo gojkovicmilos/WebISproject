@@ -53,7 +53,7 @@ export class WebsocketComponent implements OnInit {
     sent(){
       let msg:AppMessage = new AppMessage();
       msg.body = this.msg;
-      msg.sender = 'sender';
+      msg.sender = localStorage.getItem('username');
       msg.receiver = 'receiver';
       this.subject.next(msg);
       console.log('tu sam');

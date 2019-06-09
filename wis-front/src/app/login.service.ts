@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 class LoginRes{
   token:string;
   role:string;
+  username:string;
 } 
 
 class TestRes{
@@ -31,6 +32,7 @@ export class LoginService {
       this.authToken = res.token;
       localStorage.setItem("token", res.token);
       localStorage.setItem("role", res.role);
+      localStorage.setItem("username", res.username);
     });
 
     

@@ -23,6 +23,9 @@ export class HomePageComponent implements OnInit {
     .subscribe((data: Center[]) => {
       this.centers = data;
     });
+
+    if(localStorage.getItem("username").length == 0)
+      localStorage.setItem("username", "Guest");
   }
 
   punjenje(id): void {

@@ -79,6 +79,7 @@ public class LoginService {
 			String role = userService.getUser(user.getUsername()).get().getRole();
 			
 			data.put("role", role);
+			data.put("username", set.getUsername());
 
 			return new ResponseEntity<HashMap<String, String>>(data, HttpStatus.OK);
 
