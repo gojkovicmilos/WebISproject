@@ -12,6 +12,11 @@ export class RegisterComponent implements OnInit {
   angForm: FormGroup;
   role: string;
 
+  showAdminFields:boolean = false;
+  showStudentFields:boolean = false;
+  showTeacherFields:boolean = false;
+
+
   constructor(private fb: FormBuilder, private rs: RegistrationService, private router: Router) { 
     this.createForm();
   }
@@ -27,15 +32,21 @@ export class RegisterComponent implements OnInit {
   }
 
   setStudentRole() {
-    this.role = "ROLE_STUDENT";
+    this.showStudentFields = true;
+    this.showTeacherFields = false;
+    this.showAdminFields = false;
   }
 
   setTeacherRole() {
-    this.role = "ROLE_TEACHER";
+    this.showTeacherFields = true;
+    this.showAdminFields = false;
+    this.showStudentFields = false;
   }
 
   setAdminRole() {
-    this.role = "ROLE_ADMIN"
+    this.showAdminFields = true;
+    this.showTeacherFields = false;
+    this.showStudentFields = false;
   }
 
   register(username: string, password: string) {

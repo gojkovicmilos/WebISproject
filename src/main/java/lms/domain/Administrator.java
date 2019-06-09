@@ -11,7 +11,6 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.Where;
 
 @Entity
-@Where(clause = "deleted = 'false'")
 public class Administrator {
 
 	@Id

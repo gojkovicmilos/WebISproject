@@ -72,6 +72,17 @@ public class LoginService {
 	public ResponseEntity<User> register(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		addPermission(user);
+		
+		
+
+		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
+	
+	public ResponseEntity<User> registerStudent(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		addPermission(user);
+		
+		
 
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
