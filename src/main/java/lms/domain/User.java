@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -24,10 +25,35 @@ public class User {
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<UserPermission> userPermissions;
+	
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Student student;
+	
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Teacher teacher;
+	
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Administrator administrator;
 
 	public User() {
 		
 	}
+	
+	
+
+	public User(Long id, String username, String password, String role, Set<UserPermission> userPermissions,
+			Student student, Teacher teacher, Administrator administrator) {
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.userPermissions = userPermissions;
+		this.student = student;
+		this.teacher = teacher;
+		this.administrator = administrator;
+	}
+
+
 
 	public User(Long id, String username, String password, Set<UserPermission> userPermissions, String role) {
 		super();
@@ -77,5 +103,43 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+
+
+	public Student getStudent() {
+		return student;
+	}
+
+
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+
+
+	public Administrator getAdministrator() {
+		return administrator;
+	}
+
+
+
+	public void setAdministrator(Administrator administrator) {
+		this.administrator = administrator;
+	}
+	
+	
 		
 }

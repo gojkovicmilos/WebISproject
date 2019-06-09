@@ -9,7 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -47,9 +49,33 @@ public class Student {
 
 	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<StudentYear> studentYears;
+	
+	@OneToOne
+    @MapsId
+    private User user;
 
 	public Student() {
 	}
+	
+	
+
+	public Student(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
+			@Size(max = 10) String cardNumber, @NotNull Boolean deleted, @NotNull String pass,
+			Set<CourseAttending> courseAttendings, Set<ExamAttending> examAttendings, Set<StudentYear> studentYears,
+			User user) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.cardNumber = cardNumber;
+		this.deleted = deleted;
+		this.pass = pass;
+		this.courseAttendings = courseAttendings;
+		this.examAttendings = examAttendings;
+		this.studentYears = studentYears;
+		this.user = user;
+	}
+
+
 
 	public Student(@Size(max = 50) String firstName, @Size(max = 50) String lastName,
 			@Size(max = 10) String cardNumber, String pass) {
@@ -148,6 +174,20 @@ public class Student {
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 	}
+	
+	
+
+	public User getUser() {
+		return user;
+	}
+
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
 
 	@Override
 	public boolean equals(Object o) {

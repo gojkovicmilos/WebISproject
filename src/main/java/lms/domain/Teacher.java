@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
@@ -61,11 +62,43 @@ public class Teacher {
 	@Version
 	private int version = 0;
 	
+	@OneToOne
+    @MapsId
+    private User user;
+	
 	public Teacher() {
 	}
 	
 	
 	
+	
+	
+
+	public Teacher(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
+			@Size(max = 20) String personalIdentificationNumber, @NotNull Boolean deleted,
+			Set<ExamTeaching> examTeachings, Set<CourseTeaching> courseTeachings, Set<Title> title, Address address,
+			Faculty facultyDean, University universityRector, StudyProgram studyProgramHandler, int version,
+			User user) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.personalIdentificationNumber = personalIdentificationNumber;
+		this.deleted = deleted;
+		this.examTeachings = examTeachings;
+		this.courseTeachings = courseTeachings;
+		this.title = title;
+		this.address = address;
+		this.facultyDean = facultyDean;
+		this.universityRector = universityRector;
+		StudyProgramHandler = studyProgramHandler;
+		this.version = version;
+		this.user = user;
+	}
+
+
+
+
+
 
 	public Teacher(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
 			@Size(max = 20) String personalIdentificationNumber, @NotNull Boolean deleted,
@@ -187,6 +220,42 @@ public class Teacher {
 	
 	
 	
+
+	public Set<ExamTeaching> getExamTeachings() {
+		return examTeachings;
+	}
+
+
+
+
+
+
+	public void setExamTeachings(Set<ExamTeaching> examTeachings) {
+		this.examTeachings = examTeachings;
+	}
+
+
+
+
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+
+
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+
+
+
 
 	@Override
 	public boolean equals(Object o) {
