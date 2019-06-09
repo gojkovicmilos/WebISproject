@@ -37,8 +37,7 @@ public class Student {
 	@NotNull
 	private Boolean deleted = false;
 	
-	@NotNull
-	private String pass;
+
 
 
 	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
@@ -59,30 +58,13 @@ public class Student {
 	
 	
 
-	public Student(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
-			@Size(max = 10) String cardNumber, @NotNull Boolean deleted, @NotNull String pass,
-			Set<CourseAttending> courseAttendings, Set<ExamAttending> examAttendings, Set<StudentYear> studentYears,
-			User user) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.cardNumber = cardNumber;
-		this.deleted = deleted;
-		this.pass = pass;
-		this.courseAttendings = courseAttendings;
-		this.examAttendings = examAttendings;
-		this.studentYears = studentYears;
-		this.user = user;
-	}
-
-
+	
 
 	public Student(@Size(max = 50) String firstName, @Size(max = 50) String lastName,
 			@Size(max = 10) String cardNumber, String pass) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.cardNumber = cardNumber;
-		this.pass = pass;
 	}
 	
 	
@@ -90,26 +72,31 @@ public class Student {
 	
 
 	public Student(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
-			@Size(max = 10) String cardNumber, @NotNull Boolean deleted, @NotNull String pass,
+			@Size(max = 10) String cardNumber, @NotNull Boolean deleted,
 			Set<CourseAttending> courseAttendings, Set<ExamAttending> examAttendings, Set<StudentYear> studentYears) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.cardNumber = cardNumber;
 		this.deleted = deleted;
-		this.pass = pass;
 		this.courseAttendings = courseAttendings;
 		this.examAttendings = examAttendings;
 		this.studentYears = studentYears;
 	}
 
-	public String getPass() {
-		return pass;
+
+
+
+	public Student(String firstname2, String lastname2, String cardnumber2, User user2) {
+		this.firstName = firstname2;
+		this.lastName = lastname2;
+		this.cardNumber = cardnumber2;
+		this.user = user2;
 	}
 
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
+
+
+
 
 	public Set<ExamAttending> getExamAttendings() {
 		return examAttendings;

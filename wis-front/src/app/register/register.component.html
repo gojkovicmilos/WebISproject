@@ -27,48 +27,87 @@
             Password is required.
           </div>
         </div>
-        
 
-        <label class="col-xs-4">First Name: </label>
-        <input type="text" placeholder="Enter Your First Name" #firstname/>
-
-        <label class="col-xs-4">Last Name: </label>
-        <input type="text" placeholder="Enter Your Last Name" #lastname/>
-
-
-        <div class="btn-group" role="group" aria-label="Log In As:">
-          <button (click)="setStudentRole()" type="button" class="btn btn-outline-dark"><i class="fa fa-user-o"></i> Student</button>
-          <button (click)="setTeacherRole()" type="button" class="btn btn-outline-dark"><i class="fa fa-user"></i> Teacher</button>
-          <button (click)="setAdminRole()" type="button" class="btn btn-outline-dark"><i class="fa fa-user-secret"></i> Admin</button>
+        <div class="form-group">
+          <label class="col-xs-4">Firstname: </label>
+          <input type="text" class="form-control" formControlName="firstname" #firstname
+            placeholder="Enter your firstname" />
+        </div>
+        <div
+          *ngIf="angForm.controls['firstname'].invalid && (angForm.controls['firstname'].dirty || angForm.controls['firstname'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="angForm.controls['firstname'].errors.required">
+            Firstname is required.
+          </div>
         </div>
 
-        <label class="col-xs-4" *ngIf="showStudentFields">Card Number: </label>
-        <input type="text" *ngIf="showStudentFields" placeholder="Enter Your Card Number" #cardnumber/>
 
-        <label class="col-xs-4" *ngIf="showTeacherFields">Personal Identification Number: </label>
-        <input type="text" *ngIf="showTeacherFields" placeholder="Enter Your Personal Identification Number" #personalid/>
+        <div class="form-group">
+          <label class="col-xs-4">Lastname: </label>
+          <input type="text" class="form-control" formControlName="lastname" #lastname
+            placeholder="Enter your lastname" />
+        </div>
+        <div
+          *ngIf="angForm.controls['lastname'].invalid && (angForm.controls['lastname'].dirty || angForm.controls['lastname'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="angForm.controls['lastname'].errors.required">
+            Lastname is required.
+          </div>
+        </div>
+
+        <div class="btn-group" role="group" aria-label="Log In As:">
+          <button (click)="setStudentRole()" type="button" class="btn btn-outline-dark"><i class="fa fa-user-o"></i>
+            Student</button>
+          <button (click)="setTeacherRole()" type="button" class="btn btn-outline-dark"><i class="fa fa-user"></i>
+            Teacher</button>
+          <button (click)="setAdminRole()" type="button" class="btn btn-outline-dark"><i class="fa fa-user-secret"></i>
+            Admin</button>
+        </div>
+
+        <div class="form-group">
+          <label class="col-xs-4">Card Number: </label>
+          <input type="text" class="form-control" formControlName="cardnumber" #cardnumber
+            placeholder="Enter your card number" />
+        </div>
+        <div
+          *ngIf="angForm.controls['cardnumber'].invalid && (angForm.controls['cardnumber'].dirty || angForm.controls['cardnumber'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="angForm.controls['cardnumber'].errors.required">
+            Card numbers is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-xs-4" *ngIf="showTeacherFields">Personal Identification Number: </label>
+          <input type="text" *ngIf="showTeacherFields" placeholder="Enter Your Personal Identification Number"
+            #personalid />
+        </div>
 
 
 
-        
 
         <div class="form-group" style="padding-top: 30px;" *ngIf="showStudentFields">
-          <button (click)="registerStudent(username.value, pass.value, firstname.value, lastname.value, cardnumber.value)" [disabled]="angForm.pristine || angForm.invalid"
-            class="btn btn-outline-dark"><i class="fa fa-user-plus"></i>
+          <button
+            (click)="registerStudent(username.value, pass.value, firstname.value, lastname.value, cardnumber.value)"
+            [disabled]="angForm.pristine || angForm.invalid" class="btn btn-outline-dark"><i
+              class="fa fa-user-plus"></i>
             Register Student
           </button>
         </div>
 
         <div class="form-group" style="padding-top: 30px;" *ngIf="showTeacherFields">
-          <button (click)="registerTeacher(username.value, pass.value, firstname.value, lastname.value, personalid.value)" [disabled]="angForm.pristine || angForm.invalid"
-            class="btn btn-outline-dark"><i class="fa fa-user-plus"></i>
+          <button
+            (click)="registerTeacher(username.value, pass.value, firstname.value, lastname.value, personalid.value)"
+            [disabled]="angForm.pristine || angForm.invalid" class="btn btn-outline-dark"><i
+              class="fa fa-user-plus"></i>
             Register Teacher
           </button>
         </div>
 
         <div class="form-group" style="padding-top: 30px;" *ngIf="showAdminFields">
-          <button (click)="registerAdmin(username.value, pass.value, firstname.value, lastname.value)" [disabled]="angForm.pristine || angForm.invalid"
-            class="btn btn-outline-dark"><i class="fa fa-user-plus"></i>
+          <button (click)="registerAdmin(username.value, pass.value, firstname.value, lastname.value)"
+            [disabled]="angForm.pristine || angForm.invalid" class="btn btn-outline-dark"><i
+              class="fa fa-user-plus"></i>
             Register Admin
           </button>
         </div>

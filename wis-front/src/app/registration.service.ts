@@ -7,13 +7,13 @@ import { HttpClient } from '@angular/common/http';
 export class RegistrationService {
   uri = 'http://localhost:8080/register';
 
+  
+
   constructor(private http: HttpClient) { }
 
   registerStudent(username: string, password: string, role: string, firstname: string, lastname: string, cardnumber:string) {
-    let userForRegistration = {"username": username, "password": password, "role": role};
-    let studentForRegistration = {"firstname": firstname, "lastname": lastname, "cardnumber": cardnumber};
-
-    let objectToSend = {"user": userForRegistration, "student": studentForRegistration};
+    
+    let objectToSend = {"username": username, "password": password, "role": role, "firstname": firstname, "lastname": lastname, "cardnumber": cardnumber};
     this.http.post(`${this.uri}/student`, objectToSend).subscribe(res => {
       console.log(res);
     })

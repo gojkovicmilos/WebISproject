@@ -87,8 +87,6 @@ public class StudentService {
 	}
 
 	public void addStudent(Student s) throws NoSuchAlgorithmException {
-
-		s.setPass(SecurityHash.hashIt(s.getPass()));
 		studentRepository.save(s);
 	}
 
@@ -109,15 +107,6 @@ public class StudentService {
 		}
 	}
 
-	public Student logIn(String card, String pass) throws NoSuchAlgorithmException {
-
-		for (Student s : studentRepository.findAll())
-			if (s.getCardNumber().equals(card))
-				if (SecurityHash.hashIt(pass).equals(s.getPass()))
-					return s;
-
-		return null;
-
-	}
+	
 
 }

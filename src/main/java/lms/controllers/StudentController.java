@@ -89,16 +89,7 @@ public class StudentController {
 		return new ResponseEntity<Student>(HttpStatus.NO_CONTENT);
 	}
 	
-	@PostMapping(value = "/login")
-	public ResponseEntity<Student>logIn(@RequestBody Map<String, String> obj) throws NoSuchAlgorithmException
-	{
-		Student student = studentService.logIn(obj.get("card"), obj.get("pass"));
-		
-		if(student != null)
-			return new ResponseEntity<Student>(student, HttpStatus.OK);
-		else
-			return new ResponseEntity<Student>(student, HttpStatus.NOT_FOUND);
-	}
+	
 	
 	
 

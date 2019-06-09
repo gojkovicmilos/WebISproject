@@ -31,8 +31,9 @@ export class LoginComponent implements OnInit {
   login(username: string, password: string) {
     this.ls.login(username, password);
 //tslint:disable-next-line: deprecation
-    location.reload(true);
+    
     setTimeout(() => {
+      location.reload(true);
       this.router.navigateByUrl('/createCenter', {skipLocationChange: true}).then(() =>
     this.router.navigate(['/']));
     }, 5000);
