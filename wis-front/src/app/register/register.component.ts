@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
   firstname: string;
   lastname: string;
   cardnumber: string;
+  personalid: string;
 
   showAdminFields:boolean = false;
   showStudentFields:boolean = false;
@@ -69,6 +70,18 @@ export class RegisterComponent implements OnInit {
   registerStudent(username: string, password: string, firstname: string, lastname: string, cardnumber: string)
   {
     this.rs.registerStudent(username, password, this.role, firstname, lastname, cardnumber);
+    console.log(this.firstname);
+  }
+
+  registerTeacher(username: string, password: string, firstname: string, lastname: string, personalid: string)
+  {
+    this.rs.registerTeacher(username, password, this.role, firstname, lastname, personalid);
+    console.log(this.firstname);
+  }
+
+  registerAdmin(username: string, password: string, firstname: string, lastname: string)
+  {
+    this.rs.registerAdmin(username, password, this.role, firstname, lastname);
     console.log(this.firstname);
   }
 

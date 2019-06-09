@@ -16,15 +16,13 @@ import lms.repository.PermissionRepository;
 import lms.repository.UserRepository;
 
 @Service
-public class UserService implements CommandLineRunner {
+public class UserService{
 	@Autowired
 	UserRepository userRepository;
 	
 	@Autowired
 	PermissionRepository permissionRepository;
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 
 	public Optional<User> getUser(String username) {
 		return userRepository.getByUsername(username);
@@ -42,19 +40,7 @@ public class UserService implements CommandLineRunner {
 		return userRepository.findAll();
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		User user = new User(null, "admin", "admin", null, "ROLE_ADMIN");
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		user.setUserPermissions(new HashSet<UserPermission>());
-		user.getUserPermissions().add(new UserPermission(null, user, permissionRepository.getByTitle(user.getRole()).get()));
-		userRepository.save(user);
-	}
 	
-	@PreDestroy
-	public void onExit() {
-		userRepository.deleteAll();
-		permissionRepository.deleteAll();
-
-	}
+	
+	
 }

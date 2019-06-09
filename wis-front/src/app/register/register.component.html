@@ -64,7 +64,7 @@
             Admin</button>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" *ngIf="showStudentFields">
           <label class="col-xs-4">Card Number: </label>
           <input type="text" class="form-control" formControlName="cardnumber" #cardnumber
             placeholder="Enter your card number" />
@@ -77,10 +77,17 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="col-xs-4" *ngIf="showTeacherFields">Personal Identification Number: </label>
-          <input type="text" *ngIf="showTeacherFields" placeholder="Enter Your Personal Identification Number"
-            #personalid />
+        <div class="form-group" *ngIf="showTeacherFields">
+          <label class="col-xs-4">Personal ID: </label>
+          <input type="text" class="form-control" formControlName="personalid" #personalid
+            placeholder="Enter your personal id" />
+        </div>
+        <div
+          *ngIf="angForm.controls['personalid'].invalid && (angForm.controls['personalid'].dirty || angForm.controls['personalid'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="angForm.controls['personalid'].errors.required">
+            Personal ID is required.
+          </div>
         </div>
 
 

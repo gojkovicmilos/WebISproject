@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       location.reload(true);
       this.router.navigateByUrl('/createCenter', {skipLocationChange: true}).then(() =>
     this.router.navigate(['/']));
-    }, 5000);
+    }, 2000);
     
   }
   ngOnInit() {

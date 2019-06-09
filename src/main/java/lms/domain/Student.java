@@ -18,7 +18,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Where;
 
 @Entity
-@Where(clause = "deleted = 'false'")
 public class Student {
 
 	@Id
@@ -34,8 +33,7 @@ public class Student {
 	@Size(max = 10)
 	private String cardNumber;
 
-	@NotNull
-	private Boolean deleted = false;
+	
 	
 
 
@@ -72,13 +70,12 @@ public class Student {
 	
 
 	public Student(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
-			@Size(max = 10) String cardNumber, @NotNull Boolean deleted,
+			@Size(max = 10) String cardNumber,
 			Set<CourseAttending> courseAttendings, Set<ExamAttending> examAttendings, Set<StudentYear> studentYears) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.cardNumber = cardNumber;
-		this.deleted = deleted;
 		this.courseAttendings = courseAttendings;
 		this.examAttendings = examAttendings;
 		this.studentYears = studentYears;
@@ -154,13 +151,6 @@ public class Student {
 		this.cardNumber = cardNumber;
 	}
 
-	public Boolean getDeleted() {
-		return deleted;
-	}
-
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
-	}
 	
 	
 

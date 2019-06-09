@@ -1,0 +1,9 @@
+<div style="text-align:center; margin-top: 150px; margin-bottom: 100px">
+
+  <textarea [(ngModel)]="msg" cols="30" rows="10"></textarea>
+  <br>
+  <button (click)="sent()">Send</button>
+
+  <div *ngFor="let el of lista">{{el}}</div>  
+</div>
+

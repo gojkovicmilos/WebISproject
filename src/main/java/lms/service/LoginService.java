@@ -16,7 +16,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import DTO.LoginDTO;
+import lms.domain.Administrator;
 import lms.domain.Student;
+import lms.domain.Teacher;
 import lms.domain.User;
 import lms.domain.UserPermission;
 import lms.repository.PermissionRepository;
@@ -30,6 +33,12 @@ public class LoginService {
 	
 	@Autowired
 	StudentService studentService;
+	
+	@Autowired
+	TeacherService teacherService;
+	
+	@Autowired
+	AdministratorService administratorService;
 
 	@Autowired
 	UserRepository userRepository;
@@ -50,10 +59,13 @@ public class LoginService {
 	private PasswordEncoder passwordEncoder;
 	
 	
-	public ResponseEntity<HashMap<String, String>> login(User user) {
+	public ResponseEntity<HashMap<String, String>> login(LoginDTO set) {
+		
+		User user = userService.getUser(set.getUsername()).get();
+		
 		try {
-			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getUsername(),
-					user.getPassword());
+			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(set.getUsername(),
+					set.getPassword());
 
 			Authentication authentication = authenticationManager.authenticate(token);
 			SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -84,21 +96,6 @@ public class LoginService {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
-	public ResponseEntity<User> registerStudent(User user, Student student) {
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		addPermission(user);
-		
-		try {
-			studentService.addStudent(student);
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-
-		return new ResponseEntity<User>(user, HttpStatus.OK);
-	}
 	
 	
 	public void addPermission(User user) {
