@@ -55,8 +55,8 @@ export class WebsocketComponent implements OnInit {
       msg.body = this.msg;
       msg.sender = 'sender';
       msg.receiver = 'receiver';
-      this.subject.next(JSON.stringify(msg));
-      this.msg = "";
+      this.subject.next(msg);
+      console.log('tu sam');
     }
 
 

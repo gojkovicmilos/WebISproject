@@ -4,6 +4,8 @@
   <br>
   <button (click)="sent()">Send</button>
 
-  <div *ngFor="let el of lista">{{el}}</div>  
+  <div *ngFor="let el of lista">
+    <p>{{el.sender}}: {{el.body}}</p>
+  </div>  
 </div>
 
