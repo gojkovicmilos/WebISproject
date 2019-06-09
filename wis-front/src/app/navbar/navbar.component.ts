@@ -13,12 +13,17 @@ export class NavbarComponent implements OnInit {
   }
 
   showAdminPanel: boolean = false;
+  showTeacherPanel: boolean = false;
+  showStudentPanel: boolean = false;
   showLogin: boolean = false;
   ngOnInit() {
 
     if (localStorage.getItem("role") == "ROLE_ADMIN")
       this.showAdminPanel = true;
-
+    if (localStorage.getItem("role") == "ROLE_TEACHER")
+      this.showTeacherPanel = true;
+    if (localStorage.getItem("role") == "ROLE_STUDENT")
+      this.showStudentPanel = true;
     if (localStorage.getItem("role") == null)
       this.showLogin = true;
 

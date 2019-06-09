@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
       this.router.navigateByUrl('/createCenter', {skipLocationChange: true}).then(() =>
     this.router.navigate(['/']));
-    }, 1000);
+    }, 5000);
     
   }
   ngOnInit() {

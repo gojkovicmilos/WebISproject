@@ -67,6 +67,90 @@
                   </a>
               </div>   
           </li>
+          <li class="nav-item" *ngIf="showTeacherPanel">
+            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+              <i class="fa fa-users" aria-hidden="true"></i> Teacher Panel</a>
+            <div class="dropdown-menu" style="right: auto; left: auto; background-color: black">
+                <a routerLink="student/add" class="nav-link" routerLinkActive="active">
+                  <i class="fa fa-plus-circle"></i>
+                  Create Student
+                </a>
+                <a routerLink="students" class="nav-link" routerLinkActive="active">
+                    <i class="fa fa-th-list"></i>
+                    All Students
+                </a>
+                <a routerLink="findStudentByFirstName" class="nav-link" routerLinkActive="active">
+                    <i class="fa fa-search"></i>
+                    Search Students
+                </a>
+                <a routerLink="teacher/add" class="nav-link" routerLinkActive="active">
+                  <i class="fa fa-plus-circle"></i>
+                  Create Teacher
+                </a>
+                <a routerLink="teacher" class="nav-link" routerLinkActive="active">
+                    <i class="fa fa-th-list"></i>
+                  All Teachers
+                </a>
+                <a routerLink="findTeacherByFirstName" class="nav-link" routerLinkActive="active">
+                    <i class="fa fa-search"></i>
+                  Search Teachers
+                </a>
+                <a routerLink="createCenter" class="nav-link" routerLinkActive="active">
+                  <i class="fa fa-plus-circle"></i>
+                  Create Center
+                </a>
+                <a routerLink="createSp" class="nav-link" routerLinkActive="active">
+                  <i class="fa fa-plus-circle"></i>
+                  Create Study Program
+                </a>
+                <a routerLink="register" class="nav-link" routerLinkActive="active">
+                  <i class="fa fa-plus-circle"></i>
+                  Register User
+                </a>
+            </div>   
+        </li>
+        <li class="nav-item" *ngIf="showStudentPanel">
+          <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+            <i class="fa fa-users" aria-hidden="true"></i> Student Panel</a>
+          <div class="dropdown-menu" style="right: auto; left: auto; background-color: black">
+              <a routerLink="student/add" class="nav-link" routerLinkActive="active">
+                <i class="fa fa-plus-circle"></i>
+                Create Student
+              </a>
+              <a routerLink="students" class="nav-link" routerLinkActive="active">
+                  <i class="fa fa-th-list"></i>
+                  All Students
+              </a>
+              <a routerLink="findStudentByFirstName" class="nav-link" routerLinkActive="active">
+                  <i class="fa fa-search"></i>
+                  Search Students
+              </a>
+              <a routerLink="teacher/add" class="nav-link" routerLinkActive="active">
+                <i class="fa fa-plus-circle"></i>
+                Create Teacher
+              </a>
+              <a routerLink="teacher" class="nav-link" routerLinkActive="active">
+                  <i class="fa fa-th-list"></i>
+                All Teachers
+              </a>
+              <a routerLink="findTeacherByFirstName" class="nav-link" routerLinkActive="active">
+                  <i class="fa fa-search"></i>
+                Search Teachers
+              </a>
+              <a routerLink="createCenter" class="nav-link" routerLinkActive="active">
+                <i class="fa fa-plus-circle"></i>
+                Create Center
+              </a>
+              <a routerLink="createSp" class="nav-link" routerLinkActive="active">
+                <i class="fa fa-plus-circle"></i>
+                Create Study Program
+              </a>
+              <a routerLink="register" class="nav-link" routerLinkActive="active">
+                <i class="fa fa-plus-circle"></i>
+                Register User
+              </a>
+          </div>   
+      </li>
           <li class="nav-item" *ngIf="!showLogin">
             <button style= "height:36px; margin-left: 10px; margin-top: 3px;" (click)="signOut()" class="btn btn-outline-info" aria-hidden="true"><i class="fa fa-sign-out"></i> Sign Out</button>
           </li>
