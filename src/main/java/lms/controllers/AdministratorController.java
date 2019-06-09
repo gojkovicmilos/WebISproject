@@ -1,6 +1,8 @@
 package lms.controllers;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lms.domain.Administrator;
+import lms.domain.Course;
+import lms.domain.Student;
+import lms.domain.StudyProgram;
 import lms.service.AdministratorService;
+import lms.service.CourseService;
+import lms.service.StudentService;
+import lms.service.StudyProgramService;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -26,6 +34,15 @@ public class AdministratorController {
 
 	@Autowired
 	AdministratorService administratorService;
+	
+	@Autowired
+	StudyProgramService studyProgramService;
+	
+	@Autowired
+	CourseService courseService;
+	
+	@Autowired
+	StudentService studentService;
 
 	@RequestMapping()
 	public ResponseEntity<Iterable<Administrator>> getAllAdmin() {
@@ -66,6 +83,36 @@ public class AdministratorController {
 		}
 
 		return new ResponseEntity<Administrator>(HttpStatus.NO_CONTENT);
+	}
+	
+	@GetMapping(value = "/upis/{studyProgramId}/{yearNumber}")
+	public ResponseEntity<Iterable<Student>> getAllStudentsWhoPass(@PathVariable Long studyProgramId, @PathVariable int yearNumber) {
+		
+		Optional<StudyProgram> studyProgram = studyProgramService.getStudyProgramId(studyProgramId);
+	
+		if (studyProgram.isPresent()) {
+			return new ResponseEntity<Iterable<Student>>(administratorService.getAllStudentsWhoPass(studyProgram.get(), yearNumber), HttpStatus.OK);
+		}
+		return new ResponseEntity<Iterable<Student>>(HttpStatus.NOT_FOUND);
+	}
+	
+	@PostMapping(value = "/upis")
+	public ResponseEntity<Boolean>enrollStudentInNextYear(@RequestBody Long studentId, @RequestBody Set<Long> facultativeCourseIds)
+	{
+		
+		Set<Course> facultativeCourses = new HashSet<Course>();
+		
+		for(Long id: facultativeCourseIds)
+			facultativeCourses.add(courseService.getCourseId(id).get());
+		
+		Optional<Student> student = studentService.getStudentById(studentId);
+		
+		if(student.isPresent())
+		{
+			return new ResponseEntity<Boolean>(administratorService.enrollStudentInNextYear(student.get(), facultativeCourses), HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<Boolean>(HttpStatus.NOT_FOUND);
 	}
 
 }
