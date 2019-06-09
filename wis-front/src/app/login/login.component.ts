@@ -29,11 +29,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(username: string, password: string) {
-    this.ls.login(username, password, this.role);
-// tslint:disable-next-line: deprecation
+    this.ls.login(username, password);
+//tslint:disable-next-line: deprecation
     location.reload(true);
-    this.router.navigateByUrl('/createCenter', {skipLocationChange: true}).then(() =>
+    setTimeout(() => {
+      this.router.navigateByUrl('/createCenter', {skipLocationChange: true}).then(() =>
     this.router.navigate(['/']));
+    }, 1000);
+    
   }
   ngOnInit() {
   }
@@ -41,21 +44,6 @@ export class LoginComponent implements OnInit {
   test()
   {
     this.ls.test();
-  }
-
-  setTeacherRole()
-  {
-    this.role = "teacher";
-  }
-
-  setStudentRole()
-  {
-    this.role = "student";
-  }
-
-  setAdminRole()
-  {
-    this.role = "admin";
   }
 
   redirectTo(uri) {

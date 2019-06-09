@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 class LoginRes{
   token:string;
+  role:string;
 } 
 
 class TestRes{
@@ -22,13 +23,14 @@ export class LoginService {
   httpOptions = null;
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string, role:string) {
+  login(username: string, password: string) {
     let user = {"username": username, "password": password}
     this.http.post<LoginRes>(`${this.uri}`, user).subscribe(res => {
       console.log(res.token);
+      console.log(res.role);
       this.authToken = res.token;
       localStorage.setItem("token", res.token);
-      localStorage.setItem("role", role);
+      localStorage.setItem("role", res.role);
     });
 
     

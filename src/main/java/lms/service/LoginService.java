@@ -57,6 +57,10 @@ public class LoginService {
 
 			HashMap<String, String> data = new HashMap<String, String>();
 			data.put("token", userToken);
+			
+			String role = userService.getUser(user.getUsername()).get().getRole();
+			
+			data.put("role", role);
 
 			return new ResponseEntity<HashMap<String, String>>(data, HttpStatus.OK);
 

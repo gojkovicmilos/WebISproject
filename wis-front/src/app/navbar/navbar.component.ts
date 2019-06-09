@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   showLogin: boolean = false;
   ngOnInit() {
 
-    if (localStorage.getItem("role") == "admin")
+    if (localStorage.getItem("role") == "ROLE_ADMIN")
       this.showAdminPanel = true;
 
     if (localStorage.getItem("role") == null)
