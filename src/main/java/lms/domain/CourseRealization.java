@@ -148,6 +148,20 @@ public class CourseRealization {
 		this.endDate = endDate;
 	}
 	
+	
+	
+	public Set<Evaluation> getEvaluations() {
+		return evaluations;
+	}
+
+
+
+	public void setEvaluations(Set<Evaluation> evaluations) {
+		this.evaluations = evaluations;
+	}
+
+
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {

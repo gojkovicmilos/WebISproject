@@ -12,6 +12,7 @@ import DTO.CourseGradeDTO;
 import DTO.EvaluationPointsDTO;
 import lms.domain.Course;
 import lms.domain.CourseAttending;
+import lms.domain.Evaluation;
 import lms.domain.EvaluationAttending;
 import lms.domain.Student;
 import lms.domain.StudentYear;
@@ -77,12 +78,16 @@ public class StudentService {
 	}
 	
 	
-	public Set<EvaluationPointsDTO>findAllEvaluations(StudentYear studentYear)
+	public Set<EvaluationPointsDTO>findAllEvaluations(CourseAttending courseAttending)
 	{
 		Set<EvaluationPointsDTO> ret = new HashSet<>();
 		
-		for(EvaluationAttending ea: studentYear.getEvaluationAttendings())
-			ret.add(new EvaluationPointsDTO(ea.getEvaluation().getEvaluationType(), ea.getEvaluation().getTotalPoints(), ea.getAchievedPoints()));
+		for(Evaluation e: courseAttending.getCourseRealization().getEvaluations())
+			for(EvaluationAttending ea: e.getEvaluationAttendings())
+				if(ea.getStudentYear().getStudent() == courseAttending.getStudent())
+					ret.add(new EvaluationPointsDTO(e.getEvaluationType(), e.getTotalPoints(), ea.getAchievedPoints()));
+			
+			
 		
 		
 		return ret;
