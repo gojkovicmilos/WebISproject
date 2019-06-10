@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/createCenter', {skipLocationChange: true}).then(() =>
     this.router.navigate(['/']));
     }, 2000);
+
+    localStorage.setItem("username", username);
     
   }
   ngOnInit() {
