@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import lms.domain.Course;
-import lms.domain.StudyProgram;
 import lms.domain.YearOfStudy;
 import lms.repository.CourseRepository;
 import lms.service.CourseService;
