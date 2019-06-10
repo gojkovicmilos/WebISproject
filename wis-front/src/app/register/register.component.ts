@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  angForm: FormGroup;
+  angFormStudent: FormGroup;
+  angFormTeacher: FormGroup;
+  angFormAdmin: FormGroup;
+
   role: string;
   username: string;
   password: string;
@@ -24,28 +27,48 @@ export class RegisterComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private rs: RegistrationService, private router: Router) { 
-    this.createForm();
   }
 
   ngOnInit() {
   }
 
-  createForm() {
-    this.angForm = this.fb.group({
+  createFormStudent() {
+    this.angFormStudent = this.fb.group({
       username: ['', Validators.required ],
       pass: ['', Validators.required],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
-      cardnumber: [],
-      personalid: []
+      cardnumber: ['', Validators.required]
     });
   }
+
+  createFormTeacher() {
+    this.angFormTeacher = this.fb.group({
+      username: ['', Validators.required ],
+      pass: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      personalid: ['', Validators.required]
+    });
+  }
+
+  createFormAdmin() {
+    this.angFormStudent = this.fb.group({
+      username: ['', Validators.required ],
+      pass: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required]
+    });
+  }
+
+
 
   setStudentRole() {
     this.showStudentFields = true;
     this.showTeacherFields = false;
     this.showAdminFields = false;
     this.role = "ROLE_STUDENT";
+    this.createFormStudent();
   }
 
   setTeacherRole() {
@@ -53,6 +76,7 @@ export class RegisterComponent implements OnInit {
     this.showAdminFields = false;
     this.showStudentFields = false;
     this.role = "ROLE_TEACHER";
+    this.createFormTeacher();
   }
 
   setAdminRole() {
@@ -60,6 +84,7 @@ export class RegisterComponent implements OnInit {
     this.showTeacherFields = false;
     this.showStudentFields = false;
     this.role = "ROLE_ADMIN";
+    this.createFormAdmin();
   }
 
   register(username: string, password: string) {
