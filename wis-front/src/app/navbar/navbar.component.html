@@ -25,7 +25,7 @@
           <li class="nav-item">
             <app-modal-basic></app-modal-basic>
           </li>
-          <li class="nav-item" *ngIf="showGroupChat">
+          <li class="nav-item" *ngIf="!showLogin">
               <a class="nav-link" href="chat"> 
                 <i class="fa fa-comment" aria-hidden="true"></i> Group Chat</a>
             </li>
@@ -64,10 +64,6 @@
                   <a routerLink="createSp" class="nav-link" routerLinkActive="active">
                     <i class="fa fa-plus-circle"></i>
                     Create Study Program
-                  </a>
-                  <a routerLink="register" class="nav-link" routerLinkActive="active">
-                    <i class="fa fa-plus-circle"></i>
-                    Register User
                   </a>
                   <a routerLink="register" class="nav-link" routerLinkActive="active">
                     <i class="fa fa-plus-circle"></i>
