@@ -34,6 +34,8 @@ export class WebsocketComponent implements OnInit {
   }
 
   private subject;
+  username:string = localStorage.getItem("username");
+  receiver: string;
   private msg = "";
   private lista:AppMessage[] = [];
 
@@ -55,6 +57,15 @@ export class WebsocketComponent implements OnInit {
       msg.body = this.msg;
       msg.sender = localStorage.getItem('username');
       msg.receiver = 'receiver';
+      this.subject.next(msg);
+      console.log('tu sam');
+    }
+
+    sentPrivate(){
+      let msg:AppMessage = new AppMessage();
+      msg.body = this.msg;
+      msg.sender = localStorage.getItem('username');
+      msg.receiver = this.receiver;
       this.subject.next(msg);
       console.log('tu sam');
     }
