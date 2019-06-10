@@ -4,24 +4,34 @@ import lms.domain.Course;
 
 public class CourseGradeDTO {
 	
-	private Course course;
+	private String course;
 	private int grade;
 	
 	public CourseGradeDTO() {
 	}
 
-	public CourseGradeDTO(Course course, int grade) {
+	
+
+	public CourseGradeDTO(String course, int grade) {
 		this.course = course;
 		this.grade = grade;
 	}
 
-	public Course getCourse() {
+	
+	
+
+
+	public String getCourse() {
 		return course;
 	}
 
-	public void setCourse(Course course) {
+
+
+	public void setCourse(String course) {
 		this.course = course;
 	}
+
+
 
 	public int getGrade() {
 		return grade;

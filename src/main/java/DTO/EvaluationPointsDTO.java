@@ -4,25 +4,32 @@ import lms.domain.EvaluationType;
 
 public class EvaluationPointsDTO {
 	
-	private EvaluationType evaluationType;
+	private String evaluationType;
 	private int maxPoints;
 	private int pointsAchieved;
 	
 	public EvaluationPointsDTO() {
 	}
 	
-	public EvaluationPointsDTO(EvaluationType evaluationType, int maxPoints, int pointsAchieved) {
+	
+	public EvaluationPointsDTO(String evaluationType, int maxPoints, int pointsAchieved) {
 		this.evaluationType = evaluationType;
 		this.maxPoints = maxPoints;
 		this.pointsAchieved = pointsAchieved;
 	}
+
 	
-	public EvaluationType getEvaluationType() {
+
+	public String getEvaluationType() {
 		return evaluationType;
 	}
-	public void setEvaluationType(EvaluationType evaluationType) {
+
+
+	public void setEvaluationType(String evaluationType) {
 		this.evaluationType = evaluationType;
 	}
+
+
 	public int getMaxPoints() {
 		return maxPoints;
 	}

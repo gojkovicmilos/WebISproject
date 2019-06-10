@@ -74,7 +74,7 @@ public class StudentService {
 		Set<CourseGradeDTO> ret = new HashSet<>();
 
 		for (CourseAttending courseAttending : student.getCourseAttendings())
-			ret.add(new CourseGradeDTO(courseAttending.getCourseRealization().getCourse(), courseAttending.getGrade()));
+			ret.add(new CourseGradeDTO(courseAttending.getCourseRealization().getCourse().getTitle(), courseAttending.getGrade()));
 
 		return ret;
 
@@ -91,7 +91,7 @@ public class StudentService {
 		for(Evaluation e: ca.getCourseRealization().getEvaluations())
 			for(EvaluationAttending ea: e.getEvaluationAttendings())
 				if(ea.getStudentYear().getStudent() == ca.getStudent())
-					ret.add(new EvaluationPointsDTO(e.getEvaluationType(), e.getTotalPoints(), ea.getAchievedPoints()));
+					ret.add(new EvaluationPointsDTO(e.getEvaluationType().getTitle(), e.getTotalPoints(), ea.getAchievedPoints()));
 			
 			
 		
