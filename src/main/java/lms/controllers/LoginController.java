@@ -24,6 +24,7 @@ import lms.domain.Administrator;
 import lms.domain.Student;
 import lms.domain.Teacher;
 import lms.domain.User;
+import lms.repository.TeacherRepository;
 import lms.service.AdministratorService;
 import lms.service.LoginService;
 import lms.service.StudentService;
@@ -48,6 +49,9 @@ public class LoginController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	TeacherRepository teacherRepository;
 	
 	@Autowired
 	AdministratorService administratorService;
@@ -84,7 +88,6 @@ public class LoginController {
 		try {
 			studentService.addStudent(student);
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
