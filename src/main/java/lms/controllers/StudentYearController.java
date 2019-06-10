@@ -42,7 +42,7 @@ public class StudentYearController {
 	}
 
 	@PostMapping
-	@Secured("ROLE_ADMIN")
+	//@Secured("ROLE_ADMIN")
 	public ResponseEntity<StudentYear> addStudentYear(@RequestBody StudentYear studentYear) {
 
 		studentYearService.addStudentYear(studentYear);

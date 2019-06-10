@@ -1,11 +1,14 @@
 package lms.domain;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class EvaluationType {
@@ -16,17 +19,21 @@ public class EvaluationType {
 	
 	private String title;
 	
-	@OneToOne( cascade = CascadeType.ALL)
-	private Evaluation evaluation;
+	@OneToMany(mappedBy = "evaluationType", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private Set<Evaluation> evaluations;
 
 	public EvaluationType() {
 	}
 
-	public EvaluationType(Long id, String title, Evaluation evaluation) {
+	
+
+	public EvaluationType(Long id, String title, Set<Evaluation> evaluations) {
 		this.id = id;
 		this.title = title;
-		this.evaluation = evaluation;
+		this.evaluations = evaluations;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -44,13 +51,19 @@ public class EvaluationType {
 		this.title = title;
 	}
 
-	public Evaluation getEvaluation() {
-		return evaluation;
+
+
+	public Set<Evaluation> getEvaluations() {
+		return evaluations;
 	}
 
-	public void setEvaluation(Evaluation evaluation) {
-		this.evaluation = evaluation;
+
+
+	public void setEvaluations(Set<Evaluation> evaluations) {
+		this.evaluations = evaluations;
 	}
+
+	
 	
 	
 	

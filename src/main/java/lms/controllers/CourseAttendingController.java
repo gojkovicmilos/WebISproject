@@ -42,7 +42,7 @@ public class CourseAttendingController {
 	}
 
 	@PostMapping
-	@Secured("ROLE_ADMIN")
+	//@Secured("ROLE_ADMIN")
 	public ResponseEntity<CourseAttending> addCourseAttending(@RequestBody CourseAttending courseAttending) {
 
 		courseAttendingService.addCourseAttending(courseAttending);

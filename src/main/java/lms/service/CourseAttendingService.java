@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lms.domain.Course;
 import lms.domain.CourseAttending;
+import lms.domain.Student;
 import lms.repository.CourseAttendingRepository;
 
 @Service
@@ -27,6 +29,14 @@ public class CourseAttendingService {
 
 	public Optional<CourseAttending> getCourseAttendingId(Long id) {
 		return courseAttendingRepository.findById(id);
+	}
+	
+	public CourseAttending getCourseAttendingSubjectStudent(Course course, Student student)
+	{
+		for(CourseAttending ca: courseAttendingRepository.findAll())
+			if(ca.getStudent() == student && ca.getCourseRealization().getCourse() == course)
+				return ca;
+		return null;
 	}
 
 	public void removeCourseAttending(Long id) {

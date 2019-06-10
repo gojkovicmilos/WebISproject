@@ -1,6 +1,10 @@
 package lms.controllers;
 
+import java.security.NoSuchAlgorithmException;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.NoSuchAlgorithmException;
-import java.util.Map;
-import java.util.Optional;
-import org.springframework.http.HttpStatus;
+import DTO.CourseGradeDTO;
+import DTO.EvaluationPointsDTO;
+import lms.domain.Course;
 import lms.domain.Student;
+import lms.service.CourseService;
 import lms.service.StudentService;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
@@ -27,6 +31,9 @@ public class StudentController {
 	
 	@Autowired
 	StudentService studentService;
+	
+	@Autowired
+	CourseService courseService;
 	
 	@GetMapping
 	public ResponseEntity<Iterable<Student>> getAllStudent() {
@@ -41,6 +48,36 @@ public class StudentController {
 		}
 		return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
 	}
+	
+	@GetMapping(value = "/{id}/findallcurrentcourses")
+	public ResponseEntity<Iterable<Course>> findAllCurrentCourses(@PathVariable Long id) {
+		Optional<Student> student = studentService.getStudentById(id);
+		if(student.isPresent()) {
+			return new ResponseEntity<Iterable<Course>>(studentService.findAllCurrentCourses(student.get()), HttpStatus.OK);
+		}
+		return new ResponseEntity<Iterable<Course>>(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping(value = "/{id}/findallfinishedcourses")
+	public ResponseEntity<Iterable<CourseGradeDTO>> findAllFinishedCourses(@PathVariable Long id) {
+		Optional<Student> student = studentService.getStudentById(id);
+		if(student.isPresent()) {
+			return new ResponseEntity<Iterable<CourseGradeDTO>>(studentService.findAllFinishedCourses(student.get()), HttpStatus.OK);
+		}
+		return new ResponseEntity<Iterable<CourseGradeDTO>>(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping(value = "/{ids}/{idp}/findallevaluations")
+	public ResponseEntity<Iterable<EvaluationPointsDTO>> findAllEvaluations(@PathVariable Long ids, @PathVariable Long idp) {
+		Optional<Student> student = studentService.getStudentById(ids);
+		Optional<Course> course = courseService.getCourseId(idp);
+		if(student.isPresent() && course.isPresent() ) {
+			return new ResponseEntity<Iterable<EvaluationPointsDTO>>(studentService.findAllEvaluations(course.get(), student.get()), HttpStatus.OK);
+		}
+		return new ResponseEntity<Iterable<EvaluationPointsDTO>>(HttpStatus.NOT_FOUND);
+	}
+	
+	
 	
 	@PostMapping
 	@Secured("ROLE_ADMIN")

@@ -42,7 +42,7 @@ public class CourseTeachingController {
 	}
 
 	@PostMapping
-	@Secured("ROLE_ADMIN")
+	//@Secured("ROLE_ADMIN")
 	public ResponseEntity<CourseTeaching> addCourseTeaching(@RequestBody CourseTeaching courseTeaching) {
 
 		courseTeachingService.addCourseTeaching(courseTeaching);

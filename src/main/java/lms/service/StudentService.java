@@ -33,6 +33,9 @@ public class StudentService {
 
 	@Autowired
 	CourseAttendingRepository courseAttendingRepository;
+	
+	@Autowired
+	CourseAttendingService courseAttendingService;
 
 	@Autowired
 	CourseRepository courseRepository;
@@ -78,13 +81,16 @@ public class StudentService {
 	}
 	
 	
-	public Set<EvaluationPointsDTO>findAllEvaluations(CourseAttending courseAttending)
+	public Set<EvaluationPointsDTO>findAllEvaluations(Course course, Student student)
 	{
+		
+		CourseAttending ca = courseAttendingService.getCourseAttendingSubjectStudent(course, student);
+		
 		Set<EvaluationPointsDTO> ret = new HashSet<>();
 		
-		for(Evaluation e: courseAttending.getCourseRealization().getEvaluations())
+		for(Evaluation e: ca.getCourseRealization().getEvaluations())
 			for(EvaluationAttending ea: e.getEvaluationAttendings())
-				if(ea.getStudentYear().getStudent() == courseAttending.getStudent())
+				if(ea.getStudentYear().getStudent() == ca.getStudent())
 					ret.add(new EvaluationPointsDTO(e.getEvaluationType(), e.getTotalPoints(), ea.getAchievedPoints()));
 			
 			

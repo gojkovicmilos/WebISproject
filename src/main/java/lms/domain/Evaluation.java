@@ -26,8 +26,7 @@ public class Evaluation {
 	@OneToMany(mappedBy = "evaluation", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<EvaluationAttending> evaluationAttendings;
 	
-	@OneToOne
-	@MapsId
+	@ManyToOne(fetch = FetchType.LAZY)
 	private EvaluationType evaluationType;
 	
 	private LocalDate startDate;
