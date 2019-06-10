@@ -1,5 +1,6 @@
 package lms.domain;
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Set;
 
@@ -9,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
@@ -16,8 +18,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Where;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 //sss
 @Entity
 @Where(clause = "deleted = 'false'")
@@ -32,44 +36,43 @@ public class Course {
 
 	@Size(max = 50)
 	private String title;
-	
+
 	private int ects;
-	
+
 	private boolean obligatory;
-	
+
 	private int numberOfLectures;
 
 	private int numberOfExcercises;
-	
+
 	@Version
 	private int version = 0;
-	
+
 	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseRealization> courseRealizations;
-	
+
 	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<ExamRealization> ExamRealizations;
-	
+
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	private YearOfStudy yearOfStudy;
-	
-	
-	private String link;
-	
-	private String img_url;
-	
-	
-	
-	
+
+	private String pic_name;
+
+	private String mimetype;
+
+	@Lob
+	private byte[] pic;
+
 	public Course() {
 	}
 
-	
-
 	public Course(Long id, @NotNull Boolean deleted, @Size(max = 50) String title, int ects, boolean obligatory,
 			int numberOfLectures, int numberOfExcercises, int version, Set<CourseRealization> courseRealizations,
-			Set<ExamRealization> examRealizations, YearOfStudy yearOfStudy, String link, String img_url) {
+			Set<ExamRealization> examRealizations, YearOfStudy yearOfStudy, String pic_name, String mimetype,
+			byte[] pic) {
+		super();
 		this.id = id;
 		this.deleted = deleted;
 		this.title = title;
@@ -81,23 +84,31 @@ public class Course {
 		this.courseRealizations = courseRealizations;
 		ExamRealizations = examRealizations;
 		this.yearOfStudy = yearOfStudy;
-		this.link = link;
-		this.img_url = img_url;
+		this.pic_name = pic_name;
+		this.mimetype = mimetype;
+		this.pic = pic;
 	}
 
-
+	public Course(MultipartFile file, String title2, YearOfStudy yos) {
+		this.pic_name = file.getName();
+		this.mimetype = file.getContentType();
+		try {
+			this.pic = file.getBytes();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.title = title2;
+		this.yearOfStudy = yos;
+	}
 
 	public Set<ExamRealization> getExamRealizations() {
 		return ExamRealizations;
 	}
 
-
-
 	public void setExamRealizations(Set<ExamRealization> examRealizations) {
 		ExamRealizations = examRealizations;
 	}
-
-
 
 	public YearOfStudy getYearOfStudy() {
 		return yearOfStudy;
@@ -178,27 +189,30 @@ public class Course {
 	public void setNumberOfExcercises(int numberOfExcercises) {
 		this.numberOfExcercises = numberOfExcercises;
 	}
-	
 
-	public String getLink() {
-		return link;
+	public String getPic_name() {
+		return pic_name;
 	}
 
-
-	public void setLink(String link) {
-		this.link = link;
+	public void setPic_name(String pic_name) {
+		this.pic_name = pic_name;
 	}
 
-
-	public String getImg_url() {
-		return img_url;
+	public String getMimetype() {
+		return mimetype;
 	}
 
-
-	public void setImg_url(String img_url) {
-		this.img_url = img_url;
+	public void setMimetype(String mimetype) {
+		this.mimetype = mimetype;
 	}
 
+	public byte[] getPic() {
+		return pic;
+	}
+
+	public void setPic(byte[] pic) {
+		this.pic = pic;
+	}
 
 	@Override
 	public boolean equals(Object o) {

@@ -1,4 +1,3 @@
-import Course from '../Course';
 import StudyProgram from '../studyPrograms/StudyProgram';
 
 export default class YearOfStudy {

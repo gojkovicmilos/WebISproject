@@ -1,171 +1,178 @@
-<nav class="navbar navbar-expand-sm" style="background: #090a11;" >
-    <div class="container">
-      <a class="navbar-brand" routerLink=""> 
-        <i class="fa fa-home" aria-hidden="true"></i> Home
-      </a>
-      <button class="navbar-toggler" type="button" style="color: aliceblue"  data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon">
-          <i class="fa fa-navicon"></i>
-        </span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item" *ngIf="showLogin">
-            <a class="nav-link" routerLink="student/login">
-              <i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"> 
-              <i class="fa fa-university" aria-hidden="true"></i> About University</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"> 
-              <i class="fa fa-phone" aria-hidden="true"></i> Contact</a>
-          </li>
-          <li class="nav-item">
-            <app-modal-basic></app-modal-basic>
-          </li>
-          <li class="nav-item" *ngIf="!showLogin">
-              <a class="nav-link" href="chat"> 
-                <i class="fa fa-comment" aria-hidden="true"></i> Group Chat</a>
-            </li>
-          <li class="nav-item" *ngIf="showAdminPanel">
-              <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
-                <i class="fa fa-users" aria-hidden="true"></i> Admin Panel</a>
-              <div class="dropdown-menu" style="right: auto; left: auto; background-color: black">
-                  <a routerLink="student/add" class="nav-link" routerLinkActive="active">
-                    <i class="fa fa-plus-circle"></i>
-                    Create Student
-                  </a>
-                  <a routerLink="students" class="nav-link" routerLinkActive="active">
-                      <i class="fa fa-th-list"></i>
-                      All Students
-                  </a>
-                  <a routerLink="findStudentByFirstName" class="nav-link" routerLinkActive="active">
-                      <i class="fa fa-search"></i>
-                      Search Students
-                  </a>
-                  <a routerLink="teacher/add" class="nav-link" routerLinkActive="active">
-                    <i class="fa fa-plus-circle"></i>
-                    Create Teacher
-                  </a>
-                  <a routerLink="teacher" class="nav-link" routerLinkActive="active">
-                      <i class="fa fa-th-list"></i>
-                    All Teachers
-                  </a>
-                  <a routerLink="findTeacherByFirstName" class="nav-link" routerLinkActive="active">
-                      <i class="fa fa-search"></i>
-                    Search Teachers
-                  </a>
-                  <a routerLink="createCenter" class="nav-link" routerLinkActive="active">
-                    <i class="fa fa-plus-circle"></i>
-                    Create Center
-                  </a>
-                  <a routerLink="createSp" class="nav-link" routerLinkActive="active">
-                    <i class="fa fa-plus-circle"></i>
-                    Create Study Program
-                  </a>
-                  <a routerLink="register" class="nav-link" routerLinkActive="active">
-                    <i class="fa fa-plus-circle"></i>
-                    Register User
-                  </a>
-                  <a routerLink="createYos" class="nav-link" routerLinkActive="active">
-                    <i class="fa fa-plus-circle"></i>
-                    Create Year Of Study
-                  </a>
-              </div>   
-          </li>
-          <li class="nav-item" *ngIf="showTeacherPanel">
-            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
-              <i class="fa fa-users" aria-hidden="true"></i> Teacher Panel</a>
-            <div class="dropdown-menu" style="right: auto; left: auto; background-color: black">
-                <a routerLink="student/add" class="nav-link" routerLinkActive="active">
-                  <i class="fa fa-plus-circle"></i>
-                  Create Student
-                </a>
-                <a routerLink="students" class="nav-link" routerLinkActive="active">
-                    <i class="fa fa-th-list"></i>
-                    All Students
-                </a>
-                <a routerLink="findStudentByFirstName" class="nav-link" routerLinkActive="active">
-                    <i class="fa fa-search"></i>
-                    Search Students
-                </a>
-                <a routerLink="teacher/add" class="nav-link" routerLinkActive="active">
-                  <i class="fa fa-plus-circle"></i>
-                  Create Teacher
-                </a>
-                <a routerLink="teacher" class="nav-link" routerLinkActive="active">
-                    <i class="fa fa-th-list"></i>
-                  All Teachers
-                </a>
-                <a routerLink="findTeacherByFirstName" class="nav-link" routerLinkActive="active">
-                    <i class="fa fa-search"></i>
-                  Search Teachers
-                </a>
-                <a routerLink="createCenter" class="nav-link" routerLinkActive="active">
-                  <i class="fa fa-plus-circle"></i>
-                  Create Center
-                </a>
-                <a routerLink="createSp" class="nav-link" routerLinkActive="active">
-                  <i class="fa fa-plus-circle"></i>
-                  Create Study Program
-                </a>
-                <a routerLink="register" class="nav-link" routerLinkActive="active">
-                  <i class="fa fa-plus-circle"></i>
-                  Register User
-                </a>
-            </div>   
+<nav class="navbar navbar-expand-sm" style="background: #090a11;">
+  <div class="container">
+    <a class="navbar-brand" routerLink="">
+      <i class="fa fa-home" aria-hidden="true"></i> Home
+    </a>
+    <button class="navbar-toggler" type="button" style="color: aliceblue" data-toggle="collapse"
+      data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon">
+        <i class="fa fa-navicon"></i>
+      </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" *ngIf="showLogin">
+          <a class="nav-link" routerLink="student/login">
+            <i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fa fa-university" aria-hidden="true"></i> About University</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fa fa-phone" aria-hidden="true"></i> Contact</a>
+        </li>
+        <li class="nav-item">
+          <app-modal-basic></app-modal-basic>
+        </li>
+        <li class="nav-item" *ngIf="!showLogin">
+          <a class="nav-link" href="chat">
+            <i class="fa fa-comment" aria-hidden="true"></i> Group Chat</a>
+        </li>
+        <li class="nav-item" *ngIf="showAdminPanel">
+          <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+            <i class="fa fa-users" aria-hidden="true"></i> Admin Panel</a>
+          <div class="dropdown-menu" style="right: auto; left: auto; background-color: black">
+            <a routerLink="register" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Register User
+            </a>
+            <a routerLink="student/add" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Create Student
+            </a>
+            <a routerLink="students" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-th-list"></i>
+              All Students
+            </a>
+            <a routerLink="findStudentByFirstName" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-search"></i>
+              Search Students
+            </a>
+            <a routerLink="teacher/add" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Create Teacher
+            </a>
+            <a routerLink="teacher" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-th-list"></i>
+              All Teachers
+            </a>
+            <a routerLink="findTeacherByFirstName" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-search"></i>
+              Search Teachers
+            </a>
+            <a routerLink="createCenter" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Create Centers
+            </a>
+            <a routerLink="createSp" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Create Study Programs
+            </a>
+            <a routerLink="createYos" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Create Years Of Study
+            </a>
+            <a routerLink="createCourse" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Create Subjects
+            </a>
+          </div>
+        </li>
+        <li class="nav-item" *ngIf="showTeacherPanel">
+          <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+            <i class="fa fa-users" aria-hidden="true"></i> Teacher Panel</a>
+          <div class="dropdown-menu" style="right: auto; left: auto; background-color: black">
+            <a routerLink="student/add" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Create Student
+            </a>
+            <a routerLink="students" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-th-list"></i>
+              All Students
+            </a>
+            <a routerLink="findStudentByFirstName" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-search"></i>
+              Search Students
+            </a>
+            <a routerLink="teacher/add" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Create Teacher
+            </a>
+            <a routerLink="teacher" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-th-list"></i>
+              All Teachers
+            </a>
+            <a routerLink="findTeacherByFirstName" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-search"></i>
+              Search Teachers
+            </a>
+            <a routerLink="createCenter" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Create Center
+            </a>
+            <a routerLink="createSp" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Create Study Program
+            </a>
+            <a routerLink="register" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Register User
+            </a>
+          </div>
         </li>
         <li class="nav-item" *ngIf="showStudentPanel">
           <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
             <i class="fa fa-users" aria-hidden="true"></i> Student Panel</a>
           <div class="dropdown-menu" style="right: auto; left: auto; background-color: black">
-              <a routerLink="student/add" class="nav-link" routerLinkActive="active">
-                <i class="fa fa-plus-circle"></i>
-                Create Student
-              </a>
-              <a routerLink="students" class="nav-link" routerLinkActive="active">
-                  <i class="fa fa-th-list"></i>
-                  All Students
-              </a>
-              <a routerLink="findStudentByFirstName" class="nav-link" routerLinkActive="active">
-                  <i class="fa fa-search"></i>
-                  Search Students
-              </a>
-              <a routerLink="teacher/add" class="nav-link" routerLinkActive="active">
-                <i class="fa fa-plus-circle"></i>
-                Create Teacher
-              </a>
-              <a routerLink="teacher" class="nav-link" routerLinkActive="active">
-                  <i class="fa fa-th-list"></i>
-                All Teachers
-              </a>
-              <a routerLink="findTeacherByFirstName" class="nav-link" routerLinkActive="active">
-                  <i class="fa fa-search"></i>
-                Search Teachers
-              </a>
-              <a routerLink="createCenter" class="nav-link" routerLinkActive="active">
-                <i class="fa fa-plus-circle"></i>
-                Create Center
-              </a>
-              <a routerLink="createSp" class="nav-link" routerLinkActive="active">
-                <i class="fa fa-plus-circle"></i>
-                Create Study Program
-              </a>
-              <a routerLink="register" class="nav-link" routerLinkActive="active">
-                <i class="fa fa-plus-circle"></i>
-                Register User
-              </a>
-          </div>   
-      </li>
-          <li class="nav-item" *ngIf="!showLogin">
-            <button style= "height:36px; margin-left: 10px; margin-top: 3px;" (click)="signOut()" class="btn btn-outline-info" aria-hidden="true"><i class="fa fa-sign-out"></i> Sign Out</button>
-          </li>
-        </ul>
-      </div>
+            <a routerLink="student/add" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Create Student
+            </a>
+            <a routerLink="students" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-th-list"></i>
+              All Students
+            </a>
+            <a routerLink="findStudentByFirstName" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-search"></i>
+              Search Students
+            </a>
+            <a routerLink="teacher/add" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Create Teacher
+            </a>
+            <a routerLink="teacher" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-th-list"></i>
+              All Teachers
+            </a>
+            <a routerLink="findTeacherByFirstName" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-search"></i>
+              Search Teachers
+            </a>
+            <a routerLink="createCenter" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Create Center
+            </a>
+            <a routerLink="createSp" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Create Study Program
+            </a>
+            <a routerLink="register" class="nav-link" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i>
+              Register User
+            </a>
+          </div>
+        </li>
+        <li class="nav-item" *ngIf="!showLogin">
+          <button style="height:36px; margin-left: 10px; margin-top: 3px;" (click)="signOut()"
+            class="btn btn-outline-info" aria-hidden="true"><i class="fa fa-sign-out"></i> Sign Out</button>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
 
 
 
@@ -189,7 +196,7 @@
 
 
 
-  <!-- <nav class="navbar navbar-expand-sm bg-light">
+<!-- <nav class="navbar navbar-expand-sm bg-light">
    <div class="container-fluid">
     <ul class="navbar-nav">
       

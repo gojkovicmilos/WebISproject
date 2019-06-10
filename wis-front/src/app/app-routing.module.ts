@@ -17,6 +17,7 @@ import { CreateSpComponent } from './studyPrograms/create-study-program/create-s
 import { RegisterComponent } from './register/register.component';
 import { WebsocketComponent } from './websocket/websocket.component';
 import { CreateYearOfStudyComponent } from './yearOfstudy/create-year-of-study/create-year-of-study.component';
+import { CreateCourseComponent } from './courses/create-course/create-course.component';
 
 const routes: Routes = [
   {path: 'student/add', component: AddStudentComponent},
@@ -35,7 +36,8 @@ const routes: Routes = [
   {path: 'createSp', component: CreateSpComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'chat', component: WebsocketComponent},
-  {path: 'createYos', component: CreateYearOfStudyComponent}
+  {path: 'createYos', component: CreateYearOfStudyComponent},
+  {path: 'createCourse', component: CreateCourseComponent}
 
 ];
 

@@ -14,10 +14,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import lms.domain.Course;
+import lms.domain.StudyProgram;
+import lms.domain.YearOfStudy;
+import lms.repository.CourseRepository;
 import lms.service.CourseService;
+import lms.service.YearOfStudyService;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -26,6 +32,12 @@ public class CourseController {
 
 	@Autowired
 	CourseService courseService;
+	
+	@Autowired
+	YearOfStudyService yearOfStudyservice;
+	
+	@Autowired
+	CourseRepository courseRepository;
 
 	@RequestMapping()
 	public ResponseEntity<Iterable<Course>> getAllCourse() {
@@ -71,5 +83,19 @@ public class CourseController {
 	@GetMapping(value = "/title/{title}")
 	public ResponseEntity<Iterable<Course>> getCourseByTitle(@PathVariable String title) {
 		return new ResponseEntity<Iterable<Course>>(courseService.getCourseByTitle(title), HttpStatus.OK);
+	}
+	
+	@PostMapping("/file/upload")
+	@Secured("ROLE_ADMIN")
+	public String uploadMultipartFile(@RequestParam("file") MultipartFile file, @RequestParam("title") String title, @RequestParam("yearOfStudy") String YearOfStudy) {
+		try {
+			// save file to PostgreSQL
+			YearOfStudy yos = yearOfStudyservice.getYearOfStudyId(Long.valueOf(YearOfStudy)).get();
+			Course filemode = new Course(file, title, yos);
+			courseRepository.save(filemode);
+			return "File uploaded successfully! -> filename = " + file.getOriginalFilename();
+		} catch (Exception e) {
+			return "FAIL! Maybe You had uploaded the file before or the file's size > 500KB";
+		}
 	}
 }
