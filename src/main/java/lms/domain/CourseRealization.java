@@ -41,6 +41,9 @@ public class CourseRealization {
 	@OneToMany(mappedBy = "courseRealization", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseAttending> courseAttendings;
 	
+	@OneToMany(mappedBy = "courseRealization", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private Set<Evaluation> evaluations;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Course course;
 	
@@ -48,6 +51,24 @@ public class CourseRealization {
 	
 	public CourseRealization() {
 	}
+	
+	
+
+	public CourseRealization(Long id, @NotNull Boolean deleted, int version, LocalDate startDate, LocalDate endDate,
+			Set<CourseTeaching> courseTeachings, Set<CourseAttending> courseAttendings, Set<Evaluation> evaluations,
+			Course course) {
+		this.id = id;
+		this.deleted = deleted;
+		this.version = version;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.courseTeachings = courseTeachings;
+		this.courseAttendings = courseAttendings;
+		this.evaluations = evaluations;
+		this.course = course;
+	}
+
+
 
 	public CourseRealization(Long id, @NotNull Boolean deleted, int version, LocalDate startDate, LocalDate endDate,
 			Set<CourseTeaching> courseTeachings, Set<CourseAttending> courseAttendings, Course course) {

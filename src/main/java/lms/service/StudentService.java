@@ -8,8 +8,11 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import DTO.CourseGradeDTO;
+import DTO.EvaluationPointsDTO;
 import lms.domain.Course;
 import lms.domain.CourseAttending;
+import lms.domain.EvaluationAttending;
 import lms.domain.Student;
 import lms.domain.StudentYear;
 import lms.domain.YearOfStudy;
@@ -54,20 +57,38 @@ public class StudentService {
 		for (StudentYear studentYear : student.getStudentYears())
 			for (Course course : studentYear.getYearOfStudy().getCourses())
 				ret.add(course);
+		
+		for (CourseAttending courseAttending : student.getCourseAttendings())
+			if(ret.contains(courseAttending.getCourseRealization().getCourse()))
+				ret.remove(courseAttending.getCourseRealization().getCourse());
 
 		return ret;
 
 	}
 
-	public Set<Course> findAllFinishedCourses(Student student) {
-		Set<Course> ret = new HashSet<>();
+	public Set<CourseGradeDTO> findAllFinishedCourses(Student student) {
+		Set<CourseGradeDTO> ret = new HashSet<>();
 
 		for (CourseAttending courseAttending : student.getCourseAttendings())
-			ret.add(courseAttending.getCourseRealization().getCourse());
+			ret.add(new CourseGradeDTO(courseAttending.getCourseRealization().getCourse(), courseAttending.getGrade()));
 
 		return ret;
 
 	}
+	
+	
+	public Set<EvaluationPointsDTO>findAllEvaluations(StudentYear studentYear)
+	{
+		Set<EvaluationPointsDTO> ret = new HashSet<>();
+		
+		for(EvaluationAttending ea: studentYear.getEvaluationAttendings())
+			ret.add(new EvaluationPointsDTO(ea.getEvaluation().getEvaluationType(), ea.getEvaluation().getTotalPoints(), ea.getAchievedPoints()));
+		
+		
+		return ret;
+	}
+	
+	
 
 	public Iterable<Student> getByFirstName(String firstName) {
 		return studentRepository.findByFirstName(firstName);

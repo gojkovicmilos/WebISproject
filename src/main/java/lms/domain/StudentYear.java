@@ -2,13 +2,16 @@ package lms.domain;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -35,12 +38,32 @@ public class StudentYear {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Student student;
 	
+	@OneToMany(mappedBy = "studentYear", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private Set<EvaluationAttending> evaluationAttendings;
+	
 	
 
 	public StudentYear() {
 	}
 	
 	
+	
+	
+
+	public StudentYear(Long id, @NotNull Boolean deleted, int version, LocalDate registrationDate,
+			YearOfStudy yearOfStudy, Student student, Set<EvaluationAttending> evaluationAttendings) {
+		this.id = id;
+		this.deleted = deleted;
+		this.version = version;
+		this.registrationDate = registrationDate;
+		this.yearOfStudy = yearOfStudy;
+		this.student = student;
+		this.evaluationAttendings = evaluationAttendings;
+	}
+
+
+
+
 
 	public StudentYear(Long id, @NotNull Boolean deleted, int version, LocalDate registrationDate,
 			YearOfStudy yearOfStudy, Student student) {
@@ -109,6 +132,24 @@ public class StudentYear {
 		this.student = student;
 	}
 	
+	
+	
+	public Set<EvaluationAttending> getEvaluationAttendings() {
+		return evaluationAttendings;
+	}
+
+
+
+
+
+	public void setEvaluationAttendings(Set<EvaluationAttending> evaluationAttendings) {
+		this.evaluationAttendings = evaluationAttendings;
+	}
+
+
+
+
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {
