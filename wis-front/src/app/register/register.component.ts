@@ -27,6 +27,11 @@ export class RegisterComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private rs: RegistrationService, private router: Router) { 
+    this.createFormAdmin();
+    
+    this.createFormStudent();
+    
+    this.createFormTeacher();
   }
 
   ngOnInit() {
@@ -53,7 +58,7 @@ export class RegisterComponent implements OnInit {
   }
 
   createFormAdmin() {
-    this.angFormStudent = this.fb.group({
+    this.angFormAdmin = this.fb.group({
       username: ['', Validators.required ],
       pass: ['', Validators.required],
       firstname: ['', Validators.required],
@@ -68,7 +73,6 @@ export class RegisterComponent implements OnInit {
     this.showTeacherFields = false;
     this.showAdminFields = false;
     this.role = "ROLE_STUDENT";
-    this.createFormStudent();
   }
 
   setTeacherRole() {
@@ -76,7 +80,6 @@ export class RegisterComponent implements OnInit {
     this.showAdminFields = false;
     this.showStudentFields = false;
     this.role = "ROLE_TEACHER";
-    this.createFormTeacher();
   }
 
   setAdminRole() {
@@ -84,7 +87,6 @@ export class RegisterComponent implements OnInit {
     this.showTeacherFields = false;
     this.showStudentFields = false;
     this.role = "ROLE_ADMIN";
-    this.createFormAdmin();
   }
 
   register(username: string, password: string) {
