@@ -1,7 +1,5 @@
 package DTO;
 
-import lms.domain.EvaluationType;
-
 public class EvaluationPointsDTO {
 	
 	private String evaluationType;

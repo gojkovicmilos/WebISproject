@@ -1,6 +1,5 @@
 package lms.service;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -17,9 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import DTO.LoginDTO;
-import lms.domain.Administrator;
-import lms.domain.Student;
-import lms.domain.Teacher;
 import lms.domain.User;
 import lms.domain.UserPermission;
 import lms.repository.PermissionRepository;

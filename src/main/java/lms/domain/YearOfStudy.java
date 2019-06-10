@@ -1,6 +1,5 @@
 package lms.domain;
 
-import java.io.IOException;
 import java.util.Objects;
 import java.util.Set;
 

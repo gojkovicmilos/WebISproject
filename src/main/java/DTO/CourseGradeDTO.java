@@ -1,7 +1,5 @@
 package DTO;
 
-import lms.domain.Course;
-
 public class CourseGradeDTO {
 	
 	private String course;
