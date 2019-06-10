@@ -2,13 +2,13 @@
 
   <textarea [(ngModel)]="msg" cols="30" rows="10"></textarea>
   <br>
-  <button (click)="sent()">Send</button>
+  <button (click)="send()">Send</button>
 
   <input type="text" [(ngModel)]="receiver" placeholder="username of receiver">
-  <button (click)="sentPrivate()">Send private message</button>
+  <button (click)="sendPrivate()">Send private message</button>
 
   <div *ngFor="let el of lista">
-    <p *ngIf="el.receiver == username || el.receiver == 'receiver' || el.sender == username ">{{el.sender}}: {{el.body}}</p>
+    <p *ngIf="el.receiver == username || el.receiver == 'everyone' || el.sender == username ">{{el.sender}}: {{el.body}}</p>
   </div>  
 </div>
 

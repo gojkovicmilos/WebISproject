@@ -52,16 +52,16 @@ export class WebsocketComponent implements OnInit {
   }
 
 
-    sent(){
+    send(){
       let msg:AppMessage = new AppMessage();
       msg.body = this.msg;
       msg.sender = localStorage.getItem('username');
-      msg.receiver = 'receiver';
+      msg.receiver = 'everyone';
       this.subject.next(msg);
       console.log('tu sam');
     }
 
-    sentPrivate(){
+    sendPrivate(){
       let msg:AppMessage = new AppMessage();
       msg.body = this.msg;
       msg.sender = localStorage.getItem('username');
