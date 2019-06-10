@@ -38,6 +38,7 @@ export class NavbarComponent implements OnInit {
     localStorage.clear();
     location.reload(true);
     this.redirectTo('/');
+    this.showGroupChat = false;
 
   }
 
