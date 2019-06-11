@@ -27,7 +27,7 @@ const routes: Routes = [
   {path: 'adminDashBoard/students', component: GetStudentComponent},
   {path: 'adminDashBoard/students/:id', component: EditStudentComponent},
   {path: 'adminDashBoard/findStudentByFirstName', component: SearchStudentComponent},
-  {path: 'student/login', component: LoginComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'adminDashBoard/teacher/add', component: AddTeacherComponent},
   {path: 'adminDashBoard/teacher/:id', component: EditTeacherComponent},
   {path: 'adminDashBoard/teacher', component: GetTeacherComponent},

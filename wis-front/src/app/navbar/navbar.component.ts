@@ -19,15 +19,15 @@ export class NavbarComponent implements OnInit {
   showGroupChat: boolean = false;
   ngOnInit() {
 
-    if (localStorage.getItem("role") == "ROLE_ADMIN")
+    if (localStorage.getItem('role') == "ROLE_ADMIN")
       this.showAdminPanel = true;
-      this.showGroupChat = true;
-    if (localStorage.getItem("role") == "ROLE_TEACHER")
+    this.showGroupChat = true;
+    if (localStorage.getItem('role') == 'ROLE_TEACHER')
       this.showTeacherPanel = true;
-      this.showGroupChat = true;
+    this.showGroupChat = true;
     if (localStorage.getItem("role") == "ROLE_STUDENT")
       this.showStudentPanel = true;
-      this.showGroupChat = true;
+    this.showGroupChat = true;
     if (localStorage.getItem("role") == null)
       this.showLogin = true;
 
@@ -37,7 +37,10 @@ export class NavbarComponent implements OnInit {
   signOut() {
     localStorage.clear();
     location.reload(true);
-    this.redirectTo('/');
+    this.router.navigate(['/'])
+    .then(() => {
+    window.location.reload();
+  });
     this.showGroupChat = false;
 
   }
