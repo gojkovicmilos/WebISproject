@@ -20,6 +20,7 @@ import { CreateYearOfStudyComponent } from './yearOfstudy/create-year-of-study/c
 import { CreateCourseComponent } from './courses/create-course/create-course.component';
 import { CourseMaterialPageComponent } from './course-material-page/course-material-page.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
 
 const routes: Routes = [
   {path: 'adminDashBoard/student/add', component: AddStudentComponent},
@@ -41,7 +42,8 @@ const routes: Routes = [
   {path: 'adminDashBoard/createYos', component: CreateYearOfStudyComponent},
   {path: 'adminDashBoard/createCourse', component: CreateCourseComponent},
   {path: 'courseMaterialPage', component: CourseMaterialPageComponent},
-  {path: 'adminDashBoard', component: AdminDashboardComponent}
+  {path: 'adminDashBoard', component: AdminDashboardComponent},
+  {path: 'dragAndDrop', component: DragAndDropComponent}
 
 ];
 

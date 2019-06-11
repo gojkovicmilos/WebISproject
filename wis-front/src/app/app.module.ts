@@ -34,7 +34,10 @@ import { WebsocketComponent } from './websocket/websocket.component';
 import {CreateYearOfStudyComponent} from './yearOfstudy/create-year-of-study/create-year-of-study.component';
 import { CreateCourseComponent } from './courses/create-course/create-course.component';
 import { CourseMaterialPageComponent } from './course-material-page/course-material-page.component';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component'
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
+import { DragDropModule } from '@angular/cdk/drag-drop'
 
 
 @NgModule({
@@ -62,7 +65,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     CreateYearOfStudyComponent,
     CreateCourseComponent,
     CourseMaterialPageComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    DragAndDropComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +79,9 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB2qilSTZvWZFo1puwcpU3qHH-_bnN8DyQ'
     }),
-    OrderModule
+    OrderModule,
+    BrowserAnimationsModule,
+    DragDropModule
   ],
   providers: [StudentService, {
     provide: HTTP_INTERCEPTORS,
