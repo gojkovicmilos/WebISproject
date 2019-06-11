@@ -10,25 +10,21 @@
             </a>
             <div class="collapse" id="menu1">
               <div>
-                <a routerLink="student/add" class="nav-link" routerLinkActive="active">
+                <a routerLink="register" class="nav-link" routerLinkActive="active">
                   <i class="fa fa-plus-circle"></i>
-                  Create Student
+                  Register User
                 </a>
                 <a routerLink="students" class="nav-link" routerLinkActive="active">
                   <i class="fa fa-th-list"></i>
-                  All Students
+                  List Of Students
                 </a>
                 <a routerLink="findStudentByFirstName" class="nav-link" routerLinkActive="active">
                   <i class="fa fa-search"></i>
                   Search Students
                 </a>
-                <a routerLink="teacher/add" class="nav-link" routerLinkActive="active">
-                  <i class="fa fa-plus-circle"></i>
-                  Create Teacher
-                </a>
                 <a routerLink="teacher" class="nav-link" routerLinkActive="active">
                   <i class="fa fa-th-list"></i>
-                  All Teachers
+                  List Of Teachers
                 </a>
                 <a routerLink="findTeacherByFirstName" class="nav-link" routerLinkActive="active">
                   <i class="fa fa-search"></i>
@@ -50,10 +46,6 @@
                   <i class="fa fa-plus-circle"></i>
                   Create Course
                 </a>
-                <a routerLink="register" class="nav-link" routerLinkActive="active">
-                  <i class="fa fa-plus-circle"></i>
-                  Register User
-                </a>
               </div>
             </div>
           </div>
@@ -69,12 +61,11 @@
         <hr>
         <div class="row">
           <div class="col-md-6">
-            <button role="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo"
-              aria-expanded="false">
+            <button role="button" class="btn btn-dark" data-toggle="collapse" data-target="#demo" aria-expanded="false">
               Show/Hide
             </button>
             <div id="demo" class="width collapse show" aria-expanded="false" *ngFor="let a of admin">
-              <div class="list-group" style="width: 400px;" >
+              <div class="list-group" style="width: 400px;">
                 <p>Firstname: {{a.firstname}}</p>
                 <p>Lastname: {{a.lastname}}</p>
                 <p>Note: {{a.note}}</p>
