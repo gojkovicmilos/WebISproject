@@ -50,3 +50,8 @@
     font-display: inherit;
     font-style: oblique;
 }
+body {
+	min-height: 80vh;
+	position: relative;
+	margin: 0;
+  }
