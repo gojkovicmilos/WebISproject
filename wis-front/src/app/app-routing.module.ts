@@ -18,26 +18,30 @@ import { RegisterComponent } from './register/register.component';
 import { WebsocketComponent } from './websocket/websocket.component';
 import { CreateYearOfStudyComponent } from './yearOfstudy/create-year-of-study/create-year-of-study.component';
 import { CreateCourseComponent } from './courses/create-course/create-course.component';
+import { CourseMaterialPageComponent } from './course-material-page/course-material-page.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
-  {path: 'student/add', component: AddStudentComponent},
-  {path: 'students', component: GetStudentComponent},
-  {path: 'students/:id', component: EditStudentComponent},
-  {path: 'findStudentByFirstName', component: SearchStudentComponent},
+  {path: 'adminDashBoard/student/add', component: AddStudentComponent},
+  {path: 'adminDashBoard/students', component: GetStudentComponent},
+  {path: 'adminDashBoard/students/:id', component: EditStudentComponent},
+  {path: 'adminDashBoard/findStudentByFirstName', component: SearchStudentComponent},
   {path: 'student/login', component: LoginComponent},
-  {path: 'teacher/add', component: AddTeacherComponent},
-  {path: 'teacher/:id', component: EditTeacherComponent},
-  {path: 'teacher', component: GetTeacherComponent},
-  {path: 'findTeacherByFirstName', component: SearchTeacherComponent },
+  {path: 'adminDashBoard/teacher/add', component: AddTeacherComponent},
+  {path: 'adminDashBoard/teacher/:id', component: EditTeacherComponent},
+  {path: 'adminDashBoard/teacher', component: GetTeacherComponent},
+  {path: 'adminDashBoard/findTeacherByFirstName', component: SearchTeacherComponent },
   {path: '', component: HomePageComponent},
   {path: 'center', component: CenterComponent},
   {path: 'center/studyPrograms', component: StudyProgramComponent},
-  {path: 'createCenter', component: CreateCenterComponent},
-  {path: 'createSp', component: CreateSpComponent},
-  {path: 'register', component: RegisterComponent},
+  {path: 'adminDashBoard/createCenter', component: CreateCenterComponent},
+  {path: 'adminDashBoard/createSp', component: CreateSpComponent},
+  {path: 'adminDashBoard/register', component: RegisterComponent},
   {path: 'chat', component: WebsocketComponent},
-  {path: 'createYos', component: CreateYearOfStudyComponent},
-  {path: 'createCourse', component: CreateCourseComponent}
+  {path: 'adminDashBoard/createYos', component: CreateYearOfStudyComponent},
+  {path: 'adminDashBoard/createCourse', component: CreateCourseComponent},
+  {path: 'courseMaterialPage', component: CourseMaterialPageComponent},
+  {path: 'adminDashBoard', component: AdminDashboardComponent}
 
 ];
 

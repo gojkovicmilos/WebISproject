@@ -32,7 +32,9 @@ import { CreateSpComponent } from './studyPrograms/create-study-program/create-s
 import { RegisterComponent } from './register/register.component';
 import { WebsocketComponent } from './websocket/websocket.component';
 import {CreateYearOfStudyComponent} from './yearOfstudy/create-year-of-study/create-year-of-study.component';
-import { CreateCourseComponent } from './courses/create-course/create-course.component'
+import { CreateCourseComponent } from './courses/create-course/create-course.component';
+import { CourseMaterialPageComponent } from './course-material-page/course-material-page.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component'
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { CreateCourseComponent } from './courses/create-course/create-course.com
     RegisterComponent,
     WebsocketComponent,
     CreateYearOfStudyComponent,
-    CreateCourseComponent
+    CreateCourseComponent,
+    CourseMaterialPageComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
