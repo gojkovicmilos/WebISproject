@@ -18,11 +18,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import DTO.StudyProgramDTO;
 import lms.domain.Center;
 import lms.domain.StudyProgram;
 import lms.repository.StudyProgramRepository;
 import lms.service.CenterService;
 import lms.service.StudyProgramService;
+import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -39,17 +43,17 @@ public class StudyProgramController {
 	StudyProgramRepository studyProgramRepository;
 	
 	@RequestMapping()
-	public ResponseEntity<Iterable<StudyProgram>> getAllStudyProgram() {
-		return new ResponseEntity<Iterable<StudyProgram>>(studyProgramService.getAllStidyProgram(), HttpStatus.OK);
+	public ResponseEntity<Iterable<StudyProgramDTO>> getAllStudyProgram() {
+		return new ResponseEntity<Iterable<StudyProgramDTO>>(studyProgramService.getAllStudyProgram(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<StudyProgram> getStudyProgramById(@PathVariable Long id) {
+	public ResponseEntity<StudyProgramDTO> getStudyProgramById(@PathVariable Long id) {
 		Optional<StudyProgram> studyProgram = studyProgramService.getStudyProgramId(id);
 		if (studyProgram.isPresent()) {
-			return new ResponseEntity<StudyProgram>(studyProgram.get(), HttpStatus.OK);
+			return new ResponseEntity<StudyProgramDTO>(studyProgram.get().toDTO(), HttpStatus.OK);
 		}
-		return new ResponseEntity<StudyProgram>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<StudyProgramDTO>(HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping
@@ -79,7 +83,7 @@ public class StudyProgramController {
 		return new ResponseEntity<StudyProgram>(HttpStatus.NO_CONTENT);
 	}
 	
-	
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/name/{name}")
 	public ResponseEntity<Iterable<StudyProgram>> getStudyProgramByTitle(@PathVariable String name) {
 		return new ResponseEntity<Iterable<StudyProgram>>(studyProgramService.getStudyProgramByName(name), HttpStatus.OK);

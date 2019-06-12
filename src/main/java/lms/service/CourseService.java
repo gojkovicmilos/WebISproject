@@ -1,9 +1,13 @@
 package lms.service;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import DTO.CourseDTO;
 import lms.domain.Course;
 import lms.repository.CourseRepository;
 
@@ -15,8 +19,12 @@ public class CourseService {
 	@Autowired
 	CourseRepository courseRepository;
 
-	public Iterable<Course> getAllCourse() {
-		return courseRepository.findAll();
+	public Iterable<CourseDTO> getAllCourse() {
+		Iterable<Course> c = courseRepository.findAll();
+		Set<CourseDTO> cd = new HashSet<>();
+		for(Course ct: c)
+			cd.add(ct.toDTO());
+		return cd;
 	}
 
 	public void addCourse(Course c) {

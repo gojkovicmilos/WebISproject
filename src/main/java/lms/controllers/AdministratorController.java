@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import lms.domain.Administrator;
 import lms.domain.Course;
 import lms.domain.Student;
@@ -26,6 +28,7 @@ import lms.service.AdministratorService;
 import lms.service.CourseService;
 import lms.service.StudentService;
 import lms.service.StudyProgramService;
+import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -44,11 +47,13 @@ public class AdministratorController {
 	@Autowired
 	StudentService studentService;
 
+	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<Administrator>> getAllAdmin() {
 		return new ResponseEntity<Iterable<Administrator>>(administratorService.getAllAdmin(), HttpStatus.OK);
 	}
 
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Administrator> getAdministrator(@PathVariable Long id) {
 		Optional<Administrator> faculty = administratorService.getAdminId(id);
@@ -85,6 +90,7 @@ public class AdministratorController {
 		return new ResponseEntity<Administrator>(HttpStatus.NO_CONTENT);
 	}
 	
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/upis/{studyProgramId}/{yearNumber}")
 	public ResponseEntity<Iterable<Student>> getAllStudentsWhoPass(@PathVariable Long studyProgramId, @PathVariable int yearNumber) {
 		

@@ -18,6 +18,10 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lms.utils.View.ShowStudyProgram;
+
 @Entity
 @Where(clause = "deleted = 'false'")
 public class Faculty {

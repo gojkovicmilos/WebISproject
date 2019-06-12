@@ -10,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lms.utils.View.ShowEvaluation;
+
 @Entity
 public class EvaluationType {
 	

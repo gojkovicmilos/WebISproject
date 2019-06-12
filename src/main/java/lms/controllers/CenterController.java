@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import DTO.CenterDTO;
 import lms.domain.Center;
 import lms.repository.CenterRepository;
 import lms.service.CenterService;
@@ -34,17 +35,17 @@ public class CenterController {
 	CenterRepository centerRepository;
 
 	@GetMapping()
-	public ResponseEntity<Iterable<Center>> getCenters() {
-		return new ResponseEntity<Iterable<Center>>(centerService.getAllCenter(), HttpStatus.OK);
+	public ResponseEntity<Iterable<CenterDTO>> getCenters() {
+		return new ResponseEntity<Iterable<CenterDTO>>(centerService.getAllCenter(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Center> getCenter(@PathVariable Long id) {
+	public ResponseEntity<CenterDTO> getCenter(@PathVariable Long id) {
 		Optional<Center> center = centerService.getCenterId(id);
 		if (center.isPresent()) {
-			return new ResponseEntity<Center>(center.get(), HttpStatus.OK);
+			return new ResponseEntity<CenterDTO>(center.get().toDTO(), HttpStatus.OK);
 		}
-		return new ResponseEntity<Center>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<CenterDTO>(HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping

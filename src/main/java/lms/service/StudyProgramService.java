@@ -1,10 +1,13 @@
 package lms.service;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import DTO.StudyProgramDTO;
 import lms.domain.StudyProgram;
 import lms.repository.StudyProgramRepository;
 
@@ -16,8 +19,15 @@ public class StudyProgramService {
 	
 	public StudyProgramService() {}
 	
-	public Iterable<StudyProgram> getAllStidyProgram() {
-		return studyProgramRepository.findAll();
+	public Iterable<StudyProgramDTO> getAllStudyProgram() {
+		
+		
+		Iterable<StudyProgram> sps = studyProgramRepository.findAll();
+		Set<StudyProgramDTO> ret = new HashSet<>();
+		for(StudyProgram sp: sps)
+			ret.add(sp.toDTO());
+		
+		return ret;	
 	}
 
 	public void addStudyProgram(StudyProgram s) {

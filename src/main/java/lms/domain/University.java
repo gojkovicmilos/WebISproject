@@ -18,6 +18,10 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lms.utils.View.ShowCenter;
+
 @Entity
 @Where(clause = "deleted = 'false'")
 public class University {
@@ -42,7 +46,7 @@ public class University {
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	private Teacher rektor;
-	
+
 	@OneToMany(mappedBy = "university", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
 	private Set<Center> centers;
 	

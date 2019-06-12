@@ -14,6 +14,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import DTO.StudentDTO;
+import lms.utils.View.ShowCourseAttending;
+import lms.utils.View.ShowStudentYear;
+
 @Entity
 public class Student {
 
@@ -33,19 +39,13 @@ public class Student {
 	
 	
 
-
-
 	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseAttending> courseAttendings;
-
-	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private Set<ExamAttending> examAttendings;
 
 	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<StudentYear> studentYears;
 	
 	@OneToOne
-    @MapsId
     private User user;
 
 	public Student() {
@@ -68,13 +68,12 @@ public class Student {
 
 	public Student(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
 			@Size(max = 10) String cardNumber,
-			Set<CourseAttending> courseAttendings, Set<ExamAttending> examAttendings, Set<StudentYear> studentYears) {
+			Set<CourseAttending> courseAttendings, Set<StudentYear> studentYears) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.cardNumber = cardNumber;
 		this.courseAttendings = courseAttendings;
-		this.examAttendings = examAttendings;
 		this.studentYears = studentYears;
 	}
 
@@ -92,13 +91,7 @@ public class Student {
 
 
 
-	public Set<ExamAttending> getExamAttendings() {
-		return examAttendings;
-	}
 
-	public void setExamAttendings(Set<ExamAttending> examAttendings) {
-		this.examAttendings = examAttendings;
-	}
 
 	public Set<StudentYear> getStudentYears() {
 		return studentYears;
@@ -148,7 +141,10 @@ public class Student {
 		this.cardNumber = cardNumber;
 	}
 
-	
+	public StudentDTO toDTO()
+	{
+		return new StudentDTO(this.user.getUsername(), this.user.getPassword(), this.firstName, this.user.getRole(), this.lastName, this.cardNumber);
+	}
 	
 
 	public User getUser() {

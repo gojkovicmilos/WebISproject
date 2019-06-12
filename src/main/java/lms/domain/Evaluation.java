@@ -11,6 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lms.utils.View.ShowEvaluationAttending;
+
 @Entity
 public class Evaluation {
 	

@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import lms.domain.CourseType;
 import lms.service.CourseTypeService;
+import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -27,11 +30,13 @@ public class CourseTypeController {
 	@Autowired
 	CourseTypeService courseTypeService;
 
+	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<CourseType>> getAllCourseType() {
 		return new ResponseEntity<Iterable<CourseType>>(courseTypeService.getAllCourseType(), HttpStatus.OK);
 	}
 
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<CourseType> getCourseTypeById(@PathVariable Long id) {
 		Optional<CourseType> courseType = courseTypeService.getCourseTypeId(id);

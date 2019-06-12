@@ -1,10 +1,13 @@
 package lms.service;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import DTO.CenterDTO;
 import lms.domain.Center;
 import lms.repository.CenterRepository;
 
@@ -16,8 +19,12 @@ public class CenterService {
 	@Autowired
 	CenterRepository centerRepository;
 	
-	public Iterable<Center> getAllCenter() {
-		return centerRepository.findAll();
+	public Iterable<CenterDTO> getAllCenter() {
+		Iterable<Center> c = centerRepository.findAll();
+		Set<CenterDTO> cd = new HashSet<>();
+		for(Center ct: c)
+			cd.add(ct.toDTO());
+		return cd;
 	}
 	
 	public void addCenter(Center c) {

@@ -13,10 +13,8 @@ public class UserPermission {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@JsonIgnore
 	@ManyToOne
 	private User user;
-	@JsonIgnore
 	@ManyToOne
 	private Permission permission;
 

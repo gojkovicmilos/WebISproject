@@ -1,6 +1,7 @@
 package lms.domain;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -21,7 +22,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Where;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import DTO.StudyProgramDTO;
+import DTO.YearOfStudyDTO;
 
 @Entity
 @Where(clause = "deleted = 'false'")
@@ -46,11 +48,9 @@ public class StudyProgram {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Faculty faculty;
 
-	@JsonIgnore()
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Center center;
 
-	/* @JsonIgnore */
 	@OneToMany(mappedBy = "studyProgram", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<YearOfStudy> yearsOfStudy;
 
@@ -193,6 +193,16 @@ public class StudyProgram {
 
 	public void setFaculty(Faculty faculty) {
 		this.faculty = faculty;
+	}
+	
+	public StudyProgramDTO toDTO()
+	{
+		Set<YearOfStudyDTO> ret = new HashSet<>();
+		for(YearOfStudy yos: this.yearsOfStudy)
+			ret.add(yos.toDTO());
+		
+		
+		return new StudyProgramDTO(this.id, this.name,  this.center.getName(), ret, this.pic_name, this.mimetype, this.pic);
 	}
 
 

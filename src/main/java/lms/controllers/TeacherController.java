@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import lms.domain.Teacher;
 import lms.service.TeacherService;
+import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -27,11 +30,13 @@ public class TeacherController {
 	@Autowired
 	TeacherService teacherService;
 
+	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<Teacher>> getAllTeacher() {
 		return new ResponseEntity<Iterable<Teacher>>(teacherService.getAllTeacher(), HttpStatus.OK);
 	}
 
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Teacher> getTeacherById(@PathVariable Long id) {
 		Optional<Teacher> teacher = teacherService.getTeacherId(id);
@@ -68,16 +73,19 @@ public class TeacherController {
 		return new ResponseEntity<Teacher>(HttpStatus.NO_CONTENT);
 	}
 	
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/firstname/{firstName}")
 	public ResponseEntity<Iterable<Teacher>> getTeacherByFirstName(@PathVariable String firstName) {
 		return new ResponseEntity<Iterable<Teacher>>(teacherService.getByFirstName(firstName), HttpStatus.OK);
 	}
 	
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/lastname/{lastName}")
 	public ResponseEntity<Iterable<Teacher>> getTeacherByLastName(@PathVariable String lastName) {
 		return new ResponseEntity<Iterable<Teacher>>(teacherService.getByLastName(lastName), HttpStatus.OK);
 	}
 	
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/personaidentificationnumber/{personalIdentificationNumber}")
 	public ResponseEntity<Teacher> getTeacherByPersonalIdentificationNumber(@PathVariable String personalIdentificationNumber) {
 		Optional<Teacher> teacher = teacherService.getByPersonalIdentificationNumber(personalIdentificationNumber);

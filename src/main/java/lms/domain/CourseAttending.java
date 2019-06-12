@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Where(clause = "deleted = 'false'")
 public class CourseAttending {

@@ -2,10 +2,12 @@ package lms.domain;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,13 +22,18 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Where;
 import org.springframework.web.multipart.MultipartFile;
 
+import DTO.CenterDTO;
+import DTO.StudyProgramDTO;
+
 @Entity
 @Where(clause = "deleted = 'false'")
 public class Center {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column
 	private Date yearOfEstablishment;
 
 	@NotNull
@@ -44,12 +51,16 @@ public class Center {
 	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<StudyProgram> studyPrograms;
 
+	@Column
 	private String name;
 
+	@Column
 	private String pic_name;
 
+	@Column
 	private String mimetype;
 
+	@Column
 	@Lob
 	private byte[] pic;
 
@@ -174,6 +185,15 @@ public class Center {
 
 	public void setPic(byte[] pic) {
 		this.pic = pic;
+	}
+	
+	public CenterDTO toDTO()
+	{
+		Set<StudyProgramDTO> ret = new HashSet<>();
+		for(StudyProgram sp: this.studyPrograms)
+			ret.add(sp.toDTO());
+		
+		return new CenterDTO(this.id, this.name, this.pic_name, this.mimetype, ret, this.pic);
 	}
 
 	@Override

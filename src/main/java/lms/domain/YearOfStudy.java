@@ -1,5 +1,6 @@
 package lms.domain;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,7 +18,9 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Where;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import DTO.CourseDTO;
+import DTO.StudentYearDTO;
+import DTO.YearOfStudyDTO;
 
 @Entity
 @Where(clause = "deleted = 'false'")
@@ -34,14 +37,13 @@ public class YearOfStudy {
 	private int version = 0;
 
 	private int numberOfYear;
-	
+
 	@OneToMany(mappedBy = "yearOfStudy", fetch = FetchType.LAZY)
 	private Set<Course> courses;
 
 	@OneToMany(mappedBy = "yearOfStudy", fetch = FetchType.LAZY)
 	private Set<StudentYear> studentYears;
-	
-	@JsonIgnore
+
 	@ManyToOne(cascade=CascadeType.ALL)
 	private StudyProgram studyProgram;
 	
@@ -146,6 +148,19 @@ public class YearOfStudy {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public YearOfStudyDTO toDTO()
+	{
+		Set<StudentYearDTO> sy = new HashSet<>();
+		for(StudentYear s:this.studentYears)
+			sy.add(s.toDTO());
+		
+		Set<CourseDTO> cd = new HashSet<>();
+		for(Course c:this.courses)
+			cd.add(c.toDTO());
+		
+		return new YearOfStudyDTO(this.id, this.numberOfYear, cd, sy, this.studyProgram.getName());
 	}
 
 

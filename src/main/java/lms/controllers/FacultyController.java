@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import lms.domain.Faculty;
 import lms.service.FacultyService;
+import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -27,11 +30,13 @@ public class FacultyController {
 	@Autowired
 	FacultyService facultyService;
 
+	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<Faculty>> getAllFaculty() {
 		return new ResponseEntity<Iterable<Faculty>>(facultyService.getAllFaculty(), HttpStatus.OK);
 	}
 
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Faculty> getFacultyById(@PathVariable Long id) {
 		Optional<Faculty> faculty = facultyService.getFacultyId(id);

@@ -17,12 +17,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import DTO.CourseGradeDTO;
 import DTO.EvaluationPointsDTO;
 import lms.domain.Course;
 import lms.domain.Student;
 import lms.service.CourseService;
 import lms.service.StudentService;
+import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -35,11 +38,13 @@ public class StudentController {
 	@Autowired
 	CourseService courseService;
 	
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping
 	public ResponseEntity<Iterable<Student>> getAllStudent() {
 		return new ResponseEntity<Iterable<Student>>(studentService.getStudents(), HttpStatus.OK);
 	}
 	
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
 		Optional<Student> student = studentService.getStudentById(id);
@@ -48,7 +53,7 @@ public class StudentController {
 		}
 		return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
 	}
-	
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}/findallcurrentcourses")
 	public ResponseEntity<Iterable<Course>> findAllCurrentCourses(@PathVariable Long id) {
 		Optional<Student> student = studentService.getStudentById(id);
@@ -113,16 +118,19 @@ public class StudentController {
 		
 	}
 	
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/lastname/{lastName}")
 	public ResponseEntity<Iterable<Student>> getStudentByLastName(@PathVariable String lastName) {
 		return new ResponseEntity<Iterable<Student>>(studentService.getByLastName(lastName), HttpStatus.OK);
 	}
 	
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/firstname/{firstName}")
 	public ResponseEntity<Iterable<Student>> getStudentByFirstName(@PathVariable String firstName) {
 		return new ResponseEntity<Iterable<Student>>(studentService.getByFirstName(firstName), HttpStatus.OK);
 	}
 	
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/cardnumber/{cardNumber}")
 	public ResponseEntity<Student> getStudentByCardNumber(@PathVariable String cardNumber) {
 		Optional<Student> student = studentService.getByCardNumber(cardNumber);

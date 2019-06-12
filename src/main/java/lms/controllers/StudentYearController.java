@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import lms.domain.StudentYear;
 import lms.service.StudentYearService;
+import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -27,11 +30,13 @@ public class StudentYearController {
 	@Autowired
 	StudentYearService studentYearService;
 
+	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<StudentYear>> getAllStudentYear() {
 		return new ResponseEntity<Iterable<StudentYear>>(studentYearService.getAllStudentYear(), HttpStatus.OK);
 	}
 
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<StudentYear> getStudentYearById(@PathVariable Long id) {
 		Optional<StudentYear> studentYear = studentYearService.getStudentYearId(id);

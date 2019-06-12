@@ -11,6 +11,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lms.utils.View.ShowUserPermission;
 
 @Entity
 public class User {
@@ -24,7 +27,7 @@ public class User {
 	private String password;
 	
 	private String role;
-	
+
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<UserPermission> userPermissions;
 	

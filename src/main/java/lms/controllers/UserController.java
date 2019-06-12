@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import lms.domain.User;
 import lms.service.UserService;
+import lms.utils.View.HideOptionalProperties;
 
 @RestController
 @RequestMapping("/user")
@@ -27,6 +30,7 @@ public class UserController {
 		return new ResponseEntity<User>(user, HttpStatus.CREATED);
 	}
 	
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping
 	public ResponseEntity<Iterable<User>> getUsers() {
 		return new ResponseEntity<Iterable<User>>(userService.getUsers(), HttpStatus.OK);

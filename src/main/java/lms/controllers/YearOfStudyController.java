@@ -18,11 +18,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import DTO.YearOfStudyDTO;
 import lms.domain.StudyProgram;
 import lms.domain.YearOfStudy;
 import lms.repository.YearOfStudyRepository;
 import lms.service.StudyProgramService;
 import lms.service.YearOfStudyService;
+import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -39,17 +43,17 @@ public class YearOfStudyController {
 	YearOfStudyRepository yearOfStudyRepository;
 
 	@RequestMapping()
-	public ResponseEntity<Iterable<YearOfStudy>> getAllYearOfStudy() {
-		return new ResponseEntity<Iterable<YearOfStudy>>(yearOfStudyService.getAllYearOfStudy(), HttpStatus.OK);
+	public ResponseEntity<Iterable<YearOfStudyDTO>> getAllYearOfStudy() {
+		return new ResponseEntity<Iterable<YearOfStudyDTO>>(yearOfStudyService.getAllYearOfStudy(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<YearOfStudy> getYearOfStudyById(@PathVariable Long id) {
+	public ResponseEntity<YearOfStudyDTO> getYearOfStudyById(@PathVariable Long id) {
 		Optional<YearOfStudy> yearOfStudy = yearOfStudyService.getYearOfStudyId(id);
 		if (yearOfStudy.isPresent()) {
-			return new ResponseEntity<YearOfStudy>(yearOfStudy.get(), HttpStatus.OK);
+			return new ResponseEntity<YearOfStudyDTO>(yearOfStudy.get().toDTO(), HttpStatus.OK);
 		}
-		return new ResponseEntity<YearOfStudy>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<YearOfStudyDTO>(HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping

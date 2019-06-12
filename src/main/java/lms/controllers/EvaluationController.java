@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import lms.domain.Evaluation;
 import lms.service.EvaluationService;
+import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -27,11 +30,13 @@ public class EvaluationController {
 	@Autowired
 	EvaluationService evaluationService;
 
+	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<Evaluation>> getAllEvaluation() {
 		return new ResponseEntity<Iterable<Evaluation>>(evaluationService.getAllEvaluation(), HttpStatus.OK);
 	}
 
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Evaluation> getEvaluationById(@PathVariable Long id) {
 		Optional<Evaluation> evaluation = evaluationService.getEvaluationId(id);
