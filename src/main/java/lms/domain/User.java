@@ -1,5 +1,6 @@
 package lms.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,9 +12,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
 
-import lms.utils.View.ShowUserPermission;
+import DTO.UserDTO;
+import DTO.UserPermissionDTO;
 
 @Entity
 public class User {
@@ -163,6 +164,15 @@ public class User {
 
 	public void setAdministrator(Administrator administrator) {
 		this.administrator = administrator;
+	}
+	
+	public UserDTO toDTO()
+	{
+		Set<UserPermissionDTO> sy = new HashSet<>();
+		for(UserPermission s:this.userPermissions)
+			sy.add(s.toDTO());
+		
+		return new UserDTO(this.id, this.username, this.password, this.role, sy);
 	}
 	
 	

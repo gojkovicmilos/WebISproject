@@ -9,6 +9,7 @@ public class AdminDTO
 	String firstname;
 	String role;
 	String lastname;
+	UserDTO user;
 	
 	
 	

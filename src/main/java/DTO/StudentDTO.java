@@ -8,6 +8,7 @@ public class StudentDTO
 	String role;
 	String lastname;
 	String cardnumber;
+	UserDTO user;
 	
 	
 	

@@ -1,5 +1,6 @@
 package lms.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,6 +12,10 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import DTO.CourseDTO;
+import DTO.PermissionDTO;
+import DTO.StudentYearDTO;
+import DTO.UserPermissionDTO;
 import lms.utils.View.ShowPermission;
 
 @Entity
@@ -59,6 +64,14 @@ public class Permission {
 		this.userPermissions = userPermissions;
 	}
 
+	public PermissionDTO toDTO()
+	{
+		Set<UserPermissionDTO> sy = new HashSet<>();
+		for(UserPermission s:this.userPermissions)
+			sy.add(s.toDTO());
+		
+		return new PermissionDTO(this.title, sy);
+	}
 
 
 }

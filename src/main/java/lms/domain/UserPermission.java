@@ -8,16 +8,19 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import DTO.UserPermissionDTO;
+
 @Entity
 public class UserPermission {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@JsonIgnore
+	
 	@ManyToOne
 	private User user;
+	
 	@ManyToOne
-	@JsonIgnore
 	private Permission permission;
 
 	public UserPermission() {
@@ -53,6 +56,11 @@ public class UserPermission {
 
 	public void setPermission(Permission permission) {
 		this.permission = permission;
+	}
+	
+	public UserPermissionDTO toDTO()
+	{
+		return new UserPermissionDTO(this.id, this.getUser().getId(), this.permission.getId());
 	}
 
 }

@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import DTO.LoginDTO;
+import DTO.UserDTO;
 import lms.domain.User;
 import lms.domain.UserPermission;
 import lms.repository.PermissionRepository;
@@ -84,13 +85,13 @@ public class LoginService {
 		}
 	}
 
-	public ResponseEntity<User> register(User user) {
+	public ResponseEntity<UserDTO> register(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		addPermission(user);
 		
 		
 
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		return new ResponseEntity<UserDTO>(user.toDTO(), HttpStatus.OK);
 	}
 	
 	

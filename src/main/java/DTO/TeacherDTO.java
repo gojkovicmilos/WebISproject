@@ -8,7 +8,7 @@ public class TeacherDTO
 	String role;
 	String lastname;
 	String personalid;
-	
+	UserDTO user;
 	
 	
 	public TeacherDTO() {

@@ -20,6 +20,7 @@ import DTO.AdminDTO;
 import DTO.LoginDTO;
 import DTO.StudentDTO;
 import DTO.TeacherDTO;
+import DTO.UserDTO;
 import lms.domain.Administrator;
 import lms.domain.Student;
 import lms.domain.Teacher;
@@ -71,17 +72,17 @@ public class LoginController {
 	}
 	
 	@PostMapping(value = "/register")
-	ResponseEntity<User> register(@RequestBody User user) {
+	ResponseEntity<UserDTO> register(@RequestBody User user) {
 		return loginService.register(user);
 	}
 	
 	@PostMapping(value = "/register/student")
-	ResponseEntity<User> registerStudent(@RequestBody StudentDTO set) {
+	ResponseEntity<UserDTO> registerStudent(@RequestBody StudentDTO set) {
 		
 		
 		User user = new User(set.getUsername(), set.getPassword(), set.getRole());
 		
-		ResponseEntity<User> ret =  loginService.register(user);
+		ResponseEntity<UserDTO> ret =  loginService.register(user);
 		
 		Student student = new Student(set.getFirstname(), set.getLastname(), set.getCardnumber(), user);
 		
@@ -99,12 +100,12 @@ public class LoginController {
 	}
 	
 	@PostMapping(value = "/register/teacher")
-	ResponseEntity<User> registerTeacher(@RequestBody TeacherDTO set) {
+	ResponseEntity<UserDTO> registerTeacher(@RequestBody TeacherDTO set) {
 		
 		
 		User user = new User(set.getUsername(), set.getPassword(), set.getRole());
 		
-		ResponseEntity<User> ret =  loginService.register(user);
+		ResponseEntity<UserDTO> ret =  loginService.register(user);
 		
 		Teacher teacher = new Teacher(set.getFirstname(), set.getLastname(), set.getPersonalid(), user);
 		
@@ -118,12 +119,12 @@ public class LoginController {
 	}
 	
 	@PostMapping(value = "/register/admin")
-	ResponseEntity<User> registerAdmin(@RequestBody AdminDTO set) {
+	ResponseEntity<UserDTO> registerAdmin(@RequestBody AdminDTO set) {
 		
 		
 		User user = new User(set.getUsername(), set.getPassword(), set.getRole());
 		
-		ResponseEntity<User> ret =  loginService.register(user);
+		ResponseEntity<UserDTO> ret =  loginService.register(user);
 		
 		Administrator admin = new Administrator(set.getFirstname(), set.getLastname(), user);
 		
