@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import DTO.YearOfStudyDTO;
 import lms.domain.StudyProgram;
 import lms.domain.YearOfStudy;
 import lms.repository.YearOfStudyRepository;
@@ -41,20 +42,18 @@ public class YearOfStudyController {
 	@Autowired
 	YearOfStudyRepository yearOfStudyRepository;
 
-	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
-	public ResponseEntity<Iterable<YearOfStudy>> getAllYearOfStudy() {
-		return new ResponseEntity<Iterable<YearOfStudy>>(yearOfStudyService.getAllYearOfStudy(), HttpStatus.OK);
+	public ResponseEntity<Iterable<YearOfStudyDTO>> getAllYearOfStudy() {
+		return new ResponseEntity<Iterable<YearOfStudyDTO>>(yearOfStudyService.getAllYearOfStudy(), HttpStatus.OK);
 	}
 
-	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<YearOfStudy> getYearOfStudyById(@PathVariable Long id) {
+	public ResponseEntity<YearOfStudyDTO> getYearOfStudyById(@PathVariable Long id) {
 		Optional<YearOfStudy> yearOfStudy = yearOfStudyService.getYearOfStudyId(id);
 		if (yearOfStudy.isPresent()) {
-			return new ResponseEntity<YearOfStudy>(yearOfStudy.get(), HttpStatus.OK);
+			return new ResponseEntity<YearOfStudyDTO>(yearOfStudy.get().toDTO(), HttpStatus.OK);
 		}
-		return new ResponseEntity<YearOfStudy>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<YearOfStudyDTO>(HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping

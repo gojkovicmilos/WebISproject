@@ -19,6 +19,7 @@ import org.hibernate.annotations.Where;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import DTO.StudentYearDTO;
 import lms.utils.View.ShowEvaluationAttending;
 
 @Entity
@@ -42,7 +43,6 @@ public class StudentYear {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Student student;
 	
-	@JsonView(ShowEvaluationAttending.class)
 	@OneToMany(mappedBy = "studentYear", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<EvaluationAttending> evaluationAttendings;
 	
@@ -152,6 +152,10 @@ public class StudentYear {
 	}
 
 
+	public StudentYearDTO toDTO()
+	{
+		return new StudentYearDTO(this.id, this.registrationDate, this.yearOfStudy.getTitle(), this.student.toDTO());
+	}
 
 
 

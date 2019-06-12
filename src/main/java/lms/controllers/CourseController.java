@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import DTO.CourseDTO;
 import lms.domain.Course;
 import lms.domain.YearOfStudy;
 import lms.repository.CourseRepository;
@@ -41,20 +42,18 @@ public class CourseController {
 	@Autowired
 	CourseRepository courseRepository;
 
-	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
-	public ResponseEntity<Iterable<Course>> getAllCourse() {
-		return new ResponseEntity<Iterable<Course>>(courseService.getAllCourse(), HttpStatus.OK);
+	public ResponseEntity<Iterable<CourseDTO>> getAllCourse() {
+		return new ResponseEntity<Iterable<CourseDTO>>(courseService.getAllCourse(), HttpStatus.OK);
 	}
 
-	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Course> getCourseById(@PathVariable Long id) {
+	public ResponseEntity<CourseDTO> getCourseById(@PathVariable Long id) {
 		Optional<Course> course = courseService.getCourseId(id);
 		if (course.isPresent()) {
-			return new ResponseEntity<Course>(course.get(), HttpStatus.OK);
+			return new ResponseEntity<CourseDTO>(course.get().toDTO(), HttpStatus.OK);
 		}
-		return new ResponseEntity<Course>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<CourseDTO>(HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping

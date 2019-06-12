@@ -42,15 +42,12 @@ public class CourseRealization {
 	
 	private LocalDate endDate;
 	
-	@JsonView(ShowCourseTeaching.class)
 	@OneToMany(mappedBy = "courseRealization", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseTeaching> courseTeachings;
 
-	@JsonView(ShowCourseAttending.class)
 	@OneToMany(mappedBy = "courseRealization", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseAttending> courseAttendings;
-	
-	@JsonView(ShowEvaluation.class)
+
 	@OneToMany(mappedBy = "courseRealization", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<Evaluation> evaluations;
 	

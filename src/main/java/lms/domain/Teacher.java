@@ -37,11 +37,9 @@ public class Teacher {
 	private String personalIdentificationNumber;
 
 
-	@JsonView(ShowCourseTeaching.class)
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseTeaching> courseTeachings;
 
-	@JsonView(ShowTitle.class)
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<Title> title;
 

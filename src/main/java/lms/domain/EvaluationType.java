@@ -23,7 +23,6 @@ public class EvaluationType {
 	
 	private String title;
 	
-	@JsonView(ShowEvaluation.class)
 	@OneToMany(mappedBy = "evaluationType", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<Evaluation> evaluations;
 

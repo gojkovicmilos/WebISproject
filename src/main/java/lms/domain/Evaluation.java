@@ -26,7 +26,6 @@ public class Evaluation {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private CourseRealization courseRealization;
 	
-	@JsonView(ShowEvaluationAttending.class)
 	@OneToMany(mappedBy = "evaluation", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<EvaluationAttending> evaluationAttendings;
 	

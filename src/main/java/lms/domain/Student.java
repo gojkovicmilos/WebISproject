@@ -16,6 +16,7 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import DTO.StudentDTO;
 import lms.utils.View.ShowCourseAttending;
 import lms.utils.View.ShowStudentYear;
 
@@ -38,12 +39,9 @@ public class Student {
 	
 	
 
-
-	@JsonView(ShowCourseAttending.class)
 	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseAttending> courseAttendings;
 
-	@JsonView(ShowStudentYear.class)
 	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<StudentYear> studentYears;
 	
@@ -143,7 +141,10 @@ public class Student {
 		this.cardNumber = cardNumber;
 	}
 
-	
+	public StudentDTO toDTO()
+	{
+		return new StudentDTO(this.user.getUsername(), this.user.getPassword(), this.firstName, this.user.getRole(), this.lastName, this.cardNumber);
+	}
 	
 
 	public User getUser() {

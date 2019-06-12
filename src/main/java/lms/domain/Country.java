@@ -37,7 +37,6 @@ public class Country {
 	@Version
 	private int version = 0;
 
-	@JsonView(ShowPlace.class)
 	@OneToMany(mappedBy = "country", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
 	private Set<Place> places;
 	

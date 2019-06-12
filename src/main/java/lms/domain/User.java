@@ -28,7 +28,6 @@ public class User {
 	
 	private String role;
 
-	@JsonView(ShowUserPermission.class)
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<UserPermission> userPermissions;
 	

@@ -2,6 +2,7 @@ package lms.domain;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -21,10 +22,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Where;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
-import lms.utils.View.ShowFaculty;
-import lms.utils.View.ShowStudyProgram;
+import DTO.CenterDTO;
+import DTO.StudyProgramDTO;
 
 @Entity
 @Where(clause = "deleted = 'false'")
@@ -46,11 +45,9 @@ public class Center {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private University university;
 
-	@JsonView(ShowFaculty.class)
 	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<Faculty> faculties;
 
-	@JsonView(ShowStudyProgram.class)
 	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<StudyProgram> studyPrograms;
 
@@ -188,6 +185,15 @@ public class Center {
 
 	public void setPic(byte[] pic) {
 		this.pic = pic;
+	}
+	
+	public CenterDTO toDTO()
+	{
+		Set<StudyProgramDTO> ret = new HashSet<>();
+		for(StudyProgram sp: this.studyPrograms)
+			ret.add(sp.toDTO());
+		
+		return new CenterDTO(this.id, this.name, this.pic_name, this.mimetype, ret, this.pic);
 	}
 
 	@Override

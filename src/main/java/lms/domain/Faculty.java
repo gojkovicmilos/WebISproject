@@ -46,7 +46,6 @@ public class Faculty {
 	private Center center;
 	
 	
-	@JsonView(ShowStudyProgram.class)
 	@OneToMany(mappedBy = "faculty", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
 	private Set<StudyProgram> studyPrograms;
 	

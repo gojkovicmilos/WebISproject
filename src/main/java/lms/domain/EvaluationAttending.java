@@ -18,11 +18,9 @@ public class EvaluationAttending {
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnore
 	private Evaluation evaluation;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnore
 	private StudentYear studentYear;
 	
 	private String note;

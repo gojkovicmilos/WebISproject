@@ -30,13 +30,11 @@ public class CountryController {
 	@Autowired
 	CountryService countryService;
 	
-	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<Country>> getAllCountry() {
 		return new ResponseEntity<Iterable<Country>>(countryService.getAllCountry(), HttpStatus.OK);
 	}
 	
-	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Country> getCountry(@PathVariable Long id) {
 		Optional<Country> country = countryService.getCountryId(id);

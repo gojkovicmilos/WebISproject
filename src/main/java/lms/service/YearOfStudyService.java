@@ -1,10 +1,13 @@
 package lms.service;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import DTO.YearOfStudyDTO;
 import lms.domain.YearOfStudy;
 import lms.repository.YearOfStudyRepository;
 
@@ -16,8 +19,12 @@ public class YearOfStudyService {
 
 	public YearOfStudyService() {}
 
-	public Iterable<YearOfStudy> getAllYearOfStudy() {
-		return yearOfStudyRepository.findAll();
+	public Iterable<YearOfStudyDTO> getAllYearOfStudy() {
+		Iterable<YearOfStudy> yoss = yearOfStudyRepository.findAll();
+		Set<YearOfStudyDTO> ret = new HashSet<>();
+		for(YearOfStudy yos: yoss)
+			ret.add(yos.toDTO());
+		return ret;
 	}
 
 	public void addYearOfStudy(YearOfStudy y) {

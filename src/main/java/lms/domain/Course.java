@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import DTO.CourseDTO;
 import lms.utils.View.ShowCourseRealization;
 
 //sss
@@ -50,7 +51,6 @@ public class Course {
 	@Version
 	private int version = 0;
 
-	@JsonView(ShowCourseRealization.class)
 	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseRealization> courseRealizations;
 
@@ -204,6 +204,11 @@ public class Course {
 
 	public void setPic(byte[] pic) {
 		this.pic = pic;
+	}
+	
+	public CourseDTO toDTO()
+	{
+		return new CourseDTO(this.id, this.title, this.ects, this.obligatory, this.numberOfLectures, this.numberOfExcercises, this.yearOfStudy.getTitle(), this.pic_name, this.mimetype, this.pic);
 	}
 
 	@Override

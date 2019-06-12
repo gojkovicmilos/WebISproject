@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import DTO.StudyProgramDTO;
 import lms.domain.Center;
 import lms.domain.StudyProgram;
 import lms.repository.StudyProgramRepository;
@@ -41,20 +42,18 @@ public class StudyProgramController {
 	@Autowired
 	StudyProgramRepository studyProgramRepository;
 	
-	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
-	public ResponseEntity<Iterable<StudyProgram>> getAllStudyProgram() {
-		return new ResponseEntity<Iterable<StudyProgram>>(studyProgramService.getAllStidyProgram(), HttpStatus.OK);
+	public ResponseEntity<Iterable<StudyProgramDTO>> getAllStudyProgram() {
+		return new ResponseEntity<Iterable<StudyProgramDTO>>(studyProgramService.getAllStudyProgram(), HttpStatus.OK);
 	}
 
-	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<StudyProgram> getStudyProgramById(@PathVariable Long id) {
+	public ResponseEntity<StudyProgramDTO> getStudyProgramById(@PathVariable Long id) {
 		Optional<StudyProgram> studyProgram = studyProgramService.getStudyProgramId(id);
 		if (studyProgram.isPresent()) {
-			return new ResponseEntity<StudyProgram>(studyProgram.get(), HttpStatus.OK);
+			return new ResponseEntity<StudyProgramDTO>(studyProgram.get().toDTO(), HttpStatus.OK);
 		}
-		return new ResponseEntity<StudyProgram>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<StudyProgramDTO>(HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping

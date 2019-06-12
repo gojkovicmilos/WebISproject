@@ -42,7 +42,6 @@ public class Place {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Country country;
 	
-	@JsonView(ShowAddress.class)
 	@OneToMany(mappedBy = "place", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<Address> addresses;
 	

@@ -21,7 +21,6 @@ public class Permission {
 	@Column(nullable = false, unique = true)
 	private String title;
 	
-	@JsonView(ShowPermission.class)
 	@OneToMany(mappedBy = "permission")
 	private Set<UserPermission> userPermissions;
 

@@ -1,5 +1,7 @@
 package DTO;
 
+import lms.domain.Administrator;
+
 public class AdminDTO
 {
 	String username;

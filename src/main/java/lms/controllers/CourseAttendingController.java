@@ -30,13 +30,11 @@ public class CourseAttendingController {
 	@Autowired
 	CourseAttendingService courseAttendingService;
 	
-	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<CourseAttending>> getAllCourseAttending() {
 		return new ResponseEntity<Iterable<CourseAttending>>(courseAttendingService.getAllCourseAttending(), HttpStatus.OK);
 	}
 	
-	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<CourseAttending> getCourseAttendingId(@PathVariable Long id) {
 		Optional<CourseAttending> courseAttending = courseAttendingService.getCourseAttendingId(id);
