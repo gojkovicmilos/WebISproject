@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class EvaluationAttending {
@@ -16,9 +18,11 @@ public class EvaluationAttending {
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Evaluation evaluation;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private StudentYear studentYear;
 	
 	private String note;

@@ -17,6 +17,10 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lms.utils.View.ShowEvaluationAttending;
+
 @Entity
 @Where(clause = "deleted = 'false'")
 public class StudentYear {
@@ -38,6 +42,7 @@ public class StudentYear {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Student student;
 	
+	@JsonView(ShowEvaluationAttending.class)
 	@OneToMany(mappedBy = "studentYear", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<EvaluationAttending> evaluationAttendings;
 	

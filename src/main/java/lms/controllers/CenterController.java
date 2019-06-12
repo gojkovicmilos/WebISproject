@@ -18,9 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import lms.domain.Center;
 import lms.repository.CenterRepository;
 import lms.service.CenterService;
+import lms.utils.View.HideOptionalProperties;
+import lms.utils.View.ShowCenter;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -33,11 +37,13 @@ public class CenterController {
 	@Autowired
 	CenterRepository centerRepository;
 
+	@JsonView(ShowCenter.class)
 	@GetMapping()
 	public ResponseEntity<Iterable<Center>> getCenters() {
 		return new ResponseEntity<Iterable<Center>>(centerService.getAllCenter(), HttpStatus.OK);
 	}
 
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Center> getCenter(@PathVariable Long id) {
 		Optional<Center> center = centerService.getCenterId(id);

@@ -17,7 +17,11 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Where;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lms.utils.View.ShowCourse;
+import lms.utils.View.ShowStudentYear;
+import lms.utils.View.ShowStudyProgram;
 
 @Entity
 @Where(clause = "deleted = 'false'")
@@ -35,13 +39,15 @@ public class YearOfStudy {
 
 	private int numberOfYear;
 	
+	@JsonView(ShowCourse.class)
 	@OneToMany(mappedBy = "yearOfStudy", fetch = FetchType.LAZY)
 	private Set<Course> courses;
 
+	@JsonView(ShowStudentYear.class)
 	@OneToMany(mappedBy = "yearOfStudy", fetch = FetchType.LAZY)
 	private Set<StudentYear> studentYears;
 	
-	@JsonIgnore
+	@JsonView(ShowStudyProgram.class)
 	@ManyToOne(cascade=CascadeType.ALL)
 	private StudyProgram studyProgram;
 	

@@ -18,11 +18,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import lms.domain.StudyProgram;
 import lms.domain.YearOfStudy;
 import lms.repository.YearOfStudyRepository;
 import lms.service.StudyProgramService;
 import lms.service.YearOfStudyService;
+import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -38,11 +41,13 @@ public class YearOfStudyController {
 	@Autowired
 	YearOfStudyRepository yearOfStudyRepository;
 
+	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<YearOfStudy>> getAllYearOfStudy() {
 		return new ResponseEntity<Iterable<YearOfStudy>>(yearOfStudyService.getAllYearOfStudy(), HttpStatus.OK);
 	}
 
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<YearOfStudy> getYearOfStudyById(@PathVariable Long id) {
 		Optional<YearOfStudy> yearOfStudy = yearOfStudyService.getYearOfStudyId(id);

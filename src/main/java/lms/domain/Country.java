@@ -16,6 +16,10 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lms.utils.View.ShowPlace;
+
 @Entity
 @Where(clause = "deleted = 'false'")
 public class Country {
@@ -32,7 +36,8 @@ public class Country {
 	
 	@Version
 	private int version = 0;
-	
+
+	@JsonView(ShowPlace.class)
 	@OneToMany(mappedBy = "country", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })	
 	private Set<Place> places;
 	

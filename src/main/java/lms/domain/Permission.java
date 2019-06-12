@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lms.utils.View.ShowPermission;
+
 @Entity
 public class Permission {
 	@Id
@@ -16,6 +20,8 @@ public class Permission {
 	private Long id;
 	@Column(nullable = false, unique = true)
 	private String title;
+	
+	@JsonView(ShowPermission.class)
 	@OneToMany(mappedBy = "permission")
 	private Set<UserPermission> userPermissions;
 

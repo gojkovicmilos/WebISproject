@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,13 +21,20 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Where;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lms.utils.View.ShowFaculty;
+import lms.utils.View.ShowStudyProgram;
+
 @Entity
 @Where(clause = "deleted = 'false'")
 public class Center {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column
 	private Date yearOfEstablishment;
 
 	@NotNull
@@ -38,18 +46,24 @@ public class Center {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private University university;
 
+	@JsonView(ShowFaculty.class)
 	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<Faculty> faculties;
 
+	@JsonView(ShowStudyProgram.class)
 	@OneToMany(mappedBy = "center", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<StudyProgram> studyPrograms;
 
+	@Column
 	private String name;
 
+	@Column
 	private String pic_name;
 
+	@Column
 	private String mimetype;
 
+	@Column
 	@Lob
 	private byte[] pic;
 

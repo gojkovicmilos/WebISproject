@@ -9,12 +9,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Version;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lms.utils.View.ShowCourseTeaching;
+import lms.utils.View.ShowTitle;
 
 @Entity
 public class Teacher {
@@ -32,14 +36,12 @@ public class Teacher {
 	@Size(max = 20)
 	private String personalIdentificationNumber;
 
-	
 
-	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private Set<ExamTeaching> examTeachings;
-	
+	@JsonView(ShowCourseTeaching.class)
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseTeaching> courseTeachings;
 
+	@JsonView(ShowTitle.class)
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<Title> title;
 
@@ -59,7 +61,6 @@ public class Teacher {
 	private int version = 0;
 	
 	@OneToOne
-    @MapsId
     private User user;
 	
 	public Teacher() {
@@ -71,15 +72,13 @@ public class Teacher {
 	
 
 	public Teacher(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
-			@Size(max = 20) String personalIdentificationNumber, 
-			Set<ExamTeaching> examTeachings, Set<CourseTeaching> courseTeachings, Set<Title> title, Address address,
+			@Size(max = 20) String personalIdentificationNumber,  Set<CourseTeaching> courseTeachings, Set<Title> title, Address address,
 			Faculty facultyDean, University universityRector, StudyProgram studyProgramHandler, int version,
 			User user) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.personalIdentificationNumber = personalIdentificationNumber;
-		this.examTeachings = examTeachings;
 		this.courseTeachings = courseTeachings;
 		this.title = title;
 		this.address = address;
@@ -216,25 +215,6 @@ public class Teacher {
 	public void setVersion(int version) {
 		this.version = version;
 	}
-
-	
-	
-	
-
-	public Set<ExamTeaching> getExamTeachings() {
-		return examTeachings;
-	}
-
-
-
-
-
-
-	public void setExamTeachings(Set<ExamTeaching> examTeachings) {
-		this.examTeachings = examTeachings;
-	}
-
-
 
 
 

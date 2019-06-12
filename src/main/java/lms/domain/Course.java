@@ -20,7 +20,9 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Where;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lms.utils.View.ShowCourseRealization;
 
 //sss
 @Entity
@@ -48,13 +50,10 @@ public class Course {
 	@Version
 	private int version = 0;
 
+	@JsonView(ShowCourseRealization.class)
 	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseRealization> courseRealizations;
 
-	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private Set<ExamRealization> ExamRealizations;
-
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	private YearOfStudy yearOfStudy;
 
@@ -70,7 +69,7 @@ public class Course {
 
 	public Course(Long id, @NotNull Boolean deleted, @Size(max = 50) String title, int ects, boolean obligatory,
 			int numberOfLectures, int numberOfExcercises, int version, Set<CourseRealization> courseRealizations,
-			Set<ExamRealization> examRealizations, YearOfStudy yearOfStudy, String pic_name, String mimetype,
+			YearOfStudy yearOfStudy, String pic_name, String mimetype,
 			byte[] pic) {
 		super();
 		this.id = id;
@@ -82,7 +81,6 @@ public class Course {
 		this.numberOfExcercises = numberOfExcercises;
 		this.version = version;
 		this.courseRealizations = courseRealizations;
-		ExamRealizations = examRealizations;
 		this.yearOfStudy = yearOfStudy;
 		this.pic_name = pic_name;
 		this.mimetype = mimetype;
@@ -102,13 +100,7 @@ public class Course {
 		this.yearOfStudy = yos;
 	}
 
-	public Set<ExamRealization> getExamRealizations() {
-		return ExamRealizations;
-	}
 
-	public void setExamRealizations(Set<ExamRealization> examRealizations) {
-		ExamRealizations = examRealizations;
-	}
 
 	public YearOfStudy getYearOfStudy() {
 		return yearOfStudy;

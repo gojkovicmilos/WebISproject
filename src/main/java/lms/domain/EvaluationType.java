@@ -10,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lms.utils.View.ShowEvaluation;
+
 @Entity
 public class EvaluationType {
 	
@@ -19,6 +23,7 @@ public class EvaluationType {
 	
 	private String title;
 	
+	@JsonView(ShowEvaluation.class)
 	@OneToMany(mappedBy = "evaluationType", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<Evaluation> evaluations;
 

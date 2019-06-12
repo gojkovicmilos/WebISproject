@@ -24,7 +24,6 @@ public class Administrator {
 	private String lastname;
 	
 	@OneToOne
-    @MapsId
     private User user;
 	
 	private String note;

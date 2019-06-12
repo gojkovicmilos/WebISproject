@@ -11,6 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lms.utils.View.ShowEvaluationAttending;
+
 @Entity
 public class Evaluation {
 	
@@ -21,6 +26,7 @@ public class Evaluation {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private CourseRealization courseRealization;
 	
+	@JsonView(ShowEvaluationAttending.class)
 	@OneToMany(mappedBy = "evaluation", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<EvaluationAttending> evaluationAttendings;
 	

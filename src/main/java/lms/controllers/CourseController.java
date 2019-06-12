@@ -18,11 +18,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import lms.domain.Course;
 import lms.domain.YearOfStudy;
 import lms.repository.CourseRepository;
 import lms.service.CourseService;
 import lms.service.YearOfStudyService;
+import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -38,11 +41,13 @@ public class CourseController {
 	@Autowired
 	CourseRepository courseRepository;
 
+	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
 	public ResponseEntity<Iterable<Course>> getAllCourse() {
 		return new ResponseEntity<Iterable<Course>>(courseService.getAllCourse(), HttpStatus.OK);
 	}
 
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Course> getCourseById(@PathVariable Long id) {
 		Optional<Course> course = courseService.getCourseId(id);
@@ -78,7 +83,8 @@ public class CourseController {
 
 		return new ResponseEntity<Course>(HttpStatus.NO_CONTENT);
 	}
-	
+
+	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/title/{title}")
 	public ResponseEntity<Iterable<Course>> getCourseByTitle(@PathVariable String title) {
 		return new ResponseEntity<Iterable<Course>>(courseService.getCourseByTitle(title), HttpStatus.OK);

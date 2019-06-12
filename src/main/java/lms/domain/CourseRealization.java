@@ -17,6 +17,13 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import lms.utils.View.ShowCourseAttending;
+import lms.utils.View.ShowCourseTeaching;
+import lms.utils.View.ShowEvaluation;
+
 @Entity
 @Where(clause = "deleted = 'false'")
 public class CourseRealization {
@@ -35,12 +42,15 @@ public class CourseRealization {
 	
 	private LocalDate endDate;
 	
+	@JsonView(ShowCourseTeaching.class)
 	@OneToMany(mappedBy = "courseRealization", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseTeaching> courseTeachings;
 
+	@JsonView(ShowCourseAttending.class)
 	@OneToMany(mappedBy = "courseRealization", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseAttending> courseAttendings;
 	
+	@JsonView(ShowEvaluation.class)
 	@OneToMany(mappedBy = "courseRealization", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<Evaluation> evaluations;
 	
