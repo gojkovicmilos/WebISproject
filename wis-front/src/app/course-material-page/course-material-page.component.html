@@ -9,10 +9,10 @@
                   class="d-none d-md-inline">{{c.name}}</span> 
               </a>
               <div class="collapse" id="menu1">
-                <div *ngFor="let sp of c.studyProgram">
+                <div *ngFor="let sp of c.studyPrograms; let i=index">
                   <a href="#menu1sub1" class="list-group-item" data-toggle="collapse" aria-expanded="false">{{sp.name}} </a>
                   <div class="collapse" id="menu1sub1">
-                    <div *ngFor="let yos of sp.yearsOfStudy">
+                    <div *ngFor="let yos of sp.yearsOfStudy; let i=index" >
                       <a href="#menu1sub1sub1" class="list-group-item" data-toggle="collapse" data-parent="#menu1sub1" aria-expanded="false">{{yos.title}}</a>
                       <div class="collapse" id="menu1sub1sub1">
                         <div *ngFor="let course of yos.courses">

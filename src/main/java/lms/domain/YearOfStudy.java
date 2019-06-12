@@ -160,7 +160,7 @@ public class YearOfStudy {
 		for(Course c:this.courses)
 			cd.add(c.toDTO());
 		
-		return new YearOfStudyDTO(this.id, this.numberOfYear, cd, sy, this.studyProgram.getName());
+		return new YearOfStudyDTO(this.id, this.title, this.numberOfYear, cd, sy, this.studyProgram.getName());
 	}
 
 

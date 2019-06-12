@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         window.location.reload();
 
       });
-    });
+    }, 2000);
   }
   ngOnInit() {
   }
