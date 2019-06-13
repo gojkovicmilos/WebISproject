@@ -1,5 +1,6 @@
 package lms.domain;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,10 +16,8 @@ import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Version;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
-import lms.utils.View.ShowCourseTeaching;
-import lms.utils.View.ShowTitle;
+import DTO.CourseTeachingDTO;
+import DTO.TeacherDTO;
 
 @Entity
 public class Teacher {
@@ -232,6 +231,15 @@ public class Teacher {
 
 
 
+	public TeacherDTO toDTO()
+	{
+		Set<CourseTeachingDTO> sy = new HashSet<>();
+		if(!(this.courseTeachings == null))
+			for(CourseTeaching s:this.courseTeachings)
+				sy.add(s.toDTO());
+		
+		return new TeacherDTO(this.firstName, this.lastName, this.personalIdentificationNumber, sy, this.user.toDTO());
+	}
 
 
 

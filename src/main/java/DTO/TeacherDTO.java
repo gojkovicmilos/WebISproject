@@ -1,64 +1,78 @@
 package DTO;
 
-public class TeacherDTO
-{
-	String username;
-	String password;
-	String firstname;
-	String role;
-	String lastname;
-	String personalid;
-	UserDTO user;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
+
+import lms.domain.CourseTeaching;
+
+public class TeacherDTO {
 	
+private String firstName;
 	
-	public TeacherDTO() {
+	private String lastName;
+	
+	private String personalIdentificationNumber;
+
+
+	private Set<CourseTeachingDTO> courseTeachings;
+	
+	private UserDTO user;
+
+	
+
+	public TeacherDTO(String firstName, String lastName, String personalIdentificationNumber,
+			Set<CourseTeachingDTO> courseTeachings, UserDTO user) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.personalIdentificationNumber = personalIdentificationNumber;
+		this.courseTeachings = courseTeachings;
+		this.user = user;
 	}
-	public TeacherDTO(String username, String password, String firstname, String role, String lastname,
-			String personalid) {
-		this.username = username;
-		this.password = password;
-		this.firstname = firstname;
-		this.role = role;
-		this.lastname = lastname;
-		this.personalid = personalid;
+
+	public String getFirstName() {
+		return firstName;
 	}
-	public String getUsername() {
-		return username;
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+
+	public String getLastName() {
+		return lastName;
 	}
-	public String getPassword() {
-		return password;
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+	public UserDTO getUser() {
+		return user;
 	}
-	public String getFirstname() {
-		return firstname;
+
+	public void setUser(UserDTO user) {
+		this.user = user;
 	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+
+	public String getPersonalIdentificationNumber() {
+		return personalIdentificationNumber;
 	}
-	public String getRole() {
-		return role;
+
+	public void setPersonalIdentificationNumber(String personalIdentificationNumber) {
+		this.personalIdentificationNumber = personalIdentificationNumber;
 	}
-	public void setRole(String role) {
-		this.role = role;
+
+	public Set<CourseTeachingDTO> getCourseTeachings() {
+		return courseTeachings;
 	}
-	public String getLastname() {
-		return lastname;
-	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-	public String getPersonalid() {
-		return personalid;
-	}
-	public void setPersonalid(String personalid) {
-		this.personalid = personalid;
+
+	public void setCourseTeachings(Set<CourseTeachingDTO> courseTeachings) {
+		this.courseTeachings = courseTeachings;
 	}
 	
-	
+
 	
 }

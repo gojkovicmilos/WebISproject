@@ -1,6 +1,7 @@
 package lms.domain;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,12 +18,10 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Where;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
-
-import lms.utils.View.ShowCourseAttending;
-import lms.utils.View.ShowCourseTeaching;
-import lms.utils.View.ShowEvaluation;
+import DTO.CourseAttendingDTO;
+import DTO.CourseRealizationDTO;
+import DTO.CourseTeachingDTO;
+import DTO.EvaluationDTO;
 
 @Entity
 @Where(clause = "deleted = 'false'")
@@ -167,6 +166,25 @@ public class CourseRealization {
 		this.evaluations = evaluations;
 	}
 
+	public CourseRealizationDTO toDTO()
+	{
+		Set<CourseTeachingDTO> sy = new HashSet<>();
+		if(!(this.courseTeachings == null))
+			for(CourseTeaching s:this.courseTeachings)
+				sy.add(s.toDTO());
+		
+		Set<CourseAttendingDTO> sy1 = new HashSet<>();
+		if(!(this.courseAttendings == null))
+			for(CourseAttending s1:this.courseAttendings)
+				sy1.add(s1.toDTO());
+		
+		Set<EvaluationDTO> sy2 = new HashSet<>();
+		if(!(this.evaluations == null))
+			for(Evaluation s2:this.evaluations)
+				sy2.add(s2.toDTO());
+		
+		return new CourseRealizationDTO(this.id, this.startDate, this.endDate, sy, sy1, sy2, this.course.toDTO());
+	}
 
 
 	@Override

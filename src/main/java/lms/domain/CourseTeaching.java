@@ -14,6 +14,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Where;
 
+import DTO.CourseTeachingDTO;
+
 @Entity
 @Where(clause = "deleted = 'false'")
 public class CourseTeaching {
@@ -113,6 +115,11 @@ public class CourseTeaching {
 		this.numberOfClasses = numberOfClasses;
 	}
 
+	public CourseTeachingDTO toDTO()
+	{
+		return new CourseTeachingDTO(this.id, this.numberOfClasses, this.getTeacher().getId(), this.courseRealization.toDTO());
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {

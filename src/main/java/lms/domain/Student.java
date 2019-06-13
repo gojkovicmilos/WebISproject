@@ -1,5 +1,6 @@
 package lms.domain;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -9,16 +10,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
+import DTO.CourseAttendingDTO;
 import DTO.StudentDTO;
-import lms.utils.View.ShowCourseAttending;
-import lms.utils.View.ShowStudentYear;
+import DTO.StudentYearDTO;
 
 @Entity
 public class Student {
@@ -141,10 +139,7 @@ public class Student {
 		this.cardNumber = cardNumber;
 	}
 
-	public StudentDTO toDTO()
-	{
-		return new StudentDTO(this.user.getUsername(), this.user.getPassword(), this.firstName, this.user.getRole(), this.lastName, this.cardNumber);
-	}
+	
 	
 
 	public User getUser() {
@@ -155,6 +150,21 @@ public class Student {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public StudentDTO toDTO()
+	{
+		Set<CourseAttendingDTO> sy = new HashSet<>();
+		if(!(this.courseAttendings == null))
+			for(CourseAttending s:this.courseAttendings)
+				sy.add(s.toDTO());
+		
+		Set<StudentYearDTO> sy1 = new HashSet<>();
+		if(!(this.studentYears == null))
+			for(StudentYear s1:this.studentYears)
+				sy1.add(s1.toDTO());
+		
+		return new StudentDTO(this.firstName, this.lastName, this.user.toDTO(), this.cardNumber, sy, sy1);
 	}
 
 

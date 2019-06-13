@@ -2,7 +2,7 @@ package DTO;
 
 import lms.domain.Administrator;
 
-public class AdminDTO
+public class AdminRegDTO
 {
 	String username;
 	String password;
@@ -13,9 +13,9 @@ public class AdminDTO
 	
 	
 	
-	public AdminDTO() {
+	public AdminRegDTO() {
 	}
-	public AdminDTO(String username, String password, String firstname, String role, String lastname) {
+	public AdminRegDTO(String username, String password, String firstname, String role, String lastname) {
 		this.username = username;
 		this.password = password;
 		this.firstname = firstname;

@@ -15,6 +15,8 @@ import org.hibernate.annotations.Where;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import DTO.CourseAttendingDTO;
+
 @Entity
 @Where(clause = "deleted = 'false'")
 public class CourseAttending {
@@ -106,6 +108,11 @@ public class CourseAttending {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+	
+	public CourseAttendingDTO toDTO()
+	{
+		return new CourseAttendingDTO(this.id, this.getStudent().getId(), this.courseRealization.getId());
 	}
 
 	@Override

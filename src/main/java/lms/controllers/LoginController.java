@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import DTO.AdminDTO;
+import DTO.AdminRegDTO;
+import DTO.AdministratorDTO;
 import DTO.LoginDTO;
 import DTO.StudentDTO;
+import DTO.StudentRegDTO;
 import DTO.TeacherDTO;
+import DTO.TeacherRegDTO;
 import DTO.UserDTO;
 import lms.domain.Administrator;
 import lms.domain.Student;
@@ -77,7 +80,7 @@ public class LoginController {
 	}
 	
 	@PostMapping(value = "/register/student")
-	ResponseEntity<UserDTO> registerStudent(@RequestBody StudentDTO set) {
+	ResponseEntity<StudentDTO> registerStudent(@RequestBody StudentRegDTO set) {
 		
 		
 		User user = new User(set.getUsername(), set.getPassword(), set.getRole());
@@ -96,11 +99,11 @@ public class LoginController {
 		
 		
 		
-		return ret;
+		return new ResponseEntity<StudentDTO>(student.toDTO(), HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/register/teacher")
-	ResponseEntity<UserDTO> registerTeacher(@RequestBody TeacherDTO set) {
+	ResponseEntity<TeacherDTO> registerTeacher(@RequestBody TeacherRegDTO set) {
 		
 		
 		User user = new User(set.getUsername(), set.getPassword(), set.getRole());
@@ -115,11 +118,11 @@ public class LoginController {
 		
 		
 		
-		return ret;
+		return new ResponseEntity<TeacherDTO>(teacher.toDTO(), HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/register/admin")
-	ResponseEntity<UserDTO> registerAdmin(@RequestBody AdminDTO set) {
+	ResponseEntity<AdministratorDTO> registerAdmin(@RequestBody AdminRegDTO set) {
 		
 		
 		User user = new User(set.getUsername(), set.getPassword(), set.getRole());
@@ -134,7 +137,7 @@ public class LoginController {
 		
 		
 		
-		return ret;
+		return new ResponseEntity<AdministratorDTO>(admin.toDTO(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/test")

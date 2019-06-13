@@ -47,7 +47,7 @@ public class CourseTypeController {
 	}
 
 	@PostMapping
-	@Secured("ROLE_ADMIN")
+	//@Secured("ROLE_ADMIN")
 	public ResponseEntity<CourseType> addCourseType(@RequestBody CourseType courseType) {
 
 		courseTypeService.addCourseType(courseType);

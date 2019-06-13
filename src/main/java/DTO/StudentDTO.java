@@ -1,64 +1,81 @@
 package DTO;
 
-public class StudentDTO
-{
-	String username;
-	String password;
-	String firstname;
-	String role;
-	String lastname;
-	String cardnumber;
-	UserDTO user;
+import java.util.Set;
+
+public class StudentDTO {
+	
+private String firstName;
+	
+	private String lastName;
+	
+	private UserDTO user;
+
+	private String cardNumber;
+
+	private Set<CourseAttendingDTO> courseAttendings;
+
+	private Set<StudentYearDTO> studentYears;
 	
 	
+
+	public StudentDTO(String firstName, String lastName, UserDTO user, String cardNumber,
+			Set<CourseAttendingDTO> courseAttendings, Set<StudentYearDTO> studentYears) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.user = user;
+		this.cardNumber = cardNumber;
+		this.courseAttendings = courseAttendings;
+		this.studentYears = studentYears;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public UserDTO getUser() {
+		return user;
+	}
+
+	public void setUser(UserDTO user) {
+		this.user = user;
+	}
+
+	public String getCardNumber() {
+		return cardNumber;
+	}
+
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	public Set<CourseAttendingDTO> getCourseAttendings() {
+		return courseAttendings;
+	}
+
+	public void setCourseAttendings(Set<CourseAttendingDTO> courseAttendings) {
+		this.courseAttendings = courseAttendings;
+	}
+
+	public Set<StudentYearDTO> getStudentYears() {
+		return studentYears;
+	}
+
+	public void setStudentYears(Set<StudentYearDTO> studentYears) {
+		this.studentYears = studentYears;
+	}
 	
-	public StudentDTO() {
-	}
-	public StudentDTO(String username, String password, String firstname, String role, String lastname,
-			String cardnumber) {
-		this.username = username;
-		this.password = password;
-		this.firstname = firstname;
-		this.role = role;
-		this.lastname = lastname;
-		this.cardnumber = cardnumber;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getFirstname() {
-		return firstname;
-	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
-	public String getLastname() {
-		return lastname;
-	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-	public String getCardnumber() {
-		return cardnumber;
-	}
-	public void setCardnumber(String cardnumber) {
-		this.cardnumber = cardnumber;
-	}
 	
-	
+
 }

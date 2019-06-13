@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import DTO.EvaluationAttendingDTO;
+
 
 @Entity
 public class EvaluationAttending {
@@ -79,6 +81,11 @@ public class EvaluationAttending {
 		this.achievedPoints = achievedPoints;
 	}
 	
+	
+	public EvaluationAttendingDTO toDTO()
+	{
+		return new EvaluationAttendingDTO(this.id, this.evaluation.getId(), this.studentYear.toDTO(), this.note, this.achievedPoints);
+	}
 	
 	
 

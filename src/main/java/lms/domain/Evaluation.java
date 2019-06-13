@@ -1,5 +1,6 @@
 package lms.domain;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,10 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
-
-import lms.utils.View.ShowEvaluationAttending;
+import DTO.EvaluationAttendingDTO;
+import DTO.EvaluationDTO;
 
 @Entity
 public class Evaluation {
@@ -108,7 +107,15 @@ public class Evaluation {
 	}
 	
 	
-	
+	public EvaluationDTO toDTO()
+	{
+		Set<EvaluationAttendingDTO> sy = new HashSet<>();
+		if(!(this.evaluationAttendings == null))
+			for(EvaluationAttending s:this.evaluationAttendings)
+				sy.add(s.toDTO());
+		
+		return new EvaluationDTO(this.id, this.courseRealization.getId(), sy, this.evaluationType.getTitle(), this.startDate, this.endDate, this.totalPoints);
+	}
 	
 
 }

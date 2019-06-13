@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
-import DTO.AdminDTO;
+import DTO.AdministratorDTO;
 
 @Entity
 public class Administrator {
@@ -126,9 +126,9 @@ public class Administrator {
 		this.user = user2;
 	}
 	
-	public AdminDTO toDTO()
+	public AdministratorDTO toDTO()
 	{
-		return new AdminDTO(this.user.getUsername(), this.user.getPassword(), this.firstname, this.user.getRole(), this.lastname );
+		return new AdministratorDTO(this.firstname, this.lastname, this.user.toDTO());
 		
 	}
 	
