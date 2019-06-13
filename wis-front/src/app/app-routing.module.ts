@@ -21,6 +21,18 @@ import { CreateCourseComponent } from './courses/create-course/create-course.com
 import { CourseMaterialPageComponent } from './course-material-page/course-material-page.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
+import { CreateForumComponent } from "./forum/create-forum/create-forum.component";
+import { GetForumsComponent } from "./forum/get-forums/get-forums.component";
+
+import { SubforumService } from "./subforum/subforum-service.service";
+import { GetSubforumsComponent } from "./subforum/get-subforums/get-subforums.component";
+import { CreateSubforumComponent } from "./subforum/create-subforum/create-subforum.component";
+import { TopicService } from "./topic/topic-service.service";
+import { CreateTopicComponent } from "./topic/create-topic/create-topic.component";
+import { GetTopicsComponent } from "./topic/get-topics/get-topics.component";
+import { MessageService } from "./message/message-service.service";
+import { CreateMessageComponent } from "./message/create-message/create-message.component";
+import { GetMessagesComponent } from "./message/get-messages/get-messages.component";
 
 const routes: Routes = [
   {path: 'adminDashBoard/student/add', component: AddStudentComponent},
@@ -43,7 +55,15 @@ const routes: Routes = [
   {path: 'adminDashBoard/createCourse', component: CreateCourseComponent},
   {path: 'courseMaterialPage', component: CourseMaterialPageComponent},
   {path: 'adminDashBoard', component: AdminDashboardComponent},
-  {path: 'dragAndDrop', component: DragAndDropComponent}
+  {path: 'dragAndDrop', component: DragAndDropComponent},
+  {path: 'forum', component: GetForumsComponent},
+  {path: 'newforum', component: CreateForumComponent},
+  {path: 'newsubforum', component: CreateSubforumComponent},
+  {path: 'newtopic', component: CreateTopicComponent},
+  {path: 'newmessage', component: CreateMessageComponent},
+  {path: 'subforums', component: GetSubforumsComponent},
+  {path: 'topics', component: GetTopicsComponent},
+  {path: 'messages', component: GetMessagesComponent}
 
 ];
 

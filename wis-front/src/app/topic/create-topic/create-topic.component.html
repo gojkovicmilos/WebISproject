@@ -1,0 +1,70 @@
+<div class="container login-container">
+  <div class="row">
+    <div class="col-md-6 login-form-2">
+      <h3>Create a Forum !</h3>
+      <form [formGroup]="angForm" novalidate>
+        <div class="form-group">
+          <label class="col-xs-4">ID: </label>
+          <input type="text" class="form-control" formControlName="id" #id
+            placeholder="Enter ID" />
+        </div>
+        <div
+          *ngIf="angForm.controls['id'].invalid && (angForm.controls['id'].dirty || angForm.controls['id'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="angForm.controls['id'].errors.required">
+            ID is required.
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4">Name: </label>
+            <input type="text" class="form-control" formControlName="name" #name
+              placeholder="Enter Name" />
+          </div>
+          <div
+            *ngIf="angForm.controls['name'].invalid && (angForm.controls['name'].dirty || angForm.controls['name'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="angForm.controls['name'].errors.required">
+              Name is required.
+            </div>
+          </div>
+          <div class="form-group">
+              <label class="col-xs-4">creationDate: </label>
+              <input type="text" class="form-control" formControlName="creationDate" #creationDate
+                placeholder="Enter creationDate" />
+            </div>
+            <div
+              *ngIf="angForm.controls['creationDate'].invalid && (angForm.controls['creationDate'].dirty || angForm.controls['creationDate'].touched)"
+              class="alert alert-danger">
+              <div *ngIf="angForm.controls['creationDate'].errors.required">
+                creationDate is required.
+              </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-4">creator: </label>
+                <input type="text" class="form-control" formControlName="creator" #creator
+                  placeholder="Enter creator" />
+              </div>
+              <div
+                *ngIf="angForm.controls['creator'].invalid && (angForm.controls['creator'].dirty || angForm.controls['creator'].touched)"
+                class="alert alert-danger">
+                <div *ngIf="angForm.controls['creator'].errors.required">
+                  creator is required.
+                </div>
+              </div>
+              <div>
+                <select [(value)]="selectedSubforum" (change)="setSubforum($event.target.value)"  >
+                  <option *ngFor="let sf of subforums;" [value]="sf.id">{{sf.name}}</option>
+                </select>
+              </div>
+        <div class="form-group" style="padding-top: 30px;">
+          <button (click)="addTopic(id.value, name.value, creationDate.value, creator.value)"
+            [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary"><i class="fa fa-plus-circle"
+              aria-hidden="true"></i>
+            Create !
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

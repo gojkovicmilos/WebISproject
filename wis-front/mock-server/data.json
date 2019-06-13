@@ -1,0 +1,172 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "indeks": "225512/2018",
+      "ime": "Marko",
+      "prezime": "Markovic"
+    },
+    {
+      "id": 2,
+      "indeks": "225512/2018",
+      "ime": "Marko",
+      "prezime": "Markovic"
+    },
+    {
+      "id": 3,
+      "indeks": "225512/2018",
+      "ime": "Marko",
+      "prezime": "Markovic"
+    },
+    {
+      "id": 4,
+      "indeks": "225512/2018",
+      "ime": "Marko",
+      "prezime": "Markovic"
+    },
+    {
+      "id": 5,
+      "indeks": "225512/2018",
+      "ime": "Marko",
+      "prezime": "Markovic"
+    },
+    {
+      "id": 6,
+      "indeks": "225512/2018",
+      "ime": "Marko",
+      "prezime": "Markovic"
+    },
+    {
+      "indeks": "225512/2018",
+      "ime": "Marko",
+      "prezime": "Markovic",
+      "id": 7
+    }
+  ],
+  "exams": [
+    {
+      "id": 1,
+      "sifraPredmeta": "OOP2",
+      " nazivPredmeta": "Objektno orijentisano programiranje 2",
+      "datum": "2019-04-12T10:00:00"
+    },
+    {
+      "id": 2,
+      "sifraPredmeta": "VI",
+      " nazivPredmeta": "Vestačka inteligencija",
+      "datum": "2019-04-16T11:00:00"
+    },
+    {
+      "id": 3,
+      "sifraPredmeta": "AND",
+      " nazivPredmeta": "Razvoj Android aplikacija",
+      "datum": "2019-04-02T15:00:00"
+    },
+    {
+      "id": 4,
+      "sifraPredmeta": "WEB",
+      " nazivPredmeta": "Web programiranje",
+      "datum": "2019-04-13T10:00:00"
+    }
+  ],
+  "examApplications": [
+    {
+      "id": 1,
+      "studentId": 1,
+      "examId": 1,
+      "datumPrijave": "2019-04-11T10:00:00"
+    }
+  ],
+  "forums": [
+    {
+      "id": 1,
+      "name": "forum1",
+      "creationDate": "2019/6/13",
+      "subforums": [],
+      "creator": "creator1"
+    },
+    {
+      "id": "2",
+      "name": "asdsad",
+      "subforums": [],
+      "creationDate": "asdasd",
+      "creator": "asdsad"
+    }
+  ],
+  "subforums": [
+    {
+      "id": "1",
+      "name": "sf1",
+      "forum": {
+        "_isScalar": false,
+        "source": {
+          "_isScalar": false,
+          "source": {
+            "_isScalar": false,
+            "source": {
+              "_isScalar": false
+            },
+            "operator": {
+              "concurrent": 1
+            }
+          },
+          "operator": {}
+        },
+        "operator": {}
+      },
+      "topics": [],
+      "creationDate": "sf1",
+      "creator": "sf1"
+    },
+    {
+      "id": "2",
+      "name": "dasdas",
+      "forum": {
+        "_isScalar": false,
+        "source": {
+          "_isScalar": false,
+          "source": {
+            "_isScalar": false,
+            "source": {
+              "_isScalar": false
+            },
+            "operator": {
+              "concurrent": 1
+            }
+          },
+          "operator": {}
+        },
+        "operator": {}
+      },
+      "topics": [],
+      "creationDate": "asdas",
+      "creator": "asdasd"
+    }
+  ],
+  "topics": [
+    {
+      "id": "1",
+      "name": "sdas",
+      "subforum": {
+        "_isScalar": false,
+        "source": {
+          "_isScalar": false,
+          "source": {
+            "_isScalar": false,
+            "source": {
+              "_isScalar": false
+            },
+            "operator": {
+              "concurrent": 1
+            }
+          },
+          "operator": {}
+        },
+        "operator": {}
+      },
+      "messages": [],
+      "creationDate": "asdsad",
+      "creator": "asdsa"
+    }
+  ]
+}

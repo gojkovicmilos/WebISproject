@@ -8,6 +8,21 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OrderModule } from 'ngx-order-pipe';
 
+import { ForumService } from "./forum/forum-service.service";
+import { CreateForumComponent } from "./forum/create-forum/create-forum.component";
+import { GetForumsComponent } from "./forum/get-forums/get-forums.component";
+
+import { SubforumService } from "./subforum/subforum-service.service";
+import { GetSubforumsComponent } from "./subforum/get-subforums/get-subforums.component";
+import { CreateSubforumComponent } from "./subforum/create-subforum/create-subforum.component";
+import { TopicService } from "./topic/topic-service.service";
+import { CreateTopicComponent } from "./topic/create-topic/create-topic.component";
+import { GetTopicsComponent } from "./topic/get-topics/get-topics.component";
+import { MessageService } from "./message/message-service.service";
+import { CreateMessageComponent } from "./message/create-message/create-message.component";
+import { GetMessagesComponent } from "./message/get-messages/get-messages.component";
+
+
 import { StudentService } from './student/student.service';
 import { GetStudentComponent } from './student/get-student/get-student.component';
 import { EditStudentComponent } from './student/edit-student/edit-student.component';
@@ -37,7 +52,8 @@ import { CourseMaterialPageComponent } from './course-material-page/course-mater
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
-import { DragDropModule } from '@angular/cdk/drag-drop'
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { SearchForumComponent } from './search-forum/search-forum.component'
 
 
 @NgModule({
@@ -66,7 +82,16 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
     CreateCourseComponent,
     CourseMaterialPageComponent,
     AdminDashboardComponent,
-    DragAndDropComponent
+    DragAndDropComponent,
+    CreateForumComponent,
+    GetForumsComponent,
+    CreateSubforumComponent,
+    GetSubforumsComponent,
+    CreateTopicComponent,
+    GetTopicsComponent,
+    CreateMessageComponent,
+    GetMessagesComponent,
+    SearchForumComponent
   ],
   imports: [
     BrowserModule,

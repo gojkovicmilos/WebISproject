@@ -1,0 +1,75 @@
+<body>
+  <div style="width: 300px;" class="search">
+    <form (ngSubmit)="onSubmitFirst()">
+      <div class="form-group">
+        <input type="text" class="form-control" id="name" required [(ngModel)]="name" name="name"
+          placeholder="Search Forums">
+      </div>
+    </form>
+    
+  </div>
+    <ul>
+    <br>
+    <table *ngFor="let forum of forums">
+      <tbody>
+        <head>
+          <th>#</th>
+          <th>Ime Foruma</th>
+          <th>Kreator</th>
+          <th>Datum</th>
+        </head>
+        <tr>
+          <td>{{forum.id}}</td>
+          <td>{{forum.name}}</td>
+          <td>{{forum.creator}}</td>
+          <td>{{forum.creationDate}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </ul>
+
+  <ul>
+    <br>
+    <table *ngFor="let subforum of subforums">
+      <tbody>
+        <head>
+          <th>#</th>
+          <th>Ime subForuma</th>
+          <th>Kreator</th>
+          <th>Datum</th>
+        </head>
+        <tr>
+          <td>{{subforum.id}}</td>
+          <td>{{subforum.name}}</td>
+          <td>{{subforum.creator}}</td>
+          <td>{{subforum.creationDate}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </ul>
+
+  <ul>
+    <br>
+    <table *ngFor="let topic of topics">
+      <tbody>
+        <head>
+          <th>#</th>
+          <th>Ime Teme</th>
+          <th>Kreator</th>
+          <th>Datum</th>
+        </head>
+        <tr>
+          <td>{{topic.id}}</td>
+          <td>{{topic.name}}</td>
+          <td>{{topic.creator}}</td>
+          <td>{{topic.creationDate}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </ul>
+
+  
+</body>

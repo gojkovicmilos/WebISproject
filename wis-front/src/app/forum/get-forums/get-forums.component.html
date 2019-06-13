@@ -1,0 +1,18 @@
+
+
+<table>
+    <thead>
+    <th>#</th>
+    <th>Ime Foruma</th>
+    <th>Kreator</th>
+    <th>Datum</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let forum of forums">
+    <td>{{forum.id}}</td>
+    <td>{{forum.name}}</td>
+    <td>{{forum.creator}}</td>
+    <td>{{forum.creationDate}}</td>
+    </tr>
+    </tbody>
+    </table>

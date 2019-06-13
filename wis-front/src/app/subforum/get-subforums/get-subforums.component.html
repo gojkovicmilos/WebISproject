@@ -1,0 +1,18 @@
+
+
+<table>
+    <thead>
+    <th>#</th>
+    <th>Ime Subforuma</th>
+    <th>Kreator</th>
+    <th>Datum</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let subforum of subforums">
+    <td>{{subforum.id}}</td>
+    <td>{{subforum.name}}</td>
+    <td>{{subforum.creator}}</td>
+    <td>{{subforum.creationDate}}</td>
+    </tr>
+    </tbody>
+    </table>
