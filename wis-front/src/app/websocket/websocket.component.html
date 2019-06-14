@@ -2,8 +2,12 @@
   <input type="text" [(ngModel)]="receiver" placeholder="username of receiver">
   <button (click)="sendPrivate()">Send private message</button>
 </div> -->
+<div class="container">
+  
 
-<div style="text-align:left;margin-left: 300px;margin-top: 50px; margin-bottom: 50px">
+<h3 style="text-align: center; margin-top: 30px">Hello {{username}}!</h3>
+
+<div style="text-align:left; margin-top: 50px; margin-bottom: 50px">
   <div>
     Message for: {{receiver}}
   </div>
@@ -26,3 +30,4 @@
   <button mat-button (click)="send()">Send</button>
 </div>
 
+</div>

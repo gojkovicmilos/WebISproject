@@ -52,7 +52,7 @@ export class WebsocketComponent implements OnInit {
     });
     console.log(this.usernames);
     for(var i = 0; i < this.usernames.length; i++) {
-      if(localStorage.getItem('username') == this.usernames[i]) {
+      if(this.username === this.usernames[i]) {
         this.usernames.splice(i, 1);
       }
     }
@@ -60,7 +60,7 @@ export class WebsocketComponent implements OnInit {
 
   private subject;
   username:string = localStorage.getItem("username");
-  receiver: string;
+  receiver: string = 'everyone';
   private msg = "";
   private lista:AppMessage[] = [];
 
@@ -81,11 +81,11 @@ export class WebsocketComponent implements OnInit {
       let msg:AppMessage = new AppMessage();
       msg.body = this.msg;
       msg.sender = localStorage.getItem('username');
-      msg.receiver = 'everyone';
+      msg.receiver = this.receiver;
       this.subject.next(msg);
       console.log('tu sam');
     }
-
+    /*
     sendPrivate(){
       let msg:AppMessage = new AppMessage();
       msg.body = this.msg;
@@ -94,6 +94,7 @@ export class WebsocketComponent implements OnInit {
       this.subject.next(msg);
       console.log('tu sam');
     }
+    */
 
     setReciever(rec: string): void {
       this.receiver = rec;
