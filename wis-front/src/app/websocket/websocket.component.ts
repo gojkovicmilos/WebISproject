@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { webSocket } from 'rxjs/webSocket' // for RxJS 6, for v5 use Observable.webSocket
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
+import { UserService } from '../user.service';
+import User from '../User';
 
 
 export class Message {
@@ -13,13 +15,18 @@ export class Message {
   ) { }
 }
 
-export class AppMessage{
+export class AppMessage {
+ 
+
+ 
 
   public sender:String;
   public receiver:String;
   public body:String;
 
   constructor(){}
+
+  
 }
 
 
@@ -29,8 +36,26 @@ export class AppMessage{
   styleUrls: ['./websocket.component.css']
 })
 export class WebsocketComponent implements OnInit {
+  users: User[];
+  usernames: string[] = [];
 
   ngOnInit() {
+    this.us.getAllUsers().subscribe((data: User[]) => {
+      this.users = data;
+      //console.log(this.users);
+      for(var i = 0; i < this.users.length; i++) { 
+        this.usernames.push(this.users[i].username);
+      }
+      //console.log(this.usernames);
+
+     
+    });
+    console.log(this.usernames);
+    for(var i = 0; i < this.usernames.length; i++) {
+      if(localStorage.getItem('username') == this.usernames[i]) {
+        this.usernames.splice(i, 1);
+      }
+    }
   }
 
   private subject;
@@ -40,7 +65,7 @@ export class WebsocketComponent implements OnInit {
   private lista:AppMessage[] = [];
 
 
-  constructor() {
+  constructor(private us: UserService) {
     this.subject = webSocket('ws://localhost:8080/ws');
     this.subject.subscribe(
        (msg)=>{
@@ -68,6 +93,16 @@ export class WebsocketComponent implements OnInit {
       msg.receiver = this.receiver;
       this.subject.next(msg);
       console.log('tu sam');
+    }
+
+    setReciever(rec: string): void {
+      this.receiver = rec;
+      console.log(this.receiver);
+    }
+
+    sendToAll(): void {
+      this.receiver = "everyone";
+      console.log(this.receiver);
     }
 
 

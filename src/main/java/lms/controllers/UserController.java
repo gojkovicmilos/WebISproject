@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import DTO.UserDTO;
 import lms.domain.User;
 import lms.service.UserService;
 import lms.utils.View.HideOptionalProperties;
@@ -29,11 +30,16 @@ public class UserController {
 		userService.saveUser(user);
 		return new ResponseEntity<User>(user, HttpStatus.CREATED);
 	}
-	
-	@JsonView(HideOptionalProperties.class)
+	/*
+	//@JsonView(HideOptionalProperties.class)
 	@GetMapping
 	public ResponseEntity<Iterable<User>> getUsers() {
 		return new ResponseEntity<Iterable<User>>(userService.getUsers(), HttpStatus.OK);
+	}*/
+	
+	@GetMapping
+	public ResponseEntity<Iterable<UserDTO>> getUsers() {
+		return new ResponseEntity<Iterable<UserDTO>>(userService.getUsersDTO(), HttpStatus.OK);
 	}
 
 }

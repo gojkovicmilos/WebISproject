@@ -1,10 +1,13 @@
 package lms.service;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import DTO.UserDTO;
 import lms.domain.User;
 import lms.repository.PermissionRepository;
 import lms.repository.UserRepository;
@@ -32,6 +35,14 @@ public class UserService{
 	
 	public Iterable<User> getUsers() {
 		return userRepository.findAll();
+	}
+	
+	public Iterable<UserDTO> getUsersDTO() {
+		Iterable<User> c = userRepository.findAll();
+		Set<UserDTO> cd = new HashSet<>();
+		for(User ct: c)
+			cd.add(ct.toDTO());
+		return cd;
 	}
 
 	

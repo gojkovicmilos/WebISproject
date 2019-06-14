@@ -1,14 +1,28 @@
-<div style="text-align:center; margin-top: 150px; margin-bottom: 100px">
-
-  <textarea [(ngModel)]="msg" cols="30" rows="10"></textarea>
-  <br>
-  <button (click)="send()">Send</button>
-
+<!-- <div style="float: left">
   <input type="text" [(ngModel)]="receiver" placeholder="username of receiver">
   <button (click)="sendPrivate()">Send private message</button>
+</div> -->
 
+<div style="text-align:left;margin-left: 300px;margin-top: 50px; margin-bottom: 50px">
+  <div>
+    Message for: {{receiver}}
+  </div>
+  <div>
+    <button (click)="sendToAll()">Send to everyone</button>
+  </div>
+  <div *ngFor='let username of usernames'>
+    <button (click)='setReciever(username)'>
+      {{username}}
+    </button>
+  </div>
+</div>
+
+<div style="text-align:center; margin-top: 150px; margin-bottom: 150px">
   <div *ngFor="let el of lista">
     <p *ngIf="el.receiver == username || el.receiver == 'everyone' || el.sender == username ">{{el.sender}}: {{el.body}}</p>
   </div>  
+  <br>
+  <input [(ngModel)]="msg">
+  <button mat-button (click)="send()">Send</button>
 </div>
 
