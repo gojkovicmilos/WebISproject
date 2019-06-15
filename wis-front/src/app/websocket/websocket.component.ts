@@ -38,28 +38,26 @@ export class AppMessage {
 export class WebsocketComponent implements OnInit {
   users: User[];
   usernames: string[] = [];
+  username:string = localStorage.getItem("username");
 
   ngOnInit() {
     this.us.getAllUsers().subscribe((data: User[]) => {
       this.users = data;
       //console.log(this.users);
       for(var i = 0; i < this.users.length; i++) { 
-        this.usernames.push(this.users[i].username);
+        if(this.users[i].username != this.username)
+          this.usernames.push(this.users[i].username);
       }
       //console.log(this.usernames);
 
      
     });
     console.log(this.usernames);
-    for(var i = 0; i < this.usernames.length; i++) {
-      if(this.username === this.usernames[i]) {
-        this.usernames.splice(i, 1);
-      }
-    }
+    
   }
 
   private subject;
-  username:string = localStorage.getItem("username");
+ 
   receiver: string = 'everyone';
   private msg = "";
   private lista:AppMessage[] = [];
