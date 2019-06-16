@@ -3,15 +3,6 @@ package DTO;
 import java.time.LocalDate;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import lms.domain.CourseRealization;
-import lms.domain.EvaluationAttending;
-import lms.domain.EvaluationType;
-
 public class EvaluationDTO {
 	
 	private Long id;

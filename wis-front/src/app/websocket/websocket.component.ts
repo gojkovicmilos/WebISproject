@@ -83,16 +83,14 @@ export class WebsocketComponent implements OnInit {
       this.subject.next(msg);
       console.log('tu sam');
     }
-    /*
-    sendPrivate(){
+    sendToEveryone(){
       let msg:AppMessage = new AppMessage();
       msg.body = this.msg;
       msg.sender = localStorage.getItem('username');
-      msg.receiver = this.receiver;
+      msg.receiver = 'everyone';
       this.subject.next(msg);
       console.log('tu sam');
     }
-    */
 
     setReciever(rec: string): void {
       this.receiver = rec;

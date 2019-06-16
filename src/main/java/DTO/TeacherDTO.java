@@ -2,13 +2,6 @@ package DTO;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.Size;
-
-import lms.domain.CourseTeaching;
-
 public class TeacherDTO {
 	
 private String firstName;

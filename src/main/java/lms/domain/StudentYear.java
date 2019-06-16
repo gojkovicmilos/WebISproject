@@ -154,7 +154,7 @@ public class StudentYear {
 
 	public StudentYearDTO toDTO()
 	{
-		return new StudentYearDTO(this.id, this.registrationDate, this.yearOfStudy.getTitle(), this.student.toDTO());
+		return new StudentYearDTO(this.id, this.registrationDate, this.yearOfStudy.getTitle(), this.student.getId());
 	}
 
 

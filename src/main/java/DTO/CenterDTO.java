@@ -2,8 +2,6 @@ package DTO;
 
 import java.util.Set;
 
-import lms.domain.Center;
-
 public class CenterDTO {
 	
 	

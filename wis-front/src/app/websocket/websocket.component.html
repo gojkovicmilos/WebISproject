@@ -6,13 +6,11 @@
   
 
 <h3 style="text-align: center; margin-top: 30px">Hello {{username}}!</h3>
-
-<div style="text-align:left; margin-top: 50px; margin-bottom: 50px">
+<div class="container1">
+<div style="text-align:left; margin-top: 50px; margin-bottom: 50pxS">
+  
   <div>
-    Message for: {{receiver}}
-  </div>
-  <div>
-    <button (click)="sendToAll()">Send to everyone</button>
+    <button (click)="sendToAll()">Close Private Chat</button>
   </div>
   <div *ngFor='let username of usernames'>
     <button (click)='setReciever(username)'>
@@ -23,11 +21,26 @@
 
 <div style="text-align:center; margin-top: 150px; margin-bottom: 150px">
   <div *ngFor="let el of lista">
-    <p *ngIf="el.receiver == username || el.receiver == 'everyone' || el.sender == username ">{{el.sender}}: {{el.body}}</p>
+    <p *ngIf="el.receiver == 'everyone'">{{el.sender}}: {{el.body}}</p>
   </div>  
   <br>
+  <br>
   <input [(ngModel)]="msg">
-  <button mat-button (click)="send()">Send</button>
+  <button mat-button (click)="sendToEveryone()">Send To Everyone</button>
 </div>
 
+<div style="text-align:center; margin-top: 150px; margin-bottom: 150px" *ngIf="receiver!='everyone'">
+  <div *ngFor="let el of lista">
+    <p *ngIf="((el.receiver == username && el.sender == receiver) || ( el.sender == username && el.receiver == receiver) && el.receiver != 'everyone') ">{{el.sender}}: {{el.body}}</p>
+  </div>  
+  <br>
+  <p>Chatting with {{receiver}}</p>
+  <input [(ngModel)]="msg">
+  <button mat-button (click)="send()">Send</button>
+  
+
+</div>
+
+
+</div>
 </div>

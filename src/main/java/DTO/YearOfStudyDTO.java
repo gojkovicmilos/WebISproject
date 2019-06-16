@@ -2,8 +2,6 @@ package DTO;
 
 import java.util.Set;
 
-import lms.domain.StudyProgram;
-
 public class YearOfStudyDTO {
 	
 	private Long id;

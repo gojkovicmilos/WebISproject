@@ -13,15 +13,15 @@ public class StudentYearDTO {
 
 	private String yearOfStudy;
 
-	private StudentDTO student;
+	private Long studentId;
 
 	
 
-	public StudentYearDTO(Long id, LocalDate registrationDate, String yearOfStudy, StudentDTO student) {
-		this.id = id;
+	public StudentYearDTO(java.lang.Long id2, LocalDate registrationDate, String yearOfStudy, Long student) {
+		this.id = id2;
 		this.registrationDate = registrationDate;
 		this.yearOfStudy = yearOfStudy;
-		this.student = student;
+		this.studentId = student;
 	}
 
 	public Long getId() {
@@ -50,12 +50,12 @@ public class StudentYearDTO {
 		this.yearOfStudy = yearOfStudy;
 	}
 
-	public StudentDTO getStudent() {
-		return student;
+	public Long getStudent() {
+		return studentId;
 	}
 
-	public void setStudent(StudentDTO student) {
-		this.student = student;
+	public void setStudent(Long student) {
+		this.studentId = student;
 	}
 	
 	
