@@ -1,46 +1,41 @@
-<!-- <div style="float: left">
-  <input type="text" [(ngModel)]="receiver" placeholder="username of receiver">
-  <button (click)="sendPrivate()">Send private message</button>
-</div> -->
 <div class="container">
   
 
-<h3 style="text-align: center; margin-top: 30px">Hello {{username}}!</h3>
-<div class="container1">
-<div style="text-align:left; margin-top: 50px; margin-bottom: 50pxS">
+  <h3 style="text-align: center; margin-top: 50px; margin-bottom: 100px">Hello {{username}}!</h3>
+
+  <div style="text-align: center; margin-bottom: 100px">
+
+    <div style="text-align: left; overflow-y:scroll; overflow-x:hidden; height:400px; width: 20%" class="parts">
+      <div>
+        Message for: {{receiver}}
+      </div>
+      <div>
+        <button class="btn btn-outline-primary" (click)="sendToAll()">Send to everyone</button>
+      </div>
+      <div *ngFor='let username of usernames'>
+        <button class="btn btn-outline-success" style="width: 147px;" (click)='setReciever(username)'>
+          {{username}}<i class="fa fa-circle" aria-hidden="true" style="font-size: 5px; float: right; margin-top: 11px"></i>
+        </button>
+      </div>
+    </div>
+
+    <div style="text-align: center; width: 80%" class="parts">
+      
+      <div style="overflow-y:scroll; overflow-x:hidden; height:225px">
+        <div *ngFor="let el of lista">
+          <p *ngIf="el.receiver == username || el.receiver == 'everyone' || el.sender == username ">{{el.sender}}: {{el.body}}</p>
+        </div> 
+      </div>
+    
+      <div >
+        <div class="form-group">
+          <textarea placeholder="Enter a message" [(ngModel)]="msg" class="form-control" rows="5" ></textarea>
+        </div>  
+        <button class="btn btn-outline-secondary" type="button" (click)="send()">Send</button>
+      </div>
   
-  <div>
-    <button (click)="sendToAll()">Close Private Chat</button>
+    </div>
+
   </div>
-  <div *ngFor='let username of usernames'>
-    <button (click)='setReciever(username)'>
-      {{username}}
-    </button>
-  </div>
-</div>
 
-<div style="text-align:center; margin-top: 150px; margin-bottom: 150px">
-  <div *ngFor="let el of lista">
-    <p *ngIf="el.receiver == 'everyone'">{{el.sender}}: {{el.body}}</p>
-  </div>  
-  <br>
-  <br>
-  <input [(ngModel)]="msg">
-  <button mat-button (click)="sendToEveryone()">Send To Everyone</button>
-</div>
-
-<div style="text-align:center; margin-top: 150px; margin-bottom: 150px" *ngIf="receiver!='everyone'">
-  <div *ngFor="let el of lista">
-    <p *ngIf="((el.receiver == username && el.sender == receiver) || ( el.sender == username && el.receiver == receiver) && el.receiver != 'everyone') ">{{el.sender}}: {{el.body}}</p>
-  </div>  
-  <br>
-  <p>Chatting with {{receiver}}</p>
-  <input [(ngModel)]="msg">
-  <button mat-button (click)="send()">Send</button>
-  
-
-</div>
-
-
-</div>
 </div>

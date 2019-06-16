@@ -82,6 +82,7 @@ export class WebsocketComponent implements OnInit {
       msg.receiver = this.receiver;
       this.subject.next(msg);
       console.log('tu sam');
+      this.msg = "";
     }
     sendToEveryone(){
       let msg:AppMessage = new AppMessage();
