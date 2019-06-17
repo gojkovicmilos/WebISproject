@@ -40,6 +40,12 @@ export class WebsocketComponent implements OnInit {
   usernames: string[] = [];
   username:string = localStorage.getItem("username");
   openPrivate: boolean = false;
+  private subject;
+  private receiver: string = 'everyone';
+  private msg = "";
+  private msgForPrivate = "";
+  private lista:AppMessage[] = [];
+  unreadList:Map<string, number> = new Map();
 
   ngOnInit() {
     this.us.getAllUsers().subscribe((data: User[]) => {
@@ -47,7 +53,10 @@ export class WebsocketComponent implements OnInit {
       //console.log(this.users);
       for(var i = 0; i < this.users.length; i++) { 
         if(this.users[i].username != this.username)
+        {
           this.usernames.push(this.users[i].username);
+          this.unreadList.set(this.users[i].username, 0);
+        }
       }
       //console.log(this.usernames);
 
@@ -57,12 +66,6 @@ export class WebsocketComponent implements OnInit {
     
   }
 
-  private subject;
- 
-  receiver: string = 'everyone';
-  private msg = "";
-  private msgForPrivate = "";
-  private lista:AppMessage[] = [];
 
 
   constructor(private us: UserService) {
@@ -71,7 +74,8 @@ export class WebsocketComponent implements OnInit {
        (msg)=>{
          this.lista.push(msg);
          if(this.lista[this.lista.length-1].receiver == this.username)
-          this.setReciever(this.lista[this.lista.length-1].sender);
+          this.addNewUnread(this.lista[this.lista.length-1].sender);
+          //this.setReciever(this.lista[this.lista.length-1].sender);
         },
        (err) => console.log(err),
        () => console.log('complete')
@@ -102,6 +106,8 @@ export class WebsocketComponent implements OnInit {
       this.receiver = rec;
       console.log(this.receiver);
       this.openPrivate = true;
+      this.resetUnread(rec);
+      
     }
 
     closePrivate(): void {
@@ -112,6 +118,20 @@ export class WebsocketComponent implements OnInit {
       console.log(this.receiver);
     }
 
+    addNewUnread(username:string)
+    {
+      this.unreadList.set(username, this.unreadList.get(username)+1);
+    }
+
+    displayUnread(i:number):number
+    {
+      return this.unreadList.get(this.usernames[i]);
+    }
+
+    resetUnread(rec:string)
+    {
+      this.unreadList.set(rec, 0);
+    }
 
 
 }
