@@ -2,7 +2,11 @@ package DTO;
 
 import java.util.Set;
 
+import org.aspectj.weaver.Iterators.Getter;
+
 public class StudentDTO {
+
+	private Long id;
 	
 private String firstName;
 	
@@ -18,14 +22,25 @@ private String firstName;
 	
 	
 
-	public StudentDTO(String firstName, String lastName, UserDTO user, String cardNumber,
+	public StudentDTO(Long id, String firstName, String lastName, UserDTO user, String cardNumber,
 			Set<CourseAttendingDTO> courseAttendings, Set<StudentYearDTO> studentYears) {
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.user = user;
 		this.cardNumber = cardNumber;
 		this.courseAttendings = courseAttendings;
 		this.studentYears = studentYears;
+	}
+
+
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {

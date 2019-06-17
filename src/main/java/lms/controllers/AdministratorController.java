@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import DTO.AdministratorDTO;
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 import lms.domain.Administrator;
@@ -47,20 +49,19 @@ public class AdministratorController {
 	@Autowired
 	StudentService studentService;
 
-	@JsonView(HideOptionalProperties.class)
 	@RequestMapping()
-	public ResponseEntity<Iterable<Administrator>> getAllAdmin() {
-		return new ResponseEntity<Iterable<Administrator>>(administratorService.getAllAdmin(), HttpStatus.OK);
+	public ResponseEntity<Iterable<AdministratorDTO>> getAllAdmin() {
+		return new ResponseEntity<Iterable<AdministratorDTO>>(administratorService.getAllAdmin(), HttpStatus.OK);
 	}
 
 	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Administrator> getAdministrator(@PathVariable Long id) {
+	public ResponseEntity<AdministratorDTO> getAdministrator(@PathVariable Long id) {
 		Optional<Administrator> faculty = administratorService.getAdminId(id);
 		if (faculty.isPresent()) {
-			return new ResponseEntity<Administrator>(faculty.get(), HttpStatus.OK);
+			return new ResponseEntity<AdministratorDTO>(faculty.get().toDTO(), HttpStatus.OK);
 		}
-		return new ResponseEntity<Administrator>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<AdministratorDTO>(HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping

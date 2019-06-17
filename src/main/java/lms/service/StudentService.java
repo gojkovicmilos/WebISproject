@@ -2,14 +2,17 @@ package lms.service;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import DTO.CourseDTO;
 import DTO.CourseGradeDTO;
 import DTO.EvaluationPointsDTO;
+import DTO.StudentDTO;
 import lms.domain.Course;
 import lms.domain.CourseAttending;
 import lms.domain.Evaluation;
@@ -55,16 +58,16 @@ public class StudentService {
 		return studentRepository.findFirstByCardNumber(cardNumber);
 	}
 
-	public Set<Course> findAllCurrentCourses(Student student) {
-		Set<Course> ret = new HashSet<>();
+	public Set<CourseDTO> findAllCurrentCourses(Student student) {
+		Set<CourseDTO> ret = new HashSet<>();
 
 		for (StudentYear studentYear : student.getStudentYears())
 			for (Course course : studentYear.getYearOfStudy().getCourses())
-				ret.add(course);
+				ret.add(course.toDTO());
 		
 		for (CourseAttending courseAttending : student.getCourseAttendings())
-			if(ret.contains(courseAttending.getCourseRealization().getCourse()))
-				ret.remove(courseAttending.getCourseRealization().getCourse());
+			if(ret.contains(courseAttending.getCourseRealization().getCourse().toDTO()))
+				ret.remove(courseAttending.getCourseRealization().getCourse().toDTO());
 
 		return ret;
 
@@ -109,8 +112,14 @@ public class StudentService {
 		return studentRepository.findByLastName(lastName);
 	}
 
-	public Iterable<Student> getStudents() {
-		return studentRepository.findAll();
+	public Iterable<StudentDTO> getStudents() {
+		List<Student> ss = studentRepository.findAll();
+		Set<StudentDTO> ret = new HashSet<>();
+
+		for(Student student: ss)
+			ret.add(student.toDTO());
+		
+		return ret;
 	}
 
 	public Optional<Student> getStudentById(Long id) {

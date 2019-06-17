@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import DTO.CourseDTO;
 import DTO.CourseGradeDTO;
 import DTO.EvaluationPointsDTO;
+import DTO.StudentDTO;
 import lms.domain.Course;
 import lms.domain.Student;
 import lms.service.CourseService;
@@ -38,29 +40,28 @@ public class StudentController {
 	@Autowired
 	CourseService courseService;
 	
-	@JsonView(HideOptionalProperties.class)
 	@GetMapping
-	public ResponseEntity<Iterable<Student>> getAllStudent() {
-		return new ResponseEntity<Iterable<Student>>(studentService.getStudents(), HttpStatus.OK);
+	public ResponseEntity<Iterable<StudentDTO>> getAllStudent() {
+		return new ResponseEntity<Iterable<StudentDTO>>(studentService.getStudents(), HttpStatus.OK);
 	}
 	
-	@JsonView(HideOptionalProperties.class)
+
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
+	public ResponseEntity<StudentDTO> getStudentById(@PathVariable Long id) {
 		Optional<Student> student = studentService.getStudentById(id);
 		if(student.isPresent()) {
-			return new ResponseEntity<Student>(student.get(), HttpStatus.OK);
+			return new ResponseEntity<StudentDTO>(student.get().toDTO(), HttpStatus.OK);
 		}
-		return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<StudentDTO>(HttpStatus.NOT_FOUND);
 	}
-	@JsonView(HideOptionalProperties.class)
+
 	@GetMapping(value = "/{id}/findallcurrentcourses")
-	public ResponseEntity<Iterable<Course>> findAllCurrentCourses(@PathVariable Long id) {
+	public ResponseEntity<Iterable<CourseDTO>> findAllCurrentCourses(@PathVariable Long id) {
 		Optional<Student> student = studentService.getStudentById(id);
 		if(student.isPresent()) {
-			return new ResponseEntity<Iterable<Course>>(studentService.findAllCurrentCourses(student.get()), HttpStatus.OK);
+			return new ResponseEntity<Iterable<CourseDTO>>(studentService.findAllCurrentCourses(student.get()), HttpStatus.OK);
 		}
-		return new ResponseEntity<Iterable<Course>>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Iterable<CourseDTO>>(HttpStatus.NOT_FOUND);
 	}
 	
 	@GetMapping(value = "/{id}/findallfinishedcourses")

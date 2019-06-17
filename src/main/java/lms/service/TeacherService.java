@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import DTO.TeacherDTO;
 import lms.domain.Course;
 import lms.domain.CourseTeaching;
 import lms.domain.Teacher;
@@ -20,8 +21,14 @@ public class TeacherService {
 
 	public TeacherService() {}
 	
-	public Iterable<Teacher> getAllTeacher() {
-		return teacherRepository.findAll();
+	public Iterable<TeacherDTO> getAllTeacher() {
+		Iterable<Teacher> ts = teacherRepository.findAll();
+		Set<TeacherDTO> ret = new HashSet<>();
+
+		for(Teacher t: ts)
+			ret.add(t.toDTO());
+		
+		return ret;
 	}
 
 	public void addTeacher(Teacher t) {

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import DTO.TeacherDTO;
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 import lms.domain.Teacher;
@@ -30,20 +32,19 @@ public class TeacherController {
 	@Autowired
 	TeacherService teacherService;
 
-	@JsonView(HideOptionalProperties.class)
+
 	@RequestMapping()
-	public ResponseEntity<Iterable<Teacher>> getAllTeacher() {
-		return new ResponseEntity<Iterable<Teacher>>(teacherService.getAllTeacher(), HttpStatus.OK);
+	public ResponseEntity<Iterable<TeacherDTO>> getAllTeacher() {
+		return new ResponseEntity<Iterable<TeacherDTO>>(teacherService.getAllTeacher(), HttpStatus.OK);
 	}
 
-	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Teacher> getTeacherById(@PathVariable Long id) {
+	public ResponseEntity<TeacherDTO> getTeacherById(@PathVariable Long id) {
 		Optional<Teacher> teacher = teacherService.getTeacherId(id);
 		if (teacher.isPresent()) {
-			return new ResponseEntity<Teacher>(teacher.get(), HttpStatus.OK);
+			return new ResponseEntity<TeacherDTO>(teacher.get().toDTO(), HttpStatus.OK);
 		}
-		return new ResponseEntity<Teacher>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<TeacherDTO>(HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping

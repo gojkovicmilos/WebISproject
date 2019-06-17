@@ -164,7 +164,7 @@ public class Student {
 			for(StudentYear s1:this.studentYears)
 				sy1.add(s1.toDTO());
 		
-		return new StudentDTO(this.firstName, this.lastName, this.user.toDTO(), this.cardNumber, sy, sy1);
+		return new StudentDTO(this.id, this.firstName, this.lastName, this.user.toDTO(), this.cardNumber, sy, sy1);
 	}
 
 

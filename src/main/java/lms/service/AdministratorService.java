@@ -8,6 +8,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import DTO.AdministratorDTO;
 import lms.domain.Administrator;
 import lms.domain.Course;
 import lms.domain.CourseAttending;
@@ -33,8 +34,15 @@ public class AdministratorService {
 	
 	public AdministratorService() {}
 
-	public Iterable<Administrator> getAllAdmin() {
-		return administratorRepository.findAll();
+	public Iterable<AdministratorDTO> getAllAdmin() {
+		
+		Iterable<Administrator> as = administratorRepository.findAll();
+		Set<AdministratorDTO> ret = new HashSet<>();
+
+		for(Administrator a: as)
+			ret.add(a.toDTO());
+		
+		return ret;
 	}
 
 	public void addAdministrator(Administrator a) {
