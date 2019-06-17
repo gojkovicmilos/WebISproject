@@ -61,6 +61,7 @@ export class WebsocketComponent implements OnInit {
  
   receiver: string = 'everyone';
   private msg = "";
+  private msgForPrivate = "";
   private lista:AppMessage[] = [];
 
 
@@ -78,12 +79,12 @@ export class WebsocketComponent implements OnInit {
 
     send(){
       let msg:AppMessage = new AppMessage();
-      msg.body = this.msg;
+      msg.body = this.msgForPrivate;
       msg.sender = localStorage.getItem('username');
       msg.receiver = this.receiver;
       this.subject.next(msg);
-      console.log('tu sam');
-      this.msg = "";
+      //console.log('tu sam');
+      this.msgForPrivate = "";
     }
     sendToEveryone(){
       let msg:AppMessage = new AppMessage();
@@ -91,7 +92,8 @@ export class WebsocketComponent implements OnInit {
       msg.sender = localStorage.getItem('username');
       msg.receiver = 'everyone';
       this.subject.next(msg);
-      console.log('tu sam');
+      //console.log('tu sam');
+      this.msg = "";
     }
 
     setReciever(rec: string): void {
