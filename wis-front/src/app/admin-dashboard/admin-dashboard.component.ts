@@ -24,7 +24,9 @@ export class AdminDashboardComponent implements OnInit {
   constructor(private as: AdminService, private router: Router, private ts: TeacherService, private ss: StudentService) { }
 
   ngOnInit() {
-    this.as
+    this.role = localStorage.getItem("role");
+    if(this.role === "ROLE_ADMIN") {
+      this.as
       .getAdmin()
       .subscribe((data: Admin[]) => {
         for(var i = 0; i < data.length; i++) {
@@ -37,31 +39,37 @@ export class AdminDashboardComponent implements OnInit {
             return;
           }
         }
-    });
-    this.ts.getTeachers().subscribe((data: Teacher[]) => {
-      for(var i = 0; i < data.length; i++) {
-        if(localStorage.getItem("username") == data[i].user.username) {
-          this.username = data[i].user.username;
-          this.firstname = data[i].firstName;
-          this.lastname = data[i].lastName;
-          return;
+      });
+    }
+    else if(this.role === "ROLE_TEACHER") {
+      this.ts.getTeachers().subscribe((data: Teacher[]) => {
+        for(var i = 0; i < data.length; i++) {
+          if(localStorage.getItem("username") == data[i].user.username) {
+            this.username = data[i].user.username;
+            this.firstname = data[i].firstName;
+            this.lastname = data[i].lastName;
+            return;
+          }
         }
-      }
-    });
-    this.ss.getStudents().subscribe((data: Student[]) => {
-      for(var i = 0; i < data.length; i++) {
-        if(localStorage.getItem("username") == data[i].user.username) {
-          this.username = data[i].user.username;
-          this.firstname = data[i].firstName;
-          this.lastname = data[i].lastName;
-          return;
+      });
+    }
+    else if(this.role === "ROLE_STUDENT") {
+      this.ss.getStudents().subscribe((data: Student[]) => {
+        for(var i = 0; i < data.length; i++) {
+          if(localStorage.getItem("username") == data[i].user.username) {
+            this.username = data[i].user.username;
+            this.firstname = data[i].firstName;
+            this.lastname = data[i].lastName;
+            return;
+          }
         }
-      }
-    })
-    this.role = localStorage.getItem("role");
-
-
-
+      });
+    }
+    else {
+      return;
+    }
+   
+    
     
   }
 
