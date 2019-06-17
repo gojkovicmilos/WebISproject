@@ -20,9 +20,9 @@ export class AppMessage {
 
  
 
-  public sender:String;
-  public receiver:String;
-  public body:String;
+  public sender:string;
+  public receiver:string;
+  public body:string;
 
   constructor(){}
 
@@ -70,6 +70,8 @@ export class WebsocketComponent implements OnInit {
     this.subject.subscribe(
        (msg)=>{
          this.lista.push(msg);
+         if(this.lista[this.lista.length-1].receiver == this.username)
+          this.setReciever(this.lista[this.lista.length-1].sender);
         },
        (err) => console.log(err),
        () => console.log('complete')
