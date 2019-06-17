@@ -39,6 +39,7 @@ export class WebsocketComponent implements OnInit {
   users: User[];
   usernames: string[] = [];
   username:string = localStorage.getItem("username");
+  openPrivate: boolean = false;
 
   ngOnInit() {
     this.us.getAllUsers().subscribe((data: User[]) => {
@@ -96,8 +97,12 @@ export class WebsocketComponent implements OnInit {
     setReciever(rec: string): void {
       this.receiver = rec;
       console.log(this.receiver);
+      this.openPrivate = true;
     }
 
+    closePrivate(): void {
+      this.openPrivate = false;
+    }
     sendToAll(): void {
       this.receiver = "everyone";
       console.log(this.receiver);
