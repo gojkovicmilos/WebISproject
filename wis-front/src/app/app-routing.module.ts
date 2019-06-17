@@ -41,7 +41,7 @@ const routes: Routes = [
   {path: 'chat', component: WebsocketComponent},
   {path: 'adminDashBoard/createYos', component: CreateYearOfStudyComponent},
   {path: 'adminDashBoard/createCourse', component: CreateCourseComponent},
-  {path: 'courseMaterialPage', component: CourseMaterialPageComponent},
+  {path: 'adminDashBoard/courseMaterialPage', component: CourseMaterialPageComponent},
   {path: 'adminDashBoard', component: AdminDashboardComponent},
   {path: 'dragAndDrop', component: DragAndDropComponent}
 
