@@ -24,8 +24,10 @@ export class HomePageComponent implements OnInit {
       this.centers = data;
     });
 
-    if(localStorage.getItem("username").length == 0)
+    if(localStorage.getItem("username") === null)
       localStorage.setItem("username", "Guest");
+
+    console.log(localStorage.getItem("username"));
   }
 
   punjenje(id): void {
