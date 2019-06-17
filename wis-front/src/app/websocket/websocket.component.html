@@ -10,7 +10,6 @@
         <button class="btn btn-outline-success" style="width: 147px;" (click)='setReciever(username);'>
           {{username}}<i *ngIf="!displayUnread(i)>0" class="fa fa-circle" aria-hidden="true" style="font-size: 5px; float: right; margin-top: 11px"></i><span style="color: blue;float: right" *ngIf="displayUnread(i)>0">{{displayUnread(i)}}</span>
         </button>
-        <!-- <p *ngIf="displayUnread(i)>0">Unread: {{displayUnread(i)}}</p> -->
       </div>
     </div>
 
