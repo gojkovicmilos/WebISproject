@@ -20,12 +20,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Where;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import DTO.CourseDTO;
-import lms.utils.View.ShowCourseRealization;
 
-//sss
 @Entity
 @Where(clause = "deleted = 'false'")
 public class Course {

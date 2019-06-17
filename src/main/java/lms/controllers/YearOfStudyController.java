@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.annotation.JsonView;
 
 import DTO.YearOfStudyDTO;
 import lms.domain.StudyProgram;
@@ -26,7 +25,6 @@ import lms.domain.YearOfStudy;
 import lms.repository.YearOfStudyRepository;
 import lms.service.StudyProgramService;
 import lms.service.YearOfStudyService;
-import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController

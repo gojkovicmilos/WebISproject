@@ -5,7 +5,12 @@
     flex: 1;} 
  */
 
- .parts {
+.parts {
   display: inline-block;
 }
+
+textarea {
+  resize: none;
+}
+
 

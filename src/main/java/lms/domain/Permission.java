@@ -10,13 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
-import DTO.CourseDTO;
 import DTO.PermissionDTO;
-import DTO.StudentYearDTO;
 import DTO.UserPermissionDTO;
-import lms.utils.View.ShowPermission;
 
 @Entity
 public class Permission {

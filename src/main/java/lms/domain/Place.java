@@ -17,10 +17,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Where;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
-
-import lms.utils.View.ShowAddress;
 
 @Entity
 @Where(clause = "deleted = 'false'")

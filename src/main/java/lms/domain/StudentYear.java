@@ -17,10 +17,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Where;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import DTO.StudentYearDTO;
-import lms.utils.View.ShowEvaluationAttending;
 
 @Entity
 @Where(clause = "deleted = 'false'")

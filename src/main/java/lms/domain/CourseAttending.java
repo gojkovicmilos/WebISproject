@@ -13,8 +13,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Where;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import DTO.CourseAttendingDTO;
 
 @Entity
