@@ -10,7 +10,11 @@ import Admin from './Admin';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  admin: Admin[];
+  //admin: Admin;
+  username: string;
+  firstname: string;
+  lastname: string;
+  note: string;
   
   constructor(private as: AdminService, private router: Router) { }
 
@@ -18,7 +22,15 @@ export class AdminDashboardComponent implements OnInit {
     this.as
       .getAdmin()
       .subscribe((data: Admin[]) => {
-        this.admin = data;
+        for(var i = 0; i < data.length; i++) {
+          if(localStorage.getItem("username") == data[i].user.username) {
+            //this.admin = data[i];
+            this.username = data[i].user.username;
+            this.firstname = data[i].firstName;
+            this.lastname = data[i].lastName;
+            this.note = data[i].note;
+          }
+        }
     });
 
     

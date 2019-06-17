@@ -1,5 +1,8 @@
+import User from '../User';
+
 export default class Admin{
-    Firstname: string;
-    Lastname: string;
+    firstName: string;
+    lastName: string;
     note: string;
+    user: User;
 }
