@@ -109,7 +109,7 @@ public class StudentController {
 	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Student> deleteStudent(@PathVariable Long id) {
 		try {
-			studentService.removeStudent(id);
+			studentService.removeStudentSoft(id);
 			
 		}
 		catch(Exception e) {

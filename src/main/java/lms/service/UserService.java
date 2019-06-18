@@ -44,8 +44,12 @@ public class UserService{
 			cd.add(ct.toDTO());
 		return cd;
 	}
-
 	
-	
-	
+	public void removeUserSoft(Long id) {
+		Optional<User> u = userRepository.findById(id);
+		if(u.isPresent()) {
+			u.get().setDeleted(true);
+			userRepository.save(u.get());
+		}
+	}
 }

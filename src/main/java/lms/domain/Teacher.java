@@ -12,14 +12,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.Version;
 
 import DTO.CourseTeachingDTO;
 import DTO.TeacherDTO;
 
 @Entity
+@Where(clause = "deleted = 'false'")
 public class Teacher {
 
 	@Id
@@ -35,6 +38,8 @@ public class Teacher {
 	@Size(max = 20)
 	private String personalIdentificationNumber;
 
+	@NotNull
+	private Boolean deleted = false;
 
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseTeaching> courseTeachings;
@@ -62,16 +67,11 @@ public class Teacher {
 	
 	public Teacher() {
 	}
-	
-	
-	
-	
-	
 
 	public Teacher(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
 			@Size(max = 20) String personalIdentificationNumber,  Set<CourseTeaching> courseTeachings, Set<Title> title, Address address,
 			Faculty facultyDean, University universityRector, StudyProgram studyProgramHandler, int version,
-			User user) {
+			User user, Boolean deleted) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -84,12 +84,8 @@ public class Teacher {
 		StudyProgramHandler = studyProgramHandler;
 		this.version = version;
 		this.user = user;
+		this.deleted = deleted;
 	}
-
-
-
-
-
 
 	public Teacher(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
 			@Size(max = 20) String personalIdentificationNumber, 
@@ -108,19 +104,12 @@ public class Teacher {
 		this.version = version;
 	}
 
-
-
-
 	public Teacher(String firstname2, String lastname2, String personalid, User user2) {
 		this.firstName = firstname2;
 		this.lastName = lastname2;
 		this.personalIdentificationNumber = personalid;
 		this.user = user2;
 	}
-
-
-
-
 
 
 	public Long getId() {
@@ -213,22 +202,24 @@ public class Teacher {
 		this.version = version;
 	}
 
-
-
-
 	public User getUser() {
 		return user;
 	}
 
-
-
-
-
-
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
 
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
+	}
 
 
 	public TeacherDTO toDTO()

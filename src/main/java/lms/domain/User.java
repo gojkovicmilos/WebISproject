@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Where;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,6 +20,7 @@ import DTO.UserDTO;
 import DTO.UserPermissionDTO;
 
 @Entity
+@Where(clause = "deleted = 'false'")
 public class User {
 
 	@Id
@@ -28,6 +32,9 @@ public class User {
 	private String password;
 	
 	private String role;
+	
+	@NotNull
+	private Boolean deleted = false;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<UserPermission> userPermissions;
@@ -51,7 +58,7 @@ public class User {
 	
 
 	public User(Long id, String username, String password, String role, Set<UserPermission> userPermissions,
-			Student student, Teacher teacher, Administrator administrator) {
+			Student student, Teacher teacher, Administrator administrator, Boolean deleted) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -60,6 +67,7 @@ public class User {
 		this.student = student;
 		this.teacher = teacher;
 		this.administrator = administrator;
+		this.deleted = deleted;
 	}
 
 
@@ -86,6 +94,16 @@ public class User {
 		this.username = username2;
 		this.password = password2;
 		this.role = role2;
+	}
+	
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
 
 

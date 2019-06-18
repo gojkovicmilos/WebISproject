@@ -19,6 +19,7 @@ import lms.domain.Evaluation;
 import lms.domain.EvaluationAttending;
 import lms.domain.Student;
 import lms.domain.StudentYear;
+import lms.domain.User;
 import lms.domain.YearOfStudy;
 import lms.repository.CourseAttendingRepository;
 import lms.repository.CourseRepository;
@@ -42,6 +43,9 @@ public class StudentService {
 
 	@Autowired
 	CourseRepository courseRepository;
+	
+	@Autowired
+	UserService userService;
 
 	public StudentService() {
 	}
@@ -137,6 +141,18 @@ public class StudentService {
 	public void removeStudent(Long id) {
 		Optional<Student> s = studentRepository.findById(id);
 		studentRepository.delete(s.get());
+	}
+	
+	public void removeStudentSoft(Long id) {
+		Optional<Student> s = studentRepository.findById(id);
+		if(s.isPresent()) {
+			s.get().setDeleted(true);
+			studentRepository.save(s.get());
+			Optional<User> u = userService.getUser(s.get().getUser().getUsername());
+			if(u.isPresent()) {
+				userService.removeUserSoft(u.get().getId());
+			}
+		}
 	}
 
 	public void updateStudent(Long id, Student s) {

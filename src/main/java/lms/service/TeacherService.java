@@ -11,13 +11,18 @@ import DTO.TeacherDTO;
 import lms.domain.Course;
 import lms.domain.CourseTeaching;
 import lms.domain.Teacher;
+import lms.domain.User;
 import lms.repository.TeacherRepository;
+import lms.repository.UserRepository;
 
 @Service
 public class TeacherService {
 
 	@Autowired
 	TeacherRepository teacherRepository;
+	
+	@Autowired
+	UserService userService;
 
 	public TeacherService() {}
 	
@@ -42,6 +47,18 @@ public class TeacherService {
 	public void removeTeacher(Long id) {
 		Optional<Teacher> t = teacherRepository.findById(id);
 		teacherRepository.delete(t.get());
+	}
+	
+	public void removeTeacherSoft(Long id) {
+		Optional<Teacher> t = teacherRepository.findById(id);
+		if(t.isPresent()) {
+			t.get().setDeleted(true);
+			teacherRepository.save(t.get());
+			Optional<User> u = userService.getUser(t.get().getUser().getUsername());
+			if(u.isPresent()) {
+				userService.removeUserSoft(u.get().getId());
+			}
+		}
 	}
 
 	public void updateTeacher(Long id, Teacher t) {

@@ -12,13 +12,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Where;
 
 import DTO.CourseAttendingDTO;
 import DTO.StudentDTO;
 import DTO.StudentYearDTO;
 
 @Entity
+@Where(clause = "deleted = 'false'")
 public class Student {
 
 	@Id
@@ -33,9 +37,10 @@ public class Student {
 
 	@Size(max = 10)
 	private String cardNumber;
+	
+	@NotNull
+	private Boolean deleted = false;
 
-	
-	
 
 	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<CourseAttending> courseAttendings;
@@ -66,13 +71,14 @@ public class Student {
 
 	public Student(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
 			@Size(max = 10) String cardNumber,
-			Set<CourseAttending> courseAttendings, Set<StudentYear> studentYears) {
+			Set<CourseAttending> courseAttendings, Set<StudentYear> studentYears, Boolean deleted) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.cardNumber = cardNumber;
 		this.courseAttendings = courseAttendings;
 		this.studentYears = studentYears;
+		this.deleted = deleted;
 	}
 
 
@@ -140,18 +146,33 @@ public class Student {
 	}
 
 	
-	
-
 	public User getUser() {
 		return user;
 	}
-
 
 
 	public void setUser(User user) {
 		this.user = user;
 	}
 	
+	
+	
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+
+
+
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
+	}
+
+
+
+
+
 	public StudentDTO toDTO()
 	{
 		Set<CourseAttendingDTO> sy = new HashSet<>();

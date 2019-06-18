@@ -66,7 +66,7 @@ public class TeacherController {
 	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Teacher> removeTeacher(@PathVariable Long id) {
 		try {
-			teacherService.removeTeacher(id);
+			teacherService.removeTeacherSoft(id);
 		} catch (Exception e) {
 			return new ResponseEntity<Teacher>(HttpStatus.NOT_FOUND);
 		}

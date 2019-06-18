@@ -14,7 +14,7 @@ export class GetTeacherComponent implements OnInit {
 
   constructor(private ts: TeacherService, private router: Router) { }
 
-deleteTeacher(id) {
+deleteTeacher(id: number) {
   this.ts.deleteTeacher(id).subscribe(res => {
     console.log('Deleted');
     this.router.navigate(['teacher']);
