@@ -98,6 +98,9 @@ export class RegisterComponent implements OnInit {
   {
     this.rs.registerStudent(username, password, this.role, firstname, lastname, cardnumber);
     console.log(this.firstname);
+    alert('You have succesfully added a new Student');
+    this.router.navigate(['/user-dashboard/students']);
+    window.location.reload();
   }
 
   registerTeacher(username: string, password: string, firstname: string, lastname: string, personalid: string)
