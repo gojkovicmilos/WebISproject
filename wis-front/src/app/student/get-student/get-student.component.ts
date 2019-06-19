@@ -12,6 +12,8 @@ export class GetStudentComponent implements OnInit {
   students: Student[];
   blob: Blob;
 
+  selStudent: Student;
+
   constructor(private ss: StudentService, private router: Router) { }
 
 
@@ -25,6 +27,15 @@ export class GetStudentComponent implements OnInit {
 
   downloadStudentXML(id)
   {
+
+    this.students.forEach(element => {
+      
+      if(element.id == id)
+        this.selStudent = element;
+
+    });
+
+
     this.ss.getXML(id).subscribe((data) => {
 
       this.blob = new Blob([data], {type: 'application/xml'});
@@ -32,7 +43,9 @@ export class GetStudentComponent implements OnInit {
       var downloadURL = window.URL.createObjectURL(data);
       var link = document.createElement('a');
       link.href = downloadURL;
-      link.download = "file.xml";
+
+      
+      link.download = this.selStudent.firstName + " " + this.selStudent.lastName + " " + this.selStudent.cardNumber + ".xml";
       link.click();
     
     });
@@ -46,4 +59,12 @@ export class GetStudentComponent implements OnInit {
         this.students = data;
     });
   }
+
+  getFileNameFromHttpResponse(httpResponse):string {
+    var contentDispositionHeader = httpResponse.headers.get('Content-Disposition');
+    var result = contentDispositionHeader.split(';')[1].trim().split('=')[1];
+  return result.replace(/"/g, '');
+  }
 }
+
+

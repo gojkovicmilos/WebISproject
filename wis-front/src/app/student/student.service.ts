@@ -80,20 +80,9 @@ export class StudentService {
 
     getXML(id) {
 
-      this.authKey = localStorage.getItem('token');
+     
       
-      const httpOptions = {
-        responseType: 'blob',
-        headers: new HttpHeaders({
-          'Authorization': this.authKey,
-      
-        })
-      };
-      
-      return this.http.get(`${this.uri}/downloadxml/${id}`, {responseType: 'blob', headers: new HttpHeaders({
-        'Authorization': this.authKey,
-    
-      }) } );
+      return this.http.get(`${this.uri}/downloadxml/${id}`, {responseType: 'blob'} );
     }
 
 }
