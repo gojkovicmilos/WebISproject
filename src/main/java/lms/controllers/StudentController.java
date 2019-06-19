@@ -5,6 +5,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -27,6 +29,7 @@ import DTO.StudentDTO;
 import lms.domain.Course;
 import lms.domain.Student;
 import lms.service.CourseService;
+import lms.service.StorageService;
 import lms.service.StudentService;
 import lms.utils.View.HideOptionalProperties;
 
@@ -40,6 +43,9 @@ public class StudentController {
 	
 	@Autowired
 	CourseService courseService;
+
+	@Autowired
+	StorageService storageService;
 	
 	@GetMapping
 	public ResponseEntity<Iterable<StudentDTO>> getAllStudent() {
@@ -141,15 +147,19 @@ public class StudentController {
 	
 	
 	@GetMapping(value = "/downloadxml/{id}")
-	public ResponseEntity<File>downloadStudentXML(@PathVariable Long id)
+	public ResponseEntity<Resource>downloadStudentXML(@PathVariable Long id)
 	{
 	
 		Optional<Student> student = studentService.getStudentById(id);
 		if(student.isPresent())
 		{
-			return new ResponseEntity<File>(studentService.toXML(student.get()), HttpStatus.OK);
-		}
-		return new ResponseEntity<File>(HttpStatus.NOT_FOUND);
+			Resource file = storageService.loadFile(studentService.toXMLFile(student.get()));
+    	return ResponseEntity.ok()
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+        .body(file);
+  		}
+		
+		return new ResponseEntity<Resource>(HttpStatus.NOT_FOUND);
 		
 	}
 	
