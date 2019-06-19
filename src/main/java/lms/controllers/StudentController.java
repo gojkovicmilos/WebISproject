@@ -101,15 +101,9 @@ public class StudentController {
 	
 	@PutMapping(value = "/update/{id}")
 	@Secured("ROLE_ADMIN")
-	public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student student) {
-		
-		Optional<Student> sorg = studentService.getStudent(id);
-		
-		if(sorg.get().getCardNumber()!= student.getCardNumber())
-			return new ResponseEntity<Student>(HttpStatus.BAD_REQUEST);
-		
+	public ResponseEntity<StudentDTO> updateStudent(@PathVariable Long id, @RequestBody Student student) {
 		studentService.updateStudent(id, student);
-		return new ResponseEntity<Student>(student, HttpStatus.CREATED);
+		return new ResponseEntity<StudentDTO>(student.toDTO(), HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping(value = "/{id}")

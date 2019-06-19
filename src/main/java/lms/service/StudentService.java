@@ -171,6 +171,8 @@ public class StudentService {
 		Optional<Student> S = studentRepository.findById(id);
 		if (S.isPresent()) {
 			s.setId(S.get().getId());
+			s.setUser(S.get().getUser());
+			System.out.println(s.getCardNumber());
 			studentRepository.save(s);
 		}
 	}
