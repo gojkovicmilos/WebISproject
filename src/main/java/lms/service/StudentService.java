@@ -2,6 +2,7 @@ package lms.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.List;
@@ -164,7 +165,7 @@ public class StudentService {
 		}
 	}
 
-	public File toXML(Student s) {
+	public Path toXMLFile(Student s) {
 		File file = new File(s.getFirstName() + " " + s.getLastName() + " " + s.getCardNumber()+".xml");
 
 		XmlMapper mapper = new XmlMapper();
@@ -182,7 +183,10 @@ public class StudentService {
 			e.printStackTrace();
 		}
 
-		return file;
+
+		
+
+		return file.toPath();
 	}
 	
 
