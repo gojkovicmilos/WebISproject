@@ -22,9 +22,15 @@
                             > <i class="fa fa-trash-o"></i> Delete</a>
                         <a (click)="downloadStudentXML(student.id)" class="btn btn-secondary"
                             > <i class="fa fa-download"></i> Download XML</a>
+                        <a (click)="downloadStudentPDF(student.id)" class="btn btn-secondary"
+                            > <i class="fa fa-download"></i> Download PDF</a>
                     </td>
                 </tr>
             </tbody>
         </table>
+        
     </div>
+    <a (click)="downloadAllStudentsPDF()" class="btn btn-secondary"
+                            > <i class="fa fa-download"></i> Download All As PDF</a>
+    
 </body>

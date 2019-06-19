@@ -52,6 +52,51 @@ export class GetStudentComponent implements OnInit {
     
   }
 
+  downloadStudentPDF(id)
+  {
+
+    this.students.forEach(element => {
+      
+      if(element.id == id)
+        this.selStudent = element;
+
+    });
+
+
+    this.ss.getPDF(id).subscribe((data) => {
+
+      this.blob = new Blob([data], {type: 'application/pdf'});
+    
+      var downloadURL = window.URL.createObjectURL(data);
+      var link = document.createElement('a');
+      link.href = downloadURL;
+
+      
+      link.download = this.selStudent.firstName + " " + this.selStudent.lastName + " " + this.selStudent.cardNumber + ".pdf";
+      link.click();
+    
+    });
+    
+  }
+
+  downloadAllStudentsPDF()
+  {
+    this.ss.getAllPDF().subscribe((data) => {
+
+      this.blob = new Blob([data], {type: 'application/pdf'});
+    
+      var downloadURL = window.URL.createObjectURL(data);
+      var link = document.createElement('a');
+      link.href = downloadURL;
+
+      
+      link.download = "students.pdf";
+      link.click();
+    
+    });
+    
+  }
+
   ngOnInit() {
     this.ss
       .getStudents()

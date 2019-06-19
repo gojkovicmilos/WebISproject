@@ -1,6 +1,7 @@
 package lms.service;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.security.NoSuchAlgorithmException;
@@ -15,6 +16,7 @@ import org.apache.fop.apps.FOPException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -36,6 +38,7 @@ import lms.repository.CourseAttendingRepository;
 import lms.repository.CourseRepository;
 import lms.repository.StudentRepository;
 import lms.repository.YearOfStudyRepository;
+import lms.utils.ConvertToPDF;
 import lms.utils.FOPPdfDemo;
 
 @Service
@@ -62,7 +65,7 @@ public class StudentService {
 	@Autowired
 	StorageService storageService;
 
-	FOPPdfDemo fopPdfDemo;
+	ConvertToPDF pdfConverter;
 
 	public StudentService() {
 	}
@@ -214,32 +217,30 @@ public class StudentService {
 		return file.toPath();
 	}
 
-	public Resource toPDF(Student s) {
+	public Resource allToPDF() throws FileNotFoundException {
+
+		String filename = "students.pdf";
+
+		return storageService.loadFile(pdfConverter.students(getStudents(), filename));
+
+
+
+		
+
+	}
+
+	public Resource toPDF(StudentDTO s) {
 
 		String filename = s.getFirstName() + " " + s.getLastName() + " " + s.getCardNumber() + ".pdf";
 
-		Path p = toXMLFile(s);
+		return storageService.loadFile(pdfConverter.student(s, filename));
 
-		Resource file;
 
-		try {
-			p = fopPdfDemo.convertToPDF(p, filename);
-		} catch (FOPException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
-		file = storageService.loadFile(p);
-
-		return file;
+		
 
 	}
+
 	
 
 	

@@ -87,4 +87,17 @@ export class StudentService {
       return this.http.get(`${this.uri}/downloadxml/${id}`, {responseType: 'blob'} );
     }
 
+    getPDF(id) {
+
+     
+      
+      return this.http.get(`${this.uri}/downloadpdf/${id}`, {responseType: 'blob'} );
+    }
+    getAllPDF() {
+
+     
+      
+      return this.http.get(`${this.uri}/downloadpdf/`, {responseType: 'blob'} );
+    }
+
 }
