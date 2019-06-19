@@ -46,6 +46,6 @@ export class CreateCenterComponent implements OnInit {
       }
     });
     this.selectedFiles = undefined;
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).then(() => window.location.reload());
   }
 }

@@ -19,7 +19,7 @@ export class CreateSpComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
-  selectedCenterId: number;
+  selectedCenterId: number = 1;
   constructor(private sps: StudyProgramService, private router: Router,  private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -64,7 +64,7 @@ export class CreateSpComponent implements OnInit {
       }
     });
     this.selectedFiles = undefined;
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).then(() => window.location.reload());
   }
 
 }

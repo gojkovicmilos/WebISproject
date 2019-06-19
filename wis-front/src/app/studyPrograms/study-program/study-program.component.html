@@ -37,7 +37,7 @@
                 Check the subjects</a>
               <div class="collapse list-group-submenu" id="{{cssId[i]}}">
                 <div id="accordion">
-                  <div class="card" *ngFor="let course of yos.courses">
+                  <div class="card" *ngFor="let course of yos.courses; let j = index">
                     <div class="card-header" id="headingOne" class="list-group-item">
                       <h5 class="mb-0">
                         <button class="list-group-item" data-toggle="collapse" data-target="#collapseOne"
@@ -46,7 +46,7 @@
                         </button>
                       </h5>
                     </div>
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div id="collapseOne" class="collapse" aria-labelledby="collapseOne" data-parent="#collapseOne">
                       <div class="card-body">
                         Something about {{course.title}}
                       </div>
