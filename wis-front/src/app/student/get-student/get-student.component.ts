@@ -20,7 +20,7 @@ export class GetStudentComponent implements OnInit {
   deleteStudent(id) {
     this.ss.deleteStudent(id).subscribe(res => {
       console.log('Deleted');
-      this.router.navigate(['students']);
+      this.router.navigate(['/user-dashboard/students']).then(() => window.location.reload());
       this.ngOnInit();
     });
   }

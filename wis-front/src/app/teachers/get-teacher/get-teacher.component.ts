@@ -17,7 +17,7 @@ export class GetTeacherComponent implements OnInit {
 deleteTeacher(id: number) {
   this.ts.deleteTeacher(id).subscribe(res => {
     console.log('Deleted');
-    this.router.navigate(['teacher']);
+    this.router.navigate(['/user-dashboard/teacher']).then(() => window.location.reload());
     this.ngOnInit();
   });
 }

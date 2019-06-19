@@ -29,8 +29,12 @@ export class EditStudentComponent implements OnInit {
 
   updateStudent(firstName, lastName, cardNumber) {
     this.route.params.subscribe(params => {
-       this.ss.updateStudent(firstName, lastName, cardNumber, params.id);
-       alert('You have succesfully changed a Student');
+      this.ss.updateStudent(firstName, lastName, cardNumber, params.id);
+      alert('You have succesfully changed a Student');
+      this.router.navigate(['/user-dashboard/students']).then(() => window.location.reload());
+
+        
+      
  });
   }
   ngOnInit() {

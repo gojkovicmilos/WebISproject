@@ -64,29 +64,26 @@ public class TeacherController {
 
 	@DeleteMapping(value = "/{id}")
 	@Secured("ROLE_ADMIN")
-	public ResponseEntity<Teacher> removeTeacher(@PathVariable Long id) {
+	public ResponseEntity<TeacherDTO> removeTeacher(@PathVariable Long id) {
 		try {
 			teacherService.removeTeacherSoft(id);
 		} catch (Exception e) {
-			return new ResponseEntity<Teacher>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<TeacherDTO>(teacherService.getTeacherById(id).get().toDTO(), HttpStatus.OK);
 		}
 
-		return new ResponseEntity<Teacher>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<TeacherDTO>(HttpStatus.NO_CONTENT);
 	}
 	
-	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/firstname/{firstName}")
 	public ResponseEntity<Iterable<Teacher>> getTeacherByFirstName(@PathVariable String firstName) {
 		return new ResponseEntity<Iterable<Teacher>>(teacherService.getByFirstName(firstName), HttpStatus.OK);
 	}
 	
-	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/lastname/{lastName}")
 	public ResponseEntity<Iterable<Teacher>> getTeacherByLastName(@PathVariable String lastName) {
 		return new ResponseEntity<Iterable<Teacher>>(teacherService.getByLastName(lastName), HttpStatus.OK);
 	}
 	
-	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/personaidentificationnumber/{personalIdentificationNumber}")
 	public ResponseEntity<Teacher> getTeacherByPersonalIdentificationNumber(@PathVariable String personalIdentificationNumber) {
 		Optional<Teacher> teacher = teacherService.getByPersonalIdentificationNumber(personalIdentificationNumber);
