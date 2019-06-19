@@ -10,8 +10,10 @@ import lms.domain.Student;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long>{
-	List<Student> findByFirstName(String firstName);
-	List<Student> findByLastName(String lastName);
+	List<Student> findByFirstNameOrLastNameLikeIgnoreCase(String name, String name1);
+	List<Student> findByLastNameLikeIgnoreCase(String lastName);
+	List<Student> findByFirstNameLikeIgnoreCase(String firstName);
+
 	List<Student> findByCourseAttendingsCourseRealizationCourseTitle(String courseTitle);
 	Optional<Student> findFirstByCardNumber(String cardNumber);
 }
