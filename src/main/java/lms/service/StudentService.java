@@ -9,7 +9,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.xml.transform.TransformerException;
+
+import org.apache.fop.apps.FOPException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -32,6 +36,7 @@ import lms.repository.CourseAttendingRepository;
 import lms.repository.CourseRepository;
 import lms.repository.StudentRepository;
 import lms.repository.YearOfStudyRepository;
+import lms.utils.FOPPdfDemo;
 
 @Service
 public class StudentService {
@@ -53,6 +58,11 @@ public class StudentService {
 
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	StorageService storageService;
+
+	FOPPdfDemo fopPdfDemo;
 
 	public StudentService() {
 	}
@@ -166,7 +176,7 @@ public class StudentService {
 	}
 
 	public Path toXMLFile(Student s) {
-		File file = new File(s.getFirstName() + " " + s.getLastName() + " " + s.getCardNumber()+".xml");
+		File file = new File(s.getFirstName() + " " + s.getLastName() + " " + s.getCardNumber() + ".xml");
 
 		XmlMapper mapper = new XmlMapper();
 
@@ -183,10 +193,34 @@ public class StudentService {
 			e.printStackTrace();
 		}
 
-
-		
-
 		return file.toPath();
+	}
+
+	public Resource toPDF(Student s) {
+
+		String filename = s.getFirstName() + " " + s.getLastName() + " " + s.getCardNumber() + ".pdf";
+
+		Path p = toXMLFile(s);
+
+		Resource file;
+
+		try {
+			p = fopPdfDemo.convertToPDF(p, filename);
+		} catch (FOPException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		file = storageService.loadFile(p);
+
+		return file;
+
 	}
 	
 

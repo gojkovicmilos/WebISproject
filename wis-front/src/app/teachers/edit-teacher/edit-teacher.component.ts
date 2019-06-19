@@ -40,7 +40,6 @@ export class EditTeacherComponent implements OnInit {
     this.route.params.subscribe(params => {
        this.ts.updateTeacher(firstName, lastName, personalIdentificationNumber, params.id);
        alert('You have succesfully changed a Teacher');
-       this.router.navigate(['teacher']);
  });
   }
    refresh() {

@@ -65,6 +65,7 @@ public class TeacherService {
 		Optional<Teacher> T = teacherRepository.findById(id);
 		if (T.isPresent()) {
 			t.setId(T.get().getId());
+			t.setUser(T.get().getUser());
 			teacherRepository.save(t);
 		}
 	}

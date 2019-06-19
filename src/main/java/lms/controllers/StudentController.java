@@ -164,6 +164,22 @@ public class StudentController {
 	}
 	
 
+	@GetMapping(value = "/downloadpdf/{id}")
+	public ResponseEntity<Resource>downloadStudentPDF(@PathVariable Long id)
+	{
+	
+		Optional<Student> student = studentService.getStudentById(id);
+		if(student.isPresent())
+		{
+			Resource file = studentService.toPDF(student.get());
+    	return ResponseEntity.ok()
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+        .body(file);
+  		}
+		
+		return new ResponseEntity<Resource>(HttpStatus.NOT_FOUND);
+		
+	}
 	
 	
 }

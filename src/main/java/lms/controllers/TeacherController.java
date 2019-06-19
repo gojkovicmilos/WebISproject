@@ -57,9 +57,9 @@ public class TeacherController {
 
 	@PutMapping(value = "/update/{id}")
 	@Secured("ROLE_ADMIN")
-	public ResponseEntity<Teacher> updateTeacher(@PathVariable Long id, @RequestBody Teacher teacher) {
+	public ResponseEntity<TeacherDTO> updateTeacher(@PathVariable Long id, @RequestBody Teacher teacher) {
 		teacherService.updateTeacher(id, teacher);
-		return new ResponseEntity<Teacher>(teacher, HttpStatus.CREATED);
+		return new ResponseEntity<TeacherDTO>(teacher.toDTO(), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping(value = "/{id}")
