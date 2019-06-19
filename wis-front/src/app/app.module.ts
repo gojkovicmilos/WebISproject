@@ -37,7 +37,7 @@ import { CourseMaterialPageComponent } from './course-material-page/course-mater
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
-import { DragDropModule } from '@angular/cdk/drag-drop'
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -66,7 +66,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
     CreateCourseComponent,
     CourseMaterialPageComponent,
     AdminDashboardComponent,
-    DragAndDropComponent
+    DragAndDropComponent,
   ],
   imports: [
     BrowserModule,
