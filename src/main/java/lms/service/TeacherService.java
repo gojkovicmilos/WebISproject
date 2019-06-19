@@ -1,10 +1,19 @@
 package lms.service;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import DTO.TeacherDTO;
@@ -13,7 +22,7 @@ import lms.domain.CourseTeaching;
 import lms.domain.Teacher;
 import lms.domain.User;
 import lms.repository.TeacherRepository;
-import lms.repository.UserRepository;
+import lms.utils.ConvertToPDF;
 
 @Service
 public class TeacherService {
@@ -23,6 +32,9 @@ public class TeacherService {
 	
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	StorageService storageService;
 
 	public TeacherService() {}
 	
@@ -90,6 +102,48 @@ public class TeacherService {
 	
 	public Optional<Teacher> getByPersonalIdentificationNumber(String personalIdentificationNumber) {
 		return teacherRepository.findByPersonalIdentificationNumber(personalIdentificationNumber);
+	}
+
+	public Path toXMLFile(Teacher s) {
+		File file = new File(s.getFirstName() + " " + s.getLastName() + " " + s.getPersonalIdentificationNumber() + ".xml");
+
+		XmlMapper mapper = new XmlMapper();
+
+		try {
+			mapper.writeValue(file, s.toDTO());
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return file.toPath();
+	}
+
+	public Resource allToPDF() throws FileNotFoundException {
+
+		String filename = "teachers.pdf";
+
+		return storageService.loadFile(ConvertToPDF.teachers(getAllTeacher(), filename));
+
+
+
+		
+
+	}
+
+	public Resource toPDF(TeacherDTO s) {
+
+		String filename = s.getFirstName() + " " + s.getLastName() + " " + s.getPersonalIdentificationNumber() + ".pdf";
+
+		return storageService.loadFile(ConvertToPDF.teacher(s, filename));
+
+
+
+		
+
 	}
 
 }

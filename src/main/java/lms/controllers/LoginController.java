@@ -85,7 +85,7 @@ public class LoginController {
 		
 		User user = new User(set.getUsername(), set.getPassword(), set.getRole());
 		
-		ResponseEntity<UserDTO> ret =  loginService.register(user);
+		loginService.register(user);
 		
 		Student student = new Student(set.getFirstname(), set.getLastname(), set.getCardnumber(), user);
 		
@@ -108,7 +108,7 @@ public class LoginController {
 		
 		User user = new User(set.getUsername(), set.getPassword(), set.getRole());
 		
-		ResponseEntity<UserDTO> ret =  loginService.register(user);
+		loginService.register(user);
 		
 		Teacher teacher = new Teacher(set.getFirstname(), set.getLastname(), set.getPersonalid(), user);
 		
@@ -127,7 +127,7 @@ public class LoginController {
 		
 		User user = new User(set.getUsername(), set.getPassword(), set.getRole());
 		
-		ResponseEntity<UserDTO> ret =  loginService.register(user);
+		loginService.register(user);
 		
 		Administrator admin = new Administrator(set.getFirstname(), set.getLastname(), user);
 		

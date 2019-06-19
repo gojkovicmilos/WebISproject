@@ -92,7 +92,6 @@ public class Center {
 		try {
 			this.pic = file.getBytes();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

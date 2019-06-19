@@ -89,7 +89,6 @@ public class Course {
 		try {
 			this.pic = file.getBytes();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.title = title2;

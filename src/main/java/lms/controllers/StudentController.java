@@ -1,6 +1,5 @@
 package lms.controllers;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
@@ -21,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import DTO.CourseDTO;
 import DTO.CourseGradeDTO;
 import DTO.EvaluationPointsDTO;
@@ -32,7 +29,6 @@ import lms.domain.Student;
 import lms.service.CourseService;
 import lms.service.StorageService;
 import lms.service.StudentService;
-import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController

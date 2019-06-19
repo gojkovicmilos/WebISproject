@@ -21,10 +21,16 @@
                                 <i class="fa fa-pencil-square"></i> Edit User</a>
                             <a (click)="deleteTeacher(teacher.id)" class="btn btn-danger" style="margin-left: 80px;"> <i
                                     class="fa fa-trash-o"></i> Delete</a>
+                            <a (click)="downloadTeacherXML(teacher.id)" class="btn btn-secondary"
+                                    > <i class="fa fa-download"></i> Download XML</a>
+                            <a (click)="downloadTeacherPDF(teacher.id)" class="btn btn-secondary"
+                                    > <i class="fa fa-download"></i> Download PDF</a>
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+    <a (click)="downloadAllTeachersPDF()" class="btn btn-secondary"
+                            > <i class="fa fa-download"></i> Download All As PDF</a>
 </body>

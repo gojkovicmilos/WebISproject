@@ -87,7 +87,6 @@ public class StudyProgram {
 		try {
 		this.pic = file.getBytes();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.name = name2;
@@ -99,7 +98,6 @@ public class StudyProgram {
 		try {
 		this.pic = file.getBytes();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.name = name2;

@@ -10,12 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import DTO.UserDTO;
 import lms.domain.User;
 import lms.service.UserService;
-import lms.utils.View.HideOptionalProperties;
 
 @RestController
 @RequestMapping("/user")

@@ -1,8 +1,11 @@
 package lms.controllers;
 
+import java.io.FileNotFoundException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -17,12 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import DTO.TeacherDTO;
-
-import com.fasterxml.jackson.annotation.JsonView;
-
 import lms.domain.Teacher;
+import lms.service.StorageService;
 import lms.service.TeacherService;
-import lms.utils.View.HideOptionalProperties;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -31,6 +31,9 @@ public class TeacherController {
 
 	@Autowired
 	TeacherService teacherService;
+
+	@Autowired
+	StorageService storageService;
 
 
 	@RequestMapping()
@@ -91,6 +94,55 @@ public class TeacherController {
 			return new ResponseEntity<Teacher>(teacher.get(), HttpStatus.FOUND);
 		}
 		return new ResponseEntity<Teacher>(HttpStatus.NO_CONTENT);
+	}
+
+	@GetMapping(value = "/downloadxml/{id}")
+	public ResponseEntity<Resource>downloadTeacherXML(@PathVariable Long id)
+	{
+	
+		Optional<Teacher> teacher = teacherService.getTeacherById(id);
+		if(teacher.isPresent())
+		{
+			Resource file = storageService.loadFile(teacherService.toXMLFile(teacher.get()));
+    	return ResponseEntity.ok()
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+        .body(file);
+  		}
+		
+		return new ResponseEntity<Resource>(HttpStatus.NOT_FOUND);
+		
+	}
+
+	
+	@GetMapping(value = "/downloadpdf")
+	public ResponseEntity<Resource>downloadTeachersPDF() throws FileNotFoundException
+	{
+	
+		
+		Resource file = teacherService.allToPDF();
+    	return ResponseEntity.ok()
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+        .body(file);
+  		
+		
+	}
+
+	@GetMapping(value = "/downloadpdf/{id}")
+	public ResponseEntity<Resource>downloadStudentPDF(@PathVariable Long id)
+	{
+	
+		
+		Optional<Teacher> teacher = teacherService.getTeacherById(id);
+		if(teacher.isPresent())
+		{
+			Resource file = teacherService.toPDF(teacher.get().toDTO());
+    		return ResponseEntity.ok()
+        		.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+        		.body(file);
+  		}
+		  
+		  return new ResponseEntity<Resource>(HttpStatus.NOT_FOUND);
+		
 	}
 	
 	

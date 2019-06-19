@@ -10,17 +10,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.xml.transform.TransformerException;
-
-import org.apache.fop.apps.FOPException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Service;
 
 import DTO.CourseDTO;
 import DTO.CourseGradeDTO;
@@ -39,7 +35,6 @@ import lms.repository.CourseRepository;
 import lms.repository.StudentRepository;
 import lms.repository.YearOfStudyRepository;
 import lms.utils.ConvertToPDF;
-import lms.utils.FOPPdfDemo;
 
 @Service
 public class StudentService {
@@ -65,7 +60,6 @@ public class StudentService {
 	@Autowired
 	StorageService storageService;
 
-	ConvertToPDF pdfConverter;
 
 	public StudentService() {
 	}
@@ -204,13 +198,10 @@ public class StudentService {
 		try {
 			mapper.writeValue(file, s.toDTO());
 		} catch (JsonGenerationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -221,7 +212,7 @@ public class StudentService {
 
 		String filename = "students.pdf";
 
-		return storageService.loadFile(pdfConverter.students(getStudents(), filename));
+		return storageService.loadFile(ConvertToPDF.students(getStudents(), filename));
 
 
 
@@ -233,7 +224,7 @@ public class StudentService {
 
 		String filename = s.getFirstName() + " " + s.getLastName() + " " + s.getCardNumber() + ".pdf";
 
-		return storageService.loadFile(pdfConverter.student(s, filename));
+		return storageService.loadFile(ConvertToPDF.student(s, filename));
 
 
 

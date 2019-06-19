@@ -68,14 +68,7 @@ public class YearOfStudy {
 
 
 	public YearOfStudy(MultipartFile file, String title2, StudyProgram sp) {
-//		this.pic_name = file.getName();
-//		this.mimetype = file.getContentType();
-//		try {
-//			this.pic = file.getBytes();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
 		this.title = title2;
 		this.studyProgram = sp;
 	}
