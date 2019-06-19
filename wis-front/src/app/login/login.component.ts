@@ -33,12 +33,12 @@ export class LoginComponent implements OnInit {
     this.ls.login(username, password);
 
     setTimeout(() => {
-      this.router.navigateByUrl('/adminDashBoard', { skipLocationChange: false }).then(() => {
+      this.router.navigateByUrl('/user-dashboard', { skipLocationChange: false }).then(() => {
         localStorage.setItem('username', username);
         window.location.reload();
 
       });
-    }, 2000);
+    }, 100);
   }
   ngOnInit() {
   }
