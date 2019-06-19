@@ -87,11 +87,10 @@ public class Teacher {
 		this.deleted = deleted;
 	}
 
-	public Teacher(Long id, @Size(max = 50) String firstName, @Size(max = 50) String lastName,
+	public Teacher(@Size(max = 50) String firstName, @Size(max = 50) String lastName,
 			@Size(max = 20) String personalIdentificationNumber, 
 			Set<CourseTeaching> courseTeachings, Set<Title> title, Address address, Faculty facultyDean,
 			University universityRector, StudyProgram studyProgramHandler, int version) {
-		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.personalIdentificationNumber = personalIdentificationNumber;
@@ -229,7 +228,7 @@ public class Teacher {
 			for(CourseTeaching s:this.courseTeachings)
 				sy.add(s.toDTO());
 		
-		return new TeacherDTO(this.firstName, this.lastName, this.personalIdentificationNumber, sy, this.user.toDTO());
+		return new TeacherDTO(this.id,this.firstName, this.lastName, this.personalIdentificationNumber, sy, this.user.toDTO());
 	}
 
 

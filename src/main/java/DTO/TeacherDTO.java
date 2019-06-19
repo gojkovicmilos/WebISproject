@@ -4,6 +4,8 @@ import java.util.Set;
 
 public class TeacherDTO {
 	
+	private Long id;
+	
 private String firstName;
 	
 	private String lastName;
@@ -17,8 +19,9 @@ private String firstName;
 
 	
 
-	public TeacherDTO(String firstName, String lastName, String personalIdentificationNumber,
+	public TeacherDTO(Long id,String firstName, String lastName, String personalIdentificationNumber,
 			Set<CourseTeachingDTO> courseTeachings, UserDTO user) {
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.personalIdentificationNumber = personalIdentificationNumber;
@@ -65,6 +68,16 @@ private String firstName;
 	public void setCourseTeachings(Set<CourseTeachingDTO> courseTeachings) {
 		this.courseTeachings = courseTeachings;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 	
 
 	

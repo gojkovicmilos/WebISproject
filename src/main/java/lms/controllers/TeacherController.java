@@ -40,7 +40,7 @@ public class TeacherController {
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<TeacherDTO> getTeacherById(@PathVariable Long id) {
-		Optional<Teacher> teacher = teacherService.getTeacherId(id);
+		Optional<Teacher> teacher = teacherService.getTeacherById(id);
 		if (teacher.isPresent()) {
 			return new ResponseEntity<TeacherDTO>(teacher.get().toDTO(), HttpStatus.OK);
 		}

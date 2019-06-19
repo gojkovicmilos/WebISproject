@@ -40,7 +40,7 @@ public class TeacherService {
 		teacherRepository.save(t);
 	}
 
-	public Optional<Teacher> getTeacherId(Long id) {
+	public Optional<Teacher> getTeacherById(Long id) {
 		return teacherRepository.findById(id);
 	}
 
