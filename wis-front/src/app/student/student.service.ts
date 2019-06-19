@@ -37,14 +37,12 @@ export class StudentService {
             .http
             .get(`${this.uri}/${id}`);
     }
-
-    updateStudent(firstname, lastname, cardnumber, password, id) {
+    updateStudent(firstname, lastname, CardNumber, id) {
 
       const obj = {
           firstName: firstname,
           lastName: lastname,
-          cardNumber: cardnumber,
-          pass: password
+          cardNumber: CardNumber
 };
       this
         .http
