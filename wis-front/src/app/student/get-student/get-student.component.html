@@ -6,7 +6,7 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Card Number</th>
-                    <th style="width: 33%;">Actions</th>
+                    <th style="width: 40%;">Actions</th>
                 </tr>
             </thead>
 
@@ -15,13 +15,13 @@
                     <td style="text-align: center;">{{ student?.firstName }}</td>
                     <td style="text-align: center;"> {{ student?.lastName }}</td>
                     <td style="text-align: center;">{{ student?.cardNumber }}</td>
-                    <td>
-                        <a [routerLink]="[student.id]" class="btn btn-primary" style="margin-left: 40px;">
+                    <td >
+                        <a [routerLink]="[student.id]" class="btn btn-primary">
                             <i class="fa fa-pencil-square"></i> Edit User</a>
                         <a (click)="deleteStudent(student.id)" class="btn btn-danger"
-                            style="margin-left: 80px;"> <i class="fa fa-trash-o"></i> Delete</a>
-                        <a (click)="downloadStudentXML(student.id)" class="btn btn-primary"
-                            style="margin-left: 80px;"> <i class="fa fa-download"></i> Download XML</a>
+                            > <i class="fa fa-trash-o"></i> Delete</a>
+                        <a (click)="downloadStudentXML(student.id)" class="btn btn-secondary"
+                            > <i class="fa fa-download"></i> Download XML</a>
                     </td>
                 </tr>
             </tbody>
