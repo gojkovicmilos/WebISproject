@@ -65,7 +65,7 @@ public class AdministratorController {
 	}
 
 	@PostMapping
-	//@Secured("ROLE_ADMIN")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Administrator> addAdministrator(@RequestBody Administrator faculty) {
 
 		administratorService.addAdministrator(faculty);
