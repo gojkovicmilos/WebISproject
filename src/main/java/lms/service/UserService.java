@@ -3,22 +3,27 @@ package lms.service;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 import DTO.UserDTO;
+import lms.domain.Administrator;
 import lms.domain.User;
-import lms.repository.PermissionRepository;
 import lms.repository.UserRepository;
 
 @Service
-public class UserService{
+public class UserService implements CommandLineRunner {
 	@Autowired
 	UserRepository userRepository;
 	
 	@Autowired
-	PermissionRepository permissionRepository;
+	AdministratorService administratorService;
+	
+	@Autowired
+	LoginService loginService;
 	
 
 	public Optional<User> getUser(String username) {
@@ -50,6 +55,21 @@ public class UserService{
 		if(u.isPresent()) {
 			u.get().setDeleted(true);
 			userRepository.save(u.get());
+		}
+	}
+	
+	@Override
+	public void run(String... args) throws Exception {
+		
+		if(StreamSupport.stream(userRepository.findAll().spliterator(), false).count()<1)
+		{
+			User user = new User("admin", "admin", "ROLE_ADMIN");
+			
+			loginService.register(user);
+			
+			Administrator admin = new Administrator("Pera", "Peric", user);
+			
+			administratorService.addAdministrator(admin);
 		}
 	}
 }
