@@ -120,12 +120,28 @@ public class StudentService {
 		return ret;
 	}
 
-	public Iterable<Student> getByFirstName(String firstName) {
-		return studentRepository.findByFirstName(firstName);
+	public Iterable<StudentDTO> getByFirstName(String firstName) {
+		List<Student> list =  studentRepository.findByFirstNameLikeIgnoreCase(firstName);
+		Set<StudentDTO> ret = new HashSet<>();
+		for(Student s: list)
+			ret.add(s.toDTO());
+		return ret;
 	}
 
-	public Iterable<Student> getByLastName(String lastName) {
-		return studentRepository.findByLastName(lastName);
+	public Iterable<StudentDTO> searchByName(String name) {
+		List<Student> list =  studentRepository.findByFirstNameOrLastNameLikeIgnoreCase(name, name);
+		Set<StudentDTO> ret = new HashSet<>();
+		for(Student s: list)
+			ret.add(s.toDTO());
+		return ret;
+	}
+
+	public Iterable<StudentDTO> getByLastName(String lastName) {
+		List<Student> list =  studentRepository.findByLastNameLikeIgnoreCase(lastName);
+		Set<StudentDTO> ret = new HashSet<>();
+		for(Student s: list)
+			ret.add(s.toDTO());
+		return ret;
 	}
 
 	public Iterable<StudentDTO> getStudents() {

@@ -62,6 +62,10 @@ export class StudentService {
       return this.http.get(`${this.uri}/lastname/${lastName}`);
     }
 
+    searchStudent(name: string): Observable<any> {
+      return this.http.get(`${this.uri}/search/${name}`);
+    }
+
     logInStudent(cardNumber: string, password: string)
     {
 

@@ -30,7 +30,15 @@ export class SearchStudentComponent implements OnInit {
       .subscribe(students => this.students = students);
       }
 
-  
+  private searchStudents() {
+    this.ss.searchStudent(this.firstName)
+      .subscribe(students => this.students = students);
+        }
+
+  searchSubmit()
+  {
+    this.searchStudents();
+  }
 
   onSubmitFirst() {
     this.searchStudentsFirst();
