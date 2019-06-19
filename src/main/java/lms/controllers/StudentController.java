@@ -1,5 +1,6 @@
 package lms.controllers;
 
+import java.io.File;
 import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
@@ -119,30 +120,38 @@ public class StudentController {
 		
 	}
 	
-	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/lastname/{lastName}")
 	public ResponseEntity<Iterable<Student>> getStudentByLastName(@PathVariable String lastName) {
 		return new ResponseEntity<Iterable<Student>>(studentService.getByLastName(lastName), HttpStatus.OK);
 	}
 	
-	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/firstname/{firstName}")
 	public ResponseEntity<Iterable<Student>> getStudentByFirstName(@PathVariable String firstName) {
 		return new ResponseEntity<Iterable<Student>>(studentService.getByFirstName(firstName), HttpStatus.OK);
 	}
 	
-	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/cardnumber/{cardNumber}")
-	public ResponseEntity<Student> getStudentByCardNumber(@PathVariable String cardNumber) {
+	public ResponseEntity<StudentDTO> getStudentByCardNumber(@PathVariable String cardNumber) {
 		Optional<Student> student = studentService.getByCardNumber(cardNumber);
 		if(student.isPresent()) {
-			return new ResponseEntity<Student>(student.get(), HttpStatus.FOUND);
+			return new ResponseEntity<StudentDTO>(student.get().toDTO(), HttpStatus.FOUND);
 		}
-		return new ResponseEntity<Student>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<StudentDTO>(HttpStatus.NO_CONTENT);
 	}
 	
 	
+	@GetMapping(value = "/downloadxml/{id}")
+	public ResponseEntity<File>downloadStudentXML(@PathVariable Long id)
+	{
 	
+		Optional<Student> student = studentService.getStudentById(id);
+		if(student.isPresent())
+		{
+			return new ResponseEntity<File>(studentService.toXML(student.get()), HttpStatus.OK);
+		}
+		return new ResponseEntity<File>(HttpStatus.NOT_FOUND);
+		
+	}
 	
 
 	

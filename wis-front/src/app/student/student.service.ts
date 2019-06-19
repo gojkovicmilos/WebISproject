@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -10,6 +10,7 @@ export class StudentService {
 
   uri = 'http://localhost:8080/student';
   reloadData: any;
+  authKey: string;
 
   constructor(private http: HttpClient) { }
 
@@ -75,4 +76,24 @@ export class StudentService {
 
       this.http.post(`${this.uri}/login`, obj).subscribe(res => console.log('Done'));
     }
+
+
+    getXML(id) {
+
+      this.authKey = localStorage.getItem('token');
+      
+      const httpOptions = {
+        responseType: 'blob',
+        headers: new HttpHeaders({
+          'Authorization': this.authKey,
+      
+        })
+      };
+      
+      return this.http.get(`${this.uri}/downloadxml/${id}`, {responseType: 'blob', headers: new HttpHeaders({
+        'Authorization': this.authKey,
+    
+      }) } );
+    }
+
 }

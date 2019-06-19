@@ -1,10 +1,16 @@
 package lms.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,13 +43,13 @@ public class StudentService {
 
 	@Autowired
 	CourseAttendingRepository courseAttendingRepository;
-	
+
 	@Autowired
 	CourseAttendingService courseAttendingService;
 
 	@Autowired
 	CourseRepository courseRepository;
-	
+
 	@Autowired
 	UserService userService;
 
@@ -68,9 +74,9 @@ public class StudentService {
 		for (StudentYear studentYear : student.getStudentYears())
 			for (Course course : studentYear.getYearOfStudy().getCourses())
 				ret.add(course.toDTO());
-		
+
 		for (CourseAttending courseAttending : student.getCourseAttendings())
-			if(ret.contains(courseAttending.getCourseRealization().getCourse().toDTO()))
+			if (ret.contains(courseAttending.getCourseRealization().getCourse().toDTO()))
 				ret.remove(courseAttending.getCourseRealization().getCourse().toDTO());
 
 		return ret;
@@ -81,32 +87,27 @@ public class StudentService {
 		Set<CourseGradeDTO> ret = new HashSet<>();
 
 		for (CourseAttending courseAttending : student.getCourseAttendings())
-			ret.add(new CourseGradeDTO(courseAttending.getCourseRealization().getCourse().getTitle(), courseAttending.getGrade()));
+			ret.add(new CourseGradeDTO(courseAttending.getCourseRealization().getCourse().getTitle(),
+					courseAttending.getGrade()));
 
 		return ret;
 
 	}
-	
-	
-	public Set<EvaluationPointsDTO>findAllEvaluations(Course course, Student student)
-	{
-		
+
+	public Set<EvaluationPointsDTO> findAllEvaluations(Course course, Student student) {
+
 		CourseAttending ca = courseAttendingService.getCourseAttendingSubjectStudent(course, student);
-		
+
 		Set<EvaluationPointsDTO> ret = new HashSet<>();
-		
-		for(Evaluation e: ca.getCourseRealization().getEvaluations())
-			for(EvaluationAttending ea: e.getEvaluationAttendings())
-				if(ea.getStudentYear().getStudent() == ca.getStudent())
-					ret.add(new EvaluationPointsDTO(e.getEvaluationType().getTitle(), e.getTotalPoints(), ea.getAchievedPoints()));
-			
-			
-		
-		
+
+		for (Evaluation e : ca.getCourseRealization().getEvaluations())
+			for (EvaluationAttending ea : e.getEvaluationAttendings())
+				if (ea.getStudentYear().getStudent() == ca.getStudent())
+					ret.add(new EvaluationPointsDTO(e.getEvaluationType().getTitle(), e.getTotalPoints(),
+							ea.getAchievedPoints()));
+
 		return ret;
 	}
-	
-	
 
 	public Iterable<Student> getByFirstName(String firstName) {
 		return studentRepository.findByFirstName(firstName);
@@ -120,9 +121,9 @@ public class StudentService {
 		List<Student> ss = studentRepository.findAll();
 		Set<StudentDTO> ret = new HashSet<>();
 
-		for(Student student: ss)
+		for (Student student : ss)
 			ret.add(student.toDTO());
-		
+
 		return ret;
 	}
 
@@ -142,14 +143,14 @@ public class StudentService {
 		Optional<Student> s = studentRepository.findById(id);
 		studentRepository.delete(s.get());
 	}
-	
+
 	public void removeStudentSoft(Long id) {
 		Optional<Student> s = studentRepository.findById(id);
-		if(s.isPresent()) {
+		if (s.isPresent()) {
 			s.get().setDeleted(true);
 			studentRepository.save(s.get());
 			Optional<User> u = userService.getUser(s.get().getUser().getUsername());
-			if(u.isPresent()) {
+			if (u.isPresent()) {
 				userService.removeUserSoft(u.get().getId());
 			}
 		}
@@ -162,7 +163,27 @@ public class StudentService {
 			studentRepository.save(s);
 		}
 	}
-	
+
+	public File toXML(Student s) {
+		File file = new File(s.getFirstName() + " " + s.getLastName() + " " + s.getCardNumber()+".xml");
+
+		XmlMapper mapper = new XmlMapper();
+
+		try {
+			mapper.writeValue(file, s.toDTO());
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return file;
+	}
 	
 
 	

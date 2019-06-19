@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class GetStudentComponent implements OnInit {
 
   students: Student[];
+  blob: Blob;
 
   constructor(private ss: StudentService, private router: Router) { }
 
@@ -20,6 +21,22 @@ export class GetStudentComponent implements OnInit {
       this.router.navigate(['students']);
       this.ngOnInit();
     });
+  }
+
+  downloadStudentXML(id)
+  {
+    this.ss.getXML(id).subscribe((data) => {
+
+      this.blob = new Blob([data], {type: 'application/xml'});
+    
+      var downloadURL = window.URL.createObjectURL(data);
+      var link = document.createElement('a');
+      link.href = downloadURL;
+      link.download = "file.xml";
+      link.click();
+    
+    });
+    
   }
 
   ngOnInit() {
