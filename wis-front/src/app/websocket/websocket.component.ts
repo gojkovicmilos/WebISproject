@@ -96,7 +96,6 @@ export class WebsocketComponent implements OnInit {
       this.subject.next(msg);
       //console.log('tu sam');
       this.msgForPrivate = "";
-      this.searchAcitve = false;
       this.back();
     }
     sendToEveryone(){
@@ -107,7 +106,6 @@ export class WebsocketComponent implements OnInit {
       this.subject.next(msg);
       //console.log('tu sam');
       this.msg = "";
-      this.searchAcitve = false;
       this.back();
     }
 
@@ -117,14 +115,17 @@ export class WebsocketComponent implements OnInit {
         console.log(this.receiver);
         this.openPrivate = true;
         this.resetUnread(rec);
-        this.invalidUsername = false;
+        this.back();
       }
       else if(rec != "" && this.pretraga(rec).length != 0) {
         this.usernames = this.pretraga(rec);
         this.searchAcitve = true;
+        this.invalidUsername = false;
       }
       else {
         this.invalidUsername = true;
+        this.usernames = this.usernames2;
+        this.searchAcitve = false;
       }
     }
 
@@ -152,8 +153,8 @@ export class WebsocketComponent implements OnInit {
     }
 
     isInList(u: string) {
-      for(var i = 0; i < this.usernames.length; i++) {
-        if(u === this.usernames[i]) {
+      for(var i = 0; i < this.usernames2.length; i++) {
+        if(u === this.usernames2[i]) {
           return true;
         }
       }
@@ -173,6 +174,8 @@ export class WebsocketComponent implements OnInit {
     back(): void {
       this.usernames = this.usernames2;
       this.searchAcitve = false;
+      this.recieversName = "";
+      this.invalidUsername = false;
     }
 
 
