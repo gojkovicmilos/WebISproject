@@ -38,6 +38,7 @@ export class AppMessage {
 export class WebsocketComponent implements OnInit {
   users: User[];
   usernames: string[] = [];
+  usernames2: string[] = [];
   username:string = localStorage.getItem("username");
   openPrivate: boolean = false;
   private subject;
@@ -48,6 +49,7 @@ export class WebsocketComponent implements OnInit {
   unreadList:Map<string, number> = new Map();
   private recieversName: string = "";
   private invalidUsername: boolean = false;
+  private searchAcitve: boolean = false;
 
   ngOnInit() {
     this.us.getAllUsers().subscribe((data: User[]) => {
@@ -57,6 +59,7 @@ export class WebsocketComponent implements OnInit {
         if(this.users[i].username != this.username)
         {
           this.usernames.push(this.users[i].username);
+          this.usernames2.push(this.users[i].username);
           this.unreadList.set(this.users[i].username, 0);
         }
       }
@@ -102,6 +105,8 @@ export class WebsocketComponent implements OnInit {
       this.subject.next(msg);
       //console.log('tu sam');
       this.msg = "";
+      this.searchAcitve = false;
+      this.back();
     }
 
     setReciever(rec: string): void {
@@ -111,6 +116,11 @@ export class WebsocketComponent implements OnInit {
         this.openPrivate = true;
         this.resetUnread(rec);
         this.invalidUsername = false;
+      }
+      else if(rec != "" && this.pretraga(rec).length != 0) {
+        this.searchAcitve = true;
+        this.usernames = this.pretraga(rec);
+        this.searchAcitve = true;
       }
       else {
         this.invalidUsername = true;
@@ -147,6 +157,21 @@ export class WebsocketComponent implements OnInit {
         }
       }
       return false;
+    }
+
+    pretraga(str: string) { 
+      let listaTrazenihKorisnika = [];
+      for(var i = 0; i < this.usernames.length; i++) {
+        if(this.usernames[i].toLowerCase().includes( str.toLowerCase() )) {
+          listaTrazenihKorisnika.push(this.usernames[i]);
+        }
+      }
+      return listaTrazenihKorisnika;
+    }
+
+    back(): void {
+      this.usernames = this.usernames2;
+      this.searchAcitve = false;
     }
 
 
