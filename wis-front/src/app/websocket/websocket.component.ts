@@ -46,6 +46,8 @@ export class WebsocketComponent implements OnInit {
   private msgForPrivate = "";
   private lista:AppMessage[] = [];
   unreadList:Map<string, number> = new Map();
+  private recieversName: string = "";
+  private invalidUsername: boolean = false;
 
   ngOnInit() {
     this.us.getAllUsers().subscribe((data: User[]) => {
@@ -103,11 +105,16 @@ export class WebsocketComponent implements OnInit {
     }
 
     setReciever(rec: string): void {
-      this.receiver = rec;
-      console.log(this.receiver);
-      this.openPrivate = true;
-      this.resetUnread(rec);
-      
+      if(rec != "" && this.isInList(rec)) {
+        this.receiver = rec;
+        console.log(this.receiver);
+        this.openPrivate = true;
+        this.resetUnread(rec);
+        this.invalidUsername = false;
+      }
+      else {
+        this.invalidUsername = true;
+      }
     }
 
     closePrivate(): void {
@@ -131,6 +138,15 @@ export class WebsocketComponent implements OnInit {
     resetUnread(rec:string)
     {
       this.unreadList.set(rec, 0);
+    }
+
+    isInList(u: string) {
+      for(var i = 0; i < this.usernames.length; i++) {
+        if(u === this.usernames[i]) {
+          return true;
+        }
+      }
+      return false;
     }
 
 
