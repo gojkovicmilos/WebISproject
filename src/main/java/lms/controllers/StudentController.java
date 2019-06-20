@@ -158,6 +158,18 @@ public class StudentController {
 		return new ResponseEntity<Resource>(HttpStatus.NOT_FOUND);
 		
 	}
+	@GetMapping(value = "/downloadxml")
+	public ResponseEntity<Resource>downloadAllStudentsXML()
+	{
+	
+		
+		Resource file = storageService.loadFile(studentService.allToXMLFile());
+    	return ResponseEntity.ok()
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+        .body(file);
+  		
+		
+	}
 	
 
 	@GetMapping(value = "/downloadpdf")

@@ -95,6 +95,18 @@ public class TeacherController {
 		}
 		return new ResponseEntity<Teacher>(HttpStatus.NO_CONTENT);
 	}
+	@GetMapping(value = "/downloadxml")
+	public ResponseEntity<Resource>downloadAllTeachersXML()
+	{
+	
+		
+		Resource file = storageService.loadFile(teacherService.allToXMLFile());
+    	return ResponseEntity.ok()
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+        .body(file);
+  		
+		
+	}
 
 	@GetMapping(value = "/downloadxml/{id}")
 	public ResponseEntity<Resource>downloadTeacherXML(@PathVariable Long id)

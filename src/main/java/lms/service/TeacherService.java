@@ -17,6 +17,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import DTO.TeacherDTO;
+import DTO.TeacherXmlPojo;
 import lms.domain.Course;
 import lms.domain.CourseTeaching;
 import lms.domain.Teacher;
@@ -120,6 +121,32 @@ public class TeacherService {
 		}
 
 		return file.toPath();
+	}
+
+	public Path allToXMLFile()
+	{
+		File file = new File("teachers.xml");
+		
+		XmlMapper mapper = new XmlMapper();
+		
+
+
+		
+
+		
+
+		try {
+			mapper.writeValue(file, new TeacherXmlPojo(getAllTeacher()));
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return file.toPath();
+
 	}
 
 	public Resource allToPDF() throws FileNotFoundException {

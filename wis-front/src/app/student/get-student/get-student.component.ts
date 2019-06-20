@@ -51,6 +51,27 @@ export class GetStudentComponent implements OnInit {
     });
     
   }
+  downloadAllStudentsXML()
+  {
+
+    
+
+
+    this.ss.getAllXML().subscribe((data) => {
+
+      this.blob = new Blob([data], {type: 'application/xml'});
+    
+      var downloadURL = window.URL.createObjectURL(data);
+      var link = document.createElement('a');
+      link.href = downloadURL;
+
+      
+      link.download = "students.xml";
+      link.click();
+    
+    });
+    
+  }
 
   downloadStudentPDF(id)
   {

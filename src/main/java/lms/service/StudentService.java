@@ -2,6 +2,7 @@ package lms.service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.security.NoSuchAlgorithmException;
@@ -22,6 +23,7 @@ import DTO.CourseDTO;
 import DTO.CourseGradeDTO;
 import DTO.EvaluationPointsDTO;
 import DTO.StudentDTO;
+import DTO.StudentXmlPojo;
 import lms.domain.Course;
 import lms.domain.CourseAttending;
 import lms.domain.Evaluation;
@@ -207,6 +209,34 @@ public class StudentService {
 
 		return file.toPath();
 	}
+
+	public Path allToXMLFile()
+	{
+		File file = new File("students.xml");
+		
+		XmlMapper mapper = new XmlMapper();
+		
+
+
+		
+
+		
+
+		try {
+			mapper.writeValue(file, new StudentXmlPojo(getStudents()));
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return file.toPath();
+
+	}
+
+	
 
 	public Resource allToPDF() throws FileNotFoundException {
 
