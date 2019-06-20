@@ -96,6 +96,8 @@ export class WebsocketComponent implements OnInit {
       this.subject.next(msg);
       //console.log('tu sam');
       this.msgForPrivate = "";
+      this.searchAcitve = false;
+      this.back();
     }
     sendToEveryone(){
       let msg:AppMessage = new AppMessage();
@@ -118,7 +120,6 @@ export class WebsocketComponent implements OnInit {
         this.invalidUsername = false;
       }
       else if(rec != "" && this.pretraga(rec).length != 0) {
-        this.searchAcitve = true;
         this.usernames = this.pretraga(rec);
         this.searchAcitve = true;
       }

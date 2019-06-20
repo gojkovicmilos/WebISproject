@@ -2,12 +2,14 @@
   
   
 
-  <h3 style="text-align: center; margin-top: 50px; margin-bottom: 100px">Hello {{username}}!</h3>
-  <p *ngIf="invalidUsername" style="color:red">Invalid username!</p>
-  <button *ngIf="searchAcitve" (click)="back()">Back</button>
-  <div class="form-inline" style="margin: auto;">
-    <input  class="form-control" type="text" [(ngModel)]="recieversName" placeholder="Enter recievers username">
-    <button class="btn btn-outline-primary" (click)='setReciever(recieversName)'>Search</button>
+  <h3 style="text-align: center; margin-top: 50px; margin-bottom: 30px">Hello {{username}}!</h3>
+  <div style="margin: auto; width: 30%; margin-bottom: 30px" >
+    <p *ngIf="invalidUsername" style="color:red">Invalid username!</p>
+    <button class="close" aria-label="Close" *ngIf="searchAcitve" (click)="back()"><span aria-hidden="true">&times;</span></button>
+    <div class="form-group">
+      <input size="14" class="form-control" type="text" [(ngModel)]="recieversName" placeholder="Enter recievers username">
+      <button style="margin-left: 38%" class="btn btn-outline-primary" (click)='setReciever(recieversName)'>Search</button>
+    </div>
   </div>
 
   <div style="text-align: center; margin-bottom: 100px">
