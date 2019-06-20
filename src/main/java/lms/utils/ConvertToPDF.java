@@ -45,7 +45,6 @@ public class ConvertToPDF {
 
             PdfPTable table = new PdfPTable(5);
             table.setWidthPercentage(100);
-            // table.setWidths(new int[]{1, 3, 3, 3, 3, 3, 3, 3, 3, 3});
 
             Font headFont = FontFactory.getFont(FontFactory.TIMES_BOLD);
 
@@ -56,17 +55,7 @@ public class ConvertToPDF {
                 hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 table.addCell(hcell);
             }
-            /*
-             * hcell = new PdfPCell(new Phrase("ID", headFont));
-             * hcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-             * hcell.setHorizontalAlignment(Element.ALIGN_CENTER); table.addCell(hcell);
-             * hcell = new PdfPCell(new Phrase("First name", headFont));
-             * hcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-             * hcell.setHorizontalAlignment(Element.ALIGN_CENTER); table.addCell(hcell);
-             * hcell = new PdfPCell(new Phrase("Last name", headFont));
-             * hcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-             * hcell.setHorizontalAlignment(Element.ALIGN_CENTER); table.addCell(hcell);
-             */
+
 
             for (StudentDTO student : students) {
 
@@ -78,25 +67,21 @@ public class ConvertToPDF {
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(student.getFirstName()));
-                // cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(student.getLastName()));
-                // cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(student.getCardNumber()));
-                // cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(student.getUser().getUsername()));
-                // cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
@@ -134,7 +119,6 @@ public class ConvertToPDF {
 
             PdfPTable table = new PdfPTable(5);
             table.setWidthPercentage(100);
-            // table.setWidths(new int[]{1, 3, 3, 3, 3, 3, 3, 3, 3, 3});
 
             Font headFont = FontFactory.getFont(FontFactory.TIMES_BOLD);
 
@@ -145,17 +129,6 @@ public class ConvertToPDF {
                 hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 table.addCell(hcell);
             }
-            /*
-             * hcell = new PdfPCell(new Phrase("ID", headFont));
-             * hcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-             * hcell.setHorizontalAlignment(Element.ALIGN_CENTER); table.addCell(hcell);
-             * hcell = new PdfPCell(new Phrase("First name", headFont));
-             * hcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-             * hcell.setHorizontalAlignment(Element.ALIGN_CENTER); table.addCell(hcell);
-             * hcell = new PdfPCell(new Phrase("Last name", headFont));
-             * hcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-             * hcell.setHorizontalAlignment(Element.ALIGN_CENTER); table.addCell(hcell);
-             */
 
 
                 PdfPCell cell;
@@ -166,25 +139,21 @@ public class ConvertToPDF {
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(student.getFirstName()));
-                // cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(student.getLastName()));
-                // cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(student.getCardNumber()));
-                // cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(student.getUser().getUsername()));
-                // cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
@@ -224,7 +193,6 @@ public class ConvertToPDF {
 
             PdfPTable table = new PdfPTable(5);
             table.setWidthPercentage(100);
-            // table.setWidths(new int[]{1, 3, 3, 3, 3, 3, 3, 3, 3, 3});
 
             Font headFont = FontFactory.getFont(FontFactory.TIMES_BOLD);
 
@@ -235,17 +203,7 @@ public class ConvertToPDF {
                 hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 table.addCell(hcell);
             }
-            /*
-             * hcell = new PdfPCell(new Phrase("ID", headFont));
-             * hcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-             * hcell.setHorizontalAlignment(Element.ALIGN_CENTER); table.addCell(hcell);
-             * hcell = new PdfPCell(new Phrase("First name", headFont));
-             * hcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-             * hcell.setHorizontalAlignment(Element.ALIGN_CENTER); table.addCell(hcell);
-             * hcell = new PdfPCell(new Phrase("Last name", headFont));
-             * hcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-             * hcell.setHorizontalAlignment(Element.ALIGN_CENTER); table.addCell(hcell);
-             */
+
 
             for (TeacherDTO teacher : teachers) {
 
@@ -257,25 +215,21 @@ public class ConvertToPDF {
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(teacher.getFirstName()));
-                // cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(teacher.getLastName()));
-                // cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(teacher.getPersonalIdentificationNumber()));
-                // cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(teacher.getUser().getUsername()));
-                // cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
@@ -315,7 +269,6 @@ public class ConvertToPDF {
 
             PdfPTable table = new PdfPTable(5);
             table.setWidthPercentage(100);
-            // table.setWidths(new int[]{1, 3, 3, 3, 3, 3, 3, 3, 3, 3});
 
             Font headFont = FontFactory.getFont(FontFactory.TIMES_BOLD);
 
@@ -326,17 +279,7 @@ public class ConvertToPDF {
                 hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 table.addCell(hcell);
             }
-            /*
-             * hcell = new PdfPCell(new Phrase("ID", headFont));
-             * hcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-             * hcell.setHorizontalAlignment(Element.ALIGN_CENTER); table.addCell(hcell);
-             * hcell = new PdfPCell(new Phrase("First name", headFont));
-             * hcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-             * hcell.setHorizontalAlignment(Element.ALIGN_CENTER); table.addCell(hcell);
-             * hcell = new PdfPCell(new Phrase("Last name", headFont));
-             * hcell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-             * hcell.setHorizontalAlignment(Element.ALIGN_CENTER); table.addCell(hcell);
-             */
+         
 
 
                 PdfPCell cell;
@@ -347,25 +290,21 @@ public class ConvertToPDF {
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(teacher.getFirstName()));
-                // cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(teacher.getLastName()));
-                // cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(teacher.getPersonalIdentificationNumber()));
-                // cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
 
                 cell = new PdfPCell(new Phrase(teacher.getUser().getUsername()));
-                // cell.setPaddingLeft(5);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 table.addCell(cell);
