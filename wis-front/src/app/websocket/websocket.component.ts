@@ -29,6 +29,17 @@ export class AppMessage {
   
 }
 
+export class UserUnread
+{
+  public username:string;
+  public unread:number;
+
+  constructor(username:string, unread:number){
+    this.username = username;
+    this.unread = unread;
+  }
+}
+
 
 @Component({
   selector: 'app-websocket',
@@ -41,6 +52,7 @@ export class WebsocketComponent implements OnInit {
   usernames2: string[] = [];
   username:string = localStorage.getItem("username");
   openPrivate: boolean = false;
+  userUnreads: UserUnread[] = [];
   private subject;
   private receiver: string = 'everyone';
   private msg = "";
@@ -62,6 +74,7 @@ export class WebsocketComponent implements OnInit {
         {
           this.usernames.push(this.users[i].username);
           this.listaTrazenihKorisnika.push(this.users[i].username);
+          this.userUnreads.push(new UserUnread(this.users[i].username, 0));
           this.unreadList.set(this.users[i].username, 0);
         }
       }
@@ -140,6 +153,14 @@ export class WebsocketComponent implements OnInit {
     addNewUnread(username:string)
     {
       this.unreadList.set(username, this.unreadList.get(username)+1);
+      this.userUnreads.forEach(element => {
+
+        if(element.username == username)
+        {
+          element.unread--;
+          console.log(element.unread);
+        }
+      });
     }
 
     displayUnread(i:number):number
