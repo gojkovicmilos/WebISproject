@@ -16,7 +16,7 @@
         </div>
         <div>
           <select [(value)]="selectedYearOfStudy" (change)="setYearOfStudy($event.target.value)"  >
-            <option *ngFor="let yos of yearOfStudy;" [value]="yos.id">{{yos.title}}</option>
+            <option *ngFor="let yos of yearOfStudy;" [value]="yos.id">{{yos.title}} {{yos.studyProgram}}</option>
           </select>
         </div>
 
