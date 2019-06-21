@@ -38,7 +38,6 @@ export class AppMessage {
 export class WebsocketComponent implements OnInit {
   users: User[];
   usernames: string[] = [];
-  usernames2: string[] = [];
   username:string = localStorage.getItem("username");
   openPrivate: boolean = false;
   private subject;
@@ -49,9 +48,8 @@ export class WebsocketComponent implements OnInit {
   str: string = "";
   unreadList:Map<string, number> = new Map();
   listaTrazenihKorisnika:string[] = [];
-  private recieversName: string = "";
-  private invalidUsername: boolean = false;
-  private searchAcitve: boolean = false;
+  invalidUsername: boolean = false;
+  private showButton = false;
 
   ngOnInit() {
     this.us.getAllUsers().subscribe((data: User[]) => {
@@ -167,9 +165,17 @@ export class WebsocketComponent implements OnInit {
     }
 
     back(): void {
-      this.searchAcitve = false;
-      this.recieversName = "";
       this.invalidUsername = false;
+    }
+
+    provera() {
+      for(var i = 0; i < this.usernames.length; i++) {
+        if(this.usernames[i] == this.str) {
+          this.showButton = true;
+          return;
+        }
+      }
+      this.showButton = false;
     }
 
 

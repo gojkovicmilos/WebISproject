@@ -7,9 +7,9 @@
     <p *ngIf="invalidUsername" style="color:red">Invalid username!</p>
     <button class="close" aria-label="Close" *ngIf="searchAcitve" (click)="back()"><span aria-hidden="true">&times;</span></button>
     <div class="form-group">
-      <input size="14" class="form-control" type="text" [(ngModel)]="str" (ngModelChange)="pretraga()" placeholder="Search username">
+      <input size="14" class="form-control" type="text" [(ngModel)]="str" (ngModelChange)="pretraga(); provera();" placeholder="Search username">
     </div>
-    <button class="btn btn-outline-primary" (click)='setSearch()'>Search</button>
+    <button *ngIf="showButton" class="btn btn-outline-primary" (click)='setSearch()'>Open private chat</button>
 
   </div>
 
