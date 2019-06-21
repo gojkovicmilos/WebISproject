@@ -64,7 +64,11 @@ export class CreateSpComponent implements OnInit {
       }
     });
     this.selectedFiles = undefined;
-    this.router.navigate(['/']).then(() => window.location.reload());
+    setTimeout(() => {
+      this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
+        window.location.reload();
+      });
+    }, 2000);
   }
 
 }
