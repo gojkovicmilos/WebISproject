@@ -49,7 +49,6 @@ export class UserUnread
 export class WebsocketComponent implements OnInit {
   users: User[];
   usernames: string[] = [];
-  usernames2: string[] = [];
   username:string = localStorage.getItem("username");
   openPrivate: boolean = false;
   userUnreads: UserUnread[] = [];
@@ -61,9 +60,7 @@ export class WebsocketComponent implements OnInit {
   str: string = "";
   unreadList:Map<string, number> = new Map();
   listaTrazenihKorisnika:string[] = [];
-  private recieversName: string = "";
-  private invalidUsername: boolean = false;
-  private searchAcitve: boolean = false;
+  private showButton = false;
 
   ngOnInit() {
     this.us.getAllUsers().subscribe((data: User[]) => {
@@ -111,7 +108,6 @@ export class WebsocketComponent implements OnInit {
       this.subject.next(msg);
       //console.log('tu sam');
       this.msgForPrivate = "";
-      this.back();
     }
     sendToEveryone(){
       let msg:AppMessage = new AppMessage();
@@ -121,15 +117,13 @@ export class WebsocketComponent implements OnInit {
       this.subject.next(msg);
       //console.log('tu sam');
       this.msg = "";
-      this.back();
     }
 
     setReciever(rec: string): void {
-        this.receiver = rec;
-        console.log(this.receiver);
-        this.openPrivate = true;
-        this.resetUnread(rec);
-        this.back();
+      this.receiver = rec;
+      console.log(this.receiver);
+      this.openPrivate = true;
+      this.resetUnread(rec);
     }
 
     setSearch()
@@ -137,9 +131,7 @@ export class WebsocketComponent implements OnInit {
       if(this.listaTrazenihKorisnika.length == 1)
       {
         this.setReciever(this.listaTrazenihKorisnika[0]);
-        this.invalidUsername = false;
       }
-      else this.invalidUsername = true;
     }
 
     closePrivate(): void {
@@ -187,10 +179,16 @@ export class WebsocketComponent implements OnInit {
       this.listaTrazenihKorisnika = this.usernames;
     }
 
-    back(): void {
-      this.searchAcitve = false;
-      this.recieversName = "";
-      this.invalidUsername = false;
+  
+
+    provera() {
+      for(var i = 0; i < this.usernames.length; i++) {
+        if(this.usernames[i] == this.str) {
+          this.showButton = true;
+          return;
+        }
+      }
+      this.showButton = false;
     }
 
 
