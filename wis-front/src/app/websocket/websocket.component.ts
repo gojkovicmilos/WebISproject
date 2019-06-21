@@ -46,7 +46,9 @@ export class WebsocketComponent implements OnInit {
   private msg = "";
   private msgForPrivate = "";
   private lista:AppMessage[] = [];
+  str: string = "";
   unreadList:Map<string, number> = new Map();
+  listaTrazenihKorisnika:string[] = [];
   private recieversName: string = "";
   private invalidUsername: boolean = false;
   private searchAcitve: boolean = false;
@@ -59,7 +61,7 @@ export class WebsocketComponent implements OnInit {
         if(this.users[i].username != this.username)
         {
           this.usernames.push(this.users[i].username);
-          this.usernames2.push(this.users[i].username);
+          this.listaTrazenihKorisnika.push(this.users[i].username);
           this.unreadList.set(this.users[i].username, 0);
         }
       }
@@ -110,23 +112,21 @@ export class WebsocketComponent implements OnInit {
     }
 
     setReciever(rec: string): void {
-      if(rec != "" && this.isInList(rec)) {
         this.receiver = rec;
         console.log(this.receiver);
         this.openPrivate = true;
         this.resetUnread(rec);
         this.back();
-      }
-      else if(rec != "" && this.pretraga(rec).length != 0) {
-        this.usernames = this.pretraga(rec);
-        this.searchAcitve = true;
+    }
+
+    setSearch()
+    {
+      if(this.listaTrazenihKorisnika.length == 1)
+      {
+        this.setReciever(this.listaTrazenihKorisnika[0]);
         this.invalidUsername = false;
       }
-      else {
-        this.invalidUsername = true;
-        this.usernames = this.usernames2;
-        this.searchAcitve = false;
-      }
+      else this.invalidUsername = true;
     }
 
     closePrivate(): void {
@@ -152,27 +152,21 @@ export class WebsocketComponent implements OnInit {
       this.unreadList.set(rec, 0);
     }
 
-    isInList(u: string) {
-      for(var i = 0; i < this.usernames2.length; i++) {
-        if(u === this.usernames2[i]) {
-          return true;
-        }
-      }
-      return false;
-    }
+    
 
-    pretraga(str: string) { 
-      let listaTrazenihKorisnika = [];
+    pretraga() { 
+      console.log(this.str);
+      this.listaTrazenihKorisnika = [];
       for(var i = 0; i < this.usernames.length; i++) {
-        if(this.usernames[i].toLowerCase().includes( str.toLowerCase() )) {
-          listaTrazenihKorisnika.push(this.usernames[i]);
+        if(this.usernames[i].toLowerCase().includes( this.str.toLowerCase() )) {
+          this.listaTrazenihKorisnika.push(this.usernames[i]);
         }
       }
-      return listaTrazenihKorisnika;
+      if(this.str == "")
+      this.listaTrazenihKorisnika = this.usernames;
     }
 
     back(): void {
-      this.usernames = this.usernames2;
       this.searchAcitve = false;
       this.recieversName = "";
       this.invalidUsername = false;
