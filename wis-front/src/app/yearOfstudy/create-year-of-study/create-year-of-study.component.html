@@ -5,7 +5,7 @@
       <form [formGroup]="angForm" novalidate>
         <div class="form-group">
           <label class="col-xs-4">Number of year: </label>
-          <input type="text" class="form-control" formControlName="title" #title placeholder="Enter number of year..." />
+          <input type="text" class="form-control" formControlName="title" #title placeholder="Enter number of year(1, 2, 3 or 4)..." />
         </div>
         <div
           *ngIf="angForm.controls['title'].invalid && (angForm.controls['title'].dirty || angForm.controls['title'].touched)"
@@ -26,11 +26,11 @@
             [ngStyle]="{width:progress.percentage+'%'}">
             {{progress.percentage}}%</div>
         </div>
-        <label class="btn btn-default">
+        <!-- <label class="btn btn-default">
           <input type="file" (change)="selectFile($event)">
-        </label> 
+        </label> -->
 
-        <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload(title.value, selectedStudyProgram)">Create</button>
+        <button class="btn btn-success"  (click)="createYOS(title.value)">Create</button>
       </form>
     </div>
   </div>

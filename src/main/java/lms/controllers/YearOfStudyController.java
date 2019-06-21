@@ -53,14 +53,15 @@ public class YearOfStudyController {
 		}
 		return new ResponseEntity<YearOfStudyDTO>(HttpStatus.NOT_FOUND);
 	}
-
+	
 	@PostMapping
 	@Secured("ROLE_ADMIN")
 	public ResponseEntity<YearOfStudy> addYearOfStudy(@RequestBody YearOfStudy yearOfStudy) {
-
+		
 		yearOfStudyService.addYearOfStudy(yearOfStudy);
 		return new ResponseEntity<YearOfStudy>(yearOfStudy, HttpStatus.CREATED);
 	}
+	
 
 	@PutMapping(value = "/{id}")
 	@Secured("ROLE_ADMIN")
@@ -93,5 +94,22 @@ public class YearOfStudyController {
 		} catch (Exception e) {
 			return "FAIL! Maybe You had uploaded the file before or the file's size > 500KB";
 		}
+	}
+	
+	@PostMapping(value = "/upload")
+	@Secured("ROLE_ADMIN")
+	public String addYearOfStudy2(@RequestParam("title") String title, @RequestParam("numberOfYear") String numberOfYear, @RequestParam("studyProgram") String StudyProgram) {
+		try {
+			StudyProgram sp = studyProgramService.getStudyProgramId(Long.valueOf(StudyProgram)).get();
+			YearOfStudy yos = new YearOfStudy(title, numberOfYear, sp);
+			yearOfStudyService.addYearOfStudy(yos);
+			System.out.println("1");
+			return "SUCCESS";
+		} catch(Exception e) {
+			System.out.println("2");
+			return "FAIL";
+
+		}
+		
 	}
 }

@@ -72,6 +72,13 @@ public class YearOfStudy {
 		this.studyProgram = sp;
 		this.numberOfYear = Integer.parseInt(numberOfYear);
 	}
+	
+
+	public YearOfStudy(String title, String numberOfYear, StudyProgram sp) {
+		this.title = title;
+		this.numberOfYear = Integer.parseInt(numberOfYear);
+		this.studyProgram = sp;
+	}
 
 
 	public StudyProgram getStudyProgram() {
