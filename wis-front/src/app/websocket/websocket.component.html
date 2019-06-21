@@ -1,11 +1,6 @@
 <div class="container">
   
-  
-
-  <!-- <h3 style="text-align: center; margin-top: 50px; margin-bottom: 30px">Hello {{username}}!</h3> -->
-  <div style="text-align: center; margin: auto; width: 30%; margin-bottom: 30px; margin-top: 50px" >
-    <p *ngIf="invalidUsername" style="color:red">Invalid username!</p>
-    <button class="close" aria-label="Close" *ngIf="searchAcitve" (click)="back()"><span aria-hidden="true">&times;</span></button>
+    <div style="text-align: center; margin: auto; width: 30%; margin-bottom: 30px; margin-top: 50px" >
     <div class="form-group">
       <input size="14" class="form-control" type="text" [(ngModel)]="str" (ngModelChange)="pretraga(); provera();" placeholder="Search username">
     </div>
