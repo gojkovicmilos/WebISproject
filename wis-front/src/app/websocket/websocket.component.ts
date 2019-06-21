@@ -59,8 +59,6 @@ export class WebsocketComponent implements OnInit {
   private msgForPrivate = "";
   private lista:AppMessage[] = [];
   str: string = "";
-  unreadList:Map<string, number> = new Map();
-  listaTrazenihKorisnika:string[] = [];
   private showButton = false;
 
   ngOnInit() {
@@ -71,9 +69,7 @@ export class WebsocketComponent implements OnInit {
         if(this.users[i].username != this.username)
         {
           this.usernames.push(this.users[i].username);
-          this.listaTrazenihKorisnika.push(this.users[i].username);
           this.userUnreads.push(new UserUnread(this.users[i].username, 0));
-          this.unreadList.set(this.users[i].username, 0);
         }
       }
       //console.log(this.usernames);
@@ -94,7 +90,6 @@ export class WebsocketComponent implements OnInit {
          this.lista.push(msg);
          if(this.lista[this.lista.length-1].receiver == this.username)
           this.addNewUnread(this.lista[this.lista.length-1].sender);
-          //this.setReciever(this.lista[this.lista.length-1].sender);
         },
        (err) => console.log(err),
        () => console.log('complete')
@@ -130,9 +125,9 @@ export class WebsocketComponent implements OnInit {
 
     setSearch()
     {
-      if(this.listaTrazenihKorisnika.length == 1)
+      if(this.sUserUnreads.length == 1)
       {
-        this.setReciever(this.listaTrazenihKorisnika[0]);
+        this.setReciever(this.sUserUnreads[0].username);
       }
     }
 
