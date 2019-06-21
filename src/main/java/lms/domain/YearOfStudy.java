@@ -67,10 +67,10 @@ public class YearOfStudy {
 
 
 
-	public YearOfStudy(MultipartFile file, String title2, StudyProgram sp) {
-
+	public YearOfStudy(MultipartFile file, String title2, String numberOfYear, StudyProgram sp) {
 		this.title = title2;
 		this.studyProgram = sp;
+		this.numberOfYear = Integer.parseInt(numberOfYear);
 	}
 
 

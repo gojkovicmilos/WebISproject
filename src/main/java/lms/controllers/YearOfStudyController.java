@@ -83,11 +83,11 @@ public class YearOfStudyController {
 	
 	@PostMapping("/file/upload")
 	@Secured("ROLE_ADMIN")
-	public String uploadMultipartFile(@RequestParam("file") MultipartFile file, @RequestParam("title") String title, @RequestParam("studyProgram") String StudyProgram) {
+	public String uploadMultipartFile(@RequestParam("file") MultipartFile file, @RequestParam("title") String title, @RequestParam("numberOfYear") String numberOfYear, @RequestParam("studyProgram") String StudyProgram) {
 		try {
 			// save file to PostgreSQL
 			StudyProgram sp = studyProgramService.getStudyProgramId(Long.valueOf(StudyProgram)).get();
-			YearOfStudy filemode = new YearOfStudy(file, title, sp);
+			YearOfStudy filemode = new YearOfStudy(file, title, numberOfYear, sp);
 			yearOfStudyRepository.save(filemode);
 			return "File uploaded successfully! -> filename = " + file.getOriginalFilename();
 		} catch (Exception e) {

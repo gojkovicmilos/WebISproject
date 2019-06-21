@@ -4,14 +4,14 @@
       <h3>Create Year Of Study !</h3>
       <form [formGroup]="angForm" novalidate>
         <div class="form-group">
-          <label class="col-xs-4">Title: </label>
-          <input type="text" class="form-control" formControlName="title" #title placeholder="Enter title..." />
+          <label class="col-xs-4">Number of year: </label>
+          <input type="text" class="form-control" formControlName="title" #title placeholder="Enter number of year..." />
         </div>
         <div
           *ngIf="angForm.controls['title'].invalid && (angForm.controls['title'].dirty || angForm.controls['title'].touched)"
           class="alert alert-danger">
           <div *ngIf="angForm.controls['title'].errors.required">
-            Title is required.
+            Number of year is required.
           </div>
         </div>
         <div>
@@ -28,7 +28,7 @@
         </div>
         <label class="btn btn-default">
           <input type="file" (change)="selectFile($event)">
-        </label>
+        </label> 
 
         <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload(title.value, selectedStudyProgram)">Create</button>
       </form>

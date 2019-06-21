@@ -54,10 +54,11 @@ export class CreateYearOfStudyComponent implements OnInit {
     });
   }
 
-  upload(title: string) {
+  upload(num: string) {
+    let title = this.titleMaker(num);
     this.progress.percentage = 0;
     this.currentFileUpload = this.selectedFiles.item(0);
-    this.yos.pushFileToStorage(this.currentFileUpload, title, this.selectedStudyProgramId).subscribe(event => {
+    this.yos.pushFileToStorage(this.currentFileUpload, title, num, this.selectedStudyProgramId).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
         this.progress.percentage = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {
@@ -71,4 +72,22 @@ export class CreateYearOfStudyComponent implements OnInit {
       });
     }, 2000);
   }
+
+  titleMaker(br: string) {
+    switch(br) {
+      case "1":
+        return "First Year";
+      case "2":
+        return "Second Year";
+      case "3": 
+        return "Third Year";
+      case "4":
+        return "Fourth Year";
+      default:
+        return "Other";
+    
+    }
+  }
+
+
 }

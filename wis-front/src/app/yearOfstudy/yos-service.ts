@@ -31,11 +31,12 @@ export class YosService {
         return this.http.get<any[]>(this.spUrl);
     }
 
-    pushFileToStorage(file: File, title: string, selectedStudyProgramId: number): Observable<HttpEvent<{}>> {
+    pushFileToStorage(file: File, title: string, num: string, selectedStudyProgramId: number): Observable<HttpEvent<{}>> {
         const formdata: FormData = new FormData();
 
         formdata.append('file', file);
         formdata.append('title', title);
+        formdata.append('numberOfYear', num);
         formdata.append('studyProgram', selectedStudyProgramId.toString());
 
         const req = new HttpRequest('POST', 'http://localhost:8080/yearofstudy/file/upload', formdata, {
