@@ -52,6 +52,7 @@ export class WebsocketComponent implements OnInit {
   username:string = localStorage.getItem("username");
   openPrivate: boolean = false;
   userUnreads: UserUnread[] = [];
+  sUserUnreads: UserUnread[] = [];
   private subject;
   private receiver: string = 'everyone';
   private msg = "";
@@ -77,6 +78,7 @@ export class WebsocketComponent implements OnInit {
       }
       //console.log(this.usernames);
 
+      this.sUserUnreads = this.userUnreads;
      
     });
     console.log(this.usernames);
@@ -144,39 +146,38 @@ export class WebsocketComponent implements OnInit {
 
     addNewUnread(username:string)
     {
-      this.unreadList.set(username, this.unreadList.get(username)+1);
       this.userUnreads.forEach(element => {
 
         if(element.username == username)
         {
           element.unread--;
-          console.log(element.unread);
         }
       });
     }
 
-    displayUnread(i:number):number
-    {
-      return this.unreadList.get(this.usernames[i]);
-    }
+   
 
     resetUnread(rec:string)
     {
-      this.unreadList.set(rec, 0);
+      this.userUnreads.forEach(element => {
+        
+        if(element.username == rec)
+          element.unread = 0;
+      });
     }
 
     
 
     pretraga() { 
       console.log(this.str);
-      this.listaTrazenihKorisnika = [];
+      this.sUserUnreads = [];
       for(var i = 0; i < this.usernames.length; i++) {
-        if(this.usernames[i].toLowerCase().includes( this.str.toLowerCase() )) {
-          this.listaTrazenihKorisnika.push(this.usernames[i]);
+        if(this.userUnreads[i].username.toLowerCase().includes( this.str.toLowerCase() )) {
+          this.sUserUnreads.push(this.userUnreads[i]);
         }
       }
       if(this.str == "")
-      this.listaTrazenihKorisnika = this.usernames;
+      this.sUserUnreads = this.userUnreads;
     }
 
   

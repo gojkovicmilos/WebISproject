@@ -11,7 +11,7 @@
   <div style="text-align: center; margin-bottom: 100px">
 
     <div style="overflow-y:scroll; overflow-x:hidden; height:400px; width: 16%" class="parts">
-      <div *ngFor="let user of userUnreads|orderBy:'unread'">
+      <div *ngFor="let user of sUserUnreads|orderBy:'unread'">
         <button class="btn btn-outline-success" style="width: 147px;" (click)='setReciever(user.username);'>
           {{user.username}}<i *ngIf="user.unread>=0" class="fa fa-circle" aria-hidden="true" style="font-size: 5px; float: right; margin-top: 11px"></i><span style="color: blue;float: right" *ngIf="!user.unread==0">{{user.unread*-1}}</span>
         </button>
