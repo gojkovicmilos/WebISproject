@@ -38,6 +38,7 @@ export class AppMessage {
 export class WebsocketComponent implements OnInit {
   users: User[];
   usernames: string[] = [];
+  selUsernames: string[] = [];
   username:string = localStorage.getItem("username");
   openPrivate: boolean = false;
   private subject;
@@ -46,6 +47,7 @@ export class WebsocketComponent implements OnInit {
   private msgForPrivate = "";
   private lista:AppMessage[] = [];
   unreadList:Map<string, number> = new Map();
+  s:string = "";
 
   ngOnInit() {
     this.us.getAllUsers().subscribe((data: User[]) => {
@@ -59,10 +61,8 @@ export class WebsocketComponent implements OnInit {
         }
       }
       //console.log(this.usernames);
-
-     
+      this.selUsernames = this.usernames;
     });
-    console.log(this.usernames);
     
   }
 
@@ -131,6 +131,31 @@ export class WebsocketComponent implements OnInit {
     resetUnread(rec:string)
     {
       this.unreadList.set(rec, 0);
+    }
+
+    searchUsernames()
+    {
+
+      this.selUsernames = [];
+      
+      if(this.s == "")
+          this.selUsernames = this.usernames;
+
+      else
+      {
+      this.usernames.forEach( element => {
+
+
+        if( element.toLowerCase().includes(this.s.toLowerCase()))
+          this.selUsernames.push(element);
+        
+        
+      });
+    }
+
+      
+
+
     }
 
 

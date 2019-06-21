@@ -6,11 +6,12 @@
   <div style="text-align: center; margin-bottom: 100px">
 
     <div style="overflow-y:scroll; overflow-x:hidden; height:400px; width: 16%" class="parts">
-      <div *ngFor='let username of usernames; let i=index'>
+      <div *ngFor='let username of selUsernames; let i=index'>
         <button class="btn btn-outline-success" style="width: 147px;" (click)='setReciever(username);'>
           {{username}}<i *ngIf="!displayUnread(i)>0" class="fa fa-circle" aria-hidden="true" style="font-size: 5px; float: right; margin-top: 11px"></i><span style="color: blue;float: right" *ngIf="displayUnread(i)>0">{{displayUnread(i)}}</span>
         </button>
       </div>
+      <input type="text" [(ngModel)]="s" (ngModelChange)="searchUsernames()" placeholder="Input search username">
     </div>
 
     <div style="width: 50%" class="parts">
