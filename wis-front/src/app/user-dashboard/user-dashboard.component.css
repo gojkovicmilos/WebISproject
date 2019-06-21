@@ -3,7 +3,8 @@
     z-index: 3;
 }
 #sidebar .list-group {
-    min-width: 400px;
+    min-width: 220px;
+    max-width: 220px;
     background-color: #090a11;
     min-height: 100vh;
 }
