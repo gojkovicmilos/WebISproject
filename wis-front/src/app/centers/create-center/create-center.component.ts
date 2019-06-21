@@ -43,13 +43,11 @@ export class CreateCenterComponent implements OnInit {
         this.progress.percentage = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {
         console.log('File is completely uploaded!');
+        this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
+          window.location.reload();
+        });
       }
     });
     this.selectedFiles = undefined;
-    setTimeout(() => {
-      this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
-        window.location.reload();
-      });
-    }, 2000);
   }
 }
