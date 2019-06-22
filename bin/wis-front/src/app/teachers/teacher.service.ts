@@ -56,4 +56,29 @@ export class TeacherService {
     getTeacherByFirstName(firstName: string): Observable<any> {
       return this.http.get(`${this.uri}/firstname/${firstName}`);
     }
+
+    getPDF(id) {
+
+     
+      
+      return this.http.get(`${this.uri}/downloadpdf/${id}`, {responseType: 'blob'} );
+    }
+    getAllPDF() {
+
+     
+      
+      return this.http.get(`${this.uri}/downloadpdf/`, {responseType: 'blob'} );
+    }
+
+    getXML(id) {
+
+     
+      
+      return this.http.get(`${this.uri}/downloadxml/${id}`, {responseType: 'blob'} );
+    }
+
+    getAllXML()
+    {
+      return this.http.get(`${this.uri}/downloadxml`, {responseType: 'blob'} );
+    }
 }

@@ -19,7 +19,7 @@ export class CreateSpComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
-  selectedCenterId: number;
+  selectedCenterId: number = 1;
   constructor(private sps: StudyProgramService, private router: Router,  private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -61,10 +61,11 @@ export class CreateSpComponent implements OnInit {
         this.progress.percentage = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {
         console.log('File is completely uploaded!');
+        this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
+          window.location.reload();
+        });
       }
     });
-    this.selectedFiles = undefined;
-    this.router.navigate(['/']);
   }
 
 }

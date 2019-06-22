@@ -15,6 +15,7 @@ export class StudyProgramComponent implements OnInit {
   idStudyProgram: number;
   name: string;
   nameOfCenter: string;
+  idCourse: number;
 
   constructor(private spc: StudyProgramService) {}
 
@@ -27,7 +28,10 @@ export class StudyProgramComponent implements OnInit {
     this.nameOfCenter = localStorage.getItem('imeCentra');
   }
 
-
+  punjenje(id: number) {
+    this.idCourse = id;
+    localStorage.setItem("idCourse", id.toString());
+  }
 
 
  

@@ -16,7 +16,7 @@ export class CreateCourseComponent implements OnInit {
   yearOfStudy: YearOfStudy[];
   angForm: any;
   course: Course = new Course();
-  selectedYearOfStudyId: number;
+  selectedYearOfStudyId: number = 1;
   selectedFiles: FileList;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
@@ -63,7 +63,11 @@ export class CreateCourseComponent implements OnInit {
       }
     });
     this.selectedFiles = undefined;
-    this.router.navigate(['/']);
+    setTimeout(() => {
+      this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
+        window.location.reload();
+      });
+    }, 2000);
   }
 
 }

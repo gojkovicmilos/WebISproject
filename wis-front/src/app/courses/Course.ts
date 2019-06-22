@@ -1,4 +1,4 @@
-import YearOfStudy from '../yearOfstudy/YearOfStudy';
+import YearOfStudy from 'src/app/yearOfstudy/YearOfStudy';
 
 export default class Course {
     id: number;

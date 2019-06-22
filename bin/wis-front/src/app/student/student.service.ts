@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -10,6 +10,7 @@ export class StudentService {
 
   uri = 'http://localhost:8080/student';
   reloadData: any;
+  authKey: string;
 
   constructor(private http: HttpClient) { }
 
@@ -36,14 +37,12 @@ export class StudentService {
             .http
             .get(`${this.uri}/${id}`);
     }
-
-    updateStudent(firstname, lastname, cardnumber, password, id) {
+    updateStudent(firstname, lastname, CardNumber, id) {
 
       const obj = {
           firstName: firstname,
           lastName: lastname,
-          cardNumber: cardnumber,
-          pass: password
+          cardNumber: CardNumber
 };
       this
         .http
@@ -63,6 +62,10 @@ export class StudentService {
       return this.http.get(`${this.uri}/lastname/${lastName}`);
     }
 
+    searchStudent(name: string): Observable<any> {
+      return this.http.get(`${this.uri}/search/${name}`);
+    }
+
     logInStudent(cardNumber: string, password: string)
     {
 
@@ -75,4 +78,31 @@ export class StudentService {
 
       this.http.post(`${this.uri}/login`, obj).subscribe(res => console.log('Done'));
     }
+
+
+    getXML(id) {
+
+     
+      
+      return this.http.get(`${this.uri}/downloadxml/${id}`, {responseType: 'blob'} );
+    }
+
+    getAllXML()
+    {
+      return this.http.get(`${this.uri}/downloadxml`, {responseType: 'blob'} );
+    }
+
+    getPDF(id) {
+
+     
+      
+      return this.http.get(`${this.uri}/downloadpdf/${id}`, {responseType: 'blob'} );
+    }
+    getAllPDF() {
+
+     
+      
+      return this.http.get(`${this.uri}/downloadpdf/`, {responseType: 'blob'} );
+    }
+
 }

@@ -34,10 +34,10 @@ import { WebsocketComponent } from './websocket/websocket.component';
 import {CreateYearOfStudyComponent} from './yearOfstudy/create-year-of-study/create-year-of-study.component';
 import { CreateCourseComponent } from './courses/create-course/create-course.component';
 import { CourseMaterialPageComponent } from './course-material-page/course-material-page.component';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
-import { DragDropModule } from '@angular/cdk/drag-drop'
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 
 @NgModule({
@@ -65,8 +65,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
     CreateYearOfStudyComponent,
     CreateCourseComponent,
     CourseMaterialPageComponent,
-    AdminDashboardComponent,
-    DragAndDropComponent
+    UserDashboardComponent,
+    DragAndDropComponent,
+    UserDashboardComponent,
   ],
   imports: [
     BrowserModule,

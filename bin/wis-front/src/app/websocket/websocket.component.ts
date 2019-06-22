@@ -29,6 +29,17 @@ export class AppMessage {
   
 }
 
+export class UserUnread
+{
+  public username:string;
+  public unread:number;
+
+  constructor(username:string, unread:number){
+    this.username = username;
+    this.unread = unread;
+  }
+}
+
 
 @Component({
   selector: 'app-websocket',
@@ -40,12 +51,15 @@ export class WebsocketComponent implements OnInit {
   usernames: string[] = [];
   username:string = localStorage.getItem("username");
   openPrivate: boolean = false;
+  userUnreads: UserUnread[] = [];
+  sUserUnreads: UserUnread[] = [];
   private subject;
   private receiver: string = 'everyone';
   private msg = "";
   private msgForPrivate = "";
   private lista:AppMessage[] = [];
-  unreadList:Map<string, number> = new Map();
+  str: string = "";
+  private showButton = false;
 
   ngOnInit() {
     this.us.getAllUsers().subscribe((data: User[]) => {
@@ -55,11 +69,12 @@ export class WebsocketComponent implements OnInit {
         if(this.users[i].username != this.username)
         {
           this.usernames.push(this.users[i].username);
-          this.unreadList.set(this.users[i].username, 0);
+          this.userUnreads.push(new UserUnread(this.users[i].username, 0));
         }
       }
       //console.log(this.usernames);
 
+      this.sUserUnreads = this.userUnreads;
      
     });
     console.log(this.usernames);
@@ -75,7 +90,6 @@ export class WebsocketComponent implements OnInit {
          this.lista.push(msg);
          if(this.lista[this.lista.length-1].receiver == this.username)
           this.addNewUnread(this.lista[this.lista.length-1].sender);
-          //this.setReciever(this.lista[this.lista.length-1].sender);
         },
        (err) => console.log(err),
        () => console.log('complete')
@@ -107,7 +121,14 @@ export class WebsocketComponent implements OnInit {
       console.log(this.receiver);
       this.openPrivate = true;
       this.resetUnread(rec);
-      
+    }
+
+    setSearch()
+    {
+      if(this.sUserUnreads.length == 1)
+      {
+        this.setReciever(this.sUserUnreads[0].username);
+      }
     }
 
     closePrivate(): void {
@@ -120,17 +141,50 @@ export class WebsocketComponent implements OnInit {
 
     addNewUnread(username:string)
     {
-      this.unreadList.set(username, this.unreadList.get(username)+1);
+      this.userUnreads.forEach(element => {
+
+        if(element.username == username)
+        {
+          element.unread--;
+        }
+      });
     }
 
-    displayUnread(i:number):number
-    {
-      return this.unreadList.get(this.usernames[i]);
-    }
+   
 
     resetUnread(rec:string)
     {
-      this.unreadList.set(rec, 0);
+      this.userUnreads.forEach(element => {
+        
+        if(element.username == rec)
+          element.unread = 0;
+      });
+    }
+
+    
+
+    pretraga() { 
+      console.log(this.str);
+      this.sUserUnreads = [];
+      for(var i = 0; i < this.usernames.length; i++) {
+        if(this.userUnreads[i].username.toLowerCase().includes( this.str.toLowerCase() )) {
+          this.sUserUnreads.push(this.userUnreads[i]);
+        }
+      }
+      if(this.str == "")
+      this.sUserUnreads = this.userUnreads;
+    }
+
+  
+
+    provera() {
+      for(var i = 0; i < this.usernames.length; i++) {
+        if(this.usernames[i] == this.str) {
+          this.showButton = true;
+          return;
+        }
+      }
+      this.showButton = false;
     }
 
 

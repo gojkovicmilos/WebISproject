@@ -19,36 +19,37 @@ import { WebsocketComponent } from './websocket/websocket.component';
 import { CreateYearOfStudyComponent } from './yearOfstudy/create-year-of-study/create-year-of-study.component';
 import { CreateCourseComponent } from './courses/create-course/create-course.component';
 import { CourseMaterialPageComponent } from './course-material-page/course-material-page.component';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
+import { AuthGuardService } from './auth-guard.service';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
-  {path: 'adminDashBoard/student/add', component: AddStudentComponent},
-  {path: 'adminDashBoard/students', component: GetStudentComponent},
-  {path: 'adminDashBoard/students/:id', component: EditStudentComponent},
-  {path: 'adminDashBoard/findStudentByFirstName', component: SearchStudentComponent},
+  {path: 'user-dashboard/student/add', component: AddStudentComponent, canActivate: [AuthGuardService]},
+  {path: 'user-dashboard/students', component: GetStudentComponent, canActivate: [AuthGuardService]},
+  {path: 'user-dashboard/students/:id', component: EditStudentComponent, canActivate: [AuthGuardService]},
+  {path: 'user-dashboard/findStudentByFirstName', component: SearchStudentComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'adminDashBoard/teacher/add', component: AddTeacherComponent},
-  {path: 'adminDashBoard/teacher/:id', component: EditTeacherComponent},
-  {path: 'adminDashBoard/teacher', component: GetTeacherComponent},
-  {path: 'adminDashBoard/findTeacherByFirstName', component: SearchTeacherComponent },
+  {path: 'user-dashboard/teacher/add', component: AddTeacherComponent, canActivate: [AuthGuardService]},
+  {path: 'user-dashboard/teacher/:id', component: EditTeacherComponent, canActivate: [AuthGuardService]},
+  {path: 'user-dashboard/teacher', component: GetTeacherComponent, canActivate: [AuthGuardService]},
+  {path: 'user-dashboard/findTeacherByFirstName', component: SearchTeacherComponent},
   {path: '', component: HomePageComponent},
   {path: 'center', component: CenterComponent},
   {path: 'center/studyPrograms', component: StudyProgramComponent},
-  {path: 'adminDashBoard/createCenter', component: CreateCenterComponent},
-  {path: 'adminDashBoard/createSp', component: CreateSpComponent},
-  {path: 'adminDashBoard/register', component: RegisterComponent},
+  {path: 'user-dashboard/createCenter', component: CreateCenterComponent, canActivate: [AuthGuardService]},
+  {path: 'user-dashboard/createSp', component: CreateSpComponent, canActivate: [AuthGuardService]},
+  {path: 'user-dashboard/register', component: RegisterComponent, canActivate: [AuthGuardService]},
   {path: 'chat', component: WebsocketComponent},
-  {path: 'adminDashBoard/createYos', component: CreateYearOfStudyComponent},
-  {path: 'adminDashBoard/createCourse', component: CreateCourseComponent},
-  {path: 'adminDashBoard/courseMaterialPage', component: CourseMaterialPageComponent},
-  {path: 'adminDashBoard', component: AdminDashboardComponent},
+  {path: 'user-dashboard/createYos', component: CreateYearOfStudyComponent, canActivate: [AuthGuardService]},
+  {path: 'user-dashboard/createCourse', component: CreateCourseComponent, canActivate: [AuthGuardService]},
+  {path: 'user-dashboard/courseMaterialPage', component: CourseMaterialPageComponent},
+  {path: 'user-dashboard', component: UserDashboardComponent},
   {path: 'dragAndDrop', component: DragAndDropComponent}
-
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: "reload"})],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuardService]
 })
 export class AppRoutingModule { }

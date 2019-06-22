@@ -33,3 +33,4 @@ msnet.log
 
 /src/main/resources/static
 creditfolio.iml
+/.apt_generated_tests/

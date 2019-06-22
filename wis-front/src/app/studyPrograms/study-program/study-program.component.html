@@ -40,17 +40,17 @@
                   <div class="card" *ngFor="let course of yos.courses; let j = index">
                     <div class="card-header" id="headingOne" class="list-group-item">
                       <h5 class="mb-0">
-                        <button class="list-group-item" data-toggle="collapse" data-target="#collapseOne"
+                        <button routerLink="courseMaterialPage" (click)="punjenje(course.id)" class="list-group-item" data-toggle="collapse" data-target="#collapseOne"
                           aria-expanded="true" aria-controls="collapseOne"><i class="fa fa-arrow-circle-o-down"></i>
                           {{course.title}}
                         </button>
                       </h5>
                     </div>
-                    <div id="collapseOne" class="collapse" aria-labelledby="collapseOne" data-parent="#collapseOne">
+                    <!-- <div id="collapseOne" class="collapse" aria-labelledby="collapseOne" data-parent="#collapseOne">
                       <div class="card-body">
                         Something about {{course.title}}
                       </div>
-                    </div>
+                    </div> -->
                   </div>
         
                 </div>

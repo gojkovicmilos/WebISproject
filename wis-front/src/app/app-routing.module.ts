@@ -42,7 +42,7 @@ const routes: Routes = [
   {path: 'chat', component: WebsocketComponent},
   {path: 'user-dashboard/createYos', component: CreateYearOfStudyComponent, canActivate: [AuthGuardService]},
   {path: 'user-dashboard/createCourse', component: CreateCourseComponent, canActivate: [AuthGuardService]},
-  {path: 'user-dashboard/courseMaterialPage', component: CourseMaterialPageComponent},
+  {path: 'center/studyPrograms/courseMaterialPage', component: CourseMaterialPageComponent},
   {path: 'user-dashboard', component: UserDashboardComponent},
   {path: 'dragAndDrop', component: DragAndDropComponent}
 ];

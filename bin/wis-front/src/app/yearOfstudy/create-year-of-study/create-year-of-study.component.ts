@@ -16,7 +16,7 @@ export class CreateYearOfStudyComponent implements OnInit {
   studyProgram: StudyProgram[];
   angForm: any;
   yearOfstudy: YearOfStudy = new YearOfStudy();
-  selectedStudyProgramId: number;
+  selectedStudyProgramId: number = 1;
   selectedFiles: FileList;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
@@ -54,17 +54,56 @@ export class CreateYearOfStudyComponent implements OnInit {
     });
   }
 
-  upload(title: string) {
-    this.progress.percentage = 0;
-    this.currentFileUpload = this.selectedFiles.item(0);
-    this.yos.pushFileToStorage(this.currentFileUpload, title, this.selectedStudyProgramId).subscribe(event => {
+  // upload(num: string) {
+  //   let title = this.titleMaker(num);
+  //   this.progress.percentage = 0;
+  //   this.currentFileUpload = this.selectedFiles.item(0);
+  //   this.yos.pushFileToStorage(this.currentFileUpload, title, num, this.selectedStudyProgramId).subscribe(event => {
+  //     if (event.type === HttpEventType.UploadProgress) {
+  //       this.progress.percentage = Math.round(100 * event.loaded / event.total);
+  //     } else if (event instanceof HttpResponse) {
+  //       console.log('File is completely uploaded!');
+  //     }
+  //   });
+  //   this.selectedFiles = undefined;
+  //   setTimeout(() => {
+  //     this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
+  //       window.location.reload();
+  //     });
+  //   }, 2000);
+  // }
+
+  titleMaker(br: string) {
+    switch(br) {
+      case "1":
+        return "First Year";
+      case "2":
+        return "Second Year";
+      case "3": 
+        return "Third Year";
+      case "4":
+        return "Fourth Year";
+      default:
+        return "Other";
+    
+    }
+  }
+
+  createYOS(num: string) {
+    let title = this.titleMaker(num);
+    this.yos.addYearOfStudy(title, num, this.selectedStudyProgramId).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
         this.progress.percentage = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {
         console.log('File is completely uploaded!');
+        this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
+          window.location.reload();
+        });
       }
     });
-    this.selectedFiles = undefined;
-    this.router.navigate(['/']);
   }
+
+  
+
+
 }
