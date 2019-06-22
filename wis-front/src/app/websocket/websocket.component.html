@@ -68,7 +68,8 @@
 
 <body>
   <div class="container">
-    <h3 class=" text-center">University Chat Service</h3>
+    <h3 class=" text-center" style="padding-top:5px;">University Chat Service</h3>
+    <hr>
     <div class="messaging">
       <div class="inbox_msg">
         <div class="inbox_people">
@@ -106,38 +107,31 @@
             </div>
           </div>
         </div>
-        <div style="overflow-y:scroll; overflow-x:hidden; height:650px; text-align:center; width:40%">
+        <div style="overflow-y:scroll; overflow-x:hidden; height:650px; text-align:center; width:30%">
+            <h3>Global Chat</h3>
             <div *ngFor="let el of lista">
+              
               <p *ngIf="el.receiver == 'everyone'">{{el.sender}}: {{el.body}}</p>
         </div>
-        <div *ngIf="openPrivate" style="width: 40%; margin-right: 400px;">
-    
-          <div style="overflow-y:scroll; overflow-x:hidden; height:300px;">
-            <div *ngFor="let el of lista">
-                <p *ngIf="((el.receiver == username && el.sender == receiver) || ( el.sender == username && el.receiver == receiver) && el.receiver != 'everyone') ">{{el.sender}}: {{el.body}}</p>
-            </div> 
-          </div>
-        
-          <div >
-            <div class="form-group">
-              <textarea placeholder="Enter a private message for {{receiver}}" [(ngModel)]="msgForPrivate" class="form-control" rows="2" (click)="resetUnread(receiver)" ></textarea>
-              <button class="btn btn-outline-primary" type="button" (click)="send()">Send to {{receiver}}</button>
-              <button class="btn btn-outline-danger" type="button" (click)=closePrivate()>Close</button>
-            </div>  
-            
-          </div>
-      
-        </div> 
-   
-
-        
+ 
         </div>
       </div>
-
-
     </div>
-       
-    
-
   </div>
+  <div *ngIf="openPrivate" style="width: 25%;" class="private_chat">
+      <div style="overflow-y:scroll; overflow-x:hidden; height:550px; text-align: center;">
+          <h3 style="text-align: center;">Private Chat</h3>
+        <div *ngFor="let el of lista">
+            <p *ngIf="((el.receiver == username && el.sender == receiver) || ( el.sender == username && el.receiver == receiver) && el.receiver != 'everyone') ">{{el.sender}}: {{el.body}}</p>
+        </div> 
+      </div>
+    
+      <div >
+        <div style="position: relative; width:100%;">
+          <textarea placeholder="Enter a private message for {{receiver}}" [(ngModel)]="msgForPrivate" class="form-control" rows="2" (click)="resetUnread(receiver)"></textarea>
+          <button class="btn btn-outline-primary" type="button" (click)="send()">Send to {{receiver}}</button>
+          <button class="btn btn-outline-danger" type="button" (click)=closePrivate()>Close</button>
+        </div>  
+      </div>
+    </div> 
 </body>

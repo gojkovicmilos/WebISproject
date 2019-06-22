@@ -155,3 +155,9 @@ body {
 	position: relative;
 	margin: 0;
   }
+.private_chat{
+  position: absolute;
+  top:72px;
+  right: 105px;
+
+}
