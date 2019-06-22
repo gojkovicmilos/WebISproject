@@ -1,15 +1,17 @@
 package lms.service;
 
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 import lms.domain.Country;
 import lms.repository.CountryRepository;
 
 @Service
-public class CountryService {
+public class CountryService implements CommandLineRunner {
 
 	@Autowired
 	CountryRepository countryRepository;
@@ -38,6 +40,21 @@ public class CountryService {
 		if (cou.isPresent()) {
 			c.setId(cou.get().getId());
 			countryRepository.save(c);
+		}
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		
+		if(StreamSupport.stream(countryRepository.findAll().spliterator(), false).count()<3)
+		{
+			Country country = new Country("Serbia");
+			
+			countryRepository.save(country);
+			
+			Country country2 = new Country("Bosnia");
+			
+			countryRepository.save(country2);
 		}
 	}
 

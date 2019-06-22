@@ -54,6 +54,13 @@ public class Country {
 
 
 
+	public Country(String string) {
+
+		this.name = string;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
