@@ -1,8 +1,8 @@
-<div class="container">
+<!-- <div class="container">
   
   
 
-  <!-- <h3 style="text-align: center; margin-top: 50px; margin-bottom: 30px">Hello {{username}}!</h3> -->
+  <h3 style="text-align: center; margin-top: 50px; margin-bottom: 30px">Hello {{username}}!</h3>
   <div style="text-align: center; margin: auto; width: 30%; margin-bottom: 30px; margin-top: 50px" >
     <p *ngIf="invalidUsername" style="color:red">Invalid username!</p>
     <button class="close" aria-label="Close" *ngIf="searchAcitve" (click)="back()"><span aria-hidden="true">&times;</span></button>
@@ -63,4 +63,81 @@
 
   
 
-</div>
+</div> -->
+
+
+<body>
+  <div class="container">
+    <h3 class=" text-center">University Chat Service</h3>
+    <div class="messaging">
+      <div class="inbox_msg">
+        <div class="inbox_people">
+          <div class="headind_srch">
+            <div class="recent_heading">
+              <h4>Online List</h4>
+            </div>
+            <div class="srch_bar">
+              <div class="stylish-input-group">
+                <input type="text" class="search-bar" placeholder="Search By Name" [(ngModel)]="recieversName">
+                <span class="input-group-addon">
+                    <button class="btn btn-primary" (click)='setReciever(recieversName)'><i class="fa fa-search"></i></button> 
+                </span> 
+              </div>
+            </div>
+          </div>
+          <div class="inbox_chat">
+            <div class="chat_list active_chat">
+              <div class="chat_people">
+                <div class="chat_img">  </div>
+                <div *ngFor='let username of usernames | orderBy: "displayUnread(i)"; let i=index' class="chat_ib">
+                  <button class="btn btn-outline-success" style="width: 147px;" (click)='setReciever(username);'>
+                    {{username}}<img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"><i *ngIf="!displayUnread(i)>0" class="fa fa-circle" aria-hidden="true"
+                      style="font-size: 5px; float: right; margin-top: 11px"></i><span style="color: blue;float: right"
+                      *ngIf="displayUnread(i)>0">{{displayUnread(i)}}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="type_msg">
+            <div class="input_msg_write">
+              <input type="text" class="write_msg" [(ngModel)]="msg" placeholder=" Send to everyone..." />
+              <button class="msg_send_btn" type="button" (click)="sendToEveryone()"><i class="fa fa-paper-plane-o"
+                  aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+        <div style="overflow-y:scroll; overflow-x:hidden; height:650px; text-align:center;">
+            <div *ngFor="let el of lista">
+              <p *ngIf="el.receiver == 'everyone'">{{el.sender}}: {{el.body}}</p>
+        </div>
+        <div *ngIf="openPrivate" style="width: 40%; margin-right: 400px;">
+    
+            <div style="overflow-y:scroll; overflow-x:hidden; height:300px;">
+              <div *ngFor="let el of lista">
+                  <p *ngIf="((el.receiver == username && el.sender == receiver) || ( el.sender == username && el.receiver == receiver) && el.receiver != 'everyone') ">{{el.sender}}: {{el.body}}</p>
+              </div> 
+            </div>
+          
+            <div >
+              <div class="form-group">
+                <textarea placeholder="Enter a private message for {{receiver}}" [(ngModel)]="msgForPrivate" class="form-control" rows="2" (click)="resetUnread(receiver)" ></textarea>
+                <button class="btn btn-outline-primary" type="button" (click)="send()">Send to {{receiver}}</button>
+                <button class="btn btn-outline-danger" type="button" (click)=closePrivate()>Close</button>
+              </div>  
+              
+            </div>
+        
+          </div> 
+
+        
+        </div>
+      </div>
+
+
+    </div>
+       
+    
+
+  </div>
+</body>
