@@ -14,7 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class CourseMaterialPageComponent implements OnInit {
   
   title: string;
-  pic: Int8Array;
+  pic: Int8Array = new Int8Array();
   mimetype: string;
 
   constructor(private sanitizer: DomSanitizer, private courseS: CourseService, private router: Router) { }
@@ -25,6 +25,7 @@ export class CourseMaterialPageComponent implements OnInit {
       this.pic = data.pic;
       this.mimetype = data.mimetype;
     });
+    
 
   }
 
