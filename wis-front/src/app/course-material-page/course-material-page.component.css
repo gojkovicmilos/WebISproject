@@ -1,23 +1,15 @@
 body {
-  min-height: 140vh;
+  min-height: 100vh;
   position: relative;
   margin: 0;
 }
 
-.list-group {
-  width: 20%;
-  top: 50%;
-  left: 50%;
-  margin:0 auto;
-  margin-top: 3px;
-  
-  
-}
-
 .list-group-item {
-  background-color: black;
+  background-color: #0078f8;
   text-align: center;
-  color: #3e97f7;
+  color: black;
+  font-weight: bold;
+  border: 1px solid black;
   
 }
 
