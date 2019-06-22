@@ -29,6 +29,17 @@ export class AppMessage {
   
 }
 
+export class UserUnread
+{
+  public username:string;
+  public unread:number;
+
+  constructor(username:string, unread:number){
+    this.username = username;
+    this.unread = unread;
+  }
+}
+
 
 @Component({
   selector: 'app-websocket',
@@ -38,18 +49,17 @@ export class AppMessage {
 export class WebsocketComponent implements OnInit {
   users: User[];
   usernames: string[] = [];
-  usernames2: string[] = [];
   username:string = localStorage.getItem("username");
   openPrivate: boolean = false;
+  userUnreads: UserUnread[] = [];
+  sUserUnreads: UserUnread[] = [];
   private subject;
   private receiver: string = 'everyone';
   private msg = "";
   private msgForPrivate = "";
   private lista:AppMessage[] = [];
-  unreadList:Map<string, number> = new Map();
-  private recieversName: string = "";
-  private invalidUsername: boolean = false;
-  private searchAcitve: boolean = false;
+  str: string = "";
+  private showButton = false;
 
   ngOnInit() {
     this.us.getAllUsers().subscribe((data: User[]) => {
@@ -59,12 +69,12 @@ export class WebsocketComponent implements OnInit {
         if(this.users[i].username != this.username)
         {
           this.usernames.push(this.users[i].username);
-          this.usernames2.push(this.users[i].username);
-          this.unreadList.set(this.users[i].username, 0);
+          this.userUnreads.push(new UserUnread(this.users[i].username, 0));
         }
       }
       //console.log(this.usernames);
 
+      this.sUserUnreads = this.userUnreads;
      
     });
     console.log(this.usernames);
@@ -80,7 +90,6 @@ export class WebsocketComponent implements OnInit {
          this.lista.push(msg);
          if(this.lista[this.lista.length-1].receiver == this.username)
           this.addNewUnread(this.lista[this.lista.length-1].sender);
-          //this.setReciever(this.lista[this.lista.length-1].sender);
         },
        (err) => console.log(err),
        () => console.log('complete')
@@ -96,7 +105,6 @@ export class WebsocketComponent implements OnInit {
       this.subject.next(msg);
       //console.log('tu sam');
       this.msgForPrivate = "";
-      this.back();
     }
     sendToEveryone(){
       let msg:AppMessage = new AppMessage();
@@ -106,26 +114,20 @@ export class WebsocketComponent implements OnInit {
       this.subject.next(msg);
       //console.log('tu sam');
       this.msg = "";
-      this.back();
     }
 
     setReciever(rec: string): void {
-      if(rec != "" && this.isInList(rec)) {
-        this.receiver = rec;
-        console.log(this.receiver);
-        this.openPrivate = true;
-        this.resetUnread(rec);
-        this.back();
-      }
-      else if(rec != "" && this.pretraga(rec).length != 0) {
-        this.usernames = this.pretraga(rec);
-        this.searchAcitve = true;
-        this.invalidUsername = false;
-      }
-      else {
-        this.invalidUsername = true;
-        this.usernames = this.usernames2;
-        this.searchAcitve = false;
+      this.receiver = rec;
+      console.log(this.receiver);
+      this.openPrivate = true;
+      this.resetUnread(rec);
+    }
+
+    setSearch()
+    {
+      if(this.sUserUnreads.length == 1)
+      {
+        this.setReciever(this.sUserUnreads[0].username);
       }
     }
 
@@ -139,43 +141,50 @@ export class WebsocketComponent implements OnInit {
 
     addNewUnread(username:string)
     {
-      this.unreadList.set(username, this.unreadList.get(username)+1);
+      this.userUnreads.forEach(element => {
+
+        if(element.username == username)
+        {
+          element.unread--;
+        }
+      });
     }
 
-    displayUnread(i:number):number
-    {
-      return this.unreadList.get(this.usernames[i]);
-    }
+   
 
     resetUnread(rec:string)
     {
-      this.unreadList.set(rec, 0);
+      this.userUnreads.forEach(element => {
+        
+        if(element.username == rec)
+          element.unread = 0;
+      });
     }
 
-    isInList(u: string) {
-      for(var i = 0; i < this.usernames2.length; i++) {
-        if(u === this.usernames2[i]) {
-          return true;
-        }
-      }
-      return false;
-    }
+    
 
-    pretraga(str: string) { 
-      let listaTrazenihKorisnika = [];
+    pretraga() { 
+      console.log(this.str);
+      this.sUserUnreads = [];
       for(var i = 0; i < this.usernames.length; i++) {
-        if(this.usernames[i].toLowerCase().includes( str.toLowerCase() )) {
-          listaTrazenihKorisnika.push(this.usernames[i]);
+        if(this.userUnreads[i].username.toLowerCase().includes( this.str.toLowerCase() )) {
+          this.sUserUnreads.push(this.userUnreads[i]);
         }
       }
-      return listaTrazenihKorisnika;
+      if(this.str == "")
+      this.sUserUnreads = this.userUnreads;
     }
 
-    back(): void {
-      this.usernames = this.usernames2;
-      this.searchAcitve = false;
-      this.recieversName = "";
-      this.invalidUsername = false;
+  
+
+    provera() {
+      for(var i = 0; i < this.usernames.length; i++) {
+        if(this.usernames[i] == this.str) {
+          this.showButton = true;
+          return;
+        }
+      }
+      this.showButton = false;
     }
 
 

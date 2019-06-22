@@ -78,22 +78,21 @@
             </div>
             <div class="srch_bar">
               <div class="stylish-input-group">
-                <input type="text" class="search-bar" placeholder="Search By Name" [(ngModel)]="recieversName">
+                <input size="14" class="search-bar" type="text" [(ngModel)]="str" (ngModelChange)="pretraga(); provera();" placeholder="Search username">
                 <span class="input-group-addon">
-                    <button class="btn btn-primary" (click)='setReciever(recieversName)'><i class="fa fa-search"></i></button> 
+                  <button *ngIf="showButton" class="btn btn-outline-primary" (click)='setSearch()'><i class="fa fa-search"></i></button>
                 </span> 
               </div>
+              
             </div>
           </div>
           <div class="inbox_chat">
             <div class="chat_list active_chat">
               <div class="chat_people">
                 <div class="chat_img">  </div>
-                <div *ngFor='let username of usernames | orderBy: "displayUnread(i)"; let i=index' class="chat_ib">
-                  <button class="btn btn-outline-success" style="width: 147px;" (click)='setReciever(username);'>
-                    {{username}}<img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"><i *ngIf="!displayUnread(i)>0" class="fa fa-circle" aria-hidden="true"
-                      style="font-size: 5px; float: right; margin-top: 11px"></i><span style="color: blue;float: right"
-                      *ngIf="displayUnread(i)>0">{{displayUnread(i)}}</span>
+                <div *ngFor="let user of sUserUnreads|orderBy:'unread'">
+                  <button class="btn btn-outline-success" style="width: 80px;" (click)='setReciever(user.username);'>
+                    {{user.username}} <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"><i *ngIf="user.unread>=0" class="fa fa-circle" aria-hidden="true" style="font-size: 5px; float: right; margin-top: 11px"></i><span style="color: blue;float: right" *ngIf="!user.unread==0">{{user.unread*-1}}</span>
                   </button>
                 </div>
               </div>
@@ -107,28 +106,29 @@
             </div>
           </div>
         </div>
-        <div style="overflow-y:scroll; overflow-x:hidden; height:650px; text-align:center;">
+        <div style="overflow-y:scroll; overflow-x:hidden; height:650px; text-align:center; width:40%">
             <div *ngFor="let el of lista">
               <p *ngIf="el.receiver == 'everyone'">{{el.sender}}: {{el.body}}</p>
         </div>
         <div *ngIf="openPrivate" style="width: 40%; margin-right: 400px;">
     
-            <div style="overflow-y:scroll; overflow-x:hidden; height:300px;">
-              <div *ngFor="let el of lista">
-                  <p *ngIf="((el.receiver == username && el.sender == receiver) || ( el.sender == username && el.receiver == receiver) && el.receiver != 'everyone') ">{{el.sender}}: {{el.body}}</p>
-              </div> 
-            </div>
-          
-            <div >
-              <div class="form-group">
-                <textarea placeholder="Enter a private message for {{receiver}}" [(ngModel)]="msgForPrivate" class="form-control" rows="2" (click)="resetUnread(receiver)" ></textarea>
-                <button class="btn btn-outline-primary" type="button" (click)="send()">Send to {{receiver}}</button>
-                <button class="btn btn-outline-danger" type="button" (click)=closePrivate()>Close</button>
-              </div>  
-              
-            </div>
+          <div style="overflow-y:scroll; overflow-x:hidden; height:300px;">
+            <div *ngFor="let el of lista">
+                <p *ngIf="((el.receiver == username && el.sender == receiver) || ( el.sender == username && el.receiver == receiver) && el.receiver != 'everyone') ">{{el.sender}}: {{el.body}}</p>
+            </div> 
+          </div>
         
-          </div> 
+          <div >
+            <div class="form-group">
+              <textarea placeholder="Enter a private message for {{receiver}}" [(ngModel)]="msgForPrivate" class="form-control" rows="2" (click)="resetUnread(receiver)" ></textarea>
+              <button class="btn btn-outline-primary" type="button" (click)="send()">Send to {{receiver}}</button>
+              <button class="btn btn-outline-danger" type="button" (click)=closePrivate()>Close</button>
+            </div>  
+            
+          </div>
+      
+        </div> 
+   
 
         
         </div>
