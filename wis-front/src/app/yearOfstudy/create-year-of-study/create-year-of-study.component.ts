@@ -16,7 +16,7 @@ export class CreateYearOfStudyComponent implements OnInit {
   studyProgram: StudyProgram[];
   angForm: any;
   yearOfstudy: YearOfStudy = new YearOfStudy();
-  selectedStudyProgramId: number = 1;
+  selectedStudyProgramId: number = 0;
   selectedFiles: FileList;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
@@ -38,9 +38,11 @@ export class CreateYearOfStudyComponent implements OnInit {
             };
         });
       });
+    
   }
   selectFile(event) {
     this.selectedFiles = event.target.files;
+    
   }
 
   setStudyProgram($event){
@@ -90,6 +92,10 @@ export class CreateYearOfStudyComponent implements OnInit {
   }
 
   createYOS(num: string) {
+    
+    if(this.selectedStudyProgramId == 0)
+      this.selectedStudyProgramId = this.studyProgram[0].id;
+
     let title = this.titleMaker(num);
     this.yos.addYearOfStudy(title, num, this.selectedStudyProgramId).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {

@@ -16,7 +16,7 @@ export class CreateCourseComponent implements OnInit {
   yearOfStudy: YearOfStudy[];
   angForm: any;
   course: Course = new Course();
-  selectedYearOfStudyId: number = 1;
+  selectedYearOfStudyId: number = 0;
   selectedFiles: FileList;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
@@ -53,6 +53,10 @@ export class CreateCourseComponent implements OnInit {
   }
 
   upload(title: string) {
+
+    if(this.selectedYearOfStudyId == 0)
+      this.selectedYearOfStudyId = this.yearOfStudy[0].id;
+
     this.progress.percentage = 0;
     this.currentFileUpload = this.selectedFiles.item(0);
     this.cs.pushFileToStorage(this.currentFileUpload, title, this.selectedYearOfStudyId).subscribe(event => {
