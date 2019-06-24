@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CourseService } from '../courses/course.service';
 import Course from '../courses/Course';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ObavestenjaService } from '../obavestenja.service';
 
 @Component({
   selector: 'app-course-material-page',
@@ -16,8 +17,15 @@ export class CourseMaterialPageComponent implements OnInit {
   title: string;
   pic: Int8Array = new Int8Array();
   mimetype: string;
+  sadrzajObavestenja: string;
+  datumObavestenja: string;
+  temaObavestenja: string;
+  svaObavestenja = [];
+  prikazi: boolean = false;
+  
+  role: string;
 
-  constructor(private sanitizer: DomSanitizer, private courseS: CourseService, private router: Router) { }
+  constructor(private os: ObavestenjaService ,private sanitizer: DomSanitizer, private courseS: CourseService, private router: Router) { }
 
   ngOnInit() {
     this.courseS.getCourseById(Number(localStorage.getItem('idCourse'))).subscribe((data: Course) => {
@@ -25,7 +33,7 @@ export class CourseMaterialPageComponent implements OnInit {
       this.pic = data.pic;
       this.mimetype = data.mimetype;
     });
-    
+    this.role = localStorage.getItem("role");
 
   }
 
@@ -33,4 +41,24 @@ export class CourseMaterialPageComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl('data:' + mimetype + ';base64, ' + img.toString());
   }
 
-}
+  ubaciObavestenja(): void {
+    let o = {"tema": this.temaObavestenja, "datum": this.datumObavestenja, "sadrzaj": this.sadrzajObavestenja, "usernameProf": localStorage.getItem("username"), "predmet": this.title};
+    this.os.listaObavestenja.push(o);
+    localStorage.setItem("obavestenja", JSON.stringify(this.os.listaObavestenja));
+
+  }
+
+  dobaviObavestenja(): void {
+    this.svaObavestenja = this.os.listaObavestenja;
+    this.prikazi = true;
+    //console.log(this.os.listaObavestenja);
+    let ob = JSON.parse(localStorage.getItem("obavestenja") || "[]");
+    this.os.listaObavestenja = ob;
+    console.log(ob);
+    this.svaObavestenja = ob;
+  }
+
+  zatvoriObavestenja(): void {
+    this.prikazi = false;
+  }
+ }
