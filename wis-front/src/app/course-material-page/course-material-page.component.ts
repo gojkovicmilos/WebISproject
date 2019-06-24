@@ -42,6 +42,7 @@ export class CourseMaterialPageComponent implements OnInit {
   }
 
   ubaciObavestenja(): void {
+    this.os.listaObavestenja = JSON.parse(localStorage.getItem("obavestenja") || "[]");
     let o = {"tema": this.temaObavestenja, "datum": this.datumObavestenja, "sadrzaj": this.sadrzajObavestenja, "usernameProf": localStorage.getItem("username"), "predmet": this.title};
     this.os.listaObavestenja.push(o);
     localStorage.setItem("obavestenja", JSON.stringify(this.os.listaObavestenja));
@@ -49,9 +50,7 @@ export class CourseMaterialPageComponent implements OnInit {
   }
 
   dobaviObavestenja(): void {
-    this.svaObavestenja = this.os.listaObavestenja;
     this.prikazi = true;
-    //console.log(this.os.listaObavestenja);
     let ob = JSON.parse(localStorage.getItem("obavestenja") || "[]");
     this.os.listaObavestenja = ob;
     console.log(ob);

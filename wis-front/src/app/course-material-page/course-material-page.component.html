@@ -1,13 +1,13 @@
-<body>
+<body style="margin-bottom: 200px">
   <div>
     <h2 style="text-align:center;">Course name: {{title}}</h2>
-    <!-- <div style="display: inline-block;">
+    <div style="display: inline-block;">
       <div class="col-md-4 mb-5">
         <div class="card h-100">
-          <img class="card-img-top" [src]="transform(pic, mimetype)" alt="">
+          <img class="card-img-top" [src]="transform(pic, mimetype)" alt="" >
         </div>
       </div>
-    </div>    -->
+    </div>    
     <div class="row">
       <div class="col">
         <h2 class="text">Student Shortcuts</h2>
@@ -33,34 +33,35 @@
     </div>
   </div>
   <div *ngIf="role == 'ROLE_TEACHER'">
-    Tema obavestenja: <input type="text" name="tema" id="tema" [(ngModel)]='temaObavestenja'>
+    Topic: <input type="text" name="tema" id="tema" [(ngModel)]='temaObavestenja'>
     <br>
-    Sadrzaj obavestenja: <input type="text" name="sadrzaj" id="sadrzaj" [(ngModel)]='sadrzajObavestenja'>
+    Content: <input type="text" name="sadrzaj" id="sadrzaj" [(ngModel)]='sadrzajObavestenja'>
     <br>
-    Datum trajanja obavestenja: <input type="date" name="datum" id="datum" [(ngModel)]='datumObavestenja'>
+    Date: <input type="date" name="datum" id="datum" [(ngModel)]='datumObavestenja'>
     <br>
     <button (click)="ubaciObavestenja()">Dodaj obavestenje</button>
   </div>
   <hr>
-  <div *ngIf="prikazi">
+  <div style="overflow-y:scroll; overflow-x:hidden; height:400px; margin-bottom: 30px; text-align: center" *ngIf="prikazi">
     <div *ngFor='let o of svaObavestenja; let i = index;'>
       <div *ngIf='o.predmet == title'>
-        Obavestenje broj: {{i+1}}
+        Post number: {{i+1}}
         <br>
-        Nastavnik: {{o.usernameProf}}
+        Teacher: {{o.usernameProf}}
         <br>
-        Tema: {{o.tema}}
+        Topic: {{o.tema}}
         <br>
-        Sadrzaj: {{o.sadrzah}}
+        Content: {{o.sadrzah}}
         <br>
-        Datum: {{o.datum}}
-        <br>
+        Date: {{o.datum}}
+        <hr>
       </div>
     </div>
   </div> 
-  <button (click)="dobaviObavestenja()">Dobavi</button>
-  <button (click)="zatvoriObavestenja()">Zatvori</button>
-
+  <div style="text-align: center">
+    <button style="" class="btn btn-outline-primary" (click)="dobaviObavestenja()">Get posts</button>
+    <button style="" class="btn btn-outline-danger" (click)="zatvoriObavestenja()">Close</button>
+  </div>
 
 
 </body>
