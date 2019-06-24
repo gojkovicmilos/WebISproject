@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class StudentService {
 
   uri = 'http://localhost:8080/student';
+  adminUri = 'http://localhost:8080/admin';
   reloadData: any;
   authKey: string;
 
@@ -77,6 +78,16 @@ export class StudentService {
       };
 
       this.http.post(`${this.uri}/login`, obj).subscribe(res => console.log('Done'));
+    }
+
+    enrollStudent(id:number, spId:number)
+    {
+      this.http.post(`${this.uri}/upisnaprvu/${spId}`, id).subscribe(res => console.log('Done'));
+    }
+
+    enrollStudentNext(id:number)
+    {
+      this.http.post(`${this.adminUri}/upisnaprvu/${spId}`, id).subscribe(res => console.log('Done'));
     }
 
 

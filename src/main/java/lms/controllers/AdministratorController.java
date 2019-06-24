@@ -91,7 +91,6 @@ public class AdministratorController {
 		return new ResponseEntity<Administrator>(HttpStatus.NO_CONTENT);
 	}
 	
-	@JsonView(HideOptionalProperties.class)
 	@GetMapping(value = "/upis/{studyProgramId}/{yearNumber}")
 	public ResponseEntity<Iterable<Student>> getAllStudentsWhoPass(@PathVariable Long studyProgramId, @PathVariable int yearNumber) {
 		
@@ -102,6 +101,8 @@ public class AdministratorController {
 		}
 		return new ResponseEntity<Iterable<Student>>(HttpStatus.NOT_FOUND);
 	}
+
+	
 	
 	@PostMapping(value = "/upis")
 	public ResponseEntity<Boolean>enrollStudentInNextYear(@RequestBody Long studentId, @RequestBody Set<Long> facultativeCourseIds)
@@ -119,7 +120,7 @@ public class AdministratorController {
 			return new ResponseEntity<Boolean>(administratorService.enrollStudentInNextYear(student.get(), facultativeCourses), HttpStatus.OK);
 		}
 		
-		return new ResponseEntity<Boolean>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
 	}
 
 }

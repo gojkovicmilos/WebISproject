@@ -38,6 +38,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { EnrollStudentComponent } from './student/enroll-student/enroll-student.component';
+import { EnrollNextComponent } from './student/enroll-next/enroll-next.component';
 
 
 @NgModule({
@@ -68,6 +70,8 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     UserDashboardComponent,
     DragAndDropComponent,
     UserDashboardComponent,
+    EnrollStudentComponent,
+    EnrollNextComponent,
   ],
   imports: [
     BrowserModule,

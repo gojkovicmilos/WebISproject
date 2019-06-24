@@ -22,6 +22,7 @@ import { CourseMaterialPageComponent } from './course-material-page/course-mater
 import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
 import { AuthGuardService } from './auth-guard.service';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { EnrollStudentComponent } from './student/enroll-student/enroll-student.component';
 
 const routes: Routes = [
   {path: 'user-dashboard/student/add', component: AddStudentComponent, canActivate: [AuthGuardService]},
@@ -44,7 +45,8 @@ const routes: Routes = [
   {path: 'user-dashboard/createCourse', component: CreateCourseComponent, canActivate: [AuthGuardService]},
   {path: 'center/studyPrograms/courseMaterialPage', component: CourseMaterialPageComponent},
   {path: 'user-dashboard', component: UserDashboardComponent},
-  {path: 'dragAndDrop', component: DragAndDropComponent}
+  {path: 'dragAndDrop', component: DragAndDropComponent},
+  {path: 'user-dashboard/student/enrollfirst', component: EnrollStudentComponent, canActivate: [AuthGuardService]}
 ];
 
 @NgModule({

@@ -26,9 +26,11 @@ import DTO.EvaluationPointsDTO;
 import DTO.StudentDTO;
 import lms.domain.Course;
 import lms.domain.Student;
+import lms.domain.StudyProgram;
 import lms.service.CourseService;
 import lms.service.StorageService;
 import lms.service.StudentService;
+import lms.service.StudyProgramService;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
@@ -43,6 +45,9 @@ public class StudentController {
 
 	@Autowired
 	StorageService storageService;
+
+	@Autowired
+	StudyProgramService studyProgramService;
 	
 	@GetMapping
 	public ResponseEntity<Iterable<StudentDTO>> getAllStudent() {
@@ -203,5 +208,19 @@ public class StudentController {
 		
 	}
 	
+	@PostMapping(value = "/upisnaprvu/{spId}")
+	public ResponseEntity<Void>enrollStudentInFirstYear(@RequestBody String studentId, @PathVariable String spId)
+	{
+		Optional<Student> student = studentService.getStudentById(Long.parseLong(studentId));
+		Optional<StudyProgram> studyProgram = studyProgramService.getStudyProgramId(Long.parseLong(spId));
+
+		if(student.isPresent() && studyProgram.isPresent())
+		{
+			studentService.enrollInFirstYear(student.get(), studyProgram.get());
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		}
+
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 	
 }

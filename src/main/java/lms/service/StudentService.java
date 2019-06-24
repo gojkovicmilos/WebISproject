@@ -2,7 +2,6 @@ package lms.service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.security.NoSuchAlgorithmException;
@@ -30,6 +29,7 @@ import lms.domain.Evaluation;
 import lms.domain.EvaluationAttending;
 import lms.domain.Student;
 import lms.domain.StudentYear;
+import lms.domain.StudyProgram;
 import lms.domain.User;
 import lms.domain.YearOfStudy;
 import lms.repository.CourseAttendingRepository;
@@ -66,9 +66,18 @@ public class StudentService {
 	public StudentService() {
 	}
 
-	public void enrollInFirstYear(Student student) {
-		YearOfStudy yearOfStudy = yearOfStudyRepository.findFirstByNumberOfYear(1);
+	public void enrollInFirstYear(Student student, StudyProgram studyProgram) {
+		
+		List<YearOfStudy> yearsOfStudy = yearOfStudyRepository.findAll();
+		YearOfStudy yearOfStudy = null;
+		
+		for(YearOfStudy yos: yearsOfStudy)
+			if(yos.getStudyProgram() == studyProgram && yos.getNumberOfYear() == 1)
+				yearOfStudy = yos;
+
 		StudentYear studentYear = new StudentYear();
+		
+		studentYear.setStudent(student);
 		studentYear.setYearOfStudy(yearOfStudy);
 		student.getStudentYears().add(studentYear);
 		studentRepository.save(student);

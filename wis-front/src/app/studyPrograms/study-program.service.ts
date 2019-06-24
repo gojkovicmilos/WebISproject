@@ -15,10 +15,10 @@ export class StudyProgramService {
 
   constructor(private http: HttpClient) { }
 
-  getStudyProgram() {
+  getStudyProgram():Observable<any[]> {
     return this
            .http
-           .get(`${this.uri}`);
+           .get<any[]>(`${this.uri}`);
   }
 
   getStudyProgramByName(name: string): Observable<any> {

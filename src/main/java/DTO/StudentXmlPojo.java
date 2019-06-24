@@ -1,11 +1,7 @@
 package DTO;
 
-import java.util.List;
-
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-
-import lms.domain.Student;
 
 public class StudentXmlPojo
 {
