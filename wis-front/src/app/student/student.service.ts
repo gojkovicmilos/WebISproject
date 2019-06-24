@@ -87,7 +87,7 @@ export class StudentService {
 
     enrollStudentNext(id:number)
     {
-      this.http.post(`${this.adminUri}/upisnaprvu/${spId}`, id).subscribe(res => console.log('Done'));
+      this.http.post(`${this.adminUri}/upis`, id).subscribe(res => console.log('Done'));
     }
 
 

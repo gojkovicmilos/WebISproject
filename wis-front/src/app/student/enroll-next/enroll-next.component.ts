@@ -54,6 +54,6 @@ export class EnrollNextComponent implements OnInit {
   }
 
   
-  }
-
 }
+
+
