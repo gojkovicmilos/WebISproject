@@ -6,6 +6,8 @@ import { DataService } from '../data.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import Country from '../Country';
 import { CountryService } from '../country-service';
+import { PlaceService } from '../place-service';
+import { Place } from '../place';
 
 
 @Component({
@@ -17,34 +19,46 @@ export class HomePageComponent implements OnInit {
 
   centers: Center[];
   country: Country[];
+  place: Place[];
 
-  countries:  any={};
-  constructor(private route: ActivatedRoute,private dataService: DataService,private router: Router, private sanitizer:DomSanitizer, private cnt: CenterService ,private cos: CountryService) {
- 
-   }
+  countries: any = {};
+  places:any = {}
+  constructor(private route: ActivatedRoute, private dataService: DataService, private router: Router, private sanitizer: DomSanitizer, private cnt: CenterService, private cos: CountryService, private ps: PlaceService) {
+
+  }
 
   ngOnInit() {
     this.cnt.getCenter()
-    .subscribe((data: Center[]) => {
-      this.centers = data;
+      .subscribe((data: Center[]) => {
+        this.centers = data;
 
-    });
+      });
     this.route.params.subscribe(params => {
       this.cos.getCountryById(params.id).subscribe(res => {
         this.countries = res;
+      });
     });
-  });
+    this.route.params.subscribe(params => {
+      this.ps.getPlaceById(params.id).subscribe(res => {
+        this.places = res;
+      });
+    });
 
-    if(localStorage.getItem("username") === null)
+    if (localStorage.getItem("username") === null)
       localStorage.setItem("username", "Guest");
 
     console.log(localStorage.getItem("username"));
 
     this.cos
-    .getCountries()
-    .subscribe((data: Country[]) => {
-      this.country = data;
-});
+      .getCountries()
+      .subscribe((data: Country[]) => {
+        this.country = data;
+      });
+    this.ps
+      .getPlaces()
+      .subscribe((data: Place[]) => {
+        this.place = data;
+      });
   }
 
   punjenje(id): void {
@@ -52,13 +66,13 @@ export class HomePageComponent implements OnInit {
     localStorage.setItem("idCentra", this.dataService.idCenter.toString());
   }
 
-  transform(img:Int8Array, mimetype:string){
+  transform(img: Int8Array, mimetype: string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl("data:" + mimetype + ";base64, " + img.toString());
-}
-
-  ngOnDestroy() {
-    
   }
 
-  
+  ngOnDestroy() {
+
+  }
+
+
 }
