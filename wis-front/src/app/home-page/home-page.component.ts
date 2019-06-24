@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import Center from '../centers/Center';
 import { CenterService } from '../centers/center.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import Country from '../Country';
+import { CountryService } from '../country-service';
 
 
 @Component({
@@ -14,7 +16,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class HomePageComponent implements OnInit {
 
   centers: Center[];
-  constructor(private dataService: DataService,private router: Router, private sanitizer:DomSanitizer, private cnt: CenterService) {
+  country: Country[];
+
+  countries:  any={};
+  constructor(private route: ActivatedRoute,private dataService: DataService,private router: Router, private sanitizer:DomSanitizer, private cnt: CenterService ,private cos: CountryService) {
  
    }
 
@@ -22,12 +27,24 @@ export class HomePageComponent implements OnInit {
     this.cnt.getCenter()
     .subscribe((data: Center[]) => {
       this.centers = data;
+
     });
+    this.route.params.subscribe(params => {
+      this.cos.getCountryById(params.id).subscribe(res => {
+        this.countries = res;
+    });
+  });
 
     if(localStorage.getItem("username") === null)
       localStorage.setItem("username", "Guest");
 
     console.log(localStorage.getItem("username"));
+
+    this.cos
+    .getCountries()
+    .subscribe((data: Country[]) => {
+      this.country = data;
+});
   }
 
   punjenje(id): void {

@@ -52,9 +52,7 @@ public class CountryService implements CommandLineRunner {
 			
 			countryRepository.save(country);
 			
-			Country country2 = new Country("Bosnia");
-			
-			countryRepository.save(country2);
+		
 		}
 	}
 

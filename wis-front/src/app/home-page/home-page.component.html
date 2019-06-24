@@ -24,13 +24,14 @@
           nisi, natus beatae quidem quam odit commodi ducimus totam eum, alias, adipisci nesciunt voluptate. Voluptatum.
         </p>
       </div>
-      <div class="col-md-4 mb-5">
+      <div class="col-md-4 mb-5" >
+
         <h2>Contact Us</h2>
         <hr>
-        <address>
+        <address *ngFor="let c of country"> 
           <strong>University</strong>
           <br>Bulevar Mihajla Pupina 22
-          <br>Novi Sad, Serbia 21000
+          <br>{{c.name}}
           <br>
         </address>
         <address>
