@@ -61,15 +61,16 @@ public class UserService implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		if(StreamSupport.stream(userRepository.findAll().spliterator(), false).count()<1)
+		if(StreamSupport.stream(userRepository.findAll().spliterator(), false).count()<2)
 		{
 			User user = new User("admin", "admin", "ROLE_ADMIN");
-			
-			loginService.register(user);
-			
-			Administrator admin = new Administrator("Pera", "Peric", user);
-			
+			loginService.register(user);	
+			Administrator admin = new Administrator("Pera", "Peric", user);		
 			administratorService.addAdministrator(admin);
+			
+			User user2 = new User("plugin", "plugin", "ROLE_PLUGIN");
+			loginService.register(user2);	
+			
 		}
 	}
 }
