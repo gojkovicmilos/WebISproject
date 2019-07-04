@@ -1,6 +1,7 @@
 package lms.controllers;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import DTO.CourseDTO;
+import DTO.StudentDTO;
 import DTO.TeacherDTO;
+import lms.domain.Student;
 import lms.domain.Teacher;
 import lms.service.StorageService;
 import lms.service.TeacherService;
@@ -67,14 +71,16 @@ public class TeacherController {
 
 	@DeleteMapping(value = "/{id}")
 	@Secured("ROLE_ADMIN")
-	public ResponseEntity<TeacherDTO> removeTeacher(@PathVariable Long id) {
+	public ResponseEntity<Teacher> deleteTeacher(@PathVariable Long id) {
 		try {
 			teacherService.removeTeacherSoft(id);
-		} catch (Exception e) {
-			return new ResponseEntity<TeacherDTO>(teacherService.getTeacherById(id).get().toDTO(), HttpStatus.OK);
+			
 		}
-
-		return new ResponseEntity<TeacherDTO>(HttpStatus.NO_CONTENT);
+		catch(Exception e) {
+			return new ResponseEntity<Teacher>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Teacher>(HttpStatus.NO_CONTENT);
+		
 	}
 	
 	@GetMapping(value = "/firstname/{firstName}")
@@ -95,6 +101,44 @@ public class TeacherController {
 		}
 		return new ResponseEntity<Teacher>(HttpStatus.NO_CONTENT);
 	}
+
+
+	@GetMapping(value = "/{id}/getAllCourses")
+	public ResponseEntity<Iterable<CourseDTO>> findAllCurrentCourses(@PathVariable Long id) {
+		Optional<Teacher> teacher = teacherService.getTeacherById(id);
+		if(teacher.isPresent()) {
+			return new ResponseEntity<Iterable<CourseDTO>>(teacherService.getAllCourses(teacher.get()), HttpStatus.OK);
+		}
+		return new ResponseEntity<Iterable<CourseDTO>>(HttpStatus.NOT_FOUND);
+	}
+
+
+	///Search
+	@GetMapping(value = "/lastname/{lastName}")
+	public ResponseEntity<Iterable<StudentDTO>> getStudentByLastName(@PathVariable String lastName) {
+		return new ResponseEntity<Iterable<StudentDTO>>(teacherService.searchByLastName(lastName), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/firstname/{firstName}")
+	public ResponseEntity<Iterable<StudentDTO>> getStudentByFirstName(@PathVariable String firstName) {
+		return new ResponseEntity<Iterable<StudentDTO>>(teacherService.searchByFirstName(firstName), HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/search/{name}")
+	public ResponseEntity<Iterable<StudentDTO>> searchStudents(@PathVariable String name) {
+		return new ResponseEntity<Iterable<StudentDTO>>(teacherService.searchByName(name), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/cardnumber/{cardNumber}")
+	public ResponseEntity<Iterable<StudentDTO>> searchStudentByCardNumber(@PathVariable String cardNumber) {
+		return new ResponseEntity<Iterable<StudentDTO>>(teacherService.searchByCardnumber(cardNumber), HttpStatus.OK);
+	}
+
+
+
+
+
+
 	@GetMapping(value = "/downloadxml")
 	public ResponseEntity<Resource>downloadAllTeachersXML()
 	{

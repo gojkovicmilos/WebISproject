@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.List;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -16,9 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import DTO.StudentDTO;
 import DTO.TeacherDTO;
 import DTO.TeacherXmlPojo;
 import lms.domain.Course;
+import lms.domain.CourseRealization;
 import lms.domain.CourseTeaching;
 import lms.domain.Teacher;
 import lms.domain.User;
@@ -26,26 +29,27 @@ import lms.repository.TeacherRepository;
 import lms.utils.ConvertToPDF;
 
 @Service
-public class TeacherService {
+public class TeacherService<Student> {
 
 	@Autowired
 	TeacherRepository teacherRepository;
-	
+
 	@Autowired
 	UserService userService;
 
 	@Autowired
 	StorageService storageService;
 
-	public TeacherService() {}
-	
+	public TeacherService() {
+	}
+
 	public Iterable<TeacherDTO> getAllTeacher() {
 		Iterable<Teacher> ts = teacherRepository.findAll();
 		Set<TeacherDTO> ret = new HashSet<>();
 
-		for(Teacher t: ts)
+		for (Teacher t : ts)
 			ret.add(t.toDTO());
-		
+
 		return ret;
 	}
 
@@ -61,14 +65,14 @@ public class TeacherService {
 		Optional<Teacher> t = teacherRepository.findById(id);
 		teacherRepository.delete(t.get());
 	}
-	
+
 	public void removeTeacherSoft(Long id) {
 		Optional<Teacher> t = teacherRepository.findById(id);
-		if(t.isPresent()) {
+		if (t.isPresent()) {
 			t.get().setDeleted(true);
 			teacherRepository.save(t.get());
 			Optional<User> u = userService.getUser(t.get().getUser().getUsername());
-			if(u.isPresent()) {
+			if (u.isPresent()) {
 				userService.removeUserSoft(u.get().getId());
 			}
 		}
@@ -83,6 +87,7 @@ public class TeacherService {
 		}
 	}
 
+	//// prvi zadatak
 	public Set<Course> getAllCourses(Teacher teacher) {
 
 		Set<Course> ret = new HashSet<>();
@@ -92,21 +97,67 @@ public class TeacherService {
 		return ret;
 
 	}
-	
+
+	public Set<Course> getAllStudentsAndGradesAtSubject(Teacher teacher,Student student){
+
+		Set<Course> ret = new HashSet<>();
+		for (CourseTeaching courseTeaching : teacher.getCourseTeachings())
+			ret.add(courseTeaching.getCourseRealization().getCourse());
+		for (CourseRealization courseRealization : course.g
+			ret.add(courseTeaching.getCourseRealization().getCourse());
+
+		return ret;
+
+	}
+
+	// 3
+	public Iterable<StudentDTO> searchByName(String name) {
+		List<lms.domain.Student> list = teacherRepository.findByFirstNameOrLastNameLikeIgnoreCase(name, name);
+		Set<StudentDTO> ret = new HashSet<>();
+		for (lms.domain.Student s : list)
+			ret.add(s.toDTO());
+		return ret;
+	}
+
+	public Iterable<StudentDTO> searchByLastName(String lastName) {
+		List<lms.domain.Student> list = teacherRepository.findByLastNameLikeIgnoreCase(lastName);
+		Set<StudentDTO> ret = new HashSet<>();
+		for (lms.domain.Student s : list)
+			ret.add(s.toDTO());
+		return ret;
+	}
+
+	public Iterable<StudentDTO> searchByFirstName(String firstName) {
+		List<lms.domain.Student> list = teacherRepository.findByFirstNameLikeIgnoreCase(firstName);
+		Set<StudentDTO> ret = new HashSet<>();
+		for (lms.domain.Student s : list)
+			ret.add(s.toDTO());
+		return ret;
+	}
+
+	public Iterable<StudentDTO> searchByCardnumber(String cardNumber) {
+		List<lms.domain.Student> list = teacherRepository.findFirstByCardNumber(cardNumber);
+		Set<StudentDTO> ret = new HashSet<>();
+		for (lms.domain.Student s : list)
+			ret.add(s.toDTO());
+		return ret;
+	}
+
 	public Iterable<Teacher> getByLastName(String lastName) {
 		return teacherRepository.findByLastName(lastName);
 	}
-	
+
 	public Iterable<Teacher> getByFirstName(String firstName) {
 		return teacherRepository.findTeacherByFirstName(firstName);
 	}
-	
+
 	public Optional<Teacher> getByPersonalIdentificationNumber(String personalIdentificationNumber) {
 		return teacherRepository.findByPersonalIdentificationNumber(personalIdentificationNumber);
 	}
 
 	public Path toXMLFile(Teacher s) {
-		File file = new File(s.getFirstName() + " " + s.getLastName() + " " + s.getPersonalIdentificationNumber() + ".xml");
+		File file = new File(
+				s.getFirstName() + " " + s.getLastName() + " " + s.getPersonalIdentificationNumber() + ".xml");
 
 		XmlMapper mapper = new XmlMapper();
 
@@ -123,17 +174,10 @@ public class TeacherService {
 		return file.toPath();
 	}
 
-	public Path allToXMLFile()
-	{
+	public Path allToXMLFile() {
 		File file = new File("teachers.xml");
-		
+
 		XmlMapper mapper = new XmlMapper();
-		
-
-
-		
-
-		
 
 		try {
 			mapper.writeValue(file, new TeacherXmlPojo(getAllTeacher()));
@@ -155,10 +199,6 @@ public class TeacherService {
 
 		return storageService.loadFile(ConvertToPDF.teachers(getAllTeacher(), filename));
 
-
-
-		
-
 	}
 
 	public Resource toPDF(TeacherDTO s) {
@@ -166,10 +206,6 @@ public class TeacherService {
 		String filename = s.getFirstName() + " " + s.getLastName() + " " + s.getPersonalIdentificationNumber() + ".pdf";
 
 		return storageService.loadFile(ConvertToPDF.teacher(s, filename));
-
-
-
-		
 
 	}
 

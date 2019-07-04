@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import DTO.AdministratorDTO;
+import DTO.CourseDTO;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -64,6 +65,17 @@ public class AdministratorController {
 		return new ResponseEntity<AdministratorDTO>(HttpStatus.NOT_FOUND);
 	}
 
+	
+	@JsonView(HideOptionalProperties.class)
+	@GetMapping(value = "/course/{id}")
+	public ResponseEntity<CourseDTO> getCourse(@PathVariable Long id) {
+		Optional<Course> course = administratorService.getCourseId(id);
+		if (course.isPresent()) {
+			return new ResponseEntity<CourseDTO>(course.get().toDTO(), HttpStatus.OK);
+		}
+		return new ResponseEntity<CourseDTO>(HttpStatus.NOT_FOUND);
+	}
+
 	@PostMapping
 	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Administrator> addAdministrator(@RequestBody Administrator faculty) {
@@ -71,6 +83,24 @@ public class AdministratorController {
 		administratorService.addAdministrator(faculty);
 		return new ResponseEntity<Administrator>(faculty, HttpStatus.CREATED);
 	}
+
+
+	@PostMapping
+	@Secured("ROLE_ADMIN")
+	public ResponseEntity<Course> addCourse(@RequestBody Course course) {
+
+		administratorService.addCourse(course);
+		return new ResponseEntity<Course>(course, HttpStatus.CREATED);
+	}
+
+
+	@PutMapping(value = "/course/{id}")
+	@Secured("ROLE_ADMIN")
+	public ResponseEntity<Course> updateCourse(@PathVariable Long id, @RequestBody Course course) {
+		administratorService.updateCourse(id, course);
+		return new ResponseEntity<Course>(course, HttpStatus.CREATED);
+	}
+
 
 	@PutMapping(value = "/{id}")
 	@Secured("ROLE_ADMIN")
@@ -121,6 +151,12 @@ public class AdministratorController {
 		}
 		
 		return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
+	}
+
+
+	@RequestMapping()
+	public ResponseEntity<Iterable<CourseDTO>> getAllCourses() {
+		return new ResponseEntity<Iterable<CourseDTO>>(administratorService.getAllCourse(), HttpStatus.OK);
 	}
 
 }

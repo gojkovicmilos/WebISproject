@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import DTO.AdministratorDTO;
+import DTO.CourseDTO;
 import lms.domain.Administrator;
 import lms.domain.Course;
 import lms.domain.CourseAttending;
@@ -17,6 +18,7 @@ import lms.domain.StudentYear;
 import lms.domain.StudyProgram;
 import lms.domain.YearOfStudy;
 import lms.repository.AdministratorRepository;
+import lms.repository.CourseRepository;
 import lms.repository.StudentYearRepository;
 import lms.repository.YearOfStudyRepository;
 
@@ -29,6 +31,10 @@ public class AdministratorService {
 	@Autowired
 	StudentYearRepository studentYearRepository;
 	
+	@Autowired
+	CourseRepository courseRepository;
+
+
 	@Autowired
 	YearOfStudyRepository yearOfStudyRepository;
 	
@@ -49,6 +55,14 @@ public class AdministratorService {
 		administratorRepository.save(a);
 	}
 
+	public void addCourse(Course c) {
+		courseRepository.save(c);
+	}
+
+	public Optional<Course> getCourseId(Long id) {
+		return courseRepository.findById(id);
+	}
+
 	public Optional<Administrator> getAdminId(Long id) {
 		return administratorRepository.findById(id);
 	}
@@ -65,13 +79,31 @@ public class AdministratorService {
 			administratorRepository.save(a);
 		}
 	}
+
+
+	public void updateCourse(Long id, Course c) {
+		Optional<Course> add = courseRepository.findById(id);
+		if (add.isPresent()) {
+			c.setId(add.get().getId());
+			courseRepository.save(c);
+		}
+	}
+
+
+	public Iterable<CourseDTO> getAllCourse() {
+		Iterable<Course> c = courseRepository.findAll();
+		Set<CourseDTO> cd = new HashSet<>();
+		for(Course ct: c)
+			cd.add(ct.toDTO());
+		return cd;
+	}
 	
 	public Iterable<Student>getAllStudentsWhoPass(StudyProgram studyProgram, int yearNumber)
 	{
 		
 		YearOfStudy yearOfStudy = null;
 		
-		int pointsNeeded = yearNumber*48;
+		int pointsNeeded = 38;
 		
 		for(YearOfStudy yos: studyProgram.getYearsOfStudy())
 			if(yos.getNumberOfYear() == yearNumber)
